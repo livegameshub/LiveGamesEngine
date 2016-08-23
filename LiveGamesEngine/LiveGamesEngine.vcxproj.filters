@@ -5,4 +5,9 @@
       <UniqueIdentifier>{652c037a-52ba-4fef-9694-21625d19293c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
