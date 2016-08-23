@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{567E296A-CAFD-40D9-B113-F8E409D7F11E}</ProjectGuid>
-    <RootNamespace>LiveGamesEngine</RootNamespace>
+    <RootNamespace>Game</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,11 +70,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Build\</OutDir>
-    <IntDir>$(ProjectDir)Temp\</IntDir>
+    <IntDir>$(SolutionDir)Temp\Game\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Build\</OutDir>
-    <IntDir>$(ProjectDir)Temp\</IntDir>
+    <IntDir>$(SolutionDir)Temp\Game\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
