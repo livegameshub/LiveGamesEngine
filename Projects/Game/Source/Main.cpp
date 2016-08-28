@@ -1,25 +1,48 @@
 
 /* this is the main file of the application */
 
-/*
-type_of_data function_name(type_of_data parameter_name)
-{
-}
-*/
+#include <iostream>
 
-void SecondFunction();
-
-void FirstFunction()
+void TestFunction()
 {
-	SecondFunction();
-}
+	/* types of data */
 
-void SecondFunction()
-{
+	int population = 15;
+
+	int size;
+	size = 5;
+
+	float price = 3.5f;
+
+	float bonus;
+	bonus = 7.899f;
+
+	double kilograms = 4.5;
+
+	double volume;
+	volume = 3.2;
+
+	bool isTrue = false;
+
+	bool isSleeping;
+	isSleeping = true;
+
+	char character = 'a';
+
+	char letter;
+	letter = 'l';
+
+	/* output things in the console */
+
+	std::cout << "The population value is: " << population << "\n";
+	std::cout << "The price is: " << price << std::endl;
+	std::cout << "The value of isTrue is: " << isTrue << std::endl;
+	std::cout << "The character is: " << character << std::endl;;
 }
 
 void main()
 {
-	FirstFunction();
-	SecondFunction();
+	TestFunction();
+
+	system("Pause");
 }
