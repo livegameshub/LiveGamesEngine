@@ -16,9 +16,15 @@
     <ClInclude Include="Source\Random.h">
       <Filter>Source\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Flag.h">
+      <Filter>Source\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
+      <Filter>Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Flag.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
   </ItemGroup>

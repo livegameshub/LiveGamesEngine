@@ -26,11 +26,6 @@ namespace ai
 		return mValue;
 	}
 
-	u32 Random::GetValue() const
-	{
-		return mValue;
-	}
-
 	Random::operator u32() const
 	{
 		return mValue;

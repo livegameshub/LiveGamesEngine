@@ -119,10 +119,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Flag.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Random.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Flag.cpp" />
     <ClCompile Include="Source\Random.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

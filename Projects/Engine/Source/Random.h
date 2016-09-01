@@ -11,7 +11,6 @@ namespace ai
 
 		inline u32 GetRandomInt(u32 max);
 		inline u32 GetRandomInt(u32 min, u32 max);
-		inline u32 GetValue() const;
 
 		inline operator u32() const;
 
