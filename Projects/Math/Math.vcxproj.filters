@@ -5,5 +5,24 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Source\Vector">
+      <UniqueIdentifier>{f9f5d94f-08d6-43bc-8e21-e593a3038a2f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Vector2f.h">
+      <Filter>Source\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MathUtil.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BasicTypes.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Vector2f.cpp">
+      <Filter>Source\Vector</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,7 @@
 #include "Random.h"
 
+#include <time.h>
+
 namespace ai
 {
 	Random::Random()

@@ -1,7 +1,7 @@
 #ifndef _RANDOM_H_
 #define _RANDOM_H_
 
-#include "Platform.h"
+#include "EngineUtil.h"
 
 namespace ai
 {

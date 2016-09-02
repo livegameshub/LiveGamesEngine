@@ -19,6 +19,9 @@
     <ClInclude Include="Source\Flag.h">
       <Filter>Source\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Source\EngineUtil.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">

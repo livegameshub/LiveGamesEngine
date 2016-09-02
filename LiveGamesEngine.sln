@@ -9,6 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Projects\Game\Game.
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Projects\Engine\Engine.vcxproj", "{7CE5E659-9345-4F7C-8F26-3BDBD99BCE6A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A64E9634-2D18-4D76-9CEC-52EDD1BC78B1} = {A64E9634-2D18-4D76-9CEC-52EDD1BC78B1}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Projects\Math\Math.vcxproj", "{A64E9634-2D18-4D76-9CEC-52EDD1BC78B1}"
 EndProject

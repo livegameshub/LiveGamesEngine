@@ -1,7 +1,7 @@
 #ifndef _FLAG_H_
 #define _FLAG_H_
 
-#include "Platform.h"
+#include "EngineUtil.h"
 
 namespace ai
 {
