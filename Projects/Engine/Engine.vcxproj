@@ -131,14 +131,18 @@
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\EngineUtil.h" />
     <ClInclude Include="Source\Flag.h" />
+    <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Random.h" />
+    <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Console.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Flag.cpp" />
+    <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\Random.cpp" />
+    <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
