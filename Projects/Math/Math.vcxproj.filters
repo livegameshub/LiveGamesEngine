@@ -8,6 +8,9 @@
     <Filter Include="Source\Vector">
       <UniqueIdentifier>{f9f5d94f-08d6-43bc-8e21-e593a3038a2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Matrix">
+      <UniqueIdentifier>{08897fbd-93ac-416f-b82a-bb531b88e088}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Vector2f.h">
@@ -19,9 +22,21 @@
     <ClInclude Include="Source\BasicTypes.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Vector3f.h">
+      <Filter>Source\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vector4f.h">
+      <Filter>Source\Vector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Vector2f.cpp">
+      <Filter>Source\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector3f.cpp">
+      <Filter>Source\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Vector4f.cpp">
       <Filter>Source\Vector</Filter>
     </ClCompile>
   </ItemGroup>
