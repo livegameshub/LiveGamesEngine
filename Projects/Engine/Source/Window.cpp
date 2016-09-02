@@ -87,6 +87,11 @@ namespace ai
 		return mHeight;
 	}
 
+	i32 Window::IsClosing() const
+	{
+		return glfwWindowShouldClose(mWindow);
+	}
+
 	void Window::SwapBuffers() const
 	{
 		glfwSwapBuffers(mWindow);
@@ -100,5 +105,10 @@ namespace ai
 	void Window::ReleaseApi()
 	{
 		glfwTerminate();
+	}
+
+	void Window::HandleEvents()
+	{
+		glfwPollEvents();
 	}
 }

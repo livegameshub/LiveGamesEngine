@@ -1,16 +1,29 @@
 
 /* this is the main file of the application */
 
+#ifndef _DEBUG
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
+#endif
+
 #include "Random.h"
 #include "Window.h"
 
-void main()
+int main()
 {
 	ai::Random::Seed();
 
 	ai::Window w;
 
-	w.Create("Miau", 800, 600, 0, true);
+	w.Create("TestWindow", 800, 600, 0, true);
 
-	system("Pause");
+	while (!w.IsClosing())
+	{
+		w.SwapBuffers();
+
+		ai::Window::HandleEvents();
+	}
+
+	ai::Window::ReleaseApi();
+
+	return 0;
 }
