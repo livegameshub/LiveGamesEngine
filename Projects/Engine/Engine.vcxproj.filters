@@ -8,6 +8,9 @@
     <Filter Include="Source\Common">
       <UniqueIdentifier>{39f63bd3-9819-48df-b0ad-f7c9891cc9c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Util">
+      <UniqueIdentifier>{6d54a72c-daaf-4a75-950f-c62455135a89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
@@ -22,6 +25,12 @@
     <ClInclude Include="Source\EngineUtil.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Engine.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Console.h">
+      <Filter>Source\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -29,6 +38,12 @@
     </ClCompile>
     <ClCompile Include="Source\Flag.cpp">
       <Filter>Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Console.cpp">
+      <Filter>Source\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
