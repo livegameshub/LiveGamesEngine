@@ -5,25 +5,18 @@
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
-#include "Random.h"
-#include "Window.h"
+#include "Engine.h"
+
+using namespace ai;
 
 int main()
 {
-	ai::Random::Seed();
-
-	ai::Window w;
-
-	w.Create("TestWindow", 800, 600, 0, true);
-
-	while (!w.IsClosing())
+	Engine& engine = Engine::GetInstance();
+	
+	if (engine.Setup("DefaultWindow"))
 	{
-		w.SwapBuffers();
-
-		ai::Window::HandleEvents();
+		engine.Run();
 	}
-
-	ai::Window::ReleaseApi();
 
 	return 0;
 }

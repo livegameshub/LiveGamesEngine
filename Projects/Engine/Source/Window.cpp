@@ -1,45 +1,57 @@
 #include "Window.h"
 #include "Graphics.h"
+#include "Engine.h"
 
 #include <glfw3.h>
 
 namespace ai
 {
 	Window::Window()
-		: mWindow(nullptr)
+		: mIsMain(false)
 		, mSamples(0)
-		, mWidth(0)
-		, mHeight(0)
+		, mWindowPtr(nullptr)
 	{
 	}
 
-	bool Window::Create(const char* title, u32 width, u32 height, u32 samples, bool isMain)
+	Window::Window(const Size<u32>& size, u32 samples, bool isMain)
+		: mIsMain(isMain)
+		, mSamples(samples)
+		, mSize(size)
+		, mWindowPtr(nullptr)
 	{
-		if (isMain)
+	}
+
+	Window::~Window()
+	{
+	}
+
+	bool Window::Create(const char* title)
+	{
+		if (mIsMain)
 		{
 			if (!InitApi())
 			{
 				return false;
 			}
 
-			if (samples > 0)
+			if (mSamples > 0)
 			{
-				glfwWindowHint(GLFW_SAMPLES, samples);
+				glfwWindowHint(GLFW_SAMPLES, mSamples);
 			}
 		}
 
-		mWindow = glfwCreateWindow(width, height, title, nullptr, nullptr);
+		mWindowPtr = glfwCreateWindow(mSize.width, mSize.height, title, nullptr, nullptr);
 
-		if (mWindow == nullptr)
+		if (mWindowPtr == nullptr)
 		{
 			ReleaseApi();
 
 			return false;
 		}
 
-		glfwMakeContextCurrent(mWindow);
+		glfwMakeContextCurrent(mWindowPtr);
 
-		if (isMain)
+		if (mIsMain)
 		{
 			if (!Graphics::InitApi())
 			{
@@ -50,21 +62,18 @@ namespace ai
 			
 			Graphics::CheckApiVersion();
 			Graphics::CheckMaxSamples();
-		}
 
-		SetNewSize(width, height);
-		mSamples = samples;
+			InitWindowCallbacks();
+		}
 
 		return true;
 	}
 
-	bool Window::SetNewSize(u32 width, u32 height)
+	bool Window::SetNewSize(const Size<u32>& size)
 	{
-		if (width && height && 
-			mWidth != width && mHeight != height)
+		if (mSize != size)
 		{
-			mWidth = width;
-			mHeight = height;
+			mSize = size;
 
 			return true;
 		}
@@ -77,24 +86,24 @@ namespace ai
 		return mSamples;
 	}
 
-	u32 Window::GetWidth() const
-	{
-		return mWidth;
-	}
-
-	u32 Window::GetHeight() const
-	{
-		return mHeight;
-	}
-
 	i32 Window::IsClosing() const
 	{
-		return glfwWindowShouldClose(mWindow);
+		return glfwWindowShouldClose(mWindowPtr);
 	}
 
 	void Window::SwapBuffers() const
 	{
-		glfwSwapBuffers(mWindow);
+		glfwSwapBuffers(mWindowPtr);
+	}
+
+	GLFWwindow* Window::GetWindowPtr() const
+	{
+		return mWindowPtr;
+	}
+
+	const Size<u32>& Window::GetSize() const
+	{
+		return mSize;
 	}
 
 	bool Window::InitApi()
@@ -110,5 +119,10 @@ namespace ai
 	void Window::HandleEvents()
 	{
 		glfwPollEvents();
+	}
+
+	void Window::InitWindowCallbacks() const
+	{
+		glfwSetWindowSizeCallback(mWindowPtr, Engine::WindowResizeCallback);
 	}
 }

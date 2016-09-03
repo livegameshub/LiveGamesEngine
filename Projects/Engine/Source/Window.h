@@ -2,6 +2,7 @@
 #define _WINDOW_H_
 
 #include "EngineUtil.h"
+#include "Size.h"
 
 struct GLFWwindow;
 
@@ -11,15 +12,18 @@ namespace ai
 	{
 	public:
 		Window();
+		Window(const Size<u32>& size, u32 samples, bool isMain = false);
+		~Window();
 
-		bool Create(const char* title, u32 width, u32 heigh, u32 samples, bool isMain);
+		bool Create(const char* title = "");
 
-		inline bool SetNewSize(u32 width, u32 height);
+		inline bool SetNewSize(const Size<u32>& size);
 		inline void SwapBuffers() const;
 
+		inline GLFWwindow* GetWindowPtr() const;
+
+		inline const Size<u32>& GetSize() const;
 		inline u32 GetSamples() const;
-		inline u32 GetWidth() const;
-		inline u32 GetHeight() const;
 		inline i32 IsClosing() const;
 		
 		static bool InitApi();
@@ -27,11 +31,14 @@ namespace ai
 		static void HandleEvents();
 
 	private:
-		GLFWwindow* mWindow;
+		bool mIsMain;
 
 		u32 mSamples;
-		u32 mWidth;
-		u32 mHeight;
+		Size<u32> mSize;
+		
+		GLFWwindow* mWindowPtr;
+
+		void InitWindowCallbacks() const;
 	};
 }
 

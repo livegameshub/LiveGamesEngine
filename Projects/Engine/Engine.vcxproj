@@ -134,6 +134,7 @@
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Random.h" />
+    <ClInclude Include="Source\Size.h" />
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,9 @@
     <Filter Include="Source\Window">
       <UniqueIdentifier>{b1cdad50-3285-4f48-9b24-aaa7b08a14dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Render">
+      <UniqueIdentifier>{c585d49f-a2ef-4985-b042-4589b45e3245}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
@@ -37,8 +40,11 @@
     <ClInclude Include="Source\Window.h">
       <Filter>Source\Window</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Size.h">
+      <Filter>Source\Common</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Graphics.h">
-      <Filter>Source</Filter>
+      <Filter>Source\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +64,7 @@
       <Filter>Source\Window</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
