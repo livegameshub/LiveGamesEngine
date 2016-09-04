@@ -26,6 +26,8 @@ namespace ai
 		inline u32 GetSamples() const;
 		inline i32 IsClosing() const;
 		
+		static Size<u32> GetScreenSize();
+
 		static bool InitApi();
 		static void ReleaseApi();
 		static void HandleEvents();

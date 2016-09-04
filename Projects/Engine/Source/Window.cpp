@@ -27,17 +27,9 @@ namespace ai
 
 	bool Window::Create(const char* title)
 	{
-		if (mIsMain)
+		if (mIsMain && mSamples > 0)
 		{
-			if (!InitApi())
-			{
-				return false;
-			}
-
-			if (mSamples > 0)
-			{
-				glfwWindowHint(GLFW_SAMPLES, mSamples);
-			}
+			glfwWindowHint(GLFW_SAMPLES, mSamples);
 		}
 
 		mWindowPtr = glfwCreateWindow(mSize.width, mSize.height, title, nullptr, nullptr);
@@ -89,6 +81,19 @@ namespace ai
 	i32 Window::IsClosing() const
 	{
 		return glfwWindowShouldClose(mWindowPtr);
+	}
+
+	Size<u32> Window::GetScreenSize()
+	{
+		/* get the main monitor */
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+
+		/* get the mode of our monitor */
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+		Size<u32> size(mode->width, mode->height);
+
+		return size;
 	}
 
 	void Window::SwapBuffers() const

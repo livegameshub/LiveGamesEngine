@@ -5,13 +5,13 @@
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
-#include "Engine.h"
+#include "Application.h"
 
 using namespace ai;
 
 int main()
 {
-	Engine::GetInstance().Setup("DefaultWindow");
+	Application::Start();
 
 	return 0;
 }
