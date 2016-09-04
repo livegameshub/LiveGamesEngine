@@ -3,20 +3,19 @@
 
 namespace ai
 {
-	bool Engine::Setup(const char* title)
+	void Engine::Setup(const char* title)
 	{
 		Random::Seed();
 
+		/* we should add at least the main window */
 		Window window(Size<u32>(800, 600), 0, true);
 
-		if (!window.Create(title))
+		if (window.Create(title))
 		{
-			return false;
+			mWindows.push_back(window);
+
+			Run();
 		}
-
-		mWindows.push_back(window);
-
-		return true;
 	}
 
 	void Engine::Run()

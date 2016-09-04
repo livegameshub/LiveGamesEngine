@@ -10,8 +10,7 @@ namespace ai
 	class Engine
 	{
 	public:
-		ENGINE_API void Run();
-		ENGINE_API bool Setup(const char* title);
+		ENGINE_API void Setup(const char* title);
 
 		ENGINE_API static Engine& GetInstance();
 
@@ -19,6 +18,8 @@ namespace ai
 
 	private:
 		std::vector<Window> mWindows;
+
+		void Run();
 	};
 }
 

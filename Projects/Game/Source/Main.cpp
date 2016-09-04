@@ -11,12 +11,7 @@ using namespace ai;
 
 int main()
 {
-	Engine& engine = Engine::GetInstance();
-	
-	if (engine.Setup("DefaultWindow"))
-	{
-		engine.Run();
-	}
+	Engine::GetInstance().Setup("DefaultWindow");
 
 	return 0;
 }

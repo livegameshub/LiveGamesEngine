@@ -24,8 +24,10 @@ namespace ai
 		}
 	};
 
-	EXP_TEMPLATE template struct ENGINE_API Size<u32>;
-	EXP_TEMPLATE template struct ENGINE_API Size<f32>;
+	/* in case you use this outside this projects */
+
+	//EXP_TEMPLATE template struct ENGINE_API Size<u32>;
+	//EXP_TEMPLATE template struct ENGINE_API Size<f32>;
 }
 
 #endif
