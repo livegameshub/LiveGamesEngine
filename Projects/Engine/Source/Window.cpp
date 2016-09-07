@@ -27,6 +27,10 @@ namespace ai
 
 	bool Window::Create(const char* title)
 	{
+		// TODO
+		// integrate maximed window option
+		// glfwWindowHint(GLFW_MAXIMIZED, true);
+
 		if (mIsMain && mSamples > 0)
 		{
 			glfwWindowHint(GLFW_SAMPLES, mSamples);
@@ -99,6 +103,10 @@ namespace ai
 	void Window::SwapBuffers() const
 	{
 		glfwSwapBuffers(mWindowPtr);
+	}
+
+	void Window::Draw() const
+	{
 	}
 
 	GLFWwindow* Window::GetWindowPtr() const

@@ -19,6 +19,7 @@ namespace ai
 
 		inline bool SetNewSize(const Size<u32>& size);
 		inline void SwapBuffers() const;
+		inline void Draw() const;
 
 		inline GLFWwindow* GetWindowPtr() const;
 

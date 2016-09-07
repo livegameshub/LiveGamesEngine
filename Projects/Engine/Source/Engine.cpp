@@ -1,8 +1,27 @@
 #include "Engine.h"
 #include "Random.h"
+#include "Graphics.h"
 
 namespace ai
 {
+	Engine::Engine()
+		: mIsStoped(false)
+	{
+	}
+
+	Window* Engine::GetWindow(GLFWwindow* windowPtr)
+	{
+		for (u32 i = 0; i < mWindows.size(); ++i)
+		{
+			if (mWindows[i].GetWindowPtr() == windowPtr)
+			{
+				return &mWindows[i];
+			}
+		}
+
+		return nullptr;
+	}
+
 	bool Engine::Setup(const char* title)
 	{
 		Random::Seed();
@@ -30,8 +49,9 @@ namespace ai
 	{
 		const Window& window = mWindows[0];
 
-		while (!window.IsClosing())
+		while (!mIsStoped && !window.IsClosing())
 		{
+			window.Draw();
 			window.SwapBuffers();
 
 			Window::HandleEvents();
@@ -40,8 +60,23 @@ namespace ai
 		Window::ReleaseApi();
 	}
 
-	void Engine::WindowResizeCallback(GLFWwindow* window, i32 width, i32 height)
+	void Engine::Stop()
 	{
+		mIsStoped = true;
+	}
+
+	void Engine::Prepare()
+	{
+	}
+
+	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height)
+	{
+		Window* window = Engine::GetInstance().GetWindow(windowPtr);
+
+		if (window && window->SetNewSize(Size<u32>(width, height)))
+		{
+			glViewport(0, 0, width, height);
+		}
 	}
 
 	Engine& Engine::GetInstance()

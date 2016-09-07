@@ -16,6 +16,9 @@ namespace ai
 		inline Flag operator+(const Flag& flag) const;
 		inline Flag operator-(const Flag& flag) const;
 
+		// TODO
+		// += and -= operators
+
 		inline bool IsSet(u32 flag) const;
 		inline operator u32() const;
 
