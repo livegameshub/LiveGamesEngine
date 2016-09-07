@@ -46,6 +46,9 @@
     <ClInclude Include="Source\Graphics.h">
       <Filter>Source\Render</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Input.h">
+      <Filter>Source\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -65,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="Source\Graphics.cpp">
       <Filter>Source\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input.cpp">
+      <Filter>Source\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

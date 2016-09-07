@@ -11,6 +11,9 @@
     <Filter Include="Source\Matrix">
       <UniqueIdentifier>{08897fbd-93ac-416f-b82a-bb531b88e088}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Quaternion">
+      <UniqueIdentifier>{3fa4966b-f135-4423-ba1d-54b36c36ad9b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Vector2f.h">

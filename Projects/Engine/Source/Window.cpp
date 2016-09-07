@@ -1,6 +1,7 @@
 #include "Window.h"
 #include "Graphics.h"
 #include "Engine.h"
+#include "Input.h"
 
 #include <glfw3.h>
 
@@ -136,6 +137,10 @@ namespace ai
 
 	void Window::InitWindowCallbacks() const
 	{
+		glfwSetKeyCallback(mWindowPtr, Input::KeyboardKeysCallback);
+		glfwSetCursorPosCallback(mWindowPtr, Input::MousePositionCallback);
+		glfwSetMouseButtonCallback(mWindowPtr, Input::MouseClicksCallback);
+
 		glfwSetWindowSizeCallback(mWindowPtr, Engine::WindowResizeCallback);
 	}
 }

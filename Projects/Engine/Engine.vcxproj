@@ -132,6 +132,7 @@
     <ClInclude Include="Source\EngineUtil.h" />
     <ClInclude Include="Source\Flag.h" />
     <ClInclude Include="Source\Graphics.h" />
+    <ClInclude Include="Source\Input.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Random.h" />
     <ClInclude Include="Source\Size.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Flag.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
