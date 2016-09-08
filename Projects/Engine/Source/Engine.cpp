@@ -1,6 +1,11 @@
 #include "Engine.h"
 #include "Random.h"
 #include "Graphics.h"
+#include "Time.h"
+
+#ifdef _DEBUG
+#include "FpsCounter.h"
+#endif
 
 namespace ai
 {
@@ -32,8 +37,16 @@ namespace ai
 			return false;
 		}
 
+		Size<u32> size = Window::GetScreenSize();
+
+		#ifdef _DEBUG
+
+		size = Size<u32>(800, 600);
+
+		#endif
+
 		/* we should add at least the main window */
-		Window window(Window::GetScreenSize(), 0, true);
+		Window window(size, 0, true);
 
 		if (!window.Create(title))
 		{
@@ -51,6 +64,14 @@ namespace ai
 
 		while (!mIsStoped && !window.IsClosing())
 		{
+			Time::Update();
+
+			#ifdef _DEBUG
+
+			FpsCounter::Update();
+
+			#endif
+
 			window.Draw();
 			window.SwapBuffers();
 
@@ -67,6 +88,7 @@ namespace ai
 
 	void Engine::Prepare()
 	{
+		Time::Start();
 	}
 
 	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height)
