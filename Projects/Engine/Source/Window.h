@@ -2,6 +2,7 @@
 #define _WINDOW_H_
 
 #include "EngineUtil.h"
+#include "Renderer.h"
 #include "Size.h"
 
 struct GLFWwindow;
@@ -19,9 +20,10 @@ namespace ai
 
 		inline bool SetNewSize(const Size<u32>& size);
 		inline void SwapBuffers() const;
-		inline void Draw() const;
+		inline void Draw();
 
 		inline GLFWwindow* GetWindowPtr() const;
+		inline Renderer& GetRenderer();
 
 		inline const Size<u32>& GetSize() const;
 		inline u32 GetSamples() const;
@@ -40,6 +42,7 @@ namespace ai
 		Size<u32> mSize;
 		
 		GLFWwindow* mWindowPtr;
+		Renderer mRenderer;
 
 		void InitWindowCallbacks() const;
 	};

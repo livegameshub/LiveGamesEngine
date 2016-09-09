@@ -58,9 +58,14 @@ namespace ai
 		return true;
 	}
 
+	void Engine::Prepare()
+	{
+		Time::Start();
+	}
+
 	void Engine::Run()
 	{
-		const Window& window = mWindows[0];
+		Window& window = mWindows[0];
 
 		while (!mIsStoped && !window.IsClosing())
 		{
@@ -77,18 +82,16 @@ namespace ai
 
 			Window::HandleEvents();
 		}
+	}
 
+	void Engine::Release()
+	{
 		Window::ReleaseApi();
 	}
 
 	void Engine::Stop()
 	{
 		mIsStoped = true;
-	}
-
-	void Engine::Prepare()
-	{
-		Time::Start();
 	}
 
 	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height)

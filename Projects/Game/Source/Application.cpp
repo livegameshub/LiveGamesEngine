@@ -20,6 +20,9 @@ namespace ai
 
 			engine.Prepare();
 			engine.Run();
+
+			/* release all the resources */
+			engine.Release();
 		}
 	}
 }

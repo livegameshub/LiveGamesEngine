@@ -106,13 +106,19 @@ namespace ai
 		glfwSwapBuffers(mWindowPtr);
 	}
 
-	void Window::Draw() const
+	void Window::Draw()
 	{
+		mRenderer.Draw();
 	}
 
 	GLFWwindow* Window::GetWindowPtr() const
 	{
 		return mWindowPtr;
+	}
+
+	Renderer& Window::GetRenderer()
+	{
+		return mRenderer;
 	}
 
 	const Size<u32>& Window::GetSize() const

@@ -14,6 +14,7 @@ namespace ai
 		ENGINE_API void Run();
 		ENGINE_API void Stop();
 
+		ENGINE_API void Release();
 		ENGINE_API void Prepare();
 		ENGINE_API bool Setup(const char* title);
 
