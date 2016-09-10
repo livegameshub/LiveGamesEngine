@@ -8,12 +8,7 @@ namespace ai
 	class Application
 	{
 	public:
-		Application(const std::string& appName);
-
-		void Start() const;
-
-	private:
-		std::string mAppName;
+		static void Start(const char* appName) ;
 	};
 }
 

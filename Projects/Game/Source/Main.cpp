@@ -11,9 +11,7 @@ using namespace ai;
 
 int main()
 {
-	Application application("Live Games Hub");
-
-	application.Start();
+	Application::Start("Live Games Hub");
 
 	return 0;
 }

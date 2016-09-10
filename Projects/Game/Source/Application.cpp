@@ -3,18 +3,13 @@
 
 namespace ai
 {
-	Application::Application(const std::string& appName)
-		: mAppName(appName)
-	{
-	}
-
-	void Application::Start() const
+	void Application::Start(const char* appName)
 	{
 		Engine& engine = Engine::GetInstance();
 
 		/* try to setup the engine */
 
-		if (engine.Setup(mAppName.c_str()))
+		if (engine.Setup(appName))
 		{
 			/* prepare the engine */
 			engine.Prepare();
