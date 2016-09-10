@@ -36,6 +36,20 @@ namespace ai
 		return new_flag;
 	}
 
+	Flag& Flag::operator+=(const Flag& flag)
+	{
+		mValue |= flag;
+
+		return *this;
+	}
+
+	Flag& Flag::operator-=(const Flag& flag)
+	{
+		mValue &= ~flag;
+
+		return *this;
+	}
+
 	bool Flag::IsSet(u32 flag) const
 	{
 		return (mValue & flag) == flag;

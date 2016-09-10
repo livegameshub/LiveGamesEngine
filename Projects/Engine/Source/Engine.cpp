@@ -9,11 +9,6 @@
 
 namespace ai
 {
-	Engine::Engine()
-		: mIsStoped(false)
-	{
-	}
-
 	Window* Engine::GetWindow(GLFWwindow* windowPtr)
 	{
 		for (u32 i = 0; i < mWindows.size(); ++i)
@@ -65,21 +60,27 @@ namespace ai
 
 	void Engine::Run()
 	{
-		Window& window = mWindows[0];
+		/* on the first position should be the main window */
+		Window& main_window = mWindows[0];
 
-		while (!mIsStoped && !window.IsClosing())
+		while (!mFlag.IsSet(STOP_FLAG) && !main_window.IsClosing())
 		{
-			Time::Update();
+			/* check if we are not on break with this loop */
+			if (!mFlag.IsSet(PAUSE_FLAG))
+			{
+				Time::Update();
 
-			#ifdef _DEBUG
+				#ifdef _DEBUG
 
-			FpsCounter::Update();
+				FpsCounter::Update();
 
-			#endif
+				#endif
 
-			window.Draw();
-			window.SwapBuffers();
+				main_window.Draw();
+				main_window.SwapBuffers();
+			}
 
+			/* handle the events everytime */
 			Window::HandleEvents();
 		}
 	}
@@ -91,12 +92,22 @@ namespace ai
 
 	void Engine::Stop()
 	{
-		mIsStoped = true;
+		mFlag += STOP_FLAG;
+	}
+
+	void Engine::Pause()
+	{
+		mFlag += PAUSE_FLAG;
+	}
+
+	void Engine::Resume()
+	{
+		mFlag -= PAUSE_FLAG;
 	}
 
 	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height)
 	{
-		Window* window = Engine::GetInstance().GetWindow(windowPtr);
+		Window* window = GetInstance().GetWindow(windowPtr);
 
 		if (window && window->SetNewSize(Size<u32>(width, height)))
 		{

@@ -16,8 +16,7 @@ namespace ai
 
 		if (engine.Setup(mAppName.c_str()))
 		{
-			/* add some scenes */
-
+			/* prepare the engine */
 			engine.Prepare();
 			engine.Run();
 

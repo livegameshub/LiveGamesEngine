@@ -11,21 +11,28 @@ namespace ai
 	class Engine
 	{
 	public:
-		ENGINE_API void Run();
-		ENGINE_API void Stop();
+		enum EngineFlag
+		{
+			STOP_FLAG = 1,
+			PAUSE_FLAG = 2
+		};
 
+		ENGINE_API void Run();
+	
 		ENGINE_API void Release();
 		ENGINE_API void Prepare();
 		ENGINE_API bool Setup(const char* title);
+
+		ENGINE_API void Stop();
+		ENGINE_API void Pause();
+		ENGINE_API void Resume();
 
 		ENGINE_API static Engine& GetInstance();
 
 		static void WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height);
 
 	private:
-		Engine();
-
-		bool mIsStoped;
+		Flag mFlag;
 
 		std::vector<Window> mWindows;
 
