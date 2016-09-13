@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\BaseObject.h" />
+    <ClInclude Include="Source\BasicElement.h" />
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\EngineUtil.h" />
@@ -143,7 +143,7 @@
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\BaseObject.cpp" />
+    <ClCompile Include="Source\BasicElement.cpp" />
     <ClCompile Include="Source\Console.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Flag.cpp" />

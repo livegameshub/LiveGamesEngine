@@ -1,17 +1,17 @@
-#ifndef _BASE_OBJECT_H_
-#define _BASE_OBJECT_H_
+#ifndef _BASIC_ELEMENT_H_
+#define _BASIC_ELEMENT_H_
 
 #include "Flag.h"
 
 namespace ai
 {
-	class ENGINE_API BaseObject
+	class ENGINE_API BasicElement
 	{
 	public:
-		BaseObject(u32 id);
-		BaseObject(u32 id, const Flag& flag);
+		BasicElement(u32 id);
+		BasicElement(u32 id, const Flag& flag);
 
-		virtual ~BaseObject();
+		virtual ~BasicElement();
 
 		inline void SetId(u32 id);
 		inline void SetFlag(const Flag& flag);

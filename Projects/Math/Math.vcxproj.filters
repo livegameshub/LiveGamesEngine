@@ -16,30 +16,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Vector2f.h">
-      <Filter>Source\Vector</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MathUtil.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicTypes.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Vector3f.h">
+    <ClInclude Include="Source\Vector4.h">
       <Filter>Source\Vector</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Vector4f.h">
+    <ClInclude Include="Source\Vector3.h">
+      <Filter>Source\Vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Vector2.h">
       <Filter>Source\Vector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Vector2f.cpp">
+    <ClCompile Include="Source\Vector4.cpp">
       <Filter>Source\Vector</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Vector3f.cpp">
+    <ClCompile Include="Source\Vector3.cpp">
       <Filter>Source\Vector</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Vector4f.cpp">
+    <ClCompile Include="Source\Vector2.cpp">
       <Filter>Source\Vector</Filter>
     </ClCompile>
   </ItemGroup>

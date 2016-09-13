@@ -64,11 +64,11 @@
     <ClInclude Include="Source\FpsCounter.h">
       <Filter>Source\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BaseObject.h">
-      <Filter>Source\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Renderer.h">
       <Filter>Source\Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BasicElement.h">
+      <Filter>Source\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,11 +99,11 @@
     <ClCompile Include="Source\FpsCounter.cpp">
       <Filter>Source\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BaseObject.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Renderer.cpp">
       <Filter>Source\Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicElement.cpp">
+      <Filter>Source\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

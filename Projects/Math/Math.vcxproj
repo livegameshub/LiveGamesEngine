@@ -120,15 +120,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\BasicTypes.h" />
-    <ClInclude Include="Source\Vector4f.h" />
+    <ClInclude Include="Source\Vector4.h" />
     <ClInclude Include="Source\MathUtil.h" />
-    <ClInclude Include="Source\Vector2f.h" />
-    <ClInclude Include="Source\Vector3f.h" />
+    <ClInclude Include="Source\Vector2.h" />
+    <ClInclude Include="Source\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Vector2f.cpp" />
-    <ClCompile Include="Source\Vector3f.cpp" />
-    <ClCompile Include="Source\Vector4f.cpp" />
+    <ClCompile Include="Source\Vector2.cpp" />
+    <ClCompile Include="Source\Vector3.cpp" />
+    <ClCompile Include="Source\Vector4.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

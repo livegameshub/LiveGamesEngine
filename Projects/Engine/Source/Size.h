@@ -18,9 +18,14 @@ namespace ai
 		{
 		}
 		
-		bool operator!=(const Size<T>& size)
+		bool operator!=(const Size<T>& size) const
 		{
-			return (width != size.width && height != size.height) ? true : false;
+			return width != size.width || height != size.height;
+		}
+
+		bool operator==(const Size<T>& size) const
+		{
+			return width == size.width && height = size.height;
 		}
 	};
 
