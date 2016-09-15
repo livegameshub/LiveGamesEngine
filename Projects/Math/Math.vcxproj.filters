@@ -31,6 +31,12 @@
     <ClInclude Include="Source\Vector2.h">
       <Filter>Source\Vector</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Matrix4.h">
+      <Filter>Source\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Quaternion.h">
+      <Filter>Source\Quaternion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Vector4.cpp">
@@ -41,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="Source\Vector2.cpp">
       <Filter>Source\Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Matrix4.cpp">
+      <Filter>Source\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Quaternion.cpp">
+      <Filter>Source\Quaternion</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

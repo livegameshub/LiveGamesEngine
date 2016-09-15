@@ -120,12 +120,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\BasicTypes.h" />
+    <ClInclude Include="Source\Matrix4.h" />
+    <ClInclude Include="Source\Quaternion.h" />
     <ClInclude Include="Source\Vector4.h" />
     <ClInclude Include="Source\MathUtil.h" />
     <ClInclude Include="Source\Vector2.h" />
     <ClInclude Include="Source\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Matrix4.cpp" />
+    <ClCompile Include="Source\Quaternion.cpp" />
     <ClCompile Include="Source\Vector2.cpp" />
     <ClCompile Include="Source\Vector3.cpp" />
     <ClCompile Include="Source\Vector4.cpp" />

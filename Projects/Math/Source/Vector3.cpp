@@ -119,6 +119,13 @@ namespace ai
 		return x * vector.x + y * vector.y + z * vector.z;
 	}
 
+	void Vector3::Set(f32 x, f32 y, f32 z)
+	{
+		this->x = x;
+		this->y = y;
+		this->z = z;
+	}
+
 	void Vector3::Normalize()
 	{
 		f32 magnitude_square = x * x + y * y + z * z;
@@ -138,24 +145,24 @@ namespace ai
 		x = y = z = 0.0f;
 	}
 
-	f32 Vector3::Magnitude(const Vector3& vector)
+	f32 Vector3::Magnitude() const
 	{
-		return std::sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+		return std::sqrt(x * x + y * y + z * z);
 	}
 
-	f32 Vector3::Distance(const Vector3& a, const Vector3& b)
+	f32 Vector3::Distance(const Vector3& b) const
 	{
-		f32 dist_x = a.x - b.x;
-		f32 dist_y = a.y - b.y;
-		f32 dist_z = a.z - b.z;
+		f32 dist_x = x - b.x;
+		f32 dist_y = y - b.y;
+		f32 dist_z = z - b.z;
 
 		return std::sqrt(dist_x * dist_x + dist_y * dist_y + dist_z * dist_z);
 	}
 
-	Vector3 Vector3::CrossProduct(const Vector3& a, const Vector3& b)
+	Vector3 Vector3::CrossProduct(const Vector3& vector) const
 	{
-		return Vector3(a.y * b.z - a.z * b.y,
-					   a.z * b.x - a.x * b.z,
-					   a.x * b.y - a.y * b.x);
+		return Vector3(y * vector.z - z * vector.y,
+					   z * vector.x - x * vector.z,
+					   x * vector.y - y * vector.x);
 	}
 }

@@ -31,18 +31,17 @@ namespace ai
 		inline Vector3& operator*=(f32 value);
 		inline Vector3& operator/=(f32 value);
 
+		inline Vector3 CrossProduct(const Vector3& vector) const;
+
 		/* dot product */
 		inline f32 operator*(const Vector3& vector) const;
 
+		inline f32 Distance(const Vector3& b) const;
+		inline f32 Magnitude() const;
+
+		inline void Set(f32 x, f32 y, f32 z);
 		inline void Normalize();
 		inline void Zero();
-
-		/* static methods */
-
-		static Vector3 CrossProduct(const Vector3& a, const Vector3& b);
-
-		static f32 Distance(const Vector3& a, const Vector3& b);
-		static f32 Magnitude(const Vector3& vector);
 
 		/* members */
 
