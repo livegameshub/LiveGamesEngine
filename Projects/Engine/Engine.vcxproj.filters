@@ -26,6 +26,9 @@
     <Filter Include="Source\Engine\Input">
       <UniqueIdentifier>{3882c1e6-1fb8-49b8-bc25-1fac6de6c815}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Resources">
+      <UniqueIdentifier>{8c584fab-7697-4544-afb7-aaf626db9d53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
@@ -70,6 +73,9 @@
     <ClInclude Include="Source\BasicElement.h">
       <Filter>Source\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BasicResource.h">
+      <Filter>Source\Engine\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -104,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="Source\BasicElement.cpp">
       <Filter>Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicResource.cpp">
+      <Filter>Source\Engine\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

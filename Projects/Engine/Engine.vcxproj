@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\BasicElement.h" />
+    <ClInclude Include="Source\BasicResource.h" />
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\EngineUtil.h" />
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BasicElement.cpp" />
+    <ClCompile Include="Source\BasicResource.cpp" />
     <ClCompile Include="Source\Console.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Flag.cpp" />
