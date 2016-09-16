@@ -76,6 +76,12 @@
     <ClInclude Include="Source\BasicResource.h">
       <Filter>Source\Engine\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Shader.h">
+      <Filter>Source\Engine\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Program.h">
+      <Filter>Source\Engine\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -112,6 +118,12 @@
       <Filter>Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicResource.cpp">
+      <Filter>Source\Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shader.cpp">
+      <Filter>Source\Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Program.cpp">
       <Filter>Source\Engine\Resources</Filter>
     </ClCompile>
   </ItemGroup>

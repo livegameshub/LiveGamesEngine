@@ -11,7 +11,7 @@ namespace ai
 	class Engine
 	{
 	public:
-		enum EngineFlag
+		enum EngineFlag : u32
 		{
 			STOP_FLAG = 1,
 			PAUSE_FLAG = 2
