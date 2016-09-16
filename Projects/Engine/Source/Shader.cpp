@@ -16,6 +16,13 @@ namespace ai
 	{
 	}
 
+	Shader::Shader(u32 id, u32 shaderType, const std::string& file)
+		: BasicResource(id, file)
+		, mShaderId(0)
+		, mShaderType(shaderType)
+	{
+	}
+
 	Shader::~Shader()
 	{
 	}

@@ -14,6 +14,7 @@ namespace ai
 
 		Shader(u32 id);
 		Shader(u32 id, u32 shaderType);
+		Shader(u32 id, u32 shaderType, const std::string& file);
 		~Shader();
 
 		void Compile() const;

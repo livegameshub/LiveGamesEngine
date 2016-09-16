@@ -32,6 +32,9 @@
     <Filter Include="Source\Engine\Resources\Materials">
       <UniqueIdentifier>{ea7fcfb7-ad1f-42c7-a1ba-bc859d973f38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Resources\Mesh">
+      <UniqueIdentifier>{9029bcb6-45ef-4a3d-bbfb-22209fb0080f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
@@ -85,6 +88,9 @@
     <ClInclude Include="Source\Program.h">
       <Filter>Source\Engine\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Mesh.h">
+      <Filter>Source\Engine\Resources\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -128,6 +134,9 @@
     </ClCompile>
     <ClCompile Include="Source\Program.cpp">
       <Filter>Source\Engine\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.cpp">
+      <Filter>Source\Engine\Resources\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

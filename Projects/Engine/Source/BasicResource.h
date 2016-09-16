@@ -9,6 +9,7 @@ namespace ai
 	{
 	public:
 		BasicResource(u32 id);
+		BasicResource(u32 id, const std::string& file);
 		
 		virtual ~BasicResource();
 

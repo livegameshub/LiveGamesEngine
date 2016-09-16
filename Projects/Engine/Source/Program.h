@@ -6,6 +6,7 @@
 namespace ai
 {
 	class Shader;
+	struct Vector3;
 	struct Matrix4;
 
 	class ENGINE_API Program : public BasicResource
@@ -34,7 +35,10 @@ namespace ai
 		void AddUniform(const std::string& uniform_name);
 		void AddUniforms(const std::vector<std::string>& uniforms);
 
-		void SetUniform(const char* uniform_name, const Matrix4& matrix) const;
+		void SetUniform(const std::string& uniform_name, const Matrix4& matrix) const;
+		void SetUniform(const std::string& uniform_name, const Vector3& vector) const;
+		void SetUniform(const std::string& uniform_name, f32 value);
+		void SetUniform(const std::string& uniform_name, i32 value);
 
 		inline i32 GetAttributeLocation(u32 index) const;
 
