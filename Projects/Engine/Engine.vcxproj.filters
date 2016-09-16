@@ -29,6 +29,9 @@
     <Filter Include="Source\Engine\Resources">
       <UniqueIdentifier>{8c584fab-7697-4544-afb7-aaf626db9d53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Engine\Resources\Materials">
+      <UniqueIdentifier>{ea7fcfb7-ad1f-42c7-a1ba-bc859d973f38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
