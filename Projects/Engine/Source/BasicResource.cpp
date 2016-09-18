@@ -8,6 +8,12 @@ namespace ai
 	{
 	}
 
+	BasicResource::BasicResource(u32 id, const Flag& flag)
+		: BasicElement(id, flag)
+		, mReferencesCounter(0)
+	{
+	}
+
 	BasicResource::BasicResource(u32 id, const std::string& file)
 		: BasicElement(id)
 		, mResourceFile(file)
