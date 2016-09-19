@@ -26,7 +26,7 @@ namespace ai
 	{
 	}
 
-	bool Window::Create(const char* title)
+	bool Window::Create(const std::string& title)
 	{
 		// TODO
 		// integrate maximed window option
@@ -37,7 +37,7 @@ namespace ai
 			glfwWindowHint(GLFW_SAMPLES, mSamples);
 		}
 
-		mWindowPtr = glfwCreateWindow(mSize.width, mSize.height, title, nullptr, nullptr);
+		mWindowPtr = glfwCreateWindow(mSize.width, mSize.height, title.c_str() , nullptr, nullptr);
 
 		if (mWindowPtr == nullptr)
 		{

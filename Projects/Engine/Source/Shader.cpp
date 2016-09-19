@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "Engine.h"
 
 namespace ai
 {
@@ -76,7 +77,7 @@ namespace ai
 
 	bool Shader::Create()
 	{
-		std::ifstream read("Assets/" + mResourceFile, std::ios::in);
+		std::ifstream read(Engine::GetAssetsPath() + mResourceFile, std::ios::in);
 
 		if (!read.is_open())
 		{

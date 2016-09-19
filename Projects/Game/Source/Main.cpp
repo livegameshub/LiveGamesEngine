@@ -11,7 +11,7 @@ using namespace ai;
 
 int main()
 {
-	Engine::GetInstance().Setup("Live Games Hub");
+	Engine::GetInstance().Setup("Live Games Hub", "Assets/");
 
 	return 0;
 }

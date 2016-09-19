@@ -16,7 +16,7 @@ namespace ai
 		Window(const Size<u32>& size, u32 samples, bool isMain = false);
 		~Window();
 
-		bool Create(const char* title = "");
+		bool Create(const std::string& title = "");
 
 		inline bool SetNewSize(const Size<u32>& size);
 		inline void SwapBuffers() const;

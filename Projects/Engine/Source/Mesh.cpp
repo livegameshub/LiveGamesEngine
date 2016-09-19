@@ -1,6 +1,7 @@
 #include "Mesh.h"
 #include "Program.h"
 #include "Vector3.h"
+#include "Engine.h"
 
 namespace ai
 {
@@ -57,7 +58,7 @@ namespace ai
 
 	bool Mesh::ReadDataFromFile()
 	{
-		std::ifstream read("Assets/" + mResourceFile, std::ios::in);
+		std::ifstream read(Engine::GetAssetsPath() + mResourceFile, std::ios::in);
 
 		if (!read.is_open())
 		{
