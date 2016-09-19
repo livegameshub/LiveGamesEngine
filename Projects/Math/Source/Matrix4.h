@@ -8,6 +8,7 @@ namespace ai
 	struct MATH_API Matrix4
 	{
 		Matrix4();
+		Matrix4(f32 value);
 		Matrix4(const f32 data[16]);
 
 		/* members */

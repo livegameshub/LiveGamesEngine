@@ -17,7 +17,7 @@ namespace ai
 	{
 	}
 
-	void Program::User() const
+	void Program::Use() const
 	{
 		glUseProgram(mProgramId);
 	}

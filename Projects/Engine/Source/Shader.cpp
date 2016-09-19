@@ -76,7 +76,7 @@ namespace ai
 
 	bool Shader::Create()
 	{
-		std::ifstream read(mResourceFile, std::ios::in);
+		std::ifstream read("Assets/" + mResourceFile, std::ios::in);
 
 		if (!read.is_open())
 		{

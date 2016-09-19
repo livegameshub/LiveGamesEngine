@@ -9,8 +9,8 @@ namespace ai
 	class ENGINE_API Shader : public BasicResource
 	{
 	public:
-		const u32 VERTEX_SHADER = GL_VERTEX_SHADER;
-		const u32 FRAGMENT_SHADER = GL_FRAGMENT_SHADER;
+		static const u32 VERTEX_SHADER = GL_VERTEX_SHADER;
+		static const u32 FRAGMENT_SHADER = GL_FRAGMENT_SHADER;
 
 		Shader(u32 id);
 		Shader(u32 id, u32 shaderType);

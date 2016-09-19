@@ -23,7 +23,7 @@ namespace ai
 		Program(u32 id);
 		~Program();
 	
-		void User() const;
+		void Use() const;
 		void Link() const;
 
 		void AttachShader(Shader* shader) const;
