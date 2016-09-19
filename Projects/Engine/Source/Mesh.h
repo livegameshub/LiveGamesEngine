@@ -34,7 +34,7 @@ namespace ai
 		Mesh(u32 id, u32 primitive, u32 drawType, const Flag& flag);
 		~Mesh();
 
-		void Draw() const;
+		void Draw() const;  
 
 		void BindVbo() const;
 		void BindIbo() const;

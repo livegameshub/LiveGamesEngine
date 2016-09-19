@@ -24,8 +24,6 @@ namespace ai
 
 	bool Engine::Setup(const char* title)
 	{
-		Random::Seed();
-
 		/* init the window api */
 		if (!Window::InitApi())
 		{
@@ -50,11 +48,23 @@ namespace ai
 
 		mWindows.push_back(window);
 
+		/* prepare the engine */
+		Prepare();
+
+		/* run the engine */
+		Run();
+
+		/* release all the resources after we finish */
+		Release();
+
 		return true;
 	}
 
 	void Engine::Prepare()
 	{
+		/* seed the random value */
+		Random::Seed();
+
 		Time::Start();
 	}
 

@@ -137,6 +137,7 @@
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Input.h" />
     <ClInclude Include="Source\Mesh.h" />
+    <ClInclude Include="Source\MeshData.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Program.h" />
     <ClInclude Include="Source\Random.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
+    <ClCompile Include="Source\MeshData.cpp" />
     <ClCompile Include="Source\Program.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />

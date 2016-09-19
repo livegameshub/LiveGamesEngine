@@ -55,6 +55,92 @@ namespace ai
 		return mDrawType;
 	}
 
+	bool Mesh::ReadDataFromFile()
+	{
+		std::ifstream read(mResourceFile, std::ios::in);
+
+		if (!read.is_open())
+		{
+			return false;
+		}
+
+		u32 flag;
+		u32 vertices_size;
+
+		read >> flag;
+		read >> mPrimitive;
+		read >> vertices_size;
+
+		mFlag.Add(flag);
+
+		//u32 reserve_size = CalculateReserveSize();
+
+		std::vector<f32> vertices;
+		// TODO 
+		// rezolve this reserve
+		//vertices.reserve(vertices_size * reserve_size);
+
+		for (u32 i = 0; i < vertices_size; ++i)
+		{
+			Vector3 position;
+
+			read >> position.x >> position.y >> position.z;
+
+			vertices.emplace_back(position.x);
+			vertices.emplace_back(position.y);
+			vertices.emplace_back(position.z);
+
+			if (mFlag.IsSet(MESH_NORMAL_FLAG))
+			{
+				Vector3 normal;
+
+				read >> normal.x >> normal.y >> normal.z;
+
+				vertices.emplace_back(normal.x);
+				vertices.emplace_back(normal.y);
+				vertices.emplace_back(normal.z);
+			}
+		}
+
+		u16 index;
+
+		read >> mIndicesSize;
+
+		std::vector<u16> indices;
+		indices.reserve(mIndicesSize);
+
+		for (u32 i = 0; i < mIndicesSize; ++i)
+		{
+			read >> index;
+
+			indices.emplace_back(index);
+		}
+
+		read.close();
+
+		/* upload the data into the Gpu memory */
+		UploadData(vertices, indices);
+
+		return true;
+	}
+
+	bool Mesh::Create()
+	{
+		/* create the buffers */
+		if (!CreateBuffers())
+		{
+			return false;
+		}
+
+		/* read the data from a file if you have it */
+		if (mResourceFile.size() > 0)
+		{
+			return ReadDataFromFile();
+		}
+
+		return true;
+	}
+
 	u32 Mesh::GetVertexSize() const
 	{
 		return mVertexSize;

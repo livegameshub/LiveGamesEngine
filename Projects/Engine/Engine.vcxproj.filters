@@ -91,6 +91,9 @@
     <ClInclude Include="Source\Mesh.h">
       <Filter>Source\Engine\Resources\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="Source\MeshData.h">
+      <Filter>Source\Engine\Resources\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -136,6 +139,9 @@
       <Filter>Source\Engine\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mesh.cpp">
+      <Filter>Source\Engine\Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshData.cpp">
       <Filter>Source\Engine\Resources\Mesh</Filter>
     </ClCompile>
   </ItemGroup>

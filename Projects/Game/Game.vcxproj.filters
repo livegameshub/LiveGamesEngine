@@ -4,18 +4,19 @@
     <Filter Include="Source">
       <UniqueIdentifier>{652c037a-52ba-4fef-9694-21625d19293c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Scenes">
+      <UniqueIdentifier>{bceb9c1c-1559-4a6b-badc-73d032022d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Components">
+      <UniqueIdentifier>{e1e30bba-a0cb-421b-98d7-f22d977fae28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Nodes">
+      <UniqueIdentifier>{0f284b24-ea47-44a4-a48e-67189da1dfc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Application.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Application.h">
-      <Filter>Source</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

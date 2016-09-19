@@ -125,11 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Application.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

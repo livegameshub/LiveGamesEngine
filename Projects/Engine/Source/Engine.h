@@ -8,7 +8,7 @@ struct GLFWwindow;
 
 namespace ai
 {
-	class Engine
+	class ENGINE_API Engine
 	{
 	public:
 		enum EngineFlag : u32
@@ -17,17 +17,13 @@ namespace ai
 			PAUSE_FLAG = 2
 		};
 
-		ENGINE_API void Run();
-	
-		ENGINE_API void Release();
-		ENGINE_API void Prepare();
-		ENGINE_API bool Setup(const char* title);
+		void Stop();
+		void Pause();
+		void Resume();
 
-		ENGINE_API void Stop();
-		ENGINE_API void Pause();
-		ENGINE_API void Resume();
+		bool Setup(const char* title);
 
-		ENGINE_API static Engine& GetInstance();
+		static Engine& GetInstance();
 
 		static void WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height);
 
@@ -37,6 +33,10 @@ namespace ai
 		std::vector<Window> mWindows;
 
 		Window* GetWindow(GLFWwindow* windowPtr);
+
+		void Release();
+		void Prepare();
+		void Run();
 	};
 }
 

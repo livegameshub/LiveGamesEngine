@@ -5,13 +5,13 @@
 #pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #endif
 
-#include "Application.h"
+#include <Engine.h>
 
 using namespace ai;
 
 int main()
 {
-	Application::Start("Live Games Hub");
+	Engine::GetInstance().Setup("Live Games Hub");
 
 	return 0;
 }
