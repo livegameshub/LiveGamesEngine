@@ -29,6 +29,10 @@ namespace ai
 		static void WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height);
 
 	private:
+		#ifndef WINDOWS_BUILD
+		static void WebLoop();
+		#endif
+
 		Flag mFlag;
 
 		std::vector<Window> mWindows;
@@ -39,6 +43,7 @@ namespace ai
 
 		void Release();
 		void Prepare();
+		void Loop();
 		void Run();
 	};
 }

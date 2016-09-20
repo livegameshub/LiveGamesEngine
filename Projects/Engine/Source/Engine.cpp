@@ -2,9 +2,14 @@
 #include "Random.h"
 #include "Graphics.h"
 #include "Time.h"
+#include <iostream>
 
 #ifdef _DEBUG
 #include "FpsCounter.h"
+#endif
+
+#ifndef WINDOWS_BUILD
+#include <emscripten/emscripten.h>
 #endif
 
 namespace ai
@@ -24,6 +29,15 @@ namespace ai
 		return nullptr;
 	}
 
+	#ifndef WINDOWS_BUILD
+
+	void Engine::WebLoop()
+	{
+		GetInstance().Loop();
+	}
+
+	#endif
+
 	bool Engine::Setup(const std::string& title, const std::string& assetsPath)
 	{
 		smAssetsPath = assetsPath;
@@ -36,9 +50,9 @@ namespace ai
 
 		Size<u32> size = Window::GetScreenSize();
 
-		#ifdef _DEBUG
+		#if defined _DEBUG or !defined WINDOWS_BUILD
 
-		size = Size<u32>(800, 600);
+		size = Size<u32>(1024, 600);
 
 		#endif
 
@@ -55,8 +69,14 @@ namespace ai
 		/* prepare the engine */
 		Prepare();
 
+		#ifdef WINDOWS_BUILD
 		/* run the engine */
 		Run();
+
+		#else
+		/* run the main loop */
+		emscripten_set_main_loop(WebLoop, 0, true);
+		#endif
 
 		/* release all the resources after we finish */
 		Release();
@@ -72,27 +92,33 @@ namespace ai
 		Time::Start();
 	}
 
+	void Engine::Loop()
+	{
+		Window& main_window = mWindows[0];
+
+		/* check if we are not on break with this loop */
+		if (!mFlag.IsSet(PAUSE_FLAG))
+		{
+			Time::Update();
+
+			#ifdef _DEBUG
+
+			FpsCounter::Update();
+
+			#endif
+
+			main_window.Draw();
+			main_window.SwapBuffers();
+		}
+	}
+
 	void Engine::Run()
 	{
 		/* on the first position should be the main window */
-		Window& main_window = mWindows[0];
 
-		while (!mFlag.IsSet(STOP_FLAG) && !main_window.IsClosing())
+		while (!mFlag.IsSet(STOP_FLAG) && !mWindows[0].IsClosing())
 		{
-			/* check if we are not on break with this loop */
-			if (!mFlag.IsSet(PAUSE_FLAG))
-			{
-				Time::Update();
-
-				#ifdef _DEBUG
-
-				FpsCounter::Update();
-
-				#endif
-
-				main_window.Draw();
-				main_window.SwapBuffers();
-			}
+			Loop();
 
 			/* handle the events everytime */
 			Window::HandleEvents();

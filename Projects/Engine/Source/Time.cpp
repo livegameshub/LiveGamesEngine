@@ -1,6 +1,11 @@
 #include "Time.h"
 
+#ifdef WINDOWS_BUILD
 #include <glfw3.h>
+#else
+// we have this choice for emscripten
+#include <glfw/glfw3.h>
+#endif
 
 namespace ai
 {

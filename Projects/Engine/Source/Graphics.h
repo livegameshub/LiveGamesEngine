@@ -3,7 +3,12 @@
 
 #include "EngineUtil.h"
 
+#ifdef WINDOWS_BUILD
 #include <glew.h>
+#else 
+// we have this choice for emscripten
+#include <gl/glew.h>
+#endif
 
 namespace ai
 {

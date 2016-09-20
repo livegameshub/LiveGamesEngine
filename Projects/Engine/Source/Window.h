@@ -18,16 +18,17 @@ namespace ai
 
 		bool Create(const std::string& title = "");
 
-		inline bool SetNewSize(const Size<u32>& size);
-		inline void SwapBuffers() const;
-		inline void Draw();
+		bool SetNewSize(const Size<u32>& size);
+		void SwapBuffers() const;
+		void Draw();
 
-		inline GLFWwindow* GetWindowPtr() const;
 		inline Renderer& GetRenderer();
 
 		inline const Size<u32>& GetSize() const;
 		inline u32 GetSamples() const;
-		inline i32 IsClosing() const;
+
+		GLFWwindow* GetWindowPtr() const;
+		i32 IsClosing() const;
 		
 		static Size<u32> GetScreenSize();
 
