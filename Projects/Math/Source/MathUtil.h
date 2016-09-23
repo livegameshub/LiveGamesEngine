@@ -3,11 +3,17 @@
 
 #include "BasicTypes.h"
 
+#ifdef WINDOWS_BUILD
 /* define MATH_API */
-#ifdef EXPORT_MATH_API
-#define MATH_API __declspec(dllexport)
+	#ifdef EXPORT_MATH_API
+		#define MATH_API __declspec(dllexport)
+	#else
+		#define MATH_API __declspec(dllimport)
+	#endif
 #else
-#define MATH_API __declspec(dllimport)
+	// if we are not on windows we should
+	// replace MATH_API with blank space
+	#define MATH_API 
 #endif
 
 namespace ai

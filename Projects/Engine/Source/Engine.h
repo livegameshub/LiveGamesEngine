@@ -23,21 +23,21 @@ namespace ai
 
 		bool Setup(const std::string& title, const std::string& assetsPath);
 
-		static Engine& GetInstance();
 		static const std::string& GetAssetsPath();
+		static Engine& GetInstance();
 
 		static void WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height);
 
 	private:
-		#ifndef WINDOWS_BUILD
-		static void WebLoop();
-		#endif
-
 		Flag mFlag;
 
 		std::vector<Window> mWindows;
 	
 		Window* GetWindow(GLFWwindow* windowPtr);
+
+		#ifndef WINDOWS_BUILD
+		static void WebLoop();
+		#endif
 
 		static std::string smAssetsPath;
 

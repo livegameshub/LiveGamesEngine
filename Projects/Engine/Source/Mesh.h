@@ -6,6 +6,8 @@
 
 namespace ai
 {
+	class MeshData;
+
 	class ENGINE_API Mesh : public BasicResource
 	{
 	public:
@@ -43,7 +45,8 @@ namespace ai
 		bool ReadDataFromFile();
 
 		void CalculateVertexSize();
-
+		
+		void UploadData(const MeshData& meshData);
 		void UploadData(const std::vector<f32>& vertices, const std::vector<u16>& indices);
 		void UploadAttributes(const i32* attributes) const;
 

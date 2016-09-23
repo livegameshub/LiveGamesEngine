@@ -5,11 +5,11 @@
 
 namespace ai
 {
-	class Time
+	class ENGINE_API Time
 	{
 	public:
-		ENGINE_API static f32 GetDeltaTime();
-		ENGINE_API static f32 GetTimeInSeconds();
+		static f32 GetDeltaTime();
+		static f32 GetTimeInSeconds();
 
 		static void Update();
 		static void Start();

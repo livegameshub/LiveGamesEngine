@@ -26,14 +26,23 @@
     <Filter Include="Source\Engine\Input">
       <UniqueIdentifier>{3882c1e6-1fb8-49b8-bc25-1fac6de6c815}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Resources">
+    <Filter Include="Source\Resources">
       <UniqueIdentifier>{8c584fab-7697-4544-afb7-aaf626db9d53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Resources\Materials">
+    <Filter Include="Source\Resources\Materials">
       <UniqueIdentifier>{ea7fcfb7-ad1f-42c7-a1ba-bc859d973f38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Engine\Resources\Mesh">
+    <Filter Include="Source\Resources\Mesh">
       <UniqueIdentifier>{9029bcb6-45ef-4a3d-bbfb-22209fb0080f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene">
+      <UniqueIdentifier>{58461698-bd53-497d-8c84-77f276896767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Nodes">
+      <UniqueIdentifier>{ce7af95c-e610-4c2c-b61a-3b4dcf8d7ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Components">
+      <UniqueIdentifier>{dda57daa-1736-4111-bb2b-fdf6af53b405}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,19 +89,25 @@
       <Filter>Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicResource.h">
-      <Filter>Source\Engine\Resources</Filter>
+      <Filter>Source\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Source\Shader.h">
-      <Filter>Source\Engine\Resources</Filter>
+      <Filter>Source\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Source\Program.h">
-      <Filter>Source\Engine\Resources</Filter>
+      <Filter>Source\Resources</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mesh.h">
-      <Filter>Source\Engine\Resources\Mesh</Filter>
+      <Filter>Source\Resources\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Source\MeshData.h">
-      <Filter>Source\Engine\Resources\Mesh</Filter>
+      <Filter>Source\Resources\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BasicComponent.h">
+      <Filter>Source\Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BasicNode.h">
+      <Filter>Source\Scene\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,19 +145,25 @@
       <Filter>Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicResource.cpp">
-      <Filter>Source\Engine\Resources</Filter>
+      <Filter>Source\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
-      <Filter>Source\Engine\Resources</Filter>
+      <Filter>Source\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Source\Program.cpp">
-      <Filter>Source\Engine\Resources</Filter>
+      <Filter>Source\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Source\Engine\Resources\Mesh</Filter>
+      <Filter>Source\Resources\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\MeshData.cpp">
-      <Filter>Source\Engine\Resources\Mesh</Filter>
+      <Filter>Source\Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicComponent.cpp">
+      <Filter>Source\Scene\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicNode.cpp">
+      <Filter>Source\Scene\Nodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

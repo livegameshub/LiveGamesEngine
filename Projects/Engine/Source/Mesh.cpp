@@ -2,6 +2,7 @@
 #include "Program.h"
 #include "Vector3.h"
 #include "Engine.h"
+#include "MeshData.h"
 
 namespace ai
 {
@@ -171,6 +172,11 @@ namespace ai
 			mNormalOffset += mVertexSize;
 			mVertexSize += sizeof(Vector3);
 		}
+	}
+
+	void Mesh::UploadData(const MeshData& meshData)
+	{
+		UploadData(meshData.GetVertices(), meshData.GetIndices());
 	}
 
 	bool Mesh::Release()

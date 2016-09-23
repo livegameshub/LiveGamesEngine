@@ -50,7 +50,7 @@ namespace ai
 
 		Size<u32> size = Window::GetScreenSize();
 
-		#if defined _DEBUG or !defined WINDOWS_BUILD
+		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		size = Size<u32>(1024, 600);
 

@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\BasicComponent.h" />
     <ClInclude Include="Source\BasicElement.h" />
     <ClInclude Include="Source\BasicResource.h" />
     <ClInclude Include="Source\Console.h" />
@@ -138,6 +139,7 @@
     <ClInclude Include="Source\Input.h" />
     <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\MeshData.h" />
+    <ClInclude Include="Source\BasicNode.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Program.h" />
     <ClInclude Include="Source\Random.h" />
@@ -148,6 +150,7 @@
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BasicComponent.cpp" />
     <ClCompile Include="Source\BasicElement.cpp" />
     <ClCompile Include="Source\BasicResource.cpp" />
     <ClCompile Include="Source\Console.cpp" />
@@ -158,6 +161,7 @@
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
+    <ClCompile Include="Source\BasicNode.cpp" />
     <ClCompile Include="Source\Program.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
