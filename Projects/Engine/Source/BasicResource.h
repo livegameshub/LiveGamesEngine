@@ -14,13 +14,13 @@ namespace ai
 		
 		virtual ~BasicResource();
 
-		bool Load();
-		bool Unload();
+		inline std::string GetResourceFile() const;
+		inline void SetResourceFile(const std::string& file);
 
 		inline u32 GetReferencesCounter() const;
 
-		inline std::string GetResourceFile() const;
-		inline void SetResourceFile(const std::string& file);
+		bool Unload();
+		bool Load();
 
 	protected:
 		std::string mResourceFile;
