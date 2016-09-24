@@ -9,6 +9,8 @@ namespace ai
 	{
 		Quaternion();
 
+		inline void Identity();
+
 		/* members */
 
 		f32 x;

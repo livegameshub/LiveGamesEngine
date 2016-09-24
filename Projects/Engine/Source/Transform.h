@@ -14,6 +14,9 @@ namespace ai
 		Transform();
 		~Transform();
 
+		void Update() override;
+		void Reset() override;
+
 		void SetOrientation(const Quaternion& orientation);
 		void SetPosition(const Vector3& position);
 		void SetScale(const Vector3& scale);

@@ -130,6 +130,7 @@
     <ClInclude Include="Source\BasicComponent.h" />
     <ClInclude Include="Source\BasicElement.h" />
     <ClInclude Include="Source\BasicResource.h" />
+    <ClInclude Include="Source\BasicScene.h" />
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\EngineUtil.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="Source\BasicComponent.cpp" />
     <ClCompile Include="Source\BasicElement.cpp" />
     <ClCompile Include="Source\BasicResource.cpp" />
+    <ClCompile Include="Source\BasicScene.cpp" />
     <ClCompile Include="Source\Console.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Flag.cpp" />

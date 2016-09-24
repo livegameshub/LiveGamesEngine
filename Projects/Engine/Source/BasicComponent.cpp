@@ -3,24 +3,28 @@
 namespace ai
 {
 	BasicComponent::BasicComponent()
-		: mType(-1)
+		: mIsEnabled(true)
+		, mComponentType(-1)
 	{
 	}
 
 	BasicComponent::BasicComponent(i32 type)
-		: mType(type)
+		: mIsEnabled(true)
+		, mComponentType(type)
 	{
 	}
 
 	BasicComponent::BasicComponent(i32 type, const Flag& flag)
-		: mFlag(flag)
-		, mType(type)
+		: mIsEnabled(true)
+		, mFlag(flag)
+		, mComponentType(type)
 	{
 	}
 
 	BasicComponent::BasicComponent(const Flag& flag)
-		: mFlag(flag)
-		, mType(-1)
+		: mIsEnabled(true)
+		, mFlag(flag)
+		, mComponentType(-1)
 	{
 	}
 
@@ -35,7 +39,17 @@ namespace ai
 
 	i32 BasicComponent::GetType() const
 	{
-		return mType;
+		return mComponentType;
+	}
+
+	void BasicComponent::SetEnabled(bool value)
+	{
+		mIsEnabled = value;
+	}
+
+	bool BasicComponent::IsEnabled() const
+	{
+		return mIsEnabled;
 	}
 
 	void BasicComponent::SetFlag(const Flag& flag)
@@ -45,6 +59,6 @@ namespace ai
 
 	void BasicComponent::SetType(i32 type)
 	{
-		mType = type;
+		mComponentType = type;
 	}
 }

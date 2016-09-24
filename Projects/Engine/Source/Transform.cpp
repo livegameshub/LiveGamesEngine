@@ -2,6 +2,23 @@
 
 namespace ai
 {
+	Transform::Transform()
+		: BasicComponent(TRANSFORM_COMPONENT)
+	{
+	}
+
+	Transform::~Transform()
+	{
+	}
+
+	void Transform::Update()
+	{
+	}
+
+	void Transform::Reset()
+	{
+	}
+
 	void Transform::SetOrientation(const Quaternion& orientation)
 	{
 		mOrientation = orientation;

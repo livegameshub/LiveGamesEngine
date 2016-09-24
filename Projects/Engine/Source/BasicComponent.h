@@ -29,11 +29,15 @@ namespace ai
 		inline const Flag& GetFlag() const;
 		inline i32 GetType() const;
 
+		inline void SetEnabled(bool value);
+		inline bool IsEnabled() const;
+
 	protected:
+		bool mIsEnabled;
 		Flag mFlag;
 
 	private:
-		i32 mType;
+		i32 mComponentType;
 	};
 }
 
