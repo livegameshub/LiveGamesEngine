@@ -109,6 +109,9 @@
     <ClInclude Include="Source\BasicNode.h">
       <Filter>Source\Scene\Nodes</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Source\Scene\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="Source\BasicNode.cpp">
       <Filter>Source\Scene\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.cpp">
+      <Filter>Source\Scene\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
