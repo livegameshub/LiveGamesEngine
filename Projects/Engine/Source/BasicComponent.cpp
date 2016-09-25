@@ -37,7 +37,7 @@ namespace ai
 		return mFlag;
 	}
 
-	i32 BasicComponent::GetType() const
+	i32 BasicComponent::GetComponentType() const
 	{
 		return mComponentType;
 	}
@@ -57,7 +57,7 @@ namespace ai
 		mFlag = flag;
 	}
 
-	void BasicComponent::SetType(i32 type)
+	void BasicComponent::SetComponentType(i32 type)
 	{
 		mComponentType = type;
 	}

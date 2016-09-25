@@ -4,6 +4,7 @@ namespace ai
 {
 	Transform::Transform()
 		: BasicComponent(TRANSFORM_COMPONENT)
+		, mParentTransform(nullptr)
 	{
 	}
 
@@ -17,6 +18,11 @@ namespace ai
 
 	void Transform::Reset()
 	{
+	}
+
+	void Transform::SetParentTransform(Transform* transform)
+	{
+		mParentTransform = transform;
 	}
 
 	void Transform::SetOrientation(const Quaternion& orientation)
@@ -47,6 +53,11 @@ namespace ai
 	const Vector3& Transform::GetScale() const
 	{
 		return mScale;
+	}
+
+	Transform* Transform::GetParentTransform() const
+	{
+		return mParentTransform;
 	}
 
 	Matrix4 Transform::GetMatrix() const

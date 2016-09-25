@@ -28,8 +28,23 @@ namespace ai
 		virtual void Update();
 		virtual void Release();
 
-		inline void SetType(i32 type);
-		inline i32 GetType() const;
+		void AddComponent(BasicComponent* component);
+		void AddChild(BasicNode* node);
+
+		BasicComponent* GetComponent(i32 type) const;
+		BasicComponent* operator[](i32 type) const;
+		BasicComponent* RemoveComponent(i32 type);
+		
+		BasicNode* GetChild(u32 id) const;
+		BasicNode* operator[](u32 id) const;
+		BasicNode* RemoveChild(u32 id);
+		
+		inline const std::vector<BasicComponent*>& GetComponents() const;
+		inline const std::vector<BasicNode*>& GetChildren() const;
+		inline Transform& GetTransform();
+
+		inline void SetNodeType(i32 type);
+		inline i32 GetNodeType() const;
 
 		inline void SetEnabled(bool value);
 		inline bool IsEnabled() const;

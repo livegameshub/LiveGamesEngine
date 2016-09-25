@@ -24,10 +24,10 @@ namespace ai
 		virtual void Reset() = 0;
 
 		inline void SetFlag(const Flag& flag);
-		inline void SetType(i32 type);
+		inline void SetComponentType(i32 type);
 
 		inline const Flag& GetFlag() const;
-		inline i32 GetType() const;
+		inline i32 GetComponentType() const;
 
 		inline void SetEnabled(bool value);
 		inline bool IsEnabled() const;

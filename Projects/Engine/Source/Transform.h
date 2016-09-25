@@ -17,6 +17,8 @@ namespace ai
 		void Update() override;
 		void Reset() override;
 
+		inline void SetParentTransform(Transform* transform);
+
 		void SetOrientation(const Quaternion& orientation);
 		void SetPosition(const Vector3& position);
 		void SetScale(const Vector3& scale);
@@ -25,9 +27,12 @@ namespace ai
 		inline const Vector3& GetPosition() const;
 		inline const Vector3& GetScale() const;
 
+		inline Transform* GetParentTransform() const;
 		inline Matrix4 GetMatrix() const;
 
 	private:
+		Transform* mParentTransform;
+
 		Matrix4 mMatrix;
 
 		Quaternion mOrientation;
