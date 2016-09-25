@@ -75,34 +75,104 @@ namespace ai
 
 	void BasicNode::AddComponent(BasicComponent* component)
 	{
+		if (component)
+		{
+			/* check if we already have this type of component */
+
+			if (!GetComponent(component->GetComponentType()))
+			{
+				mComponents.push_back(component);
+			}
+		}
 	}
 
 	void BasicNode::AddChild(BasicNode* node)
 	{
+		if (node)
+		{
+			/* set the parent transformation for the child node */
+
+			node->GetTransform().SetParentTransform(&mTransform);
+
+			mChildren.push_back(node);
+		}
 	}
 
 	BasicComponent* BasicNode::GetComponent(i32 type) const
 	{
+		/* if we do not find any component we should return nullptr */
+
+		for (BasicComponent* component : mComponents)
+		{
+			if (component->GetComponentType() == type)
+			{
+				return component;
+			}
+		}
+
+		return nullptr;
 	}
 
 	BasicComponent* BasicNode::operator[](i32 type) const
 	{
+		return GetComponent(type);
 	}
 
 	BasicComponent* BasicNode::RemoveComponent(i32 type)
 	{
+		for (u32 i = 0; i < mComponents.size(); ++i)
+		{
+			BasicComponent* component = mComponents[i];
+
+			if (component->GetComponentType() == type)
+			{
+				mComponents.erase(mComponents.begin() + i);
+
+				return component;
+			}
+		}
+
+		return nullptr;
 	}
 
 	BasicNode* BasicNode::GetChild(u32 id) const
 	{
+		/* if we do not find any node we should return nullptr */
+
+		for (BasicNode* node : mChildren)
+		{
+			if (node->GetId() == id)
+			{
+				return node;
+			}
+		}
+
+		return nullptr;
 	}
 
 	BasicNode* BasicNode::operator[](u32 id) const
 	{
+		return GetChild(id);
 	}
 
 	BasicNode* BasicNode::RemoveChild(u32 id)
 	{
+		for (u32 i = 0; i < mChildren.size(); ++i)
+		{
+			BasicNode* node = mChildren[i];
+
+			if (node->GetId() == id)
+			{
+				mChildren.erase(mChildren.begin() + i);
+
+				/* remove the parent transformation */
+				node->GetTransform().SetParentTransform(nullptr);
+
+				return node;
+			}
+		}
+
+		return nullptr;
 	}
 
 	const std::vector<BasicComponent*>& BasicNode::GetComponents() const
