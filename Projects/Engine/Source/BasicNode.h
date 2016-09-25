@@ -41,6 +41,7 @@ namespace ai
 		
 		inline const std::vector<BasicComponent*>& GetComponents() const;
 		inline const std::vector<BasicNode*>& GetChildren() const;
+		inline const Transform& GetTransform() const;
 		inline Transform& GetTransform();
 
 		inline void SetNodeType(i32 type);

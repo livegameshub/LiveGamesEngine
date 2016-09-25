@@ -185,6 +185,11 @@ namespace ai
 		return mChildren;
 	}
 
+	const Transform& BasicNode::GetTransform() const
+	{
+		return mTransform;
+	}
+
 	Transform& BasicNode::GetTransform()
 	{
 		return mTransform;
