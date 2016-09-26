@@ -12,11 +12,11 @@ namespace ai
 	{
 	public:
 		Window();
-		Window(const glm::ivec2& size, glm::u32 samples, bool isMain = false);
+		Window(const glm::ivec2& size, glm::u32 samples);
 
 		~Window();
 
-		bool Create(const std::string& title = "");
+		bool Create(const std::string& title, bool isMain);
 
 		bool SetNewSize(const glm::ivec2& size);
 		void SwapBuffers() const;
@@ -37,8 +37,6 @@ namespace ai
 		static void HandleEvents();
 
 	private:
-		bool mIsMain;
-
 		glm::u32 mSamples;
 		glm::ivec2 mSize;
 		

@@ -4,11 +4,11 @@
 #include "Time.h"
 
 #ifdef _DEBUG
-#include "FpsCounter.h"
+	#include "FpsCounter.h"
 #endif
 
 #ifndef WINDOWS_BUILD
-#include <emscripten/emscripten.h>
+	#include <emscripten/emscripten.h>
 #endif
 
 namespace ai
@@ -37,7 +37,7 @@ namespace ai
 
 	#endif
 
-	bool Engine::Setup(const std::string& title, const std::string& assetsPath)
+	bool Engine::Setup(const std::string& mainWindowTitle, const std::string& assetsPath)
 	{
 		smAssetsPath = assetsPath;
 
@@ -47,38 +47,38 @@ namespace ai
 			return false;
 		}
 
-		glm::ivec2 size = Window::GetScreenSize();
-
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
-
-		size = glm::ivec2(1024, 600);
-
+			glm::ivec2 size = glm::ivec2(1024, 600);
+		#else 
+			glm::ivec2 size = Window::GetScreenSize();
 		#endif
 
 		/* we should add at least the main window */
-		Window window(size, 0, true);
+		Window window(size, 0);
 
-		if (!window.Create(title))
+		if (!window.Create(mainWindowTitle, true))
 		{
 			return false;
 		}
 
-		mWindows.push_back(window);
+		Engine& engine = Engine::GetInstance();
+
+		/* the first element is the main window */
+		engine.AddWindow(window);
 
 		/* prepare the engine */
-		Prepare();
+		engine.Prepare();
 
 		#ifdef WINDOWS_BUILD
-		/* run the engine */
-		Run();
-
+			/* run the engine */
+			engine.Run();
 		#else
-		/* run the main loop */
-		emscripten_set_main_loop(WebLoop, 0, true);
+			/* run the main loop */
+			emscripten_set_main_loop(WebLoop, 0, true);
 		#endif
 
 		/* release all the resources after we finish */
-		Release();
+		engine.Release();
 
 		return true;
 	}
@@ -96,7 +96,7 @@ namespace ai
 		Window& main_window = mWindows[0];
 
 		/* check if we are not on break with this loop */
-		if (!mFlag.IsSet(PAUSE_FLAG))
+		if (!mFlag.IsSet(ENGINE_PAUSE_FLAG))
 		{
 			Time::Update();
 
@@ -115,7 +115,7 @@ namespace ai
 	{
 		/* on the first position should be the main window */
 
-		while (!mFlag.IsSet(STOP_FLAG) && !mWindows[0].IsClosing())
+		while (!mFlag.IsSet(ENGINE_STOP_FLAG) && !mWindows[0].IsClosing())
 		{
 			Loop();
 
@@ -131,17 +131,22 @@ namespace ai
 
 	void Engine::Stop()
 	{
-		mFlag += STOP_FLAG;
+		mFlag += ENGINE_STOP_FLAG;
 	}
 
 	void Engine::Pause()
 	{
-		mFlag += PAUSE_FLAG;
+		mFlag += ENGINE_PAUSE_FLAG;
 	}
 
 	void Engine::Resume()
 	{
-		mFlag -= PAUSE_FLAG;
+		mFlag -= ENGINE_PAUSE_FLAG;
+	}
+
+	void Engine::AddWindow(const Window& window)
+	{
+		mWindows.push_back(window);
 	}
 
 	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)

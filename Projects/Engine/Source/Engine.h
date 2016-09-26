@@ -13,20 +13,23 @@ namespace ai
 	public:
 		enum EngineFlag : glm::u32
 		{
-			STOP_FLAG = 1,
-			PAUSE_FLAG = 2
+			ENGINE_STOP_FLAG = 1,
+			ENGINE_PAUSE_FLAG = 2
 		};
 
 		void Stop();
 		void Pause();
 		void Resume();
 
-		bool Setup(const std::string& title, const std::string& assetsPath);
+		void AddWindow(const Window& window);
 
-		static const std::string& GetAssetsPath();
-		static Engine& GetInstance();
-
+		// TODO
+		// setup should return an int with some specific codes
+		static bool Setup(const std::string& mainWindowTitle, const std::string& assetsPath);
 		static void WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
+
+		static Engine& GetInstance();
+		static const std::string& GetAssetsPath();
 
 	private:
 		Flag mFlag;

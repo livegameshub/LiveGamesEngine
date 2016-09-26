@@ -13,15 +13,13 @@
 namespace ai
 {
 	Window::Window()
-		: mIsMain(false)
-		, mSamples(0)
+		: mSamples(0)
 		, mWindowPtr(nullptr)
 	{
 	}
 
-	Window::Window(const glm::ivec2& size, glm::u32 samples, bool isMain)
-		: mIsMain(isMain)
-		, mSamples(samples)
+	Window::Window(const glm::ivec2& size, glm::u32 samples)
+		: mSamples(samples)
 		, mSize(size)
 		, mWindowPtr(nullptr)
 	{
@@ -31,13 +29,13 @@ namespace ai
 	{
 	}
 
-	bool Window::Create(const std::string& title)
+	bool Window::Create(const std::string& title, bool isMain)
 	{
 		// TODO
 		// integrate maximed window option
 		// glfwWindowHint(GLFW_MAXIMIZED, true);
 
-		if (mIsMain && mSamples > 0)
+		if (isMain && mSamples > 0)
 		{
 			glfwWindowHint(GLFW_SAMPLES, mSamples);
 		}
@@ -53,7 +51,7 @@ namespace ai
 
 		glfwMakeContextCurrent(mWindowPtr);
 
-		if (mIsMain)
+		if (isMain)
 		{
 			if (!Graphics::InitApi())
 			{
@@ -69,6 +67,7 @@ namespace ai
 
 			#endif
 
+			/* init the callbacks for the main window */
 			InitWindowCallbacks();
 		}
 
@@ -105,9 +104,7 @@ namespace ai
 		/* get the mode of our monitor */
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 
-		glm::ivec2 size(mode->width, mode->height);
-
-		return size;
+		return glm::ivec2(mode->width, mode->height);
 	}
 
 	void Window::SwapBuffers() const

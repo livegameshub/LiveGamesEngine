@@ -2,4 +2,11 @@
 
 namespace ai
 {
+	Camera::~Camera()
+	{
+	}
+
+	void Camera::Update()
+	{
+	}
 }
