@@ -26,6 +26,29 @@ namespace ai
 
 	void Transform::Update()
 	{
+		if (mFlag.IsSet(NEW_ROTATION_SCALE_MATRIX))
+		{
+			/* rebuild the matrix every time */
+
+			mMatrix = glm::mat4();
+
+			mMatrix[0].x = mScale.x;
+			mMatrix[1].y = mScale.y;
+			mMatrix[2].z = mScale.z;
+
+			mMatrix = glm::mat4_cast(mOrientation) * mMatrix;
+
+			mFlag -= NEW_ROTATION_SCALE_MATRIX;
+		}
+
+		if (mFlag.IsSet(NEW_POSITION))
+		{
+			mMatrix[3].x = mPosition.x;
+			mMatrix[3].y = mPosition.y;
+			mMatrix[3].z = mPosition.z;
+
+			mFlag -= NEW_POSITION;
+		}
 	}
 
 	void Transform::Reset()
@@ -51,31 +74,48 @@ namespace ai
 
 	void Transform::Rotate(const glm::vec3& axis, glm::f32 angle)
 	{
+		mOrientation = glm::angleAxis(glm::radians(angle), axis);
+
+		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
 	void Transform::Rotate(const glm::vec3& angles)
 	{
+		mOrientation = glm::quat(glm::radians(angles));
+
+		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
 	void Transform::RotateOnX(glm::f32 angle)
 	{
+		Rotate(VECTOR_RIGHT, angle);
 	}
 
 	void Transform::RotateOnY(glm::f32 angle)
 	{
+		Rotate(VECTOR_UP, angle);
 	}
 
 	void Transform::RotateOnZ(glm::f32 angle)
 	{
+		Rotate(-VECTOR_FORWARD, angle);
 	}
 
 	void Transform::Scale(const glm::vec3& scale)
 	{
+		mScale = scale;
+
+		mHasUniformScale = glm::abs(mScale.x - mScale.y) <= glm::epsilon<glm::f32>() &&
+						   glm::abs(mScale.y - mScale.z) <= glm::epsilon<glm::f32>();
+
+		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
 	void Transform::SetOrientation(const glm::quat& orientation)
 	{
 		mOrientation = orientation;
+
+		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
 	void Transform::SetPosition(const glm::vec3& position)
@@ -88,6 +128,8 @@ namespace ai
 	void Transform::SetScale(const glm::vec3& scale)
 	{
 		mScale = scale;
+
+		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
 	const glm::quat& Transform::GetOrientation() const

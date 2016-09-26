@@ -1,8 +1,6 @@
 #include "Program.h"
 #include "Shader.h"
 
-#include <algorithm>
-
 namespace ai
 {
 	Program::Program(glm::u32 id)
@@ -138,7 +136,7 @@ namespace ai
 
 			glGetProgramiv(mProgramId, GL_INFO_LOG_LENGTH, &info);
 
-			std::vector<char> error(std::max(info, glm::i32(1)));
+			std::vector<char> error(glm::max(info, glm::i32(1)));
 			glGetProgramInfoLog(mProgramId, info, nullptr, &error[0]);
 
 			fprintf(stdout, "%s\n", &error[0]);
