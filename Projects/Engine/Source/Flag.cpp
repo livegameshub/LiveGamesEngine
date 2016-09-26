@@ -7,17 +7,17 @@ namespace ai
 	{
 	}
 
-	Flag::Flag(u32 value)
+	Flag::Flag(glm::u32 value)
 		: mValue(value)
 	{
 	}
 
-	void Flag::Add(u32 value)
+	void Flag::Add(glm::u32 value)
 	{
 		mValue |= value;
 	}
 
-	void Flag::Remove(u32 value)
+	void Flag::Remove(glm::u32 value)
 	{
 		mValue &= ~value;
 	}
@@ -50,12 +50,12 @@ namespace ai
 		return *this;
 	}
 
-	bool Flag::IsSet(u32 flag) const
+	bool Flag::IsSet(glm::u32 flag) const
 	{
 		return (mValue & flag) == flag;
 	}
 
-	Flag::operator u32() const
+	Flag::operator glm::u32() const
 	{
 		return mValue;
 	}

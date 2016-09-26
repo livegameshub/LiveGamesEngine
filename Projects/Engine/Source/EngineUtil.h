@@ -18,7 +18,8 @@
 
 #include "Platform.h"
 
-/* define the basic types */
-#include "BasicTypes.h"
+#include <glm/glm.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #endif

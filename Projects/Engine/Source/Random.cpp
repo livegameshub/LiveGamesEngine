@@ -1,35 +1,28 @@
 #include "Random.h"
 
+#include "glm/gtc/random.hpp"
+
 #include <time.h>
 
 namespace ai
 {
-	Random::Random()
-		: mValue(0)
-	{
-	}
-
 	void Random::Seed()
 	{
-		srand(static_cast<u32>(time(0)));
+		srand(static_cast<glm::u32>(time(0)));
 	}
 
-	u32 Random::GetRandomInt(u32 max)
+	glm::u32 Random::GetRandomInt(glm::u32 max)
 	{
-		mValue = rand() % (max + 1);
-
-		return mValue;
+		return rand() % (max + 1);
 	}
 
-	u32 Random::GetRandomInt(u32 min, u32 max)
+	glm::u32 Random::GetRandomInt(glm::u32 min, glm::u32 max)
 	{
-		mValue = rand() % (max - min + 1) + min;
-
-		return mValue;
+		return rand() % (max - min + 1) + min;
 	}
 
-	Random::operator u32() const
+	glm::f32 Random::GetRandomFloat(glm::f32 min, glm::f32 max)
 	{
-		return mValue;
+		return glm::linearRand(min, max);
 	}
 }

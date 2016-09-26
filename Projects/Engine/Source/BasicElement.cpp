@@ -2,14 +2,14 @@
 
 namespace ai
 {
-	BasicElement::BasicElement(u32 id)
+	BasicElement::BasicElement(glm::u32 id)
 		: mId(id)
 	{
 	}
 
-	BasicElement::BasicElement(u32 id, const Flag& flag)
-		: mFlag(flag)
-		, mId(id)
+	BasicElement::BasicElement(glm::u32 id, const Flag& flag)
+		: mId(id)
+		, mFlag(flag)
 	{
 	}
 
@@ -17,7 +17,7 @@ namespace ai
 	{
 	}
 
-	void BasicElement::SetId(u32 id)
+	void BasicElement::SetId(glm::u32 id)
 	{
 		mId = id;
 	}
@@ -27,7 +27,7 @@ namespace ai
 		mFlag = flag;
 	}
 
-	u32 BasicElement::GetId() const
+	glm::u32 BasicElement::GetId() const
 	{
 		return mId;
 	}

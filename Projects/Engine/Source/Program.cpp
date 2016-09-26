@@ -1,13 +1,11 @@
 #include "Program.h"
 #include "Shader.h"
-#include "Matrix4.h"
-#include "Vector3.h"
 
 #include <algorithm>
 
 namespace ai
 {
-	Program::Program(u32 id)
+	Program::Program(glm::u32 id)
 		: BasicResource(id)
 		, mProgramId(0)
 	{
@@ -45,7 +43,7 @@ namespace ai
 		}
 	}
 
-	void Program::RemoveShader(u32 type)
+	void Program::RemoveShader(glm::u32 type)
 	{
 		for (auto it = mShaders.begin(); it != mShaders.end(); ++it)
 		{
@@ -82,27 +80,27 @@ namespace ai
 		}
 	}
 
-	void Program::SetUniform(const std::string& uniform_name, const Matrix4& matrix) const
+	void Program::SetUniform(const std::string& uniform_name, const glm::mat4& matrix) const
 	{
-		glUniformMatrix4fv(mUniforms.at(uniform_name), 1, GL_FALSE, &matrix.data[0]);
+		glUniformMatrix4fv(mUniforms.at(uniform_name), 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
-	void Program::SetUniform(const std::string& uniform_name, const Vector3& vector) const
+	void Program::SetUniform(const std::string& uniform_name, const glm::vec3& vector) const
 	{
 		glUniform3f(mUniforms.at(uniform_name), vector.x, vector.y, vector.z);
 	}
 
-	void Program::SetUniform(const std::string& uniform_name, f32 value)
+	void Program::SetUniform(const std::string& uniform_name, glm::f32 value)
 	{
 		glUniform1f(mUniforms.at(uniform_name), value);
 	}
 
-	void Program::SetUniform(const std::string& uniform_name, i32 value)
+	void Program::SetUniform(const std::string& uniform_name, glm::i32 value)
 	{
 		glUniform1i(mUniforms.at(uniform_name), value);
 	}
 
-	i32 Program::GetAttributeLocation(u32 index) const
+	glm::i32 Program::GetAttributeLocation(glm::u32 index) const
 	{
 		#ifdef _DEBUG
 
@@ -116,12 +114,12 @@ namespace ai
 		return mAttributes[index];
 	}
 
-	const i32* Program::GetAttributes() const
+	const glm::i32* Program::GetAttributes() const
 	{
 		return mAttributes;
 	}
 
-	u32 Program::GetProgramId() const
+	glm::u32 Program::GetProgramId() const
 	{
 		return mProgramId;
 	}
@@ -130,17 +128,17 @@ namespace ai
 
 	bool Program::LinkingStatus() const
 	{
-		i32 result;
+		glm::i32 result;
 
 		glGetProgramiv(mProgramId, GL_LINK_STATUS, &result);
 
 		if (!result)
 		{
-			i32 info;
+			glm::i32 info;
 
 			glGetProgramiv(mProgramId, GL_INFO_LOG_LENGTH, &info);
 
-			std::vector<char> error(std::max(info, i32(1)));
+			std::vector<char> error(std::max(info, glm::i32(1)));
 			glGetProgramInfoLog(mProgramId, info, nullptr, &error[0]);
 
 			fprintf(stdout, "%s\n", &error[0]);

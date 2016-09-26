@@ -2,7 +2,6 @@
 #include "Random.h"
 #include "Graphics.h"
 #include "Time.h"
-#include <iostream>
 
 #ifdef _DEBUG
 #include "FpsCounter.h"
@@ -18,7 +17,7 @@ namespace ai
 
 	Window* Engine::GetWindow(GLFWwindow* windowPtr)
 	{
-		for (u32 i = 0; i < mWindows.size(); ++i)
+		for (glm::u32 i = 0; i < mWindows.size(); ++i)
 		{
 			if (mWindows[i].GetWindowPtr() == windowPtr)
 			{
@@ -48,11 +47,11 @@ namespace ai
 			return false;
 		}
 
-		Size<u32> size = Window::GetScreenSize();
+		glm::ivec2 size = Window::GetScreenSize();
 
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
-		size = Size<u32>(1024, 600);
+		size = glm::ivec2(1024, 600);
 
 		#endif
 
@@ -145,11 +144,11 @@ namespace ai
 		mFlag -= PAUSE_FLAG;
 	}
 
-	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height)
+	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
 	{
 		Window* window = GetInstance().GetWindow(windowPtr);
 
-		if (window && window->SetNewSize(Size<u32>(width, height)))
+		if (window && window->SetNewSize(glm::ivec2(width, height)))
 		{
 			glViewport(0, 0, width, height);
 		}

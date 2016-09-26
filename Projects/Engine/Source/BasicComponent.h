@@ -8,14 +8,14 @@ namespace ai
 	class ENGINE_API BasicComponent
 	{
 	public:
-		enum ComponentType : i32
+		enum ComponentType : glm::i32
 		{
 			TRANSFORM_COMPONENT
 		};
 
 		BasicComponent();
-		BasicComponent(i32 type);
-		BasicComponent(i32 type, const Flag& flag);
+		BasicComponent(glm::i32 type);
+		BasicComponent(glm::i32 type, const Flag& flag);
 		BasicComponent(const Flag& flag);
 
 		virtual ~BasicComponent();
@@ -24,10 +24,10 @@ namespace ai
 		virtual void Reset() = 0;
 
 		inline void SetFlag(const Flag& flag);
-		inline void SetComponentType(i32 type);
+		inline void SetComponentType(glm::i32 type);
 
 		inline const Flag& GetFlag() const;
-		inline i32 GetComponentType() const;
+		inline glm::i32 GetComponentType() const;
 
 		inline void SetEnabled(bool value);
 		inline bool IsEnabled() const;
@@ -37,7 +37,7 @@ namespace ai
 		Flag mFlag;
 
 	private:
-		i32 mComponentType;
+		glm::i32 mComponentType;
 	};
 }
 

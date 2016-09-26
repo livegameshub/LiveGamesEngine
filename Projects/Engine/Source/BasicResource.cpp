@@ -2,19 +2,19 @@
 
 namespace ai
 {
-	BasicResource::BasicResource(u32 id)
+	BasicResource::BasicResource(glm::u32 id)
 		: BasicElement(id)
 		, mReferencesCounter(0)
 	{
 	}
 
-	BasicResource::BasicResource(u32 id, const Flag& flag)
+	BasicResource::BasicResource(glm::u32 id, const Flag& flag)
 		: BasicElement(id, flag)
 		, mReferencesCounter(0)
 	{
 	}
 
-	BasicResource::BasicResource(u32 id, const std::string& file)
+	BasicResource::BasicResource(glm::u32 id, const std::string& file)
 		: BasicElement(id)
 		, mResourceFile(file)
 		, mReferencesCounter(0)
@@ -70,7 +70,7 @@ namespace ai
 		return mResourceFile;
 	}
 
-	u32 BasicResource::GetReferencesCounter() const
+	glm::u32 BasicResource::GetReferencesCounter() const
 	{
 		return mReferencesCounter;
 	}

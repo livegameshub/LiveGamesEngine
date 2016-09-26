@@ -10,7 +10,7 @@ namespace ai
 	{
 	}
 
-	Transform::Transform(const Vector3& position, const Quaternion& orientation, const Vector3& scale)
+	Transform::Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
 		: BasicComponent(TRANSFORM_COMPONENT)
 		, mParentTransform(nullptr)
 		, mOrientation(orientation)
@@ -32,9 +32,9 @@ namespace ai
 	{
 		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 
-		mScale = Vector3(1.0f);
-		mOrientation.Identity();
-		mPosition.Zero();
+		mScale = glm::vec3(1.0f);
+		mOrientation = glm::quat();
+		mPosition = glm::vec3();
 	}
 
 	void Transform::SetParentTransform(Transform* transform)
@@ -42,65 +42,65 @@ namespace ai
 		mParentTransform = transform;
 	}
 
-	void Transform::Translate(const Vector3& amount)
+	void Transform::Translate(const glm::vec3& amount)
 	{
 		mPosition += amount;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void Transform::Rotate(const Vector3& axis, f32 angle)
+	void Transform::Rotate(const glm::vec3& axis, glm::f32 angle)
 	{
 	}
 
-	void Transform::Rotate(const Vector3& angles)
+	void Transform::Rotate(const glm::vec3& angles)
 	{
 	}
 
-	void Transform::RotateOnX(f32 angle)
+	void Transform::RotateOnX(glm::f32 angle)
 	{
 	}
 
-	void Transform::RotateOnY(f32 angle)
+	void Transform::RotateOnY(glm::f32 angle)
 	{
 	}
 
-	void Transform::RotateOnZ(f32 angle)
+	void Transform::RotateOnZ(glm::f32 angle)
 	{
 	}
 
-	void Transform::Scale(const Vector3& scale)
+	void Transform::Scale(const glm::vec3& scale)
 	{
 	}
 
-	void Transform::SetOrientation(const Quaternion& orientation)
+	void Transform::SetOrientation(const glm::quat& orientation)
 	{
 		mOrientation = orientation;
 	}
 
-	void Transform::SetPosition(const Vector3& position)
+	void Transform::SetPosition(const glm::vec3& position)
 	{
 		mPosition = position;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void Transform::SetScale(const Vector3& scale)
+	void Transform::SetScale(const glm::vec3& scale)
 	{
 		mScale = scale;
 	}
 
-	const Quaternion& Transform::GetOrientation() const
+	const glm::quat& Transform::GetOrientation() const
 	{
 		return mOrientation;
 	}
 
-	const Vector3& Transform::GetPosition() const
+	const glm::vec3& Transform::GetPosition() const
 	{
 		return mPosition;
 	}
 
-	const Vector3& Transform::GetScale() const
+	const glm::vec3& Transform::GetScale() const
 	{
 		return mScale;
 	}
@@ -115,14 +115,11 @@ namespace ai
 		return mParentTransform;
 	}
 
-	Matrix4 Transform::GetMatrix() const
+	glm::mat4 Transform::GetMatrix() const
 	{
 		if (mParentTransform)
 		{
-			// TODO
-			// uncomment this when you have the * operator
-
-			//return mParentTransform->GetMatrix() * mMatrix;
+			return mParentTransform->GetMatrix() * mMatrix;
 		}
 
 		return mMatrix;

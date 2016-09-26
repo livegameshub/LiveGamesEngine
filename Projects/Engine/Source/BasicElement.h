@@ -8,20 +8,20 @@ namespace ai
 	class ENGINE_API BasicElement
 	{
 	public:
-		BasicElement(u32 id);
-		BasicElement(u32 id, const Flag& flag);
+		BasicElement(glm::u32 id);
+		BasicElement(glm::u32 id, const Flag& flag);
 
 		virtual ~BasicElement();
 
-		inline void SetId(u32 id);
+		inline void SetId(glm::u32 id);
 		inline void SetFlag(const Flag& flag);
 
-		inline u32 GetId() const;
+		inline glm::u32 GetId() const;
 		inline const Flag& GetFlag() const;
 
 	protected:
+		glm::u32 mId;
 		Flag mFlag;
-		u32 mId;
 	};
 }
 

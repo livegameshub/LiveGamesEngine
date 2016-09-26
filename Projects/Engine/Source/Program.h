@@ -6,13 +6,11 @@
 namespace ai
 {
 	class Shader;
-	struct Vector3;
-	struct Matrix4;
 
 	class ENGINE_API Program : public BasicResource
 	{
 	public:
-		enum AttributeIndex : u32
+		enum AttributeIndex : glm::u32
 		{
 			POSITION_INDEX,
 			TEXTURE_INDEX,
@@ -20,7 +18,7 @@ namespace ai
 			COUNT
 		};
 
-		Program(u32 id);
+		Program(glm::u32 id);
 		~Program();
 	
 		void Use() const;
@@ -30,20 +28,20 @@ namespace ai
 		void DetachShader(Shader* shader) const;
 
 		void AddShader(Shader* shader);
-		void RemoveShader(u32 type);
+		void RemoveShader(glm::u32 type);
 
 		void AddUniform(const std::string& uniform_name);
 		void AddUniforms(const std::vector<std::string>& uniforms);
 
-		void SetUniform(const std::string& uniform_name, const Matrix4& matrix) const;
-		void SetUniform(const std::string& uniform_name, const Vector3& vector) const;
-		void SetUniform(const std::string& uniform_name, f32 value);
-		void SetUniform(const std::string& uniform_name, i32 value);
+		void SetUniform(const std::string& uniform_name, const glm::mat4& matrix) const;
+		void SetUniform(const std::string& uniform_name, const glm::vec3& vector) const;
+		void SetUniform(const std::string& uniform_name, glm::f32 value);
+		void SetUniform(const std::string& uniform_name, glm::i32 value);
 
-		inline i32 GetAttributeLocation(u32 index) const;
+		inline glm::i32 GetAttributeLocation(glm::u32 index) const;
 
-		inline const i32* GetAttributes() const;
-		inline u32 GetProgramId() const;
+		inline const glm::i32* GetAttributes() const;
+		inline glm::u32 GetProgramId() const;
 
 	private:
 		#ifdef _DEBUG
@@ -58,11 +56,11 @@ namespace ai
 		void InitAttributes();
 		void InitUniforms();
 
-		std::map<std::string, i32> mUniforms;
+		std::map<std::string, glm::i32> mUniforms;
 		std::vector<Shader*> mShaders;
 
-		i32 mAttributes[COUNT];
-		u32 mProgramId;
+		glm::i32 mAttributes[COUNT];
+		glm::u32 mProgramId;
 	};
 }
 

@@ -6,7 +6,7 @@
 
 namespace ai
 {
-	u32 Console::smCurrentColor = WHITE;
+	glm::u32 Console::smCurrentColor = WHITE;
 
 	void* Console::smConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 

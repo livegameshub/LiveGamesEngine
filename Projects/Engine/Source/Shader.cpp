@@ -3,21 +3,21 @@
 
 namespace ai
 {
-	Shader::Shader(u32 id)
+	Shader::Shader(glm::u32 id)
 		: BasicResource(id)
 		, mShaderId(0)
 		, mShaderType(0)
 	{
 	}
 
-	Shader::Shader(u32 id, u32 shaderType)
+	Shader::Shader(glm::u32 id, glm::u32 shaderType)
 		: BasicResource(id)
 		, mShaderId(0)
 		, mShaderType(shaderType)
 	{
 	}
 
-	Shader::Shader(u32 id, u32 shaderType, const std::string& file)
+	Shader::Shader(glm::u32 id, glm::u32 shaderType, const std::string& file)
 		: BasicResource(id, file)
 		, mShaderId(0)
 		, mShaderType(shaderType)
@@ -33,17 +33,17 @@ namespace ai
 		glCompileShader(mShaderId);
 	}
 
-	void Shader::SetShaderType(u32 type)
+	void Shader::SetShaderType(glm::u32 type)
 	{
 		mShaderType = type;
 	}
 
-	u32 Shader::GetShaderType() const
+	glm::u32 Shader::GetShaderType() const
 	{
 		return mShaderType;
 	}
 
-	u32 Shader::GetShaderId() const
+	glm::u32 Shader::GetShaderId() const
 	{
 		return mShaderId;
 	}
@@ -52,13 +52,13 @@ namespace ai
 
 	bool Shader::CompilationStatus() const
 	{
-		i32 result;
+		glm::i32 result;
 
 		glGetShaderiv(mShaderId, GL_COMPILE_STATUS, &result);
 
 		if (!result)
 		{
-			i32 info;
+			glm::i32 info;
 
 			glGetShaderiv(mShaderId, GL_INFO_LOG_LENGTH, &info);
 
@@ -102,9 +102,9 @@ namespace ai
 		Compile();
 
 		#ifdef _DEBUG
-		return CompilationStatus();
+			return CompilationStatus();
 		#else
-		return true;
+			return true;
 		#endif
 	}
 

@@ -9,7 +9,7 @@ namespace ai
 	class ENGINE_API BasicNode : public BasicElement
 	{
 	public:
-		enum NodeType : i32
+		enum NodeType : glm::i32
 		{
 			BASIC_NODE,
 			CAMERA_NODE,
@@ -18,10 +18,10 @@ namespace ai
 			LIGHT_NODE
 		};
 
-		BasicNode(u32 id);
-		BasicNode(u32 id, i32 type);
-		BasicNode(u32 id, i32 type, const Flag& flag);
-		BasicNode(u32 id, const Flag& flag);
+		BasicNode(glm::u32 id);
+		BasicNode(glm::u32 id, glm::i32 type);
+		BasicNode(glm::u32 id, glm::i32 type, const Flag& flag);
+		BasicNode(glm::u32 id, const Flag& flag);
 
 		virtual ~BasicNode();
 
@@ -31,21 +31,21 @@ namespace ai
 		void AddComponent(BasicComponent* component);
 		void AddChild(BasicNode* node);
 
-		BasicComponent* GetComponent(i32 type) const;
-		BasicComponent* operator[](i32 type) const;
-		BasicComponent* RemoveComponent(i32 type);
+		BasicComponent* GetComponent(glm::i32 type) const;
+		BasicComponent* operator[](glm::i32 type) const;
+		BasicComponent* RemoveComponent(glm::i32 type);
 		
-		BasicNode* GetChild(u32 id) const;
-		BasicNode* operator[](u32 id) const;
-		BasicNode* RemoveChild(u32 id);
+		BasicNode* GetChild(glm::u32 id) const;
+		BasicNode* operator[](glm::u32 id) const;
+		BasicNode* RemoveChild(glm::u32 id);
 		
 		inline const std::vector<BasicComponent*>& GetComponents() const;
 		inline const std::vector<BasicNode*>& GetChildren() const;
 		inline const Transform& GetTransform() const;
 		inline Transform& GetTransform();
 
-		inline void SetNodeType(i32 type);
-		inline i32 GetNodeType() const;
+		inline void SetNodeType(glm::i32 type);
+		inline glm::i32 GetNodeType() const;
 
 		inline void SetEnabled(bool value);
 		inline bool IsEnabled() const;
@@ -58,7 +58,7 @@ namespace ai
 		std::vector<BasicComponent*> mComponents;
 		std::vector<BasicNode*> mChildren;
 
-		i32 mNodeType;
+		glm::i32 mNodeType;
 	};
 }
 

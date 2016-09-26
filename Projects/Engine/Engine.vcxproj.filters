@@ -61,9 +61,6 @@
     <ClInclude Include="Source\Window.h">
       <Filter>Source\Engine\Window</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Size.h">
-      <Filter>Source\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Graphics.h">
       <Filter>Source\Engine\Render</Filter>
     </ClInclude>

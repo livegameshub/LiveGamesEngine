@@ -11,7 +11,7 @@ namespace ai
 	class ENGINE_API Engine
 	{
 	public:
-		enum EngineFlag : u32
+		enum EngineFlag : glm::u32
 		{
 			STOP_FLAG = 1,
 			PAUSE_FLAG = 2
@@ -26,7 +26,7 @@ namespace ai
 		static const std::string& GetAssetsPath();
 		static Engine& GetInstance();
 
-		static void WindowResizeCallback(GLFWwindow* windowPtr, i32 width, i32 height);
+		static void WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
 
 	private:
 		Flag mFlag;

@@ -8,13 +8,13 @@ namespace ai
 	{
 	}
 
-	BasicComponent::BasicComponent(i32 type)
+	BasicComponent::BasicComponent(glm::i32 type)
 		: mIsEnabled(true)
 		, mComponentType(type)
 	{
 	}
 
-	BasicComponent::BasicComponent(i32 type, const Flag& flag)
+	BasicComponent::BasicComponent(glm::i32 type, const Flag& flag)
 		: mIsEnabled(true)
 		, mFlag(flag)
 		, mComponentType(type)
@@ -37,7 +37,7 @@ namespace ai
 		return mFlag;
 	}
 
-	i32 BasicComponent::GetComponentType() const
+	glm::i32 BasicComponent::GetComponentType() const
 	{
 		return mComponentType;
 	}
@@ -57,7 +57,7 @@ namespace ai
 		mFlag = flag;
 	}
 
-	void BasicComponent::SetComponentType(i32 type)
+	void BasicComponent::SetComponentType(glm::i32 type)
 	{
 		mComponentType = type;
 	}

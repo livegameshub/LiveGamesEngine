@@ -9,7 +9,7 @@ namespace ai
 	class ENGINE_API Console
 	{
 	public:
-		enum ConsoleColor : u32
+		enum ConsoleColor : glm::u32
 		{
 			BLUE = 1,
 			GREEN = 2,
@@ -25,7 +25,7 @@ namespace ai
 		static void WriteInfo(const std::string& message);
 
 	private:
-		static u32 smCurrentColor;
+		static glm::u32 smCurrentColor;
 		static void* smConsoleHandle;
 
 		static void SetTextColor(ConsoleColor color);

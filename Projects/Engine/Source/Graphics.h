@@ -19,20 +19,20 @@ namespace ai
 		static void CheckApiVersion();
 		static void CheckMaxSamples();
 
-		static i32 GetMajorApiVersion();
-		static i32 GetMinorApiVersion();
+		static glm::i32 GetMajorApiVersion();
+		static glm::i32 GetMinorApiVersion();
 			   
-		static i32 GetMajorApiShaderVersion();
-		static i32 GetMinorApiShaderVersion();
+		static glm::i32 GetMajorApiShaderVersion();
+		static glm::i32 GetMinorApiShaderVersion();
 
 	private:
-		static i32 smMajorApiVersion;
-		static i32 smMinorApiVersion;
+		static glm::i32 smMajorApiVersion;
+		static glm::i32 smMinorApiVersion;
 			   
-		static i32 smMajorApiShaderVersion;
-		static i32 smMinorApiShaderVersion;
+		static glm::i32 smMajorApiShaderVersion;
+		static glm::i32 smMinorApiShaderVersion;
 			   
-		static i32 smMaxSamples;
+		static glm::i32 smMaxSamples;
 	};
 }
 

@@ -18,16 +18,16 @@ namespace ai
 
 		void AddNode(BasicNode* node);
 
-		BasicNode* RemoveNode(u32 id);
-		BasicNode* operator[](u32 id) const;
-		BasicNode* GetNode(u32 id) const;
+		BasicNode* RemoveNode(glm::u32 id);
+		BasicNode* operator[](glm::u32 id) const;
+		BasicNode* GetNode(glm::u32 id) const;
 
-		inline const std::map<u32, BasicNode*>& GetNodes() const;
+		inline const std::map<glm::u32, BasicNode*>& GetNodes() const;
 		inline const BasicNode& GetRootNode() const;
 		inline BasicNode& GetRootNode();
 
 	private:
-		std::map<u32, BasicNode*> mNodes;
+		std::map<glm::u32, BasicNode*> mNodes;
 
 		BasicNode mRootNode;
 	};

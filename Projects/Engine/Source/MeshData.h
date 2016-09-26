@@ -5,31 +5,29 @@
 
 namespace ai
 {
-	struct Vector3;
-
 	class ENGINE_API MeshData
 	{
 	public:
 		MeshData();
 		~MeshData();
 
-		inline const std::vector<f32>& GetVertices() const;
-		inline const std::vector<u16>& GetIndices() const;
+		inline const std::vector<glm::f32>& GetVertices() const;
+		inline const std::vector<glm::u16>& GetIndices() const;
 
-		void AddVertex(const Vector3& position);
-		void AddVertex(const Vector3& position, const Vector3& normal);
+		void AddVertex(const glm::vec3& position);
+		void AddVertex(const glm::vec3& position, const glm::vec3& normal);
 
-		void AddPoint(u16 index_0);
-		void AddLine(u16 index_0, u16 index_1);
-		void AddTriangle(u16 index_0, u16 index_1, u16 index_2);
+		void AddPoint(glm::u16 index_0);
+		void AddLine(glm::u16 index_0, glm::u16 index_1);
+		void AddTriangle(glm::u16 index_0, glm::u16 index_1, glm::u16 index_2);
 
-		void ReserverVertices(u32 size);
-		void ReserveIndices(u32 size);
+		void ReserverVertices(glm::u32 size);
+		void ReserveIndices(glm::u32 size);
 		void ClearData();
 
 	private:
-		std::vector<f32> mVertices;
-		std::vector<u16> mIndices;
+		std::vector<glm::f32> mVertices;
+		std::vector<glm::u16> mIndices;
 	};
 }
 

@@ -4,10 +4,10 @@
 #include "Input.h"
 
 #ifdef WINDOWS_BUILD
-#include <glfw3.h>
+	#include <glfw3.h>
 #else
-// we have this choice for emscripten
-#include <glfw/glfw3.h>
+	// we have this choice for emscripten
+	#include <glfw/glfw3.h>
 #endif
 
 namespace ai
@@ -19,7 +19,7 @@ namespace ai
 	{
 	}
 
-	Window::Window(const Size<u32>& size, u32 samples, bool isMain)
+	Window::Window(const glm::ivec2& size, glm::u32 samples, bool isMain)
 		: mIsMain(isMain)
 		, mSamples(samples)
 		, mSize(size)
@@ -42,7 +42,7 @@ namespace ai
 			glfwWindowHint(GLFW_SAMPLES, mSamples);
 		}
 
-		mWindowPtr = glfwCreateWindow(mSize.width, mSize.height, title.c_str() , nullptr, nullptr);
+		mWindowPtr = glfwCreateWindow(mSize.x, mSize.y, title.c_str() , nullptr, nullptr);
 
 		if (mWindowPtr == nullptr)
 		{
@@ -75,7 +75,7 @@ namespace ai
 		return true;
 	}
 
-	bool Window::SetNewSize(const Size<u32>& size)
+	bool Window::SetNewSize(const glm::ivec2& size)
 	{
 		if (mSize != size)
 		{
@@ -87,17 +87,17 @@ namespace ai
 		return false;
 	}
 
-	u32 Window::GetSamples() const
+	glm::u32 Window::GetSamples() const
 	{
 		return mSamples;
 	}
 
-	i32 Window::IsClosing() const
+	glm::i32 Window::IsClosing() const
 	{
 		return glfwWindowShouldClose(mWindowPtr);
 	}
 
-	Size<u32> Window::GetScreenSize()
+	glm::ivec2 Window::GetScreenSize()
 	{
 		/* get the main monitor */
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
@@ -105,7 +105,7 @@ namespace ai
 		/* get the mode of our monitor */
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 
-		Size<u32> size(mode->width, mode->height);
+		glm::ivec2 size(mode->width, mode->height);
 
 		return size;
 	}
@@ -130,7 +130,7 @@ namespace ai
 		return mRenderer;
 	}
 
-	const Size<u32>& Window::GetSize() const
+	const glm::ivec2& Window::GetSize() const
 	{
 		return mSize;
 	}

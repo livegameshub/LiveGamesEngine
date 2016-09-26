@@ -1,27 +1,26 @@
 #include "Mesh.h"
 #include "Program.h"
-#include "Vector3.h"
 #include "Engine.h"
 #include "MeshData.h"
 
 namespace ai
 {
-	Mesh::Mesh(u32 id, u32 primitive, u32 drawType, const Flag& flag)
+	Mesh::Mesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag)
 		: BasicResource(id, flag)
 		, mNormalOffset(0)
 		, mTextureOffset(0)
-		, mVertexSize(sizeof(Vector3))
+		, mVertexSize(sizeof(glm::vec3))
 		, mIndicesSize(0)
 		, mPrimitive(primitive)
 		, mDrawType(drawType)
 	{
 	}
 
-	Mesh::Mesh(u32 id, const std::string& file)
+	Mesh::Mesh(glm::u32 id, const std::string& file)
 		: BasicResource(id, file)
 		, mNormalOffset(0)
 		, mTextureOffset(0)
-		, mVertexSize(sizeof(Vector3))
+		, mVertexSize(sizeof(glm::vec3))
 		, mIndicesSize(0)
 		, mPrimitive(0)
 		, mDrawType(STATIC_MESH_DRAW)
@@ -42,17 +41,17 @@ namespace ai
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBuffers[IBO_BUFFER]);
 	}
 
-	u32 Mesh::GetIndicesSize() const
+	glm::u32 Mesh::GetIndicesSize() const
 	{
 		return mIndicesSize;
 	}
 
-	u32 Mesh::GetPrimitive() const
+	glm::u32 Mesh::GetPrimitive() const
 	{
 		return mPrimitive;
 	}
 
-	u32 Mesh::GetDrawType() const
+	glm::u32 Mesh::GetDrawType() const
 	{
 		return mDrawType;
 	}
@@ -66,8 +65,8 @@ namespace ai
 			return false;
 		}
 
-		u32 flag;
-		u32 vertices_size;
+		glm::u32 flag;
+		glm::u32 vertices_size;
 
 		read >> flag;
 		read >> mPrimitive;
@@ -77,14 +76,14 @@ namespace ai
 
 		//u32 reserve_size = CalculateReserveSize();
 
-		std::vector<f32> vertices;
+		std::vector<glm::f32> vertices;
 		// TODO 
 		// rezolve this reserve
 		//vertices.reserve(vertices_size * reserve_size);
 
-		for (u32 i = 0; i < vertices_size; ++i)
+		for (glm::u32 i = 0; i < vertices_size; ++i)
 		{
-			Vector3 position;
+			glm::vec3 position;
 
 			read >> position.x >> position.y >> position.z;
 
@@ -94,7 +93,7 @@ namespace ai
 
 			if (mFlag.IsSet(MESH_NORMAL_FLAG))
 			{
-				Vector3 normal;
+				glm::vec3 normal;
 
 				read >> normal.x >> normal.y >> normal.z;
 
@@ -104,14 +103,14 @@ namespace ai
 			}
 		}
 
-		u16 index;
+		glm::u16 index;
 
 		read >> mIndicesSize;
 
-		std::vector<u16> indices;
+		std::vector<glm::u16> indices;
 		indices.reserve(mIndicesSize);
 
-		for (u32 i = 0; i < mIndicesSize; ++i)
+		for (glm::u32 i = 0; i < mIndicesSize; ++i)
 		{
 			read >> index;
 
@@ -143,7 +142,7 @@ namespace ai
 		return true;
 	}
 
-	u32 Mesh::GetVertexSize() const
+	glm::u32 Mesh::GetVertexSize() const
 	{
 		return mVertexSize;
 	}
@@ -170,7 +169,7 @@ namespace ai
 		if (mFlag.IsSet(MESH_NORMAL_FLAG))
 		{
 			mNormalOffset += mVertexSize;
-			mVertexSize += sizeof(Vector3);
+			mVertexSize += sizeof(glm::vec3);
 		}
 	}
 
@@ -188,7 +187,7 @@ namespace ai
 
 		glDeleteBuffers(COUNT, &mBuffers[0]);
 
-		for (u32 i = 0; i < COUNT; ++i)
+		for (glm::u32 i = 0; i < COUNT; ++i)
 		{
 			mBuffers[i] = 0;
 		}
@@ -196,10 +195,10 @@ namespace ai
 		return true;
 	}
 
-	void Mesh::UploadAttributes(const i32* attributes) const
+	void Mesh::UploadAttributes(const glm::i32* attributes) const
 	{
-		i32 position = attributes[Program::AttributeIndex::POSITION_INDEX];
-		i32 normal = attributes[Program::AttributeIndex::NORMAL_INDEX];
+		glm::i32 position = attributes[Program::AttributeIndex::POSITION_INDEX];
+		glm::i32 normal = attributes[Program::AttributeIndex::NORMAL_INDEX];
 
 		if (position >= 0)
 		{
@@ -214,14 +213,14 @@ namespace ai
 		}
 	}
 
-	void Mesh::UploadData(const std::vector<f32>& vertices, const std::vector<u16>& indices)
+	void Mesh::UploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices)
 	{
 		CalculateVertexSize();
 
 		BindVbo();
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(f32), &vertices[0], mDrawType);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::f32), &vertices[0], mDrawType);
 
 		BindIbo();
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(u16), &indices[0], mDrawType);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(glm::u16), &indices[0], mDrawType);
 	}
 }

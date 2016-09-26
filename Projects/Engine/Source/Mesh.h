@@ -11,29 +11,29 @@ namespace ai
 	class ENGINE_API Mesh : public BasicResource
 	{
 	public:
-		const u32 LINES_MESH = GL_LINES;
-		const u32 POINTS_MESH = GL_POINTS;
-		const u32 TRIANGLES_MESH = GL_TRIANGLES;
+		const glm::u32 LINES_MESH = GL_LINES;
+		const glm::u32 POINTS_MESH = GL_POINTS;
+		const glm::u32 TRIANGLES_MESH = GL_TRIANGLES;
 
-		const u32 STATIC_MESH_DRAW = GL_STATIC_DRAW;
-		const u32 DYNAMIC_MESH_DRAW = GL_DYNAMIC_DRAW;
+		const glm::u32 STATIC_MESH_DRAW = GL_STATIC_DRAW;
+		const glm::u32 DYNAMIC_MESH_DRAW = GL_DYNAMIC_DRAW;
 
-		enum MeshBuffer : u32
+		enum MeshBuffer : glm::u32
 		{
 			VBO_BUFFER,
 			IBO_BUFFER,
 			COUNT
 		};
 
-		enum MeshFlag : u32
+		enum MeshFlag : glm::u32
 		{
 			MESH_POSITION_FLAG = 1,
 			MESH_NORMAL_FLAG = 2,
 			MESH_TEXTURE_FLAG = 4
 		};
 
-		Mesh(u32 id, const std::string& file);
-		Mesh(u32 id, u32 primitive, u32 drawType, const Flag& flag);
+		Mesh(glm::u32 id, const std::string& file);
+		Mesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
 		~Mesh();
 
 		void Draw() const;  
@@ -47,27 +47,27 @@ namespace ai
 		void CalculateVertexSize();
 		
 		void UploadData(const MeshData& meshData);
-		void UploadData(const std::vector<f32>& vertices, const std::vector<u16>& indices);
-		void UploadAttributes(const i32* attributes) const;
+		void UploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices);
+		void UploadAttributes(const glm::i32* attributes) const;
 
-		inline u32 GetVertexSize() const;
-		inline u32 GetIndicesSize() const;
-		inline u32 GetPrimitive() const;
-		inline u32 GetDrawType() const;
+		inline glm::u32 GetVertexSize() const;
+		inline glm::u32 GetIndicesSize() const;
+		inline glm::u32 GetPrimitive() const;
+		inline glm::u32 GetDrawType() const;
 
 	private:
 		bool Create() override;
 		bool Release() override;
 
-		u32 mBuffers[COUNT];
+		glm::u32 mBuffers[COUNT];
 
-		u32 mNormalOffset;
-		u32 mTextureOffset;
+		glm::u32 mNormalOffset;
+		glm::u32 mTextureOffset;
 
-		u32 mVertexSize;
-		u32 mIndicesSize;
-		u32 mPrimitive;
-		u32 mDrawType;
+		glm::u32 mVertexSize;
+		glm::u32 mIndicesSize;
+		glm::u32 mPrimitive;
+		glm::u32 mDrawType;
 	};
 }
 

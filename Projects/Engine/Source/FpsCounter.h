@@ -12,8 +12,8 @@ namespace ai
 		static void Update();
 
 	private:
-		static f32 smFramesTime;
-		static u32 smFrames;
+		static glm::f32 smFramesTime;
+		static glm::u32 smFrames;
 	};
 }
 

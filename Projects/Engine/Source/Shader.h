@@ -9,19 +9,19 @@ namespace ai
 	class ENGINE_API Shader : public BasicResource
 	{
 	public:
-		static const u32 VERTEX_SHADER = GL_VERTEX_SHADER;
-		static const u32 FRAGMENT_SHADER = GL_FRAGMENT_SHADER;
+		static const glm::u32 VERTEX_SHADER = GL_VERTEX_SHADER;
+		static const glm::u32 FRAGMENT_SHADER = GL_FRAGMENT_SHADER;
 
-		Shader(u32 id);
-		Shader(u32 id, u32 shaderType);
-		Shader(u32 id, u32 shaderType, const std::string& file);
+		Shader(glm::u32 id);
+		Shader(glm::u32 id, glm::u32 shaderType);
+		Shader(glm::u32 id, glm::u32 shaderType, const std::string& file);
 		~Shader();
 
 		void Compile() const;
 
-		inline void SetShaderType(u32 type);
-		inline u32 GetShaderType() const;
-		inline u32 GetShaderId() const;
+		inline void SetShaderType(glm::u32 type);
+		inline glm::u32 GetShaderType() const;
+		inline glm::u32 GetShaderId() const;
 		
 	private:
 		#ifdef _DEBUG
@@ -33,8 +33,8 @@ namespace ai
 		bool Create() override;
 		bool Release() override;
 
-		u32 mShaderId;
-		u32 mShaderType;
+		glm::u32 mShaderId;
+		glm::u32 mShaderType;
 	};
 }
 

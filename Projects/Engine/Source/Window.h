@@ -3,7 +3,6 @@
 
 #include "EngineUtil.h"
 #include "Renderer.h"
-#include "Size.h"
 
 struct GLFWwindow;
 
@@ -13,24 +12,24 @@ namespace ai
 	{
 	public:
 		Window();
-		Window(const Size<u32>& size, u32 samples, bool isMain = false);
+		Window(const glm::ivec2& size, glm::u32 samples, bool isMain = false);
 		~Window();
 
 		bool Create(const std::string& title = "");
 
-		bool SetNewSize(const Size<u32>& size);
+		bool SetNewSize(const glm::ivec2& size);
 		void SwapBuffers() const;
 		void Draw();
 
 		inline Renderer& GetRenderer();
 
-		inline const Size<u32>& GetSize() const;
-		inline u32 GetSamples() const;
+		inline const glm::ivec2& GetSize() const;
+		inline glm::u32 GetSamples() const;
 
 		GLFWwindow* GetWindowPtr() const;
-		i32 IsClosing() const;
+		glm::i32 IsClosing() const;
 		
-		static Size<u32> GetScreenSize();
+		static glm::ivec2 GetScreenSize();
 
 		static bool InitApi();
 		static void ReleaseApi();
@@ -39,8 +38,8 @@ namespace ai
 	private:
 		bool mIsMain;
 
-		u32 mSamples;
-		Size<u32> mSize;
+		glm::u32 mSamples;
+		glm::ivec2 mSize;
 		
 		GLFWwindow* mWindowPtr;
 		Renderer mRenderer;

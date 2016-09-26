@@ -8,10 +8,10 @@ namespace ai
 	struct ENGINE_API Flag
 	{
 		Flag();
-		Flag(u32 value);
+		Flag(glm::u32 value);
 
-		inline void Add(u32 value);
-		inline void Remove(u32 value);
+		inline void Add(glm::u32 value);
+		inline void Remove(glm::u32 value);
 
 		inline Flag operator+(const Flag& flag) const;
 		inline Flag operator-(const Flag& flag) const;
@@ -19,14 +19,14 @@ namespace ai
 		Flag& operator+=(const Flag& flag);
 		Flag& operator-=(const Flag& flag);
 
-		inline operator u32() const;
+		inline operator glm::u32() const;
 
-		bool IsSet(u32 flag) const;
+		bool IsSet(glm::u32 flag) const;
 
 		inline void Reset();
 
 	private:
-		u32 mValue;
+		glm::u32 mValue;
 	};
 }
 

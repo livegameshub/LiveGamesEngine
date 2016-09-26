@@ -7,17 +7,11 @@ namespace ai
 {
 	struct ENGINE_API Random
 	{
-		Random();
-
-		inline u32 GetRandomInt(u32 max);
-		inline u32 GetRandomInt(u32 min, u32 max);
-
-		inline operator u32() const;
+		static glm::u32 GetRandomInt(glm::u32 max);
+		static glm::u32 GetRandomInt(glm::u32 min, glm::u32 max);
+		static glm::f32 GetRandomFloat(glm::f32 min, glm::f32 max);
 
 		static void Seed();
-	
-	private:
-		u32 mValue;
 	};
 }
 
