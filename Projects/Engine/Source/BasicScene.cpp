@@ -29,14 +29,17 @@ namespace ai
 
 	BasicNode* BasicScene::RemoveNode(u32 id)
 	{
+		return nullptr;
 	}
 
 	BasicNode* BasicScene::operator[](u32 id) const
 	{
+		return GetNode(id);
 	}
 
 	BasicNode* BasicScene::GetNode(u32 id) const
 	{
+		return nullptr;
 	}
 
 	const std::map<u32, BasicNode*>& BasicScene::GetNodes() const
