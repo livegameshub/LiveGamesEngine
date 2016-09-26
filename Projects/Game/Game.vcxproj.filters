@@ -18,5 +18,13 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\TestScene.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\TestScene.h">
+      <Filter>Source\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

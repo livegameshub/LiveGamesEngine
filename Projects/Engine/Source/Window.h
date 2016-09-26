@@ -13,6 +13,7 @@ namespace ai
 	public:
 		Window();
 		Window(const glm::ivec2& size, glm::u32 samples, bool isMain = false);
+
 		~Window();
 
 		bool Create(const std::string& title = "");

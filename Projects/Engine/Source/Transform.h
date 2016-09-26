@@ -20,6 +20,7 @@ namespace ai
 
 		Transform();
 		Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale);
+
 		~Transform();
 
 		void Update() override;

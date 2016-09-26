@@ -11,7 +11,7 @@ namespace ai
 	}
 
 	Transform::Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
-		: BasicComponent(TRANSFORM_COMPONENT)
+		: BasicComponent(TRANSFORM_COMPONENT, NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
 		, mParentTransform(nullptr)
 		, mOrientation(orientation)
 		, mPosition(position)

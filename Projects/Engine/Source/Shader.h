@@ -15,6 +15,7 @@ namespace ai
 		Shader(glm::u32 id);
 		Shader(glm::u32 id, glm::u32 shaderType);
 		Shader(glm::u32 id, glm::u32 shaderType, const std::string& file);
+
 		~Shader();
 
 		void Compile() const;
