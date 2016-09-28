@@ -58,7 +58,7 @@ namespace ai
 
 	bool Mesh::ReadDataFromFile()
 	{
-		std::ifstream read(Engine::GetAssetsPath() + mResourceFile, std::ios::in);
+		std::ifstream read(ASSETS_PATH + mResourceFile, std::ios::in);
 
 		if (!read.is_open())
 		{

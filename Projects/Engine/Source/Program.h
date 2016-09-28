@@ -44,7 +44,7 @@ namespace ai
 		glm::u32 GetProgramId() const;
 
 	private:
-		#ifdef _DEBUG
+		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		bool LinkingStatus() const;
 

@@ -13,7 +13,7 @@ int main()
 {
 	ai::SceneManager::GetInstance().AddScene(new ai::TestScene());
 	
-	ai::Engine::Setup("Live Games Hub", "Assets/");
+	ai::Engine::Setup("Live Games Hub");
 
 	return 0;
 }

@@ -48,7 +48,7 @@ namespace ai
 		return mShaderId;
 	}
 
-	#ifdef _DEBUG
+	#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
 	bool Shader::CompilationStatus() const
 	{
@@ -77,7 +77,7 @@ namespace ai
 
 	bool Shader::Create()
 	{
-		std::ifstream read(Engine::GetAssetsPath() + mResourceFile, std::ios::in);
+		std::ifstream read(ASSETS_PATH + mResourceFile, std::ios::in);
 
 		if (!read.is_open())
 		{
@@ -101,10 +101,11 @@ namespace ai
 
 		Compile();
 
-		#ifdef _DEBUG
-			return CompilationStatus();
+		#if (defined _DEBUG || !defined WINDOWS_BUILD)
+
+		return CompilationStatus();
 		#else
-			return true;
+		return true;
 		#endif
 	}
 

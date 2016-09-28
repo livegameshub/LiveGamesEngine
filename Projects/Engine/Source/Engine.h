@@ -25,14 +25,13 @@ namespace ai
 
 		// TODO
 		// setup should return an int with some specific codes
-		static bool Setup(const std::string& mainWindowTitle, const std::string& assetsPath);
+		static bool Setup(const std::string& mainWindowTitle);
 		static void WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
-
-		static const std::string& GetAssetsPath();
-		static Engine& GetInstance();
 
 		Window* GetWindow(GLFWwindow* windowPtr);
 		Window* GetWindowByIndex(glm::u32 index);
+
+		static Engine& GetInstance();
 
 	private:
 		Flag mFlag;
@@ -42,8 +41,6 @@ namespace ai
 		#ifndef WINDOWS_BUILD
 		static void WebLoop();
 		#endif
-
-		static std::string smAssetsPath;
 
 		void Release();
 		void Prepare();

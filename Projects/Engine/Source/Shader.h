@@ -25,7 +25,7 @@ namespace ai
 		glm::u32 GetShaderId() const;
 		
 	private:
-		#ifdef _DEBUG
+		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		bool CompilationStatus() const;
 

@@ -14,8 +14,6 @@
 
 namespace ai
 {
-	std::string Engine::smAssetsPath;
-
 	Window* Engine::GetWindow(GLFWwindow* windowPtr)
 	{
 		for (glm::u32 i = 0; i < mWindows.size(); ++i)
@@ -48,10 +46,8 @@ namespace ai
 
 	#endif
 
-	bool Engine::Setup(const std::string& mainWindowTitle, const std::string& assetsPath)
+	bool Engine::Setup(const std::string& mainWindowTitle)
 	{
-		smAssetsPath = assetsPath;
-
 		/* init the window api */
 		if (!Window::InitApi())
 		{
@@ -182,10 +178,5 @@ namespace ai
 		static Engine instance;
 
 		return instance;
-	}
-
-	const std::string& Engine::GetAssetsPath()
-	{
-		return smAssetsPath;
 	}
 }

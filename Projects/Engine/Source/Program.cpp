@@ -122,7 +122,7 @@ namespace ai
 		return mProgramId;
 	}
 
-	#ifdef _DEBUG
+	#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
 	bool Program::LinkingStatus() const
 	{
@@ -168,7 +168,7 @@ namespace ai
 
 		Link();
 
-		#ifdef _DEBUG
+		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		if (!LinkingStatus())
 		{
