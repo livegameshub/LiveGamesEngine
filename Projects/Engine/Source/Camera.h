@@ -10,9 +10,9 @@ namespace ai
 	public:
 		enum CameraFlag : glm::u32
 		{
-			CAMERA_NEW_VIEW = 1,
+			CAMERA_NEW_VIEW_MATRIX = 1,
 			CAMERA_NEW_ORTHO_MATRIX = 2,
-			CAMERA_NEW_PERSPECTIVE = 4
+			CAMERA_NEW_PERSPECTIVE_MATRIX = 4
 		};
 
 		Camera(glm::u32 id);
@@ -31,6 +31,7 @@ namespace ai
 		void MoveAt(const glm::vec3& position);
 		
 		inline bool HasCustomViewSize() const;
+		inline void HasCustomViewSize(bool value);
 
 		inline void SetFov(glm::f32 value);
 		inline void SetNearPlane(glm::f32 value);
@@ -41,7 +42,7 @@ namespace ai
 		inline const glm::mat4& GetPerspecitiveMatrix() const;
 		inline const glm::mat4& GetViewMatrix() const;
 
-		inline const glm::vec2 GetViewSize() const;
+		inline const glm::vec2& GetViewSize() const;
 		inline glm::f32 GetNearPlane() const;
 		inline glm::f32 GetFarPlane() const;
 		inline glm::f32 GetFov() const;

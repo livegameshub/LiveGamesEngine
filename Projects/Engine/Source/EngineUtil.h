@@ -21,5 +21,11 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.inl>
+
+/* some useful constants */
+const glm::vec3 VECTOR_UP = glm::vec3(1.0f, 0.0f, 0.0f);
+const glm::vec3 VECTOR_RIGHT = glm::vec3(1.0f, 0.0f, 0.0f);
+const glm::vec3 VECTOR_FORWARD = glm::vec3(0.0f, 0.0f, -1.0f);
 
 #endif
