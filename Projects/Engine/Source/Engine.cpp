@@ -2,6 +2,7 @@
 #include "Random.h"
 #include "Graphics.h"
 #include "Time.h"
+#include "SceneManager.h"
 
 #ifdef _DEBUG
 	#include "FpsCounter.h"
@@ -89,6 +90,9 @@ namespace ai
 		Random::Seed();
 
 		Time::Start();
+
+		/* the first scene is the main one */
+		SceneManager::GetInstance().SetMainScene(0);
 	}
 
 	void Engine::Loop()
@@ -105,6 +109,8 @@ namespace ai
 			FpsCounter::Update();
 
 			#endif
+
+			SceneManager::GetInstance().Update();
 
 			main_window.Draw();
 			main_window.SwapBuffers();
@@ -126,6 +132,8 @@ namespace ai
 
 	void Engine::Release()
 	{
+		SceneManager::GetInstance().Release();
+
 		Window::ReleaseApi();
 	}
 

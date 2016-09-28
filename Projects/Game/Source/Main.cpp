@@ -6,9 +6,13 @@
 #endif
 
 #include "Engine.h"
+#include "SceneManager.h"
+#include "TestScene.h"
 
 int main()
 {
+	ai::SceneManager::GetInstance().AddScene(new ai::TestScene());
+	
 	ai::Engine::Setup("Live Games Hub", "Assets/");
 
 	return 0;

@@ -28,8 +28,8 @@ namespace ai
 		static bool Setup(const std::string& mainWindowTitle, const std::string& assetsPath);
 		static void WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
 
-		static Engine& GetInstance();
 		static const std::string& GetAssetsPath();
+		static Engine& GetInstance();
 
 	private:
 		Flag mFlag;
