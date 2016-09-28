@@ -2,6 +2,9 @@
 #define _TEST_SCENE_H_
 
 #include "BasicScene.h"
+#include <Program.h>
+#include <Mesh.h>
+#include <Camera.h>
 
 namespace ai
 {
@@ -14,6 +17,14 @@ namespace ai
 		void Init() override;
 		void Update() override;
 		void Release() override;
+
+	private:
+		Camera* mCamera;
+
+		Program* mProgram;
+		Shader* mVertexShader;
+		Shader* mFragmentShader;
+		Mesh* mCubeMesh;
 	};
 }
 

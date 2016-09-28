@@ -26,10 +26,11 @@ namespace ai
 		inline const BasicNode& GetRootNode() const;
 		inline BasicNode& GetRootNode();
 
+	protected:
+		BasicNode mRootNode;
+
 	private:
 		std::map<glm::u32, BasicNode*> mNodes;
-
-		BasicNode mRootNode;
 	};
 }
 

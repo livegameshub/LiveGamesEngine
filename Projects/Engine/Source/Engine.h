@@ -31,12 +31,13 @@ namespace ai
 		static const std::string& GetAssetsPath();
 		static Engine& GetInstance();
 
+		Window* GetWindow(GLFWwindow* windowPtr);
+		Window* GetWindowByIndex(glm::u32 index);
+
 	private:
 		Flag mFlag;
 
 		std::vector<Window> mWindows;
-	
-		Window* GetWindow(GLFWwindow* windowPtr);
 
 		#ifndef WINDOWS_BUILD
 		static void WebLoop();

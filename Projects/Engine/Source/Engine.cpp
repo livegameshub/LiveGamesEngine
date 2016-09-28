@@ -29,6 +29,16 @@ namespace ai
 		return nullptr;
 	}
 
+	Window* Engine::GetWindowByIndex(glm::u32 index)
+	{
+		if (index >= 0 && index < mWindows.size())
+		{
+			return &mWindows[index];
+		}
+
+		return nullptr;
+	}
+
 	#ifndef WINDOWS_BUILD
 
 	void Engine::WebLoop()
