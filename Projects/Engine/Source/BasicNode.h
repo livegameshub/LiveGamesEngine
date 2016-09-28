@@ -39,16 +39,16 @@ namespace ai
 		BasicNode* operator[](glm::u32 id) const;
 		BasicNode* RemoveChild(glm::u32 id);
 		
-		inline const std::vector<BasicComponent*>& GetComponents() const;
-		inline const std::vector<BasicNode*>& GetChildren() const;
-		inline const Transform& GetTransform() const;
-		inline Transform& GetTransform();
+		const std::vector<BasicComponent*>& GetComponents() const;
+		const std::vector<BasicNode*>& GetChildren() const;
+		const Transform& GetTransform() const;
+		Transform& GetTransform();
 
-		inline void SetNodeType(glm::i32 type);
-		inline glm::i32 GetNodeType() const;
+		void SetNodeType(glm::i32 type);
+		glm::i32 GetNodeType() const;
 
-		inline void SetEnabled(bool value);
-		inline bool IsEnabled() const;
+		void SetEnabled(bool value);
+		bool IsEnabled() const;
 
 	protected:
 		Transform mTransform;

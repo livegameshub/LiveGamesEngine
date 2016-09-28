@@ -22,9 +22,9 @@ namespace ai
 		BasicNode* operator[](glm::u32 id) const;
 		BasicNode* GetNode(glm::u32 id) const;
 
-		inline const std::map<glm::u32, BasicNode*>& GetNodes() const;
-		inline const BasicNode& GetRootNode() const;
-		inline BasicNode& GetRootNode();
+		const std::map<glm::u32, BasicNode*>& GetNodes() const;
+		const BasicNode& GetRootNode() const;
+		BasicNode& GetRootNode();
 
 	protected:
 		BasicNode mRootNode;

@@ -20,9 +20,9 @@ namespace ai
 
 		void Compile() const;
 
-		inline void SetShaderType(glm::u32 type);
-		inline glm::u32 GetShaderType() const;
-		inline glm::u32 GetShaderId() const;
+		void SetShaderType(glm::u32 type);
+		glm::u32 GetShaderType() const;
+		glm::u32 GetShaderId() const;
 		
 	private:
 		#ifdef _DEBUG

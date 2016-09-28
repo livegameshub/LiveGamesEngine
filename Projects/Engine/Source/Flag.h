@@ -10,20 +10,20 @@ namespace ai
 		Flag();
 		Flag(glm::u32 value);
 
-		inline void Add(glm::u32 value);
-		inline void Remove(glm::u32 value);
+		void Add(glm::u32 value);
+		void Remove(glm::u32 value);
 
-		inline Flag operator+(const Flag& flag) const;
-		inline Flag operator-(const Flag& flag) const;
+		Flag operator+(const Flag& flag) const;
+		Flag operator-(const Flag& flag) const;
 
 		Flag& operator+=(const Flag& flag);
 		Flag& operator-=(const Flag& flag);
 
-		inline operator glm::u32() const;
+		operator glm::u32() const;
 
 		bool IsSet(glm::u32 flag) const;
 
-		inline void Reset();
+		void Reset();
 
 	private:
 		glm::u32 mValue;

@@ -51,10 +51,10 @@ namespace ai
 		void UploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices);
 		void UploadAttributes(const glm::i32* attributes) const;
 
-		inline glm::u32 GetVertexSize() const;
-		inline glm::u32 GetIndicesSize() const;
-		inline glm::u32 GetPrimitive() const;
-		inline glm::u32 GetDrawType() const;
+		glm::u32 GetVertexSize() const;
+		glm::u32 GetIndicesSize() const;
+		glm::u32 GetPrimitive() const;
+		glm::u32 GetDrawType() const;
 
 	private:
 		bool Create() override;

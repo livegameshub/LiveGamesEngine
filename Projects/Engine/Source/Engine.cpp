@@ -31,7 +31,7 @@ namespace ai
 
 	Window* Engine::GetWindowByIndex(glm::u32 index)
 	{
-		if (index >= 0 && index < mWindows.size())
+		if (index < mWindows.size())
 		{
 			return &mWindows[index];
 		}

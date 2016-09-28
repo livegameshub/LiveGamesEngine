@@ -31,19 +31,19 @@ namespace ai
 		void RotateOnY(glm::f32 angle);
 		void RotateOnZ(glm::f32 angle);
 	
-		inline void SetParentTransform(Transform* transform);
+		void SetParentTransform(Transform* transform);
 
 		void SetOrientation(const glm::quat& orientation);
 		void SetPosition(const glm::vec3& position);
 		void SetScale(const glm::vec3& scale);
 
-		inline const glm::quat& GetOrientation() const;
-		inline const glm::vec3& GetPosition() const;
-		inline const glm::vec3& GetScale() const;
+		const glm::quat& GetOrientation() const;
+		const glm::vec3& GetPosition() const;
+		const glm::vec3& GetScale() const;
 
-		inline bool HasUniformScale() const;
-		inline Transform* GetParentTransform() const;
-		inline glm::mat4 GetMatrix() const;
+		bool HasUniformScale() const;
+		Transform* GetParentTransform() const;
+		glm::mat4 GetMatrix() const;
 
 	private:
 		Transform* mParentTransform;

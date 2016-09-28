@@ -22,10 +22,10 @@ namespace ai
 		void SwapBuffers() const;
 		void Draw();
 
-		inline Renderer& GetRenderer();
+		Renderer& GetRenderer();
 
-		inline const glm::ivec2& GetSize() const;
-		inline glm::u32 GetSamples() const;
+		const glm::ivec2& GetSize() const;
+		glm::u32 GetSamples() const;
 
 		GLFWwindow* GetWindowPtr() const;
 		glm::i32 IsClosing() const;

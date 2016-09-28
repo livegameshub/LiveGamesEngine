@@ -30,22 +30,22 @@ namespace ai
 		void LookAt(const glm::vec3& target);
 		void MoveAt(const glm::vec3& position);
 		
-		inline bool HasCustomViewSize() const;
-		inline void HasCustomViewSize(bool value);
+		bool HasCustomViewSize() const;
+		void HasCustomViewSize(bool value);
 
-		inline void SetFov(glm::f32 value);
-		inline void SetNearPlane(glm::f32 value);
-		inline void SetFarPlane(glm::f32 value);
-		inline void SetViewSize(const glm::vec2& size);
+		void SetFov(glm::f32 value);
+		void SetNearPlane(glm::f32 value);
+		void SetFarPlane(glm::f32 value);
+		void SetViewSize(const glm::vec2& size);
 
 		static const glm::mat4& GetOrthoMatrix();
-		inline const glm::mat4& GetPerspecitiveMatrix() const;
-		inline const glm::mat4& GetViewMatrix() const;
+		const glm::mat4& GetPerspecitiveMatrix() const;
+		const glm::mat4& GetViewMatrix() const;
 
-		inline const glm::vec2& GetViewSize() const;
-		inline glm::f32 GetNearPlane() const;
-		inline glm::f32 GetFarPlane() const;
-		inline glm::f32 GetFov() const;
+		const glm::vec2& GetViewSize() const;
+		glm::f32 GetNearPlane() const;
+		glm::f32 GetFarPlane() const;
+		glm::f32 GetFov() const;
 
 	private:
 		bool mHasCustomViewSize;

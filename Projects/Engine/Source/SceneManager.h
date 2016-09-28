@@ -19,8 +19,8 @@ namespace ai
 		BasicScene* GetScene(glm::u32 index);
 		BasicScene* operator[](glm::u32 index);
 
-		inline const std::vector<BasicScene*>& GetScenes() const;
-		inline const BasicScene* GetMainScene() const;
+		const std::vector<BasicScene*>& GetScenes() const;
+		const BasicScene* GetMainScene() const;
 
 		static SceneManager& GetInstance();
 

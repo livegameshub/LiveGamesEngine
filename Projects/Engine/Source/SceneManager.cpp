@@ -41,7 +41,7 @@ namespace ai
 	{
 		/* check the bounds for the array */
 
-		if (index >= 0 && index < mScenes.size())
+		if (index < mScenes.size())
 		{
 			mScenes[index]->Release();
 
@@ -73,7 +73,7 @@ namespace ai
 	{
 		/* check the bounds for the array */
 
-		if (index >= 0 && index < mScenes.size())
+		if (index < mScenes.size())
 		{
 			return mScenes[index];
 		}

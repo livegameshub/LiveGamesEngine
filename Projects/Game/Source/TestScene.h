@@ -2,9 +2,9 @@
 #define _TEST_SCENE_H_
 
 #include "BasicScene.h"
-#include <Program.h>
-#include <Mesh.h>
-#include <Camera.h>
+#include "Program.h"
+#include "Mesh.h"
+#include "Camera.h"
 
 namespace ai
 {

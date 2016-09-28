@@ -38,10 +38,10 @@ namespace ai
 		void SetUniform(const std::string& uniform_name, glm::f32 value);
 		void SetUniform(const std::string& uniform_name, glm::i32 value);
 
-		inline glm::i32 GetAttributeLocation(glm::u32 index) const;
+		glm::i32 GetAttributeLocation(glm::u32 index) const;
 
-		inline const glm::i32* GetAttributes() const;
-		inline glm::u32 GetProgramId() const;
+		const glm::i32* GetAttributes() const;
+		glm::u32 GetProgramId() const;
 
 	private:
 		#ifdef _DEBUG

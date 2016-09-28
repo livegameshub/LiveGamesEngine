@@ -11,8 +11,8 @@ namespace ai
 		MeshData();
 		~MeshData();
 
-		inline const std::vector<glm::f32>& GetVertices() const;
-		inline const std::vector<glm::u16>& GetIndices() const;
+		const std::vector<glm::f32>& GetVertices() const;
+		const std::vector<glm::u16>& GetIndices() const;
 
 		void AddVertex(const glm::vec3& position);
 		void AddVertex(const glm::vec3& position, const glm::vec3& normal);
