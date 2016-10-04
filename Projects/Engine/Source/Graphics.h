@@ -4,10 +4,10 @@
 #include "EngineUtil.h"
 
 #ifdef WINDOWS_BUILD
-#include <glew.h>
+	#include <glew/glew.h>
 #else 
-// we have this choice for emscripten
-#include <gl/glew.h>
+	// we have this choice for emscripten
+	#include <gl/glew.h>
 #endif
 
 namespace ai
