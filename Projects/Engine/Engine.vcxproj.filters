@@ -118,6 +118,9 @@
     <ClInclude Include="Source\Camera.h">
       <Filter>Source\Scene\Nodes</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ResourceManager.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="Source\Camera.cpp">
       <Filter>Source\Scene\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceManager.cpp">
+      <Filter>Source\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -146,6 +146,7 @@
     <ClInclude Include="Source\Program.h" />
     <ClInclude Include="Source\Random.h" />
     <ClInclude Include="Source\Renderer.h" />
+    <ClInclude Include="Source\ResourceManager.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Time.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Source\Program.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
+    <ClCompile Include="Source\ResourceManager.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Time.cpp" />

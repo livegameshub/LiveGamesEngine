@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "Time.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
 
 #ifdef _DEBUG
 	#include "FpsCounter.h"
@@ -139,6 +140,7 @@ namespace ai
 	void Engine::Release()
 	{
 		SceneManager::GetInstance().Release();
+		ResourceManager::GetInstance().Release();
 
 		Window::ReleaseApi();
 	}

@@ -4,6 +4,7 @@
 #include "Platform.h"
 
 /* define ENGINE_API */
+
 #ifdef WINDOWS_BUILD
 	#ifdef EXPORT_ENGINE_API
 		#define ENGINE_API __declspec(dllexport)
