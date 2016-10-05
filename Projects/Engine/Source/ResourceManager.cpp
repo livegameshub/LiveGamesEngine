@@ -8,13 +8,12 @@ namespace ai
 		{
 			BasicResource* resource = it.second;
 
-			if (resource)
-			{
-				resource->Unload();
+			assert(resource != nullptr);
 
-				delete resource;
-				resource = nullptr;
-			}
+			resource->Unload();
+
+			delete resource;
+			resource = nullptr;
 		}
 	}
 
@@ -22,32 +21,27 @@ namespace ai
 	{
 		auto it = mResources.find(id);
 
-		if (it != mResources.end())
-		{
-			it->second->Unload();
+		assert(it != mResources.end());
+	
+		it->second->Unload();
 
-			mResources.erase(it);
-		}
+		mResources.erase(it);
 	}
 
 	void ResourceManager::AddResource(BasicResource* resource)
 	{
-		if (resource)
-		{
-			mResources.insert({ resource->GetId(), resource });
-		}
+		assert(resource != nullptr);
+
+		mResources.insert({ resource->GetId(), resource });	
 	}
 
 	BasicResource* ResourceManager::GetResource(glm::u32 id) const
 	{
 		auto it = mResources.find(id);
 
-		if (it != mResources.end())
-		{
-			return it->second;
-		}
-
-		return nullptr;
+		assert(it != mResources.end());
+		
+		return it->second;
 	}
 
 	BasicResource* ResourceManager::operator[](glm::u32 id) const

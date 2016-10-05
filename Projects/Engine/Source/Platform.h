@@ -2,6 +2,7 @@
 #define _PLATFORM_H_
 
 /* includes */
+#include <assert.h>
 #include <stdlib.h>
 
 #include <string>

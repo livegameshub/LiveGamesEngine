@@ -9,27 +9,19 @@ namespace ai
 	class ENGINE_API Console
 	{
 	public:
-		enum ConsoleColor : glm::u32
+		enum ConsoleMsgType : glm::u32
 		{
-			BLUE = 1,
-			GREEN = 2,
-			RED = 4,
-			YELLOW = 14,
-			WHITE = 15
+			IMPORTANT_MSG = 1,
+			SUCCESS_MSG = 2,
+			FAILED_MSG = 4,
+			WARNING_MSG = 14,
+			INFO_MSG = 15
 		};
 
-		static void WriteImportant(const std::string& message);
-		static void WriteWarning(const std::string& message);
-		static void WriteSuccess(const std::string& message);
-		static void WriteFailed(const std::string& message);
-		static void WriteInfo(const std::string& message);
+		static void Write(const std::string& message, ConsoleMsgType msgType);
 
 	private:
-		static glm::u32 smCurrentColor;
-		static void* smConsoleHandle;
-
-		static void SetTextColor(ConsoleColor color);
-		static void Write(const std::string& message);
+		static glm::u32 smCurrentMsgType;
 	};
 }
 

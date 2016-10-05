@@ -26,13 +26,12 @@ namespace ai
 		{
 			BasicNode* node = it.second;
 
-			if (node)
-			{
-				node->Release();
+			assert(node != nullptr);
+			
+			node->Release();
 
-				delete node;
-				node = nullptr;
-			}
+			delete node;
+			node = nullptr;
 		}
 
 		mNodes.clear();
@@ -40,24 +39,21 @@ namespace ai
 
 	void BasicScene::AddNode(BasicNode* node)
 	{
-		if (node)
-		{
-			mNodes.insert({ node->GetId(), node });
-		}
+		assert(node != nullptr);
+		
+		mNodes.insert({ node->GetId(), node });	
 	}
 
 	BasicNode* BasicScene::RemoveNode(glm::u32 id)
 	{
 		auto it = mNodes.find(id);
 
-		if (it != mNodes.end())
-		{
-			mNodes.erase(it);
+		/* check if you have the node */
+		assert(it != mNodes.end());
+		
+		mNodes.erase(it);
 
-			return it->second;
-		}
-
-		return nullptr;
+		return it->second;
 	}
 
 	BasicNode* BasicScene::operator[](glm::u32 id) const
@@ -69,12 +65,9 @@ namespace ai
 	{
 		auto it = mNodes.find(id);
 
-		if (it != mNodes.end())
-		{
-			return it->second;
-		}
-
-		return nullptr;
+		assert(it != mNodes.end());
+		
+		return it->second;
 	}
 
 	const std::map<glm::u32, BasicNode*>& BasicScene::GetNodes() const

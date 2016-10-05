@@ -35,10 +35,9 @@ namespace ai
 
 	void Program::AddShader(Shader* shader)
 	{
-		if (shader)
-		{
-			mShaders.push_back(shader);
-		}
+		assert(shader != nullptr);
+
+		mShaders.push_back(shader);
 	}
 
 	void Program::RemoveShader(glm::u32 type)
@@ -56,16 +55,7 @@ namespace ai
 
 	void Program::AddUniform(const std::string& uniform_name)
 	{
-		#ifdef _DEBUG
-
-		auto it = mUniforms.find(uniform_name);
-
-		if (it != mUniforms.end())
-		{
-			return;
-		}
-
-		#endif
+		assert(mUniforms.find(uniform_name) == mUniforms.end());
 
 		mUniforms.insert({ uniform_name, -1 });
 	}
@@ -100,14 +90,7 @@ namespace ai
 
 	glm::i32 Program::GetAttributeLocation(glm::u32 index) const
 	{
-		#ifdef _DEBUG
-
-		if (index >= COUNT)
-		{
-			return -1;
-		}
-
-		#endif
+		assert(index < COUNT);
 
 		return mAttributes[index];
 	}

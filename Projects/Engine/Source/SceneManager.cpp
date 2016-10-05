@@ -19,66 +19,58 @@ namespace ai
 	{
 		for (BasicScene* scene : mScenes)
 		{
-			if (scene)
-			{
-				scene->Release();
+			assert(scene != nullptr);
 
-				delete scene;
-				scene = nullptr;
-			}
+			scene->Release();
+
+			delete scene;
+			scene = nullptr;
+			
 		}
 	}
 
 	void SceneManager::AddScene(BasicScene* scene)
 	{
-		if (scene)
-		{
-			mScenes.push_back(scene);
-		}
+		assert(scene != nullptr);
+
+		mScenes.push_back(scene);
 	}
 
 	void SceneManager::RemoveScene(glm::u32 index)
 	{
 		/* check the bounds for the array */
+		assert(index < mScenes.size());
 
-		if (index < mScenes.size())
-		{
-			mScenes[index]->Release();
+		mScenes[index]->Release();
 
-			mScenes.erase(mScenes.begin() + index);
-		}
+		mScenes.erase(mScenes.begin() + index);
 	}
 
 	void SceneManager::SetMainScene(glm::u32 index)
 	{
 		BasicScene* new_scene = GetScene(index);
 
-		if (new_scene)
+		assert(new_scene != nullptr);
+		
+		// init the new scene
+		new_scene->Init();
+
+		if (mMainScene)
 		{
-			// init the new scene
-			new_scene->Init();
-
-			if (mMainScene)
-			{
-				// release the old scene
-				mMainScene->Release();
-			}
-
-			// swap the scenes
-			mMainScene = new_scene;
+			// release the old scene
+			mMainScene->Release();
 		}
+
+		// swap the scenes
+		mMainScene = new_scene;
 	}
 
 	BasicScene* SceneManager::GetScene(glm::u32 index)
 	{
 		/* check the bounds for the array */
-
-		if (index < mScenes.size())
-		{
-			return mScenes[index];
-		}
-
-		return nullptr;
+		assert(index < mScenes.size());
+		
+		return mScenes[index];
 	}
 
 	BasicScene* SceneManager::operator[](glm::u32 index)

@@ -30,12 +30,9 @@ namespace ai
 
 	Window* Engine::GetWindowByIndex(glm::u32 index)
 	{
-		if (index < mWindows.size())
-		{
-			return &mWindows[index];
-		}
+		assert(index < mWindows.size());
 
-		return nullptr;
+		return &mWindows[index];
 	}
 
 	#ifndef WINDOWS_BUILD
@@ -86,7 +83,7 @@ namespace ai
 		#endif
 
 		/* release all the resources after we finish */
-		engine.Release();
+		Engine::Release();
 
 		return true;
 	}

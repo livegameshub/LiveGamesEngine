@@ -38,11 +38,12 @@ namespace ai
 
 		std::vector<Window> mWindows;
 
+		static void Release();
+
 		#ifndef WINDOWS_BUILD
 		static void WebLoop();
 		#endif
 
-		void Release();
 		void Prepare();
 		void Loop();
 		void Run();

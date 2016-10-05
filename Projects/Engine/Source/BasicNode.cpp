@@ -42,7 +42,9 @@ namespace ai
 
 		for (BasicComponent* component : mComponents)
 		{
-			if (component && component->IsEnabled())
+			assert(component != nullptr);
+
+			if (component->IsEnabled())
 			{
 				component->Update();
 			}
@@ -52,7 +54,9 @@ namespace ai
 
 		for (BasicNode* child : mChildren)
 		{
-			if (child && child->IsEnabled())
+			assert(child != nullptr);
+
+			if (child->IsEnabled())
 			{
 				child->Update();
 			}
@@ -65,37 +69,34 @@ namespace ai
 
 		for (BasicComponent* component : mComponents)
 		{
-			if (component)
-			{
-				delete component;
-				component = nullptr;
-			}
+			assert(component != nullptr);
+			
+			delete component;
+			component = nullptr;
 		}
 	}
 
 	void BasicNode::AddComponent(BasicComponent* component)
 	{
-		if (component)
-		{
-			/* check if we already have this type of component */
+		assert(component != nullptr);
+		
+		/* check if we already have this type of component */
 
-			if (!GetComponent(component->GetComponentType()))
-			{
-				mComponents.push_back(component);
-			}
+		if (!GetComponent(component->GetComponentType()))
+		{
+			mComponents.push_back(component);
 		}
 	}
 
 	void BasicNode::AddChild(BasicNode* node)
 	{
-		if (node)
-		{
-			/* set the parent transformation for the child node */
+		assert(node != nullptr);
 
-			node->GetTransform().SetParentTransform(&mTransform);
+		/* set the parent transformation for the child node */
 
-			mChildren.push_back(node);
-		}
+		node->GetTransform().SetParentTransform(&mTransform);
+
+		mChildren.push_back(node);
 	}
 
 	BasicComponent* BasicNode::GetComponent(glm::i32 type) const

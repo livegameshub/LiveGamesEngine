@@ -6,53 +6,20 @@
 
 namespace ai
 {
-	glm::u32 Console::smCurrentColor = WHITE;
+	glm::u32 Console::smCurrentMsgType = INFO_MSG;
 
-	void* Console::smConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-
-	void Console::SetTextColor(ConsoleColor color)
+	void Console::Write(const std::string& message, ConsoleMsgType msgType)
 	{
-		if (smCurrentColor != color)
+		if (smCurrentMsgType != msgType)
 		{
-			SetConsoleTextAttribute(smConsoleHandle, color);
+			static auto consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
-			smCurrentColor = color;
+			SetConsoleTextAttribute(consoleHandle, msgType);
+
+			smCurrentMsgType = msgType;
 		}
-	}
 
-	void Console::Write(const std::string& message)
-	{
 		std::cout << message << std::endl;
-	}
-
-	void Console::WriteImportant(const std::string& message)
-	{
-		SetTextColor(BLUE);
-		Write(message);
-	}
-
-	void Console::WriteWarning(const std::string& message)
-	{
-		SetTextColor(YELLOW);
-		Write(message);
-	}
-
-	void Console::WriteSuccess(const std::string& message)
-	{
-		SetTextColor(GREEN);
-		Write(message);
-	}
-
-	void Console::WriteFailed(const std::string& message)
-	{
-		SetTextColor(RED);
-		Write(message);
-	}
-
-	void Console::WriteInfo(const std::string& message)
-	{
-		SetTextColor(WHITE);
-		Write(message);
 	}
 }
 
