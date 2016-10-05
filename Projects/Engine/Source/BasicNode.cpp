@@ -34,7 +34,7 @@ namespace ai
 	{
 	}
 
-	void BasicNode::Update()
+	void BasicNode::update()
 	{
 		mTransform.Update();
 	
@@ -58,7 +58,7 @@ namespace ai
 
 			if (child->IsEnabled())
 			{
-				child->Update();
+				child->update();
 			}
 		}
 	}

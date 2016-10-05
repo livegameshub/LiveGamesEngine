@@ -25,7 +25,7 @@ namespace ai
 
 		virtual ~BasicNode();
 
-		virtual void Update();
+		virtual void update();
 		virtual void Release();
 
 		void AddComponent(BasicComponent* component);

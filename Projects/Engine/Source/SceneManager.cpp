@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "ResourceManager.h"
 
 namespace ai
 {
@@ -7,21 +8,21 @@ namespace ai
 	{
 	}
 
-	void SceneManager::Update()
+	void SceneManager::update()
 	{
 		if (mMainScene)
 		{
-			mMainScene->Update();
+			mMainScene->update();
 		}
 	}
 
-	void SceneManager::Release()
+	void SceneManager::release()
 	{
 		for (BasicScene* scene : mScenes)
 		{
 			assert(scene != nullptr);
 
-			scene->Release();
+			scene->release();
 
 			delete scene;
 			scene = nullptr;
@@ -29,43 +30,51 @@ namespace ai
 		}
 	}
 
-	void SceneManager::AddScene(BasicScene* scene)
+	void SceneManager::addScene(BasicScene* scene)
 	{
 		assert(scene != nullptr);
 
 		mScenes.push_back(scene);
 	}
 
-	void SceneManager::RemoveScene(glm::u32 index)
+	void SceneManager::removeScene(glm::u32 index)
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
 
-		mScenes[index]->Release();
+		mScenes[index]->release();
 
 		mScenes.erase(mScenes.begin() + index);
 	}
 
-	void SceneManager::SetMainScene(glm::u32 index)
+	void SceneManager::setMainScene(glm::u32 index)
 	{
-		BasicScene* new_scene = GetScene(index);
+		BasicScene* new_scene = getScene(index);
 
 		assert(new_scene != nullptr);
 		
 		// init the new scene
-		new_scene->Init();
+		new_scene->init();
+
+		/* load the resources */
+		ResourceManager& resources = ResourceManager::GetInstance();
+
+		resources.loadAllResources();
 
 		if (mMainScene)
 		{
 			// release the old scene
-			mMainScene->Release();
+			mMainScene->release();
+
+			/* unload the resources */
+			resources.unloadAllResources();
 		}
 
 		// swap the scenes
 		mMainScene = new_scene;
 	}
 
-	BasicScene* SceneManager::GetScene(glm::u32 index)
+	BasicScene* SceneManager::getScene(glm::u32 index)
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
@@ -75,20 +84,20 @@ namespace ai
 
 	BasicScene* SceneManager::operator[](glm::u32 index)
 	{
-		return GetScene(index);
+		return getScene(index);
 	}
 
-	const BasicScene* SceneManager::GetMainScene() const
+	const BasicScene* SceneManager::getMainScene() const
 	{
 		return mMainScene;
 	}
 
-	const std::vector<BasicScene*>& SceneManager::GetScenes() const
+	const std::vector<BasicScene*>& SceneManager::getScenes() const
 	{
 		return mScenes;
 	}
 
-	SceneManager& SceneManager::GetInstance()
+	SceneManager& SceneManager::getInstance()
 	{
 		static SceneManager instance;
 

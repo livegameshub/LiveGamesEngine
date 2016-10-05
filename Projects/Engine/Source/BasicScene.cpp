@@ -11,16 +11,16 @@ namespace ai
 	{
 	}
 
-	void BasicScene::Init()
+	void BasicScene::init()
 	{
 	}
 
-	void BasicScene::Update()
+	void BasicScene::update()
 	{
-		mRootNode.Update();
+		mRootNode.update();
 	}
 
-	void BasicScene::Release()
+	void BasicScene::release()
 	{
 		for (auto it : mNodes)
 		{
@@ -37,14 +37,14 @@ namespace ai
 		mNodes.clear();
 	}
 
-	void BasicScene::AddNode(BasicNode* node)
+	void BasicScene::addNode(BasicNode* node)
 	{
 		assert(node != nullptr);
 		
 		mNodes.insert({ node->GetId(), node });	
 	}
 
-	BasicNode* BasicScene::RemoveNode(glm::u32 id)
+	BasicNode* BasicScene::removeNode(glm::u32 id)
 	{
 		auto it = mNodes.find(id);
 
@@ -58,10 +58,10 @@ namespace ai
 
 	BasicNode* BasicScene::operator[](glm::u32 id) const
 	{
-		return GetNode(id);
+		return getNode(id);
 	}
 
-	BasicNode* BasicScene::GetNode(glm::u32 id) const
+	BasicNode* BasicScene::getNode(glm::u32 id) const
 	{
 		auto it = mNodes.find(id);
 
@@ -70,17 +70,17 @@ namespace ai
 		return it->second;
 	}
 
-	const std::map<glm::u32, BasicNode*>& BasicScene::GetNodes() const
+	const std::map<glm::u32, BasicNode*>& BasicScene::getNodes() const
 	{
 		return mNodes;
 	}
 
-	const BasicNode& BasicScene::GetRootNode() const
+	const BasicNode& BasicScene::getRootNode() const
 	{
 		return mRootNode;
 	}
 
-	BasicNode& BasicScene::GetRootNode()
+	BasicNode& BasicScene::getRootNode()
 	{
 		return mRootNode;
 	}

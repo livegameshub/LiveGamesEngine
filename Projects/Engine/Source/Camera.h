@@ -20,32 +20,32 @@ namespace ai
 
 		~Camera();
 
-		void Update() override;
+		void update() override;
 
-		void RotateOnX(glm::f32 amount);
-		void RotateOnY(glm::f32 amount);
-		void RotateOnZ(glm::f32 amount);
-		void MoveForward(glm::f32 amount);
+		void rotateOnX(glm::f32 amount);
+		void rotateOnY(glm::f32 amount);
+		void rotateOnZ(glm::f32 amount);
+		void moveForward(glm::f32 amount);
 
-		void LookAt(const glm::vec3& target);
-		void MoveAt(const glm::vec3& position);
+		void lookAt(const glm::vec3& target);
+		void moveAt(const glm::vec3& position);
 		
-		bool HasCustomViewSize() const;
-		void HasCustomViewSize(bool value);
+		bool hasCustomViewSize() const;
+		void hasCustomViewSize(bool value);
 
-		void SetFov(glm::f32 value);
-		void SetNearPlane(glm::f32 value);
-		void SetFarPlane(glm::f32 value);
-		void SetViewSize(const glm::vec2& size);
+		void setFov(glm::f32 value);
+		void setNearPlane(glm::f32 value);
+		void setFarPlane(glm::f32 value);
+		void setViewSize(const glm::vec2& size);
 
-		static const glm::mat4& GetOrthoMatrix();
-		const glm::mat4& GetPerspecitiveMatrix() const;
-		const glm::mat4& GetViewMatrix() const;
+		static const glm::mat4& getOrthoMatrix();
+		const glm::mat4& getPerspecitiveMatrix() const;
+		const glm::mat4& getViewMatrix() const;
 
-		const glm::vec2& GetViewSize() const;
-		glm::f32 GetNearPlane() const;
-		glm::f32 GetFarPlane() const;
-		glm::f32 GetFov() const;
+		const glm::vec2& getViewSize() const;
+		glm::f32 getNearPlane() const;
+		glm::f32 getFarPlane() const;
+		glm::f32 getFov() const;
 
 	private:
 		bool mHasCustomViewSize;

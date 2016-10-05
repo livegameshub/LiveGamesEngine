@@ -2,9 +2,33 @@
 
 namespace ai
 {
+	void ResourceManager::loadAllResources()
+	{
+		for (glm::u32 i = mPendingResources.size(); i > 0; --i)
+		{
+			mPendingResources[i - 1]->Load();
+			mPendingResources.pop_back();
+		}
+	}
+
+	void ResourceManager::unloadAllResources()
+	{	
+	}
+
+	void ResourceManager::load(BasicResource* resource)
+	{
+		assert(resource != nullptr);
+
+		GetInstance().mPendingResources.push_back(resource);
+	}
+
+	void ResourceManager::unload(BasicResource* resource)
+	{	
+	}
+
 	void ResourceManager::Release()
 	{
-		for (auto it : mResources)
+		for (auto it : mAllResources)
 		{
 			BasicResource* resource = it.second;
 
@@ -19,27 +43,27 @@ namespace ai
 
 	void ResourceManager::RemoveResource(glm::u32 id)
 	{
-		auto it = mResources.find(id);
+		auto it = mAllResources.find(id);
 
-		assert(it != mResources.end());
+		assert(it != mAllResources.end());
 	
 		it->second->Unload();
 
-		mResources.erase(it);
+		mAllResources.erase(it);
 	}
 
 	void ResourceManager::AddResource(BasicResource* resource)
 	{
 		assert(resource != nullptr);
 
-		mResources.insert({ resource->GetId(), resource });	
+		mAllResources.insert({ resource->GetId(), resource });	
 	}
 
 	BasicResource* ResourceManager::GetResource(glm::u32 id) const
 	{
-		auto it = mResources.find(id);
+		auto it = mAllResources.find(id);
 
-		assert(it != mResources.end());
+		assert(it != mAllResources.end());
 		
 		return it->second;
 	}
@@ -49,9 +73,9 @@ namespace ai
 		return GetResource(id);
 	}
 
-	const std::map<glm::u32, BasicResource*>& ResourceManager::GetResources() const
+	const std::map<glm::u32, BasicResource*>& ResourceManager::getAllResources() const
 	{
-		return mResources;
+		return mAllResources;
 	}
 
 	ResourceManager& ResourceManager::GetInstance()

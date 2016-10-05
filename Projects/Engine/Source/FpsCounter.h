@@ -9,7 +9,7 @@ namespace ai
 	class FpsCounter
 	{
 	public:
-		static void Update();
+		static void update();
 
 	private:
 		static glm::f32 smFramesTime;

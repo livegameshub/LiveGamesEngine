@@ -11,7 +11,7 @@
 
 int main()
 {
-	ai::SceneManager::GetInstance().AddScene(new ai::TestScene());
+	ai::SceneManager::getInstance().addScene(new ai::TestScene());
 	
 	ai::Engine::Setup("Live Games Hub");
 

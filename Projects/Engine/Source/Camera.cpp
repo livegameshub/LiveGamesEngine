@@ -26,9 +26,9 @@ namespace ai
 	{
 	}
 
-	void Camera::Update()
+	void Camera::update()
 	{
-		BasicNode::Update();
+		BasicNode::update();
 
 		/* update the ortho matrix (for the 2d or GUI) */
 
@@ -58,115 +58,115 @@ namespace ai
 		}
 	}
 
-	void Camera::RotateOnX(glm::f32 amount)
+	void Camera::rotateOnX(glm::f32 amount)
 	{
 		mTransform.RotateOnX(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void Camera::RotateOnY(glm::f32 amount)
+	void Camera::rotateOnY(glm::f32 amount)
 	{
 		mTransform.RotateOnY(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void Camera::RotateOnZ(glm::f32 amount)
+	void Camera::rotateOnZ(glm::f32 amount)
 	{
 		mTransform.RotateOnZ(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void Camera::MoveForward(glm::f32 amount)
+	void Camera::moveForward(glm::f32 amount)
 	{
 		mTransform.Translate(VECTOR_FORWARD * glm::inverse(mTransform.GetOrientation()) * amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void Camera::LookAt(const glm::vec3& target)
+	void Camera::lookAt(const glm::vec3& target)
 	{
 		mViewMatrix = glm::lookAt(mTransform.GetPosition(), target, VECTOR_UP);
 	}
 
-	void Camera::MoveAt(const glm::vec3& position)
+	void Camera::moveAt(const glm::vec3& position)
 	{
 		mTransform.SetPosition(position);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	bool Camera::HasCustomViewSize() const
+	bool Camera::hasCustomViewSize() const
 	{
 		return mHasCustomViewSize;
 	}
 
-	void Camera::HasCustomViewSize(bool value)
+	void Camera::hasCustomViewSize(bool value)
 	{
 		mHasCustomViewSize = value;
 	}
 
-	void Camera::SetFov(glm::f32 value)
+	void Camera::setFov(glm::f32 value)
 	{
 		mFov = value;
 
 		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
 	}
 
-	void Camera::SetNearPlane(glm::f32 value)
+	void Camera::setNearPlane(glm::f32 value)
 	{
 		mNearPlane = value;
 
 		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
 	}
 
-	void Camera::SetFarPlane(glm::f32 value)
+	void Camera::setFarPlane(glm::f32 value)
 	{
 		mFarPlane = value;
 
 		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
 	}
 
-	void Camera::SetViewSize(const glm::vec2& size)
+	void Camera::setViewSize(const glm::vec2& size)
 	{
 		mViewSize = size;
 
 		mFlag.Add(CAMERA_NEW_ORTHO_MATRIX | CAMERA_NEW_PERSPECTIVE_MATRIX);
 	}
 
-	const glm::mat4& Camera::GetOrthoMatrix()
+	const glm::mat4& Camera::getOrthoMatrix()
 	{
 		return smOrthoMatrix;
 	}
 
-	const glm::mat4& Camera::GetPerspecitiveMatrix() const
+	const glm::mat4& Camera::getPerspecitiveMatrix() const
 	{
 		return mPerspectiveMatrix;
 	}
 
-	const glm::mat4& Camera::GetViewMatrix() const
+	const glm::mat4& Camera::getViewMatrix() const
 	{
 		return mViewMatrix;
 	}
 
-	const glm::vec2& Camera::GetViewSize() const
+	const glm::vec2& Camera::getViewSize() const
 	{
 		return mViewSize;
 	}
 
-	glm::f32 Camera::GetNearPlane() const
+	glm::f32 Camera::getNearPlane() const
 	{
 		return mNearPlane;
 	}
 
-	glm::f32 Camera::GetFarPlane() const
+	glm::f32 Camera::getFarPlane() const
 	{
 		return mFarPlane;
 	}
 
-	glm::f32 Camera::GetFov() const
+	glm::f32 Camera::getFov() const
 	{
 		return mFov;
 	}

@@ -14,9 +14,9 @@ namespace ai
 		TestScene();
 		~TestScene();
 
-		void Init() override;
-		void Update() override;
-		void Release() override;
+		void init() override;
+		void update() override;
+		void release() override;
 
 	private:
 		Camera* mCamera;

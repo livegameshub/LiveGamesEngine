@@ -12,19 +12,19 @@ namespace ai
 
 		virtual ~BasicScene();
 
-		virtual void Init();
-		virtual void Update();
-		virtual void Release();
+		virtual void init();
+		virtual void update();
+		virtual void release();
 
-		void AddNode(BasicNode* node);
+		void addNode(BasicNode* node);
 
-		BasicNode* RemoveNode(glm::u32 id);
+		BasicNode* removeNode(glm::u32 id);
 		BasicNode* operator[](glm::u32 id) const;
-		BasicNode* GetNode(glm::u32 id) const;
+		BasicNode* getNode(glm::u32 id) const;
 
-		const std::map<glm::u32, BasicNode*>& GetNodes() const;
-		const BasicNode& GetRootNode() const;
-		BasicNode& GetRootNode();
+		const std::map<glm::u32, BasicNode*>& getNodes() const;
+		const BasicNode& getRootNode() const;
+		BasicNode& getRootNode();
 
 	protected:
 		BasicNode mRootNode;

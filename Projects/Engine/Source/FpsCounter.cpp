@@ -8,7 +8,7 @@ namespace ai
 	glm::u32 FpsCounter::smFrames = 0;
 	glm::f32 FpsCounter::smFramesTime = 0.0f;
 
-	void FpsCounter::Update()
+	void FpsCounter::update()
 	{
 		++smFrames;
 
@@ -20,15 +20,15 @@ namespace ai
 
 			if (smFrames < 30)
 			{
-				Console::Write(message, Console::ConsoleMsgType::FAILED_MSG);
+				Console::write(message, Console::ConsoleMsgType::FAILED_MSG);
 			}
 			else if (smFrames < 60)
 			{
-				Console::Write(message, Console::ConsoleMsgType::WARNING_MSG);
+				Console::write(message, Console::ConsoleMsgType::WARNING_MSG);
 			}
 			else
 			{
-				Console::Write(message, Console::ConsoleMsgType::INFO_MSG);
+				Console::write(message, Console::ConsoleMsgType::INFO_MSG);
 			}
 
 			smFramesTime = 0.0f;

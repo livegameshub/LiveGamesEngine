@@ -9,20 +9,20 @@ namespace ai
 	class ENGINE_API SceneManager
 	{
 	public:
-		void Update();
-		void Release();
+		void update();
+		void release();
 
-		void AddScene(BasicScene* scene);
-		void SetMainScene(glm::u32 index);
-		void RemoveScene(glm::u32 index);
+		void addScene(BasicScene* scene);
+		void setMainScene(glm::u32 index);
+		void removeScene(glm::u32 index);
 
-		BasicScene* GetScene(glm::u32 index);
+		BasicScene* getScene(glm::u32 index);
 		BasicScene* operator[](glm::u32 index);
 
-		const std::vector<BasicScene*>& GetScenes() const;
-		const BasicScene* GetMainScene() const;
+		const std::vector<BasicScene*>& getScenes() const;
+		const BasicScene* getMainScene() const;
 
-		static SceneManager& GetInstance();
+		static SceneManager& getInstance();
 
 	private:
 		std::vector<BasicScene*> mScenes;

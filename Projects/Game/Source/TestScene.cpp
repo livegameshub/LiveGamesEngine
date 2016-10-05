@@ -2,6 +2,7 @@
 #include "Shader.h"
 #include "Engine.h"
 #include "Window.h"
+#include "ResourceManager.h"
 
 namespace ai
 {
@@ -13,10 +14,12 @@ namespace ai
 	{
 	}
 
-	void TestScene::Init()
+	void TestScene::init()
 	{
-		/* call the basic Init function */
-		BasicScene::Init();
+		/* call the basic init function */
+		BasicScene::init();
+
+		ResourceManager& resources = ResourceManager::GetInstance();
 
 		mVertexShader = new Shader(1, Shader::VERTEX_SHADER, "DiffuseShader.vs");
 		mFragmentShader = new Shader(2, Shader::FRAGMENT_SHADER, "DiffuseShader.fs");
@@ -26,28 +29,36 @@ namespace ai
 		mProgram->AddShader(mFragmentShader);;
 		
 		mProgram->AddUniforms({ "u_view", "u_model", "u_projection" });
-		mProgram->Load();
-
+	
 		mCubeMesh = new Mesh(4, "Cube.mesh");
-		mCubeMesh->Load();
+		
+		resources.AddResource(mVertexShader);
+		resources.AddResource(mFragmentShader);
+		resources.AddResource(mProgram);
+		resources.AddResource(mCubeMesh);
+
+		ResourceManager::load(mProgram);
+		ResourceManager::load(mCubeMesh);
 
 		mCamera = new Camera(1);
-		mCamera->SetViewSize(Engine::GetInstance().GetWindowByIndex(0)->GetSize());
-		mCamera->MoveAt(glm::vec3(0.0f, 0.0f, 5.0f));
+		mCamera->setViewSize(Engine::GetInstance().GetWindowByIndex(0)->GetSize());
+		mCamera->moveAt(glm::vec3(0.0f, 0.0f, 5.0f));
+
+		addNode(mCamera);
 
 		mRootNode.AddChild(mCamera);
 	}
 
-	void TestScene::Update()
+	void TestScene::update()
 	{
-		/* call the basic Update function */
+		/* call the basic update function */
 
-		BasicScene::Update();
+		BasicScene::update();
 
 		mProgram->Use();
 
-		mProgram->SetUniform("u_projection", mCamera->GetPerspecitiveMatrix());
-		mProgram->SetUniform("u_view", mCamera->GetViewMatrix());
+		mProgram->SetUniform("u_projection", mCamera->getPerspecitiveMatrix());
+		mProgram->SetUniform("u_view", mCamera->getViewMatrix());
 		mProgram->SetUniform("u_model", glm::mat4());
 		
 		mCubeMesh->BindVbo();
@@ -56,10 +67,10 @@ namespace ai
 		mCubeMesh->Draw();
 	}
 
-	void TestScene::Release()
+	void TestScene::release()
 	{
-		/* class the basic Release function */
+		/* class the basic release function */
 
-		BasicScene::Release();
+		BasicScene::release();
 	}
 }

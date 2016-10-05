@@ -18,7 +18,7 @@ namespace ai
 			INFO_MSG = 15
 		};
 
-		static void Write(const std::string& message, ConsoleMsgType msgType);
+		static void write(const std::string& message, ConsoleMsgType msgType);
 
 	private:
 		static glm::u32 smCurrentMsgType;

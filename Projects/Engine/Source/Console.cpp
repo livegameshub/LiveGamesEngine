@@ -8,7 +8,7 @@ namespace ai
 {
 	glm::u32 Console::smCurrentMsgType = INFO_MSG;
 
-	void Console::Write(const std::string& message, ConsoleMsgType msgType)
+	void Console::write(const std::string& message, ConsoleMsgType msgType)
 	{
 		if (smCurrentMsgType != msgType)
 		{

@@ -39,7 +39,7 @@ namespace ai
 
 	void Engine::WebLoop()
 	{
-		GetInstance().Loop();
+		getInstance().Loop();
 	}
 
 	#endif
@@ -66,7 +66,7 @@ namespace ai
 			return false;
 		}
 
-		Engine& engine = Engine::GetInstance();
+		Engine& engine = GetInstance();
 
 		/* the first element is the main window */
 		engine.AddWindow(window);
@@ -96,7 +96,7 @@ namespace ai
 		Time::Start();
 
 		/* the first scene is the main one */
-		SceneManager::GetInstance().SetMainScene(0);
+		SceneManager::getInstance().setMainScene(0);
 	}
 
 	void Engine::Loop()
@@ -110,11 +110,11 @@ namespace ai
 
 			#ifdef _DEBUG
 
-			FpsCounter::Update();
+			FpsCounter::update();
 
 			#endif
 
-			SceneManager::GetInstance().Update();
+			SceneManager::getInstance().update();
 
 			main_window.Draw();
 			main_window.SwapBuffers();
@@ -136,7 +136,7 @@ namespace ai
 
 	void Engine::Release()
 	{
-		SceneManager::GetInstance().Release();
+		SceneManager::getInstance().release();
 		ResourceManager::GetInstance().Release();
 
 		Window::ReleaseApi();

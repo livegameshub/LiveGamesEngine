@@ -15,12 +15,19 @@ namespace ai
 		BasicResource* GetResource(glm::u32 id) const;
 		BasicResource* operator[](glm::u32 id) const;
 
-		const std::map<glm::u32, BasicResource*>& GetResources() const;
+		const std::map<glm::u32, BasicResource*>& getAllResources() const;
+
+		void loadAllResources();
+		void unloadAllResources();
+
+		static void load(BasicResource* resource);
+		static void unload(BasicResource* resource);
 
 		static ResourceManager& GetInstance();
 
 	private:
-		std::map<glm::u32, BasicResource*> mResources;
+		std::map<glm::u32, BasicResource*> mAllResources;
+		std::vector<BasicResource*> mPendingResources;
 	};
 }
 
