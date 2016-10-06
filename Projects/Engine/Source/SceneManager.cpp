@@ -55,21 +55,16 @@ namespace ai
 		
 		// init the new scene
 		new_scene->init();
-
-		/* load the resources */
-		ResourceManager& resources = ResourceManager::GetInstance();
-
-		resources.loadAllResources();
+		
+		/* process the resources */
+		ResourceManager::getInstance().FlushPendingItems();
 
 		if (mMainScene)
 		{
 			// release the old scene
 			mMainScene->release();
-
-			/* unload the resources */
-			resources.unloadAllResources();
 		}
-
+		
 		// swap the scenes
 		mMainScene = new_scene;
 	}

@@ -2,28 +2,37 @@
 
 namespace ai
 {
-	void ResourceManager::loadAllResources()
+	void ResourceManager::FlushPendingItems()
 	{
-		for (glm::u32 i = mPendingResources.size(); i > 0; --i)
+		for (glm::u32 i = mPendingItems.size(); i > 0; --i)
 		{
-			mPendingResources[i - 1]->Load();
-			mPendingResources.pop_back();
+			BasicResource* item = mPendingItems[i - 1];
+
+			if (item->GetFlag().IsSet(BasicResource::IS_UNLOADED))
+			{
+				item->Load();
+
+				item->GetFlag().Remove(BasicResource::IS_UNLOADED);
+			}
+			else
+			{
+				item->Unload();
+			}
+
+			mPendingItems.pop_back();
 		}
 	}
 
-	void ResourceManager::unloadAllResources()
-	{	
-	}
-
-	void ResourceManager::load(BasicResource* resource)
+	void ResourceManager::addPendingItem(BasicResource* resource, bool isUnloaded)
 	{
 		assert(resource != nullptr);
 
-		GetInstance().mPendingResources.push_back(resource);
-	}
+		if (isUnloaded)
+		{
+			resource->GetFlag().Add(BasicResource::IS_UNLOADED);
+		}
 
-	void ResourceManager::unload(BasicResource* resource)
-	{	
+		getInstance().mPendingItems.push_back(resource);
 	}
 
 	void ResourceManager::Release()
@@ -33,8 +42,7 @@ namespace ai
 			BasicResource* resource = it.second;
 
 			assert(resource != nullptr);
-
-			resource->Unload();
+			assert(resource->GetReferencesCounter() == 0);
 
 			delete resource;
 			resource = nullptr;
@@ -59,7 +67,7 @@ namespace ai
 		mAllResources.insert({ resource->GetId(), resource });	
 	}
 
-	BasicResource* ResourceManager::GetResource(glm::u32 id) const
+	BasicResource* ResourceManager::getResource(glm::u32 id) const
 	{
 		auto it = mAllResources.find(id);
 
@@ -70,7 +78,7 @@ namespace ai
 
 	BasicResource* ResourceManager::operator[](glm::u32 id) const
 	{
-		return GetResource(id);
+		return getResource(id);
 	}
 
 	const std::map<glm::u32, BasicResource*>& ResourceManager::getAllResources() const
@@ -78,7 +86,7 @@ namespace ai
 		return mAllResources;
 	}
 
-	ResourceManager& ResourceManager::GetInstance()
+	ResourceManager& ResourceManager::getInstance()
 	{
 		static ResourceManager instance;
 

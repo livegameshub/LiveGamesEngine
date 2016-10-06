@@ -1,5 +1,5 @@
-#ifndef _MESH_H_
-#define _MESH_H_
+#ifndef _MESH_RESOURCE_H_
+#define _MESH_RESOURCE_H_
 
 #include "BasicResource.h"
 #include "Graphics.h"
@@ -8,7 +8,7 @@ namespace ai
 {
 	class MeshData;
 
-	class ENGINE_API Mesh : public BasicResource
+	class ENGINE_API MeshResource : public BasicResource
 	{
 	public:
 		const glm::u32 LINES_MESH = GL_LINES;
@@ -32,10 +32,10 @@ namespace ai
 			MESH_TEXTURE_FLAG = 4
 		};
 
-		Mesh(glm::u32 id, const std::string& file);
-		Mesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
+		MeshResource(glm::u32 id, const std::string& file);
+		MeshResource(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
 
-		~Mesh();
+		~MeshResource();
 
 		void Draw() const;  
 

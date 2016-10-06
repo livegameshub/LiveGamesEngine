@@ -94,9 +94,6 @@
     <ClInclude Include="Source\Program.h">
       <Filter>Source\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mesh.h">
-      <Filter>Source\Resources\Mesh</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MeshData.h">
       <Filter>Source\Resources\Mesh</Filter>
     </ClInclude>
@@ -106,20 +103,29 @@
     <ClInclude Include="Source\BasicNode.h">
       <Filter>Source\Scene\Nodes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Transform.h">
-      <Filter>Source\Scene\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BasicScene.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Source\SceneManager.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>Source\Scene\Nodes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ResourceManager.h">
       <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CameraNode.h">
+      <Filter>Source\Scene\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ModelNode.h">
+      <Filter>Source\Scene\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TransformComponent.h">
+      <Filter>Source\Scene\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MeshResource.h">
+      <Filter>Source\Resources\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MaterialResource.h">
+      <Filter>Source\Resources\Materials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +171,6 @@
     <ClCompile Include="Source\Program.cpp">
       <Filter>Source\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Source\Resources\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MeshData.cpp">
       <Filter>Source\Resources\Mesh</Filter>
     </ClCompile>
@@ -177,20 +180,29 @@
     <ClCompile Include="Source\BasicNode.cpp">
       <Filter>Source\Scene\Nodes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Transform.cpp">
-      <Filter>Source\Scene\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BasicScene.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneManager.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source\Scene\Nodes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ResourceManager.cpp">
       <Filter>Source\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraNode.cpp">
+      <Filter>Source\Scene\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ModelNode.cpp">
+      <Filter>Source\Scene\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TransformComponent.cpp">
+      <Filter>Source\Scene\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshResource.cpp">
+      <Filter>Source\Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MaterialResource.cpp">
+      <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

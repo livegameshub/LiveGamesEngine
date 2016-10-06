@@ -15,10 +15,12 @@ namespace ai
 
 		void SetId(glm::u32 id);
 		void SetFlag(const Flag& flag);
-
-		glm::u32 GetId() const;
+		
 		const Flag& GetFlag() const;
+		glm::u32 GetId() const;
 
+		Flag& GetFlag();
+		
 	protected:
 		glm::u32 mId;
 		Flag mFlag;

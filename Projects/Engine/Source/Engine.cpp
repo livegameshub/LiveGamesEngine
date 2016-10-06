@@ -66,17 +66,15 @@ namespace ai
 			return false;
 		}
 
-		Engine& engine = GetInstance();
-
 		/* the first element is the main window */
-		engine.AddWindow(window);
+		getInstance().AddWindow(window);
 
 		/* prepare the engine */
-		engine.Prepare();
+		getInstance().Prepare();
 
 		#ifdef WINDOWS_BUILD
 			/* run the engine */
-			engine.Run();
+			getInstance().Run();
 		#else
 			/* run the main loop */
 			emscripten_set_main_loop(WebLoop, 0, true);
@@ -137,7 +135,7 @@ namespace ai
 	void Engine::Release()
 	{
 		SceneManager::getInstance().release();
-		ResourceManager::GetInstance().Release();
+		ResourceManager::getInstance().Release();
 
 		Window::ReleaseApi();
 	}
@@ -164,7 +162,7 @@ namespace ai
 
 	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
 	{
-		Window* window = GetInstance().GetWindow(windowPtr);
+		Window* window = getInstance().GetWindow(windowPtr);
 
 		if (window && window->SetNewSize(glm::ivec2(width, height)))
 		{
@@ -172,7 +170,7 @@ namespace ai
 		}
 	}
 
-	Engine& Engine::GetInstance()
+	Engine& Engine::getInstance()
 	{
 		static Engine instance;
 

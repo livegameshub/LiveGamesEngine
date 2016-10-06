@@ -31,7 +31,7 @@ namespace ai
 		Window* GetWindow(GLFWwindow* windowPtr);
 		Window* GetWindowByIndex(glm::u32 index);
 
-		static Engine& GetInstance();
+		static Engine& getInstance();
 
 	private:
 		Flag mFlag;

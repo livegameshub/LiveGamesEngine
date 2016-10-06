@@ -1,8 +1,8 @@
-#include "Transform.h"
+#include "TransformComponent.h"
 
 namespace ai
 {
-	Transform::Transform()
+	TransformComponent::TransformComponent()
 		: BasicComponent(TRANSFORM_COMPONENT)
 		, mParentTransform(nullptr)
 		, mScale(1.0f)
@@ -10,7 +10,7 @@ namespace ai
 	{
 	}
 
-	Transform::Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
+	TransformComponent::TransformComponent(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
 		: BasicComponent(TRANSFORM_COMPONENT, NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
 		, mParentTransform(nullptr)
 		, mOrientation(orientation)
@@ -20,11 +20,11 @@ namespace ai
 	{
 	}
 
-	Transform::~Transform()
+	TransformComponent::~TransformComponent()
 	{
 	}
 
-	void Transform::Update()
+	void TransformComponent::Update()
 	{
 		if (mFlag.IsSet(NEW_ROTATION_SCALE_MATRIX))
 		{
@@ -51,7 +51,7 @@ namespace ai
 		}
 	}
 
-	void Transform::Reset()
+	void TransformComponent::Reset()
 	{
 		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 
@@ -60,48 +60,48 @@ namespace ai
 		mPosition = glm::vec3();
 	}
 
-	void Transform::SetParentTransform(Transform* transform)
+	void TransformComponent::SetParentTransform(TransformComponent* transform)
 	{
 		mParentTransform = transform;
 	}
 
-	void Transform::Translate(const glm::vec3& amount)
+	void TransformComponent::Translate(const glm::vec3& amount)
 	{
 		mPosition += amount;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void Transform::Rotate(const glm::vec3& axis, glm::f32 angle)
+	void TransformComponent::Rotate(const glm::vec3& axis, glm::f32 angle)
 	{
 		mOrientation = glm::angleAxis(glm::radians(angle), axis);
 
 		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::Rotate(const glm::vec3& angles)
+	void TransformComponent::Rotate(const glm::vec3& angles)
 	{
 		mOrientation = glm::quat(glm::radians(angles));
 
 		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::RotateOnX(glm::f32 angle)
+	void TransformComponent::RotateOnX(glm::f32 angle)
 	{
 		Rotate(VECTOR_RIGHT, angle);
 	}
 
-	void Transform::RotateOnY(glm::f32 angle)
+	void TransformComponent::RotateOnY(glm::f32 angle)
 	{
 		Rotate(VECTOR_UP, angle);
 	}
 
-	void Transform::RotateOnZ(glm::f32 angle)
+	void TransformComponent::RotateOnZ(glm::f32 angle)
 	{
 		Rotate(-VECTOR_FORWARD, angle);
 	}
 
-	void Transform::Scale(const glm::vec3& scale)
+	void TransformComponent::Scale(const glm::vec3& scale)
 	{
 		mScale = scale;
 
@@ -111,53 +111,53 @@ namespace ai
 		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::SetOrientation(const glm::quat& orientation)
+	void TransformComponent::SetOrientation(const glm::quat& orientation)
 	{
 		mOrientation = orientation;
 
 		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::SetPosition(const glm::vec3& position)
+	void TransformComponent::SetPosition(const glm::vec3& position)
 	{
 		mPosition = position;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void Transform::SetScale(const glm::vec3& scale)
+	void TransformComponent::SetScale(const glm::vec3& scale)
 	{
 		mScale = scale;
 
 		mFlag.Add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	const glm::quat& Transform::GetOrientation() const
+	const glm::quat& TransformComponent::GetOrientation() const
 	{
 		return mOrientation;
 	}
 
-	const glm::vec3& Transform::GetPosition() const
+	const glm::vec3& TransformComponent::GetPosition() const
 	{
 		return mPosition;
 	}
 
-	const glm::vec3& Transform::GetScale() const
+	const glm::vec3& TransformComponent::GetScale() const
 	{
 		return mScale;
 	}
 
-	bool Transform::HasUniformScale() const
+	bool TransformComponent::HasUniformScale() const
 	{
 		return mHasUniformScale;
 	}
 
-	Transform* Transform::GetParentTransform() const
+	TransformComponent* TransformComponent::GetParentTransform() const
 	{
 		return mParentTransform;
 	}
 
-	glm::mat4 Transform::GetMatrix() const
+	glm::mat4 TransformComponent::GetMatrix() const
 	{
 		if (mParentTransform)
 		{

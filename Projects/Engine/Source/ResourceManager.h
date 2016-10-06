@@ -9,25 +9,22 @@ namespace ai
 	{
 	public:
 		void Release();
+		void FlushPendingItems();
+
 		void RemoveResource(glm::u32 id);
 		void AddResource(BasicResource* resource);
 		
-		BasicResource* GetResource(glm::u32 id) const;
+		BasicResource* getResource(glm::u32 id) const;
 		BasicResource* operator[](glm::u32 id) const;
 
 		const std::map<glm::u32, BasicResource*>& getAllResources() const;
 
-		void loadAllResources();
-		void unloadAllResources();
-
-		static void load(BasicResource* resource);
-		static void unload(BasicResource* resource);
-
-		static ResourceManager& GetInstance();
+		static void addPendingItem(BasicResource* resource, bool isUnloaded);
+		static ResourceManager& getInstance();
 
 	private:
 		std::map<glm::u32, BasicResource*> mAllResources;
-		std::vector<BasicResource*> mPendingResources;
+		std::vector<BasicResource*> mPendingItems;
 	};
 }
 

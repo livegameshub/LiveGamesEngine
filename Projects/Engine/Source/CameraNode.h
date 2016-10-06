@@ -1,11 +1,11 @@
-#ifndef _CAMERA_H_
-#define _CAMERA_H_
+#ifndef _CAMERA_NODE_H_
+#define _CAMERA_NODE_H_
 
 #include "BasicNode.h"
 
 namespace ai
 {
-	class ENGINE_API Camera : public BasicNode
+	class ENGINE_API CameraNode : public BasicNode
 	{
 	public:
 		enum CameraFlag : glm::u32
@@ -15,10 +15,10 @@ namespace ai
 			CAMERA_NEW_PERSPECTIVE_MATRIX = 4
 		};
 
-		Camera(glm::u32 id);
-		Camera(glm::u32 id, glm::f32 fov, glm::f32 near, glm::f32 far);
+		CameraNode(glm::u32 id);
+		CameraNode(glm::u32 id, glm::f32 fov, glm::f32 near, glm::f32 far);
 
-		~Camera();
+		~CameraNode();
 
 		void update() override;
 

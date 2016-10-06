@@ -36,4 +36,9 @@ namespace ai
 	{
 		return mFlag;
 	}
+
+	Flag& BasicElement::GetFlag()
+	{
+		return mFlag;
+	}
 }

@@ -19,8 +19,6 @@ namespace ai
 		/* call the basic init function */
 		BasicScene::init();
 
-		ResourceManager& resources = ResourceManager::GetInstance();
-
 		mVertexShader = new Shader(1, Shader::VERTEX_SHADER, "DiffuseShader.vs");
 		mFragmentShader = new Shader(2, Shader::FRAGMENT_SHADER, "DiffuseShader.fs");
 
@@ -30,23 +28,27 @@ namespace ai
 		
 		mProgram->AddUniforms({ "u_view", "u_model", "u_projection" });
 	
-		mCubeMesh = new Mesh(4, "Cube.mesh");
+		mCubeMesh = new MeshResource(4, "Cube.mesh");
 		
-		resources.AddResource(mVertexShader);
-		resources.AddResource(mFragmentShader);
-		resources.AddResource(mProgram);
-		resources.AddResource(mCubeMesh);
+		ResourceManager::getInstance().AddResource(mVertexShader);
+		ResourceManager::getInstance().AddResource(mFragmentShader);
+		ResourceManager::getInstance().AddResource(mProgram);
+		ResourceManager::getInstance().AddResource(mCubeMesh);
 
-		ResourceManager::load(mProgram);
-		ResourceManager::load(mCubeMesh);
+		ResourceManager::addPendingItem(mProgram, true);
 
-		mCamera = new Camera(1);
-		mCamera->setViewSize(Engine::GetInstance().GetWindowByIndex(0)->GetSize());
+		mCamera = new CameraNode(1);
+		mCamera->setViewSize(Engine::getInstance().GetWindowByIndex(0)->GetSize());
 		mCamera->moveAt(glm::vec3(0.0f, 0.0f, 5.0f));
 
+		mCubeNode = new ModelNode(2);
+		mCubeNode->SetMesh(mCubeMesh);
+
 		addNode(mCamera);
+		addNode(mCubeNode);
 
 		mRootNode.AddChild(mCamera);
+		mRootNode.AddChild(mCubeNode);
 	}
 
 	void TestScene::update()

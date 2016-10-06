@@ -131,7 +131,7 @@
     <ClInclude Include="Source\BasicElement.h" />
     <ClInclude Include="Source\BasicResource.h" />
     <ClInclude Include="Source\BasicScene.h" />
-    <ClInclude Include="Source\Camera.h" />
+    <ClInclude Include="Source\CameraNode.h" />
     <ClInclude Include="Source\Console.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\EngineUtil.h" />
@@ -139,9 +139,11 @@
     <ClInclude Include="Source\FpsCounter.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Input.h" />
-    <ClInclude Include="Source\Mesh.h" />
+    <ClInclude Include="Source\MaterialResource.h" />
+    <ClInclude Include="Source\MeshResource.h" />
     <ClInclude Include="Source\MeshData.h" />
     <ClInclude Include="Source\BasicNode.h" />
+    <ClInclude Include="Source\ModelNode.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Program.h" />
     <ClInclude Include="Source\Random.h" />
@@ -150,7 +152,7 @@
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Time.h" />
-    <ClInclude Include="Source\Transform.h" />
+    <ClInclude Include="Source\TransformComponent.h" />
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -158,16 +160,18 @@
     <ClCompile Include="Source\BasicElement.cpp" />
     <ClCompile Include="Source\BasicResource.cpp" />
     <ClCompile Include="Source\BasicScene.cpp" />
-    <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\CameraNode.cpp" />
     <ClCompile Include="Source\Console.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Flag.cpp" />
     <ClCompile Include="Source\FpsCounter.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\Input.cpp" />
-    <ClCompile Include="Source\Mesh.cpp" />
+    <ClCompile Include="Source\MaterialResource.cpp" />
+    <ClCompile Include="Source\MeshResource.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
     <ClCompile Include="Source\BasicNode.cpp" />
+    <ClCompile Include="Source\ModelNode.cpp" />
     <ClCompile Include="Source\Program.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
@@ -175,7 +179,7 @@
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Time.cpp" />
-    <ClCompile Include="Source\Transform.cpp" />
+    <ClCompile Include="Source\TransformComponent.cpp" />
     <ClCompile Include="Source\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

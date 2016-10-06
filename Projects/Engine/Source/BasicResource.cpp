@@ -65,7 +65,7 @@ namespace ai
 		mResourceFile = file;
 	}
 
-	std::string BasicResource::GetResourceFile() const
+	std::string BasicResource::getResourceFile() const
 	{
 		return mResourceFile;
 	}

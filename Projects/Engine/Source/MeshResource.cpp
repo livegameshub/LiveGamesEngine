@@ -1,11 +1,11 @@
-#include "Mesh.h"
+#include "MeshResource.h"
 #include "Program.h"
 #include "Engine.h"
 #include "MeshData.h"
 
 namespace ai
 {
-	Mesh::Mesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag)
+	MeshResource::MeshResource(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag)
 		: BasicResource(id, flag)
 		, mNormalOffset(0)
 		, mTextureOffset(0)
@@ -16,7 +16,7 @@ namespace ai
 	{
 	}
 
-	Mesh::Mesh(glm::u32 id, const std::string& file)
+	MeshResource::MeshResource(glm::u32 id, const std::string& file)
 		: BasicResource(id, file)
 		, mNormalOffset(0)
 		, mTextureOffset(0)
@@ -27,36 +27,36 @@ namespace ai
 	{
 	}
 
-	Mesh::~Mesh()
+	MeshResource::~MeshResource()
 	{
 	}
 
-	void Mesh::BindVbo() const
+	void MeshResource::BindVbo() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, mBuffers[VBO_BUFFER]);
 	}
 
-	void Mesh::BindIbo() const
+	void MeshResource::BindIbo() const
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBuffers[IBO_BUFFER]);
 	}
 
-	glm::u32 Mesh::GetIndicesSize() const
+	glm::u32 MeshResource::GetIndicesSize() const
 	{
 		return mIndicesSize;
 	}
 
-	glm::u32 Mesh::GetPrimitive() const
+	glm::u32 MeshResource::GetPrimitive() const
 	{
 		return mPrimitive;
 	}
 
-	glm::u32 Mesh::GetDrawType() const
+	glm::u32 MeshResource::GetDrawType() const
 	{
 		return mDrawType;
 	}
 
-	bool Mesh::ReadDataFromFile()
+	bool MeshResource::ReadDataFromFile()
 	{
 		std::ifstream read(ASSETS_PATH + mResourceFile, std::ios::in);
 
@@ -125,7 +125,7 @@ namespace ai
 		return true;
 	}
 
-	bool Mesh::Create()
+	bool MeshResource::Create()
 	{
 		/* create the buffers */
 		if (!CreateBuffers())
@@ -142,17 +142,17 @@ namespace ai
 		return true;
 	}
 
-	glm::u32 Mesh::GetVertexSize() const
+	glm::u32 MeshResource::GetVertexSize() const
 	{
 		return mVertexSize;
 	}
 
-	void Mesh::Draw() const
+	void MeshResource::Draw() const
 	{
 		glDrawElements(mPrimitive, mIndicesSize, GL_UNSIGNED_SHORT, static_cast<const void*>(0));
 	}
 
-	bool Mesh::CreateBuffers()
+	bool MeshResource::CreateBuffers()
 	{
 		glGenBuffers(COUNT, &mBuffers[0]);
 
@@ -164,7 +164,7 @@ namespace ai
 		return true;
 	}
 
-	void Mesh::CalculateVertexSize()
+	void MeshResource::CalculateVertexSize()
 	{
 		if (mFlag.IsSet(MESH_NORMAL_FLAG))
 		{
@@ -173,12 +173,12 @@ namespace ai
 		}
 	}
 
-	void Mesh::UploadData(const MeshData& meshData)
+	void MeshResource::UploadData(const MeshData& meshData)
 	{
 		UploadData(meshData.GetVertices(), meshData.GetIndices());
 	}
 
-	bool Mesh::Release()
+	bool MeshResource::Release()
 	{
 		if (!mBuffers[VBO_BUFFER] || !mBuffers[IBO_BUFFER])
 		{
@@ -195,7 +195,7 @@ namespace ai
 		return true;
 	}
 
-	void Mesh::UploadAttributes(const glm::i32* attributes) const
+	void MeshResource::UploadAttributes(const glm::i32* attributes) const
 	{
 		glm::i32 position = attributes[Program::AttributeIndex::POSITION_INDEX];
 		glm::i32 normal = attributes[Program::AttributeIndex::NORMAL_INDEX];
@@ -213,7 +213,7 @@ namespace ai
 		}
 	}
 
-	void Mesh::UploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices)
+	void MeshResource::UploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices)
 	{
 		CalculateVertexSize();
 

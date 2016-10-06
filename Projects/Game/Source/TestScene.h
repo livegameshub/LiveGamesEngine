@@ -3,8 +3,9 @@
 
 #include "BasicScene.h"
 #include "Program.h"
-#include "Mesh.h"
-#include "Camera.h"
+#include "MeshResource.h"
+#include "CameraNode.h"
+#include "ModelNode.h"
 
 namespace ai
 {
@@ -19,12 +20,13 @@ namespace ai
 		void release() override;
 
 	private:
-		Camera* mCamera;
+		CameraNode* mCamera;
+		ModelNode* mCubeNode;
 
 		Program* mProgram;
 		Shader* mVertexShader;
 		Shader* mFragmentShader;
-		Mesh* mCubeMesh;
+		MeshResource* mCubeMesh;
 	};
 }
 

@@ -175,7 +175,7 @@ namespace ai
 
 		for (auto shader : mShaders)
 		{
-			if (shader->GetReferencesCounter())
+			if (shader->GetReferencesCounter() > 0)
 			{
 				DetachShader(shader);
 

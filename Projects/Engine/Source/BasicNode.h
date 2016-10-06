@@ -2,7 +2,7 @@
 #define _BASIC_NODE_H_
 
 #include "BasicElement.h"
-#include "Transform.h"
+#include "TransformComponent.h"
 
 namespace ai
 {
@@ -41,8 +41,8 @@ namespace ai
 		
 		const std::vector<BasicComponent*>& GetComponents() const;
 		const std::vector<BasicNode*>& GetChildren() const;
-		const Transform& GetTransform() const;
-		Transform& GetTransform();
+		const TransformComponent& GetTransform() const;
+		TransformComponent& GetTransform();
 
 		void SetNodeType(glm::i32 type);
 		glm::i32 GetNodeType() const;
@@ -51,7 +51,7 @@ namespace ai
 		bool IsEnabled() const;
 
 	protected:
-		Transform mTransform;
+		TransformComponent mTransform;
 		bool mIsEnabled;
 
 	private:
