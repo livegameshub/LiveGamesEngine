@@ -15,7 +15,7 @@ namespace ai
 		virtual void init();
 		virtual void update();
 		virtual void release();
-
+		
 		void addNode(BasicNode* node);
 
 		BasicNode* removeNode(glm::u32 id);

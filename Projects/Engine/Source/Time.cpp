@@ -25,7 +25,7 @@ namespace ai
 		smLastTime = new_time;
 	}
 
-	void Time::Start()
+	void Time::start()
 	{
 		smLastTime = GetTimeInSeconds();
 	}

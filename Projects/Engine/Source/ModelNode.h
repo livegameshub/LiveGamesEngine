@@ -20,9 +20,14 @@ namespace ai
 		MaterialResource* GetMaterial() const;
 		MeshResource* GetMesh() const;
 
+		void SetVisible(bool value);
+		bool IsVisible() const;
+
 	private:
 		MaterialResource* mMaterial;
 		MeshResource* mMesh;
+
+		bool mIsVisible;
 	};
 }
 

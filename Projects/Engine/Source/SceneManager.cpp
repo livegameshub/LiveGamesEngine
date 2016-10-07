@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include "Engine.h"
 
 namespace ai
 {
@@ -56,17 +57,21 @@ namespace ai
 		// init the new scene
 		new_scene->init();
 		
-		/* process the resources */
-		ResourceManager::getInstance().FlushPendingItems();
-
 		if (mMainScene)
 		{
 			// release the old scene
 			mMainScene->release();
 		}
-		
+
 		// swap the scenes
 		mMainScene = new_scene;
+
+		/* process the resources */
+		ResourceManager::getInstance().FlushPendingItems();
+
+		// TODO
+		// optimize this ugly code
+		Engine::getInstance().GetWindowByIndex(0)->GetRenderer().setScene(mMainScene);
 	}
 
 	BasicScene* SceneManager::getScene(glm::u32 index)

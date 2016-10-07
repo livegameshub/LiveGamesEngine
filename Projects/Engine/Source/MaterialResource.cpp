@@ -21,6 +21,21 @@ namespace ai
 	{
 	}
 
+	const glm::vec3& MaterialResource::GetDiffuseColor() const
+	{
+		return mDiffuseColor;
+	}
+
+	ProgramResource* MaterialResource::GetProgram() const
+	{
+		return mProgram;
+	}
+
+	void MaterialResource::setDiffuseColor(const glm::vec3& color)
+	{
+		mDiffuseColor = color;
+	}
+
 	void MaterialResource::SetProgram(ProgramResource* program)
 	{
 		assert(program != nullptr);

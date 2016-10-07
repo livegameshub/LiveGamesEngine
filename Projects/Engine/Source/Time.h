@@ -12,7 +12,7 @@ namespace ai
 		static glm::f32 GetTimeInSeconds();
 
 		static void Update();
-		static void Start();
+		static void start();
 
 	private:
 		static glm::f32 smDeltaTime;

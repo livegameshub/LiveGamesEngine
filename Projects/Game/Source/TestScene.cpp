@@ -3,6 +3,7 @@
 #include "Engine.h"
 #include "Window.h"
 #include "ResourceManager.h"
+#include "Time.h"
 
 namespace ai
 {
@@ -25,10 +26,11 @@ namespace ai
 		mProgram = new ProgramResource(3);
 		mProgram->AddShader(mVertexShader);
 		mProgram->AddShader(mFragmentShader);;
-		mProgram->AddUniforms({ "u_view", "u_model", "u_projection" });
+		mProgram->AddUniforms({ "u_view", "u_model", "u_projection", "u_material.diffuse" });
 
 		mMaterial = new MaterialResource(4);
 		mMaterial->SetProgram(mProgram);
+		mMaterial->setDiffuseColor(glm::vec3(0.0f, 0.0f, 1.0f));
 
 		mCubeMesh = new MeshResource(5, "Cube.mesh");
 		
@@ -61,10 +63,28 @@ namespace ai
 
 		mProgram->Use();
 
+		/* camera */
 		mProgram->SetUniform("u_projection", mCamera->getPerspecitiveMatrix());
 		mProgram->SetUniform("u_view", mCamera->getViewMatrix());
-		mProgram->SetUniform("u_model", glm::mat4());
+
+		/* material */
+		mProgram->SetUniform("u_material.diffuse", mMaterial->GetDiffuseColor());
 		
+		/* node */
+		static glm::f32 angle = 0.0f;
+
+		angle += Time::GetDeltaTime() * 20.0f;
+
+		mCubeNode->GetTransform().RotateOnY(angle);
+
+		if (angle > 360.0f)
+		{
+			angle -= 360.0f;
+		}
+
+		mProgram->SetUniform("u_model", mCubeNode->GetTransform().GetMatrix());
+		
+		/*mesh */
 		mCubeMesh->BindVbo();
 		mCubeMesh->UploadAttributes(mProgram->GetAttributes());
 		mCubeMesh->BindIbo();

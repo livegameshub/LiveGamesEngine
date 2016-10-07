@@ -109,7 +109,7 @@ namespace ai
 
 	void Window::Draw()
 	{
-		mRenderer.Draw();
+		mRenderer.draw();
 	}
 
 	GLFWwindow* Window::GetWindowPtr() const

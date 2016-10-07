@@ -7,6 +7,7 @@ namespace ai
 		: BasicNode(id, MODEL_NODE)
 		, mMaterial(nullptr)
 		, mMesh(nullptr)
+		, mIsVisible(true)
 	{
 	}
 
@@ -61,5 +62,15 @@ namespace ai
 	MeshResource* ModelNode::GetMesh() const
 	{
 		return mMesh;
+	}
+
+	void ModelNode::SetVisible(bool value)
+	{
+		mIsVisible = value;
+	}
+
+	bool ModelNode::IsVisible() const
+	{
+		return mIsVisible;
 	}
 }

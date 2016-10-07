@@ -81,7 +81,7 @@ namespace ai
 		#endif
 
 		/* release all the resources after we finish */
-		Engine::Release();
+		Release();
 
 		return true;
 	}
@@ -91,7 +91,11 @@ namespace ai
 		/* seed the random value */
 		Random::Seed();
 
-		Time::Start();
+		/* start to count the time */
+		Time::start();
+
+		/* init the renderer */
+		Renderer::init();
 
 		/* the first scene is the main one */
 		SceneManager::getInstance().setMainScene(0);
@@ -164,7 +168,9 @@ namespace ai
 	{
 		Window* window = getInstance().GetWindow(windowPtr);
 
-		if (window && window->SetNewSize(glm::ivec2(width, height)))
+		assert(window != nullptr);
+
+		if (window->SetNewSize(glm::ivec2(width, height)))
 		{
 			glViewport(0, 0, width, height);
 		}
