@@ -1,56 +1,56 @@
-#include "Shader.h"
+#include "ShaderResource.h"
 #include "Engine.h"
 
 namespace ai
 {
-	Shader::Shader(glm::u32 id)
+	ShaderResource::ShaderResource(glm::u32 id)
 		: BasicResource(id)
 		, mShaderId(0)
 		, mShaderType(0)
 	{
 	}
 
-	Shader::Shader(glm::u32 id, glm::u32 shaderType)
+	ShaderResource::ShaderResource(glm::u32 id, glm::u32 shaderType)
 		: BasicResource(id)
 		, mShaderId(0)
 		, mShaderType(shaderType)
 	{
 	}
 
-	Shader::Shader(glm::u32 id, glm::u32 shaderType, const std::string& file)
+	ShaderResource::ShaderResource(glm::u32 id, glm::u32 shaderType, const std::string& file)
 		: BasicResource(id, file)
 		, mShaderId(0)
 		, mShaderType(shaderType)
 	{
 	}
 
-	Shader::~Shader()
+	ShaderResource::~ShaderResource()
 	{
 	}
 
-	void Shader::Compile() const
+	void ShaderResource::Compile() const
 	{
 		glCompileShader(mShaderId);
 	}
 
-	void Shader::SetShaderType(glm::u32 type)
+	void ShaderResource::SetShaderType(glm::u32 type)
 	{
 		mShaderType = type;
 	}
 
-	glm::u32 Shader::GetShaderType() const
+	glm::u32 ShaderResource::GetShaderType() const
 	{
 		return mShaderType;
 	}
 
-	glm::u32 Shader::GetShaderId() const
+	glm::u32 ShaderResource::GetShaderId() const
 	{
 		return mShaderId;
 	}
 
 	#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
-	bool Shader::CompilationStatus() const
+	bool ShaderResource::CompilationStatus() const
 	{
 		glm::i32 result;
 
@@ -75,7 +75,7 @@ namespace ai
 
 	#endif
 
-	bool Shader::Create()
+	bool ShaderResource::Create()
 	{
 		std::ifstream read(ASSETS_PATH + mResourceFile, std::ios::in);
 
@@ -109,7 +109,7 @@ namespace ai
 		#endif
 	}
 
-	bool Shader::Release()
+	bool ShaderResource::Release()
 	{
 		if (!mShaderId)
 		{

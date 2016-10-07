@@ -1,6 +1,5 @@
 #include "MeshResource.h"
-#include "Program.h"
-#include "Engine.h"
+#include "ProgramResource.h"
 #include "MeshData.h"
 
 namespace ai
@@ -197,8 +196,8 @@ namespace ai
 
 	void MeshResource::UploadAttributes(const glm::i32* attributes) const
 	{
-		glm::i32 position = attributes[Program::AttributeIndex::POSITION_INDEX];
-		glm::i32 normal = attributes[Program::AttributeIndex::NORMAL_INDEX];
+		glm::i32 position = attributes[ProgramResource::AttributeIndex::POSITION_INDEX];
+		glm::i32 normal = attributes[ProgramResource::AttributeIndex::NORMAL_INDEX];
 
 		if (position >= 0)
 		{

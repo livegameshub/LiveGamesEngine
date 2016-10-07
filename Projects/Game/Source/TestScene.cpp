@@ -1,5 +1,5 @@
 #include "TestScene.h"
-#include "Shader.h"
+#include "ShaderResource.h"
 #include "Engine.h"
 #include "Window.h"
 #include "ResourceManager.h"
@@ -19,23 +19,24 @@ namespace ai
 		/* call the basic init function */
 		BasicScene::init();
 
-		mVertexShader = new Shader(1, Shader::VERTEX_SHADER, "DiffuseShader.vs");
-		mFragmentShader = new Shader(2, Shader::FRAGMENT_SHADER, "DiffuseShader.fs");
+		mVertexShader = new ShaderResource(1, ShaderResource::VERTEX_SHADER, "DiffuseShader.vs");
+		mFragmentShader = new ShaderResource(2, ShaderResource::FRAGMENT_SHADER, "DiffuseShader.fs");
 
-		mProgram = new Program(3);
+		mProgram = new ProgramResource(3);
 		mProgram->AddShader(mVertexShader);
 		mProgram->AddShader(mFragmentShader);;
-		
 		mProgram->AddUniforms({ "u_view", "u_model", "u_projection" });
-	
-		mCubeMesh = new MeshResource(4, "Cube.mesh");
+
+		mMaterial = new MaterialResource(4);
+		mMaterial->SetProgram(mProgram);
+
+		mCubeMesh = new MeshResource(5, "Cube.mesh");
 		
 		ResourceManager::getInstance().AddResource(mVertexShader);
 		ResourceManager::getInstance().AddResource(mFragmentShader);
 		ResourceManager::getInstance().AddResource(mProgram);
 		ResourceManager::getInstance().AddResource(mCubeMesh);
-
-		ResourceManager::addPendingItem(mProgram, true);
+		ResourceManager::getInstance().AddResource(mMaterial);
 
 		mCamera = new CameraNode(1);
 		mCamera->setViewSize(Engine::getInstance().GetWindowByIndex(0)->GetSize());
@@ -43,6 +44,7 @@ namespace ai
 
 		mCubeNode = new ModelNode(2);
 		mCubeNode->SetMesh(mCubeMesh);
+		mCubeNode->SetMaterial(mMaterial);
 
 		addNode(mCamera);
 		addNode(mCubeNode);

@@ -4,9 +4,9 @@ namespace ai
 {
 	void ResourceManager::FlushPendingItems()
 	{
-		for (glm::u32 i = mPendingItems.size(); i > 0; --i)
+		for (glm::u32 i = 0; i < mPendingItems.size(); ++i)
 		{
-			BasicResource* item = mPendingItems[i - 1];
+			BasicResource* item = mPendingItems[i];
 
 			if (item->GetFlag().IsSet(BasicResource::IS_UNLOADED))
 			{
@@ -18,9 +18,9 @@ namespace ai
 			{
 				item->Unload();
 			}
-
-			mPendingItems.pop_back();
 		}
+
+		mPendingItems.clear();
 	}
 
 	void ResourceManager::addPendingItem(BasicResource* resource, bool isUnloaded)
@@ -37,6 +37,8 @@ namespace ai
 
 	void ResourceManager::Release()
 	{
+		FlushPendingItems();
+
 		for (auto it : mAllResources)
 		{
 			BasicResource* resource = it.second;

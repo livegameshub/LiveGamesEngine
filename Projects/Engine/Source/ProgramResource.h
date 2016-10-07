@@ -1,13 +1,13 @@
-#ifndef _PROGRAM_H_
-#define _PROGRAM_H_
+#ifndef _PROGRAM_RESOURCE_H_
+#define _PROGRAM_RESOURCE_H_
 
 #include "BasicResource.h"
 
 namespace ai
 {
-	class Shader;
+	class ShaderResource;
 
-	class ENGINE_API Program : public BasicResource
+	class ENGINE_API ProgramResource : public BasicResource
 	{
 	public:
 		enum AttributeIndex : glm::u32
@@ -18,16 +18,16 @@ namespace ai
 			COUNT
 		};
 
-		Program(glm::u32 id);
-		~Program();
+		ProgramResource(glm::u32 id);
+		~ProgramResource();
 	
 		void Use() const;
 		void Link() const;
 
-		void AttachShader(Shader* shader) const;
-		void DetachShader(Shader* shader) const;
+		void AttachShader(ShaderResource* shader) const;
+		void DetachShader(ShaderResource* shader) const;
 
-		void AddShader(Shader* shader);
+		void AddShader(ShaderResource* shader);
 		void RemoveShader(glm::u32 type);
 
 		void AddUniform(const std::string& uniform_name);
@@ -57,7 +57,7 @@ namespace ai
 		void InitUniforms();
 
 		std::map<std::string, glm::i32> mUniforms;
-		std::vector<Shader*> mShaders;
+		std::vector<ShaderResource*> mShaders;
 
 		glm::i32 mAttributes[COUNT];
 		glm::u32 mProgramId;

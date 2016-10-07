@@ -1,22 +1,22 @@
-#ifndef _SHADER_H_
-#define _SHADER_H_
+#ifndef _SHADER_RESOURCE_H_
+#define _SHADER_RESOURCE_H_
 
 #include "BasicResource.h"
 #include "Graphics.h"
 
 namespace ai
 {
-	class ENGINE_API Shader : public BasicResource
+	class ENGINE_API ShaderResource : public BasicResource
 	{
 	public:
 		static const glm::u32 VERTEX_SHADER = GL_VERTEX_SHADER;
 		static const glm::u32 FRAGMENT_SHADER = GL_FRAGMENT_SHADER;
 
-		Shader(glm::u32 id);
-		Shader(glm::u32 id, glm::u32 shaderType);
-		Shader(glm::u32 id, glm::u32 shaderType, const std::string& file);
+		ShaderResource(glm::u32 id);
+		ShaderResource(glm::u32 id, glm::u32 shaderType);
+		ShaderResource(glm::u32 id, glm::u32 shaderType, const std::string& file);
 
-		~Shader();
+		~ShaderResource();
 
 		void Compile() const;
 

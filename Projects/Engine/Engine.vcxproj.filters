@@ -35,14 +35,20 @@
     <Filter Include="Source\Resources\Mesh">
       <UniqueIdentifier>{9029bcb6-45ef-4a3d-bbfb-22209fb0080f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scene">
+    <Filter Include="Source\Resources\Manager">
+      <UniqueIdentifier>{397bc825-2b17-4f03-b169-62dc5f8c6014}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scenes">
       <UniqueIdentifier>{58461698-bd53-497d-8c84-77f276896767}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scene\Nodes">
+    <Filter Include="Source\Scenes\Nodes">
       <UniqueIdentifier>{ce7af95c-e610-4c2c-b61a-3b4dcf8d7ad5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scene\Components">
+    <Filter Include="Source\Scenes\Components">
       <UniqueIdentifier>{dda57daa-1736-4111-bb2b-fdf6af53b405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scenes\Manager">
+      <UniqueIdentifier>{c491d7ca-8fa1-45bc-a4ce-f344e2661e72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,44 +94,44 @@
     <ClInclude Include="Source\BasicResource.h">
       <Filter>Source\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Shader.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Program.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MeshData.h">
       <Filter>Source\Resources\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicComponent.h">
-      <Filter>Source\Scene\Components</Filter>
+      <Filter>Source\Scenes\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicNode.h">
-      <Filter>Source\Scene\Nodes</Filter>
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Source\BasicScene.h">
-      <Filter>Source\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneManager.h">
-      <Filter>Source\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ResourceManager.h">
-      <Filter>Source\Resources</Filter>
+      <Filter>Source\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Source\CameraNode.h">
-      <Filter>Source\Scene\Nodes</Filter>
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Source\ModelNode.h">
-      <Filter>Source\Scene\Nodes</Filter>
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Source\TransformComponent.h">
-      <Filter>Source\Scene\Components</Filter>
+      <Filter>Source\Scenes\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\MeshResource.h">
       <Filter>Source\Resources\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Source\MaterialResource.h">
       <Filter>Source\Resources\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ProgramResource.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ShaderResource.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceManager.h">
+      <Filter>Source\Resources\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneManager.h">
+      <Filter>Source\Scenes\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -165,44 +171,44 @@
     <ClCompile Include="Source\BasicResource.cpp">
       <Filter>Source\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Shader.cpp">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Program.cpp">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MeshData.cpp">
       <Filter>Source\Resources\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicComponent.cpp">
-      <Filter>Source\Scene\Components</Filter>
+      <Filter>Source\Scenes\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicNode.cpp">
-      <Filter>Source\Scene\Nodes</Filter>
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="Source\BasicScene.cpp">
-      <Filter>Source\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SceneManager.cpp">
-      <Filter>Source\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ResourceManager.cpp">
-      <Filter>Source\Resources</Filter>
+      <Filter>Source\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Source\CameraNode.cpp">
-      <Filter>Source\Scene\Nodes</Filter>
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="Source\ModelNode.cpp">
-      <Filter>Source\Scene\Nodes</Filter>
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="Source\TransformComponent.cpp">
-      <Filter>Source\Scene\Components</Filter>
+      <Filter>Source\Scenes\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\MeshResource.cpp">
       <Filter>Source\Resources\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\MaterialResource.cpp">
       <Filter>Source\Resources\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProgramResource.cpp">
+      <Filter>Source\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ShaderResource.cpp">
+      <Filter>Source\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceManager.cpp">
+      <Filter>Source\Resources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneManager.cpp">
+      <Filter>Source\Scenes\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

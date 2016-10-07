@@ -5,6 +5,7 @@ namespace ai
 {
 	ModelNode::ModelNode(glm::u32 id) 
 		: BasicNode(id, MODEL_NODE)
+		, mMaterial(nullptr)
 		, mMesh(nullptr)
 	{
 	}
@@ -18,8 +19,10 @@ namespace ai
 		BasicNode::Release();
 
 		assert(mMesh != nullptr);
+		assert(mMaterial != nullptr);
 
-		mMesh->Unload();
+		ResourceManager::addPendingItem(mMesh, false);
+		ResourceManager::addPendingItem(mMaterial, false);
 	}
 
 	void ModelNode::SetMesh(MeshResource* mesh)
@@ -34,6 +37,25 @@ namespace ai
 		mMesh = mesh;
 
 		ResourceManager::addPendingItem(mMesh, true);
+	}
+
+	void ModelNode::SetMaterial(MaterialResource* material)
+	{
+		assert(material != nullptr);
+
+		if (mMaterial)
+		{
+			ResourceManager::addPendingItem(mMaterial, false);
+		}
+
+		mMaterial = material;
+
+		ResourceManager::addPendingItem(mMaterial, true);
+	}
+
+	MaterialResource* ModelNode::GetMaterial() const
+	{
+		return mMaterial;
 	}
 
 	MeshResource* ModelNode::GetMesh() const

@@ -2,10 +2,11 @@
 #define _TEST_SCENE_H_
 
 #include "BasicScene.h"
-#include "Program.h"
+#include "ProgramResource.h"
 #include "MeshResource.h"
 #include "CameraNode.h"
 #include "ModelNode.h"
+#include "MaterialResource.h"
 
 namespace ai
 {
@@ -23,9 +24,10 @@ namespace ai
 		CameraNode* mCamera;
 		ModelNode* mCubeNode;
 
-		Program* mProgram;
-		Shader* mVertexShader;
-		Shader* mFragmentShader;
+		MaterialResource* mMaterial;
+		ProgramResource* mProgram;
+		ShaderResource* mVertexShader;
+		ShaderResource* mFragmentShader;
 		MeshResource* mCubeMesh;
 	};
 }

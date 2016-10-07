@@ -3,6 +3,7 @@
 
 #include "BasicNode.h"
 #include "MeshResource.h"
+#include "MaterialResource.h"
 
 namespace ai
 {
@@ -13,11 +14,14 @@ namespace ai
 		~ModelNode();
 
 		void Release() override;
+		void SetMaterial(MaterialResource* material);
 		void SetMesh(MeshResource* mesh);
 
+		MaterialResource* GetMaterial() const;
 		MeshResource* GetMesh() const;
 
 	private:
+		MaterialResource* mMaterial;
 		MeshResource* mMesh;
 	};
 }
