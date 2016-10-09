@@ -43,6 +43,7 @@ namespace ai
 	void BasicScene::addNode(BasicNode* node)
 	{
 		assert(node != nullptr);
+
 		/* check if we already have this node */
 		assert(getNode(node->GetId()) == nullptr);
 
@@ -56,6 +57,17 @@ namespace ai
 		mCameras.push_back(camera);
 	}
 
+	void BasicScene::removeCamera(glm::u32 id)
+	{
+		for (glm::u32 i = 0; i < mCameras.size(); ++i)
+		{
+			if (mCameras[i]->GetId() == id)
+			{
+				mCameras.erase(mCameras.begin() + i);
+			}
+		}
+	}
+
 	BasicNode* BasicScene::removeNode(glm::u32 id)
 	{
 		auto it = mNodes.find(id);
@@ -64,6 +76,13 @@ namespace ai
 		assert(it != mNodes.end());
 		
 		mNodes.erase(it);
+
+		/* check if the node is a camera in order to remove it from the cameras */
+
+		if (it->second->getNodeType() == BasicNode::CAMERA_NODE)
+		{
+			removeCamera(it->second->GetId());
+		}
 
 		return it->second;
 	}
@@ -97,6 +116,11 @@ namespace ai
 	const std::map<glm::u32, BasicNode*>& BasicScene::getNodes() const
 	{
 		return mNodes;
+	}
+
+	const std::vector<CameraNode*>& BasicScene::getCameras() const
+	{
+		return mCameras;
 	}
 
 	const BasicNode& BasicScene::getRootNode() const

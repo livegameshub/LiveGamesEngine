@@ -4,6 +4,7 @@
 #include "Time.h"
 #include "SceneManager.h"
 #include "ResourceManager.h"
+#include "CameraNode.h"
 
 #ifdef _DEBUG
 	#include "FpsCounter.h"
@@ -166,12 +167,26 @@ namespace ai
 
 	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
 	{
+		glm::ivec2 size(width, height);
+
 		Window* window = getInstance().getWindow(windowPtr);
 
 		assert(window != nullptr);
 
-		if (window->SetNewSize(glm::ivec2(width, height)))
+		if (window->SetNewSize(size))
 		{
+			/* update the cameras from the main scene with the new size */
+
+			for (CameraNode* camera : SceneManager::getInstance().getMainScene()->getCameras())
+			{
+				assert(camera != nullptr);
+
+				if (camera->hasCustomViewSize() == false)
+				{
+					camera->setViewSize(size);
+				}
+			}
+
 			glViewport(0, 0, width, height);
 		}
 	}

@@ -24,6 +24,8 @@ namespace ai
 		void addNode(BasicNode* node);
 		void addCamera(CameraNode* camera);
 
+		void removeCamera(glm::u32 id);
+		
 		BasicNode* removeNode(glm::u32 id);
 		BasicNode* operator[](glm::u32 id) const;
 		BasicNode* getNode(glm::u32 id) const;
@@ -40,6 +42,8 @@ namespace ai
 		CameraNode* createCamera(glm::u32 id, const glm::vec2& size, const glm::vec3& position);
 
 		const std::map<glm::u32, BasicNode*>& getNodes() const;
+		const std::vector<CameraNode*>& getCameras() const;
+
 		const BasicNode& getRootNode() const;
 		BasicNode& getRootNode();
 
