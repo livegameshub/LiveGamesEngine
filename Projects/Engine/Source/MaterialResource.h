@@ -17,6 +17,7 @@ namespace ai
 
 		MaterialResource(glm::u32 id);
 		MaterialResource(glm::u32 id, const Flag& flag);
+		MaterialResource(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
 
 		virtual ~MaterialResource();
 

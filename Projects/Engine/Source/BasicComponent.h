@@ -20,7 +20,7 @@ namespace ai
 
 		virtual ~BasicComponent();
 
-		virtual void Update() = 0;
+		virtual void update() = 0;
 		virtual void Reset() = 0;
 
 		void SetFlag(const Flag& flag);

@@ -22,8 +22,8 @@ namespace ai
 		assert(mMesh != nullptr);
 		assert(mMaterial != nullptr);
 
-		ResourceManager::addPendingItem(mMesh, false);
-		ResourceManager::addPendingItem(mMaterial, false);
+		ResourceManager::getInstance().addPendingItem(mMesh, false);
+		ResourceManager::getInstance().addPendingItem(mMaterial, false);
 	}
 
 	void ModelNode::SetMesh(MeshResource* mesh)
@@ -32,12 +32,12 @@ namespace ai
 
 		if (mMesh)
 		{
-			ResourceManager::addPendingItem(mMesh, false);
+			ResourceManager::getInstance().addPendingItem(mMesh, false);
 		}
 
 		mMesh = mesh;
 
-		ResourceManager::addPendingItem(mMesh, true);
+		ResourceManager::getInstance().addPendingItem(mMesh, true);
 	}
 
 	void ModelNode::SetMaterial(MaterialResource* material)
@@ -46,12 +46,12 @@ namespace ai
 
 		if (mMaterial)
 		{
-			ResourceManager::addPendingItem(mMaterial, false);
+			ResourceManager::getInstance().addPendingItem(mMaterial, false);
 		}
 
 		mMaterial = material;
 
-		ResourceManager::addPendingItem(mMaterial, true);
+		ResourceManager::getInstance().addPendingItem(mMaterial, true);
 	}
 
 	MaterialResource* ModelNode::GetMaterial() const

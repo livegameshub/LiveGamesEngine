@@ -19,7 +19,7 @@ namespace ai
 
 		~TransformComponent();
 
-		void Update() override;
+		void update() override;
 		void Reset() override;
 
 		void Translate(const glm::vec3& amount);

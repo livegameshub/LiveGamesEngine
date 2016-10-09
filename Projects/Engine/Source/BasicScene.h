@@ -1,7 +1,7 @@
 #ifndef _BASIC_SCENE_H_
 #define _BASIC_SCENE_H_
 
-#include "BasicNode.h"
+#include "CameraNode.h"
 
 namespace ai
 {
@@ -31,6 +31,7 @@ namespace ai
 
 	private:
 		std::map<glm::u32, BasicNode*> mNodes;
+		std::vector<CameraNode*> mCameras;
 	};
 }
 

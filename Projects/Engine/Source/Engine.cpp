@@ -61,7 +61,7 @@ namespace ai
 		/* we should add at least the main window */
 		Window window(size, 0);
 
-		if (!window.Create(mainWindowTitle, true))
+		if (!window.create(mainWindowTitle, true))
 		{
 			return false;
 		}
@@ -139,7 +139,7 @@ namespace ai
 	void Engine::Release()
 	{
 		SceneManager::getInstance().release();
-		ResourceManager::getInstance().Release();
+		ResourceManager::getInstance().release();
 
 		Window::ReleaseApi();
 	}

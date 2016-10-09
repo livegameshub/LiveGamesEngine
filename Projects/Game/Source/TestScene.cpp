@@ -20,25 +20,13 @@ namespace ai
 		/* call the basic init function */
 		BasicScene::init();
 
-		mVertexShader = new ShaderResource(1, ShaderResource::VERTEX_SHADER, "DiffuseShader.vs");
-		mFragmentShader = new ShaderResource(2, ShaderResource::FRAGMENT_SHADER, "DiffuseShader.fs");
+		mVertexShader = ResourceManager::getInstance().createShader(1, ShaderResource::VERTEX_SHADER, "DiffuseShader.vs");
+		mFragmentShader = ResourceManager::getInstance().createShader(2, ShaderResource::FRAGMENT_SHADER, "DiffuseShader.fs");
 
-		mProgram = new ProgramResource(3);
-		mProgram->AddShader(mVertexShader);
-		mProgram->AddShader(mFragmentShader);;
-		mProgram->AddUniforms({ "u_view", "u_model", "u_projection", "u_material.diffuse" });
+		mProgram = ResourceManager::getInstance().createProgram(3, mVertexShader, mFragmentShader, { "u_view", "u_model", "u_projection", "u_material.diffuse" });
 
-		mMaterial = new MaterialResource(4);
-		mMaterial->SetProgram(mProgram);
-		mMaterial->setDiffuseColor(glm::vec3(0.0f, 0.0f, 1.0f));
-
-		mCubeMesh = new MeshResource(5, "Cube.mesh");
-		
-		ResourceManager::getInstance().AddResource(mVertexShader);
-		ResourceManager::getInstance().AddResource(mFragmentShader);
-		ResourceManager::getInstance().AddResource(mProgram);
-		ResourceManager::getInstance().AddResource(mCubeMesh);
-		ResourceManager::getInstance().AddResource(mMaterial);
+		mMaterial = ResourceManager::getInstance().createMaterial(4, mProgram, glm::vec3(0.0f, 0.0f, 1.0f));
+		mCubeMesh = ResourceManager::getInstance().createMesh(5, "Cube.mesh");
 
 		mCamera = new CameraNode(1);
 		mCamera->setViewSize(Engine::getInstance().GetWindowByIndex(0)->GetSize());

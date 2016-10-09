@@ -24,7 +24,7 @@ namespace ai
 	{
 	}
 
-	void TransformComponent::Update()
+	void TransformComponent::update()
 	{
 		if (mFlag.IsSet(NEW_ROTATION_SCALE_MATRIX))
 		{

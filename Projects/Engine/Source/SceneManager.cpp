@@ -67,7 +67,7 @@ namespace ai
 		mMainScene = new_scene;
 
 		/* process the resources */
-		ResourceManager::getInstance().FlushPendingItems();
+		ResourceManager::getInstance().flushPendingItems();
 
 		// TODO
 		// optimize this ugly code

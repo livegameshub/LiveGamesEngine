@@ -11,12 +11,12 @@ namespace ai
 	class ENGINE_API Window
 	{
 	public:
-		Window();
+		Window(const glm::ivec2& size);
 		Window(const glm::ivec2& size, glm::u32 samples);
 
 		~Window();
 
-		bool Create(const std::string& title, bool isMain);
+		bool create(const std::string& title, bool isMain);
 
 		bool SetNewSize(const glm::ivec2& size);
 		void SwapBuffers() const;

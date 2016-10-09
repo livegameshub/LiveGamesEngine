@@ -17,6 +17,13 @@ namespace ai
 	{
 	}
 
+	MaterialResource::MaterialResource(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
+		: BasicResource(id, flag)
+		, mProgram(nullptr)
+		, mDiffuseColor(diffuse)
+	{
+	}
+
 	MaterialResource::~MaterialResource()
 	{
 	}
@@ -42,12 +49,12 @@ namespace ai
 
 		if (mProgram)
 		{
-			ResourceManager::addPendingItem(mProgram, false);
+			ResourceManager::getInstance().addPendingItem(mProgram, false);
 		}
 
 		mProgram = program;
 
-		ResourceManager::addPendingItem(mProgram, true);
+		ResourceManager::getInstance().addPendingItem(mProgram, true);
 	}
 
 	bool MaterialResource::Create()
@@ -59,9 +66,8 @@ namespace ai
 	{
 		assert(mProgram != nullptr);
 
-		ResourceManager::addPendingItem(mProgram, false);
+		ResourceManager::getInstance().addPendingItem(mProgram, false);
 
 		return true;
 	}
-
 }

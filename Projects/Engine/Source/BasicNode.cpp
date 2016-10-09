@@ -36,7 +36,7 @@ namespace ai
 
 	void BasicNode::update()
 	{
-		mTransform.Update();
+		mTransform.update();
 	
 		/* update the components */
 
@@ -46,7 +46,7 @@ namespace ai
 
 			if (component->IsEnabled())
 			{
-				component->Update();
+				component->update();
 			}
 		}
 

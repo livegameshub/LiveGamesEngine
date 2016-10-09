@@ -7,8 +7,9 @@
 
 namespace ai
 {
-	Window::Window()
+	Window::Window(const glm::ivec2& size)
 		: mSamples(0)
+		, mSize(size)
 		, mWindowPtr(nullptr)
 	{
 	}
@@ -24,7 +25,7 @@ namespace ai
 	{
 	}
 
-	bool Window::Create(const std::string& title, bool isMain)
+	bool Window::create(const std::string& title, bool isMain)
 	{
 		// TODO
 		// integrate maximed window option

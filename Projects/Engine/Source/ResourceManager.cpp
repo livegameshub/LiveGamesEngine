@@ -1,8 +1,9 @@
 #include "ResourceManager.h"
+#include "ShaderResource.h"
 
 namespace ai
 {
-	void ResourceManager::FlushPendingItems()
+	void ResourceManager::flushPendingItems()
 	{
 		for (glm::u32 i = 0; i < mPendingItems.size(); ++i)
 		{
@@ -32,12 +33,12 @@ namespace ai
 			resource->GetFlag().Add(BasicResource::IS_UNLOADED);
 		}
 
-		getInstance().mPendingItems.push_back(resource);
+		mPendingItems.push_back(resource);
 	}
 
-	void ResourceManager::Release()
+	void ResourceManager::release()
 	{
-		FlushPendingItems();
+		flushPendingItems();
 
 		for (auto it : mAllResources)
 		{
@@ -51,7 +52,7 @@ namespace ai
 		}
 	}
 
-	void ResourceManager::RemoveResource(glm::u32 id)
+	void ResourceManager::removeResource(glm::u32 id)
 	{
 		auto it = mAllResources.find(id);
 
@@ -62,7 +63,7 @@ namespace ai
 		mAllResources.erase(it);
 	}
 
-	void ResourceManager::AddResource(BasicResource* resource)
+	void ResourceManager::addResource(BasicResource* resource)
 	{
 		assert(resource != nullptr);
 
@@ -86,6 +87,46 @@ namespace ai
 	const std::map<glm::u32, BasicResource*>& ResourceManager::getAllResources() const
 	{
 		return mAllResources;
+	}
+
+	ProgramResource* ResourceManager::createProgram(glm::u32 id, ShaderResource* vertex, ShaderResource* fragment, const std::vector<std::string>& uniforms)
+	{
+		ProgramResource* program = new ProgramResource(id);
+		program->AddShader(vertex);
+		program->AddShader(fragment);
+		program->AddUniforms(uniforms);
+
+		addResource(program);
+
+		return program;
+	}
+
+	ShaderResource* ResourceManager::createShader(glm::u32 id, glm::u32 type, const std::string& file)
+	{
+		ShaderResource* shader = new ShaderResource(id, type, file);
+
+		addResource(shader);
+
+		return shader;
+	}
+
+	MaterialResource* ResourceManager::createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag)
+	{
+		MaterialResource* material = new MaterialResource(id, diffuse, flag);
+		material->SetProgram(program);
+
+		addResource(material);
+
+		return material;
+	}
+
+	MeshResource* ResourceManager::createMesh(glm::u32 id, const std::string& file)
+	{
+		MeshResource* mesh = new MeshResource(id, file);
+
+		addResource(mesh);
+
+		return mesh;
 	}
 
 	ResourceManager& ResourceManager::getInstance()
