@@ -13,11 +13,11 @@ namespace ai
 		Renderer();
 		~Renderer();
 
-		void draw();
-		void setScene(BasicScene* scene);
+		void draw() const;
 
-		static void drawNode(const BasicNode* node);
-		static void drawModel(const ModelNode* model);
+		void drawNode(const BasicNode* node) const;
+		void drawModel(const ModelNode* model) const;
+		void setScene(BasicScene* scene);
 
 		static void init();
 

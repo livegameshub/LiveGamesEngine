@@ -13,15 +13,15 @@ namespace ai
 		ModelNode(glm::u32 id);
 		~ModelNode();
 
-		void Release() override;
-		void SetMaterial(MaterialResource* material);
-		void SetMesh(MeshResource* mesh);
+		void release() override;
+		void setMaterial(MaterialResource* material);
+		void setMesh(MeshResource* mesh);
 
-		MaterialResource* GetMaterial() const;
-		MeshResource* GetMesh() const;
+		MaterialResource* getMaterial() const;
+		MeshResource* getMesh() const;
 
-		void SetVisible(bool value);
-		bool IsVisible() const;
+		void setVisible(bool value);
+		bool isVisible() const;
 
 	private:
 		MaterialResource* mMaterial;

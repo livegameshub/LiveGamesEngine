@@ -22,7 +22,7 @@ namespace ai
 		void update() override;
 		void Reset() override;
 
-		void Translate(const glm::vec3& amount);
+		void translate(const glm::vec3& amount);
 		void Scale(const glm::vec3& scale);
 
 		void Rotate(const glm::vec3& axis, glm::f32 angle);

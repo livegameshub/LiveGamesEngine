@@ -15,7 +15,7 @@
 
 namespace ai
 {
-	Window* Engine::GetWindow(GLFWwindow* windowPtr)
+	Window* Engine::getWindow(GLFWwindow* windowPtr)
 	{
 		for (glm::u32 i = 0; i < mWindows.size(); ++i)
 		{
@@ -28,7 +28,7 @@ namespace ai
 		return nullptr;
 	}
 
-	Window* Engine::GetWindowByIndex(glm::u32 index)
+	Window* Engine::getWindowByIndex(glm::u32 index)
 	{
 		assert(index < mWindows.size());
 
@@ -37,14 +37,14 @@ namespace ai
 
 	#ifndef WINDOWS_BUILD
 
-	void Engine::WebLoop()
+	void Engine::webLoop()
 	{
-		getInstance().Loop();
+		getInstance().loop();
 	}
 
 	#endif
 
-	bool Engine::Setup(const std::string& mainWindowTitle)
+	bool Engine::setup(const std::string& mainWindowTitle)
 	{
 		/* init the window api */
 		if (!Window::InitApi())
@@ -70,14 +70,14 @@ namespace ai
 		getInstance().AddWindow(window);
 
 		/* prepare the engine */
-		getInstance().Prepare();
+		getInstance().prepare();
 
 		#ifdef WINDOWS_BUILD
 			/* run the engine */
-			getInstance().Run();
+			getInstance().run();
 		#else
 			/* run the main loop */
-			emscripten_set_main_loop(WebLoop, 0, true);
+			emscripten_set_main_loop(webLoop, 0, true);
 		#endif
 
 		/* release all the resources after we finish */
@@ -86,7 +86,7 @@ namespace ai
 		return true;
 	}
 
-	void Engine::Prepare()
+	void Engine::prepare()
 	{
 		/* seed the random value */
 		Random::Seed();
@@ -101,7 +101,7 @@ namespace ai
 		SceneManager::getInstance().setMainScene(0);
 	}
 
-	void Engine::Loop()
+	void Engine::loop()
 	{
 		Window& main_window = mWindows[0];
 
@@ -123,13 +123,13 @@ namespace ai
 		}
 	}
 
-	void Engine::Run()
+	void Engine::run()
 	{
 		/* on the first position should be the main window */
 
 		while (!mFlag.IsSet(ENGINE_STOP_FLAG) && !mWindows[0].IsClosing())
 		{
-			Loop();
+			loop();
 
 			/* handle the events everytime */
 			Window::HandleEvents();
@@ -166,7 +166,7 @@ namespace ai
 
 	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
 	{
-		Window* window = getInstance().GetWindow(windowPtr);
+		Window* window = getInstance().getWindow(windowPtr);
 
 		assert(window != nullptr);
 

@@ -15,9 +15,9 @@ namespace ai
 	{
 	}
 
-	void ModelNode::Release()
+	void ModelNode::release()
 	{
-		BasicNode::Release();
+		BasicNode::release();
 
 		assert(mMesh != nullptr);
 		assert(mMaterial != nullptr);
@@ -26,7 +26,7 @@ namespace ai
 		ResourceManager::getInstance().addPendingItem(mMaterial, false);
 	}
 
-	void ModelNode::SetMesh(MeshResource* mesh)
+	void ModelNode::setMesh(MeshResource* mesh)
 	{
 		assert(mesh != nullptr);
 
@@ -40,7 +40,7 @@ namespace ai
 		ResourceManager::getInstance().addPendingItem(mMesh, true);
 	}
 
-	void ModelNode::SetMaterial(MaterialResource* material)
+	void ModelNode::setMaterial(MaterialResource* material)
 	{
 		assert(material != nullptr);
 
@@ -54,22 +54,22 @@ namespace ai
 		ResourceManager::getInstance().addPendingItem(mMaterial, true);
 	}
 
-	MaterialResource* ModelNode::GetMaterial() const
+	MaterialResource* ModelNode::getMaterial() const
 	{
 		return mMaterial;
 	}
 
-	MeshResource* ModelNode::GetMesh() const
+	MeshResource* ModelNode::getMesh() const
 	{
 		return mMesh;
 	}
 
-	void ModelNode::SetVisible(bool value)
+	void ModelNode::setVisible(bool value)
 	{
 		mIsVisible = value;
 	}
 
-	bool ModelNode::IsVisible() const
+	bool ModelNode::isVisible() const
 	{
 		return mIsVisible;
 	}

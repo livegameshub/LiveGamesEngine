@@ -65,7 +65,7 @@ namespace ai
 		mParentTransform = transform;
 	}
 
-	void TransformComponent::Translate(const glm::vec3& amount)
+	void TransformComponent::translate(const glm::vec3& amount)
 	{
 		mPosition += amount;
 

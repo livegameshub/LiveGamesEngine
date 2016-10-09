@@ -26,29 +26,29 @@ namespace ai
 		virtual ~BasicNode();
 
 		virtual void update();
-		virtual void Release();
+		virtual void release();
 
-		void AddComponent(BasicComponent* component);
-		void AddChild(BasicNode* node);
+		void addComponent(BasicComponent* component);
+		void addChild(BasicNode* node);
 
-		BasicComponent* GetComponent(glm::i32 type) const;
+		BasicComponent* getComponent(glm::i32 type) const;
 		BasicComponent* operator[](glm::i32 type) const;
-		BasicComponent* RemoveComponent(glm::i32 type);
+		BasicComponent* removeComponent(glm::i32 type);
 		
-		BasicNode* GetChild(glm::u32 id) const;
+		BasicNode* getChild(glm::u32 id) const;
 		BasicNode* operator[](glm::u32 id) const;
-		BasicNode* RemoveChild(glm::u32 id);
+		BasicNode* removeChild(glm::u32 id);
 		
-		const std::vector<BasicComponent*>& GetComponents() const;
-		const std::vector<BasicNode*>& GetChildren() const;
-		const TransformComponent& GetTransform() const;
-		TransformComponent& GetTransform();
+		const std::vector<BasicComponent*>& getComponents() const;
+		const std::vector<BasicNode*>& getChildren() const;
+		const TransformComponent& getTransform() const;
+		TransformComponent& getTransform();
 
-		void SetNodeType(glm::i32 type);
-		glm::i32 GetNodeType() const;
+		void setNodeType(glm::i32 type);
+		glm::i32 getNodeType() const;
 
-		void SetEnabled(bool value);
-		bool IsEnabled() const;
+		void setEnabled(bool value);
+		bool isEnabled() const;
 
 	protected:
 		TransformComponent mTransform;

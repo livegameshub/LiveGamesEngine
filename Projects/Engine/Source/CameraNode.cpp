@@ -81,7 +81,7 @@ namespace ai
 
 	void CameraNode::moveForward(glm::f32 amount)
 	{
-		mTransform.Translate(VECTOR_FORWARD * glm::inverse(mTransform.GetOrientation()) * amount);
+		mTransform.translate(VECTOR_FORWARD * glm::inverse(mTransform.GetOrientation()) * amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}

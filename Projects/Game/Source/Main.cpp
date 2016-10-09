@@ -13,7 +13,7 @@ int main()
 {
 	ai::SceneManager::getInstance().addScene(new ai::TestScene());
 	
-	ai::Engine::Setup("Live Games Hub");
+	ai::Engine::setup("Live Games Hub");
 
 	return 0;
 }

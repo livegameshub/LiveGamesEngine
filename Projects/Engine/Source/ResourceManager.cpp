@@ -66,6 +66,7 @@ namespace ai
 	void ResourceManager::addResource(BasicResource* resource)
 	{
 		assert(resource != nullptr);
+		assert(mAllResources.find(resource->GetId()) == mAllResources.end());
 
 		mAllResources.insert({ resource->GetId(), resource });	
 	}
@@ -74,8 +75,13 @@ namespace ai
 	{
 		auto it = mAllResources.find(id);
 
-		assert(it != mAllResources.end());
-		
+		#ifdef _DEBUG
+		if (it == mAllResources.end())
+		{
+			return nullptr;
+		}
+		#endif
+
 		return it->second;
 	}
 
@@ -89,12 +95,17 @@ namespace ai
 		return mAllResources;
 	}
 
-	ProgramResource* ResourceManager::createProgram(glm::u32 id, ShaderResource* vertex, ShaderResource* fragment, const std::vector<std::string>& uniforms)
+	ProgramResource* ResourceManager::createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders, const std::vector<std::string>& uniforms)
 	{
+		assert(getResource(id) == nullptr);
+
 		ProgramResource* program = new ProgramResource(id);
-		program->AddShader(vertex);
-		program->AddShader(fragment);
 		program->AddUniforms(uniforms);
+
+		for (auto shader : shaders)
+		{
+			program->AddShader(shader);
+		}
 
 		addResource(program);
 
@@ -103,6 +114,8 @@ namespace ai
 
 	ShaderResource* ResourceManager::createShader(glm::u32 id, glm::u32 type, const std::string& file)
 	{
+		assert(getResource(id) == nullptr);
+
 		ShaderResource* shader = new ShaderResource(id, type, file);
 
 		addResource(shader);
@@ -112,6 +125,8 @@ namespace ai
 
 	MaterialResource* ResourceManager::createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag)
 	{
+		assert(getResource(id) == nullptr);
+
 		MaterialResource* material = new MaterialResource(id, diffuse, flag);
 		material->SetProgram(program);
 
@@ -122,6 +137,8 @@ namespace ai
 
 	MeshResource* ResourceManager::createMesh(glm::u32 id, const std::string& file)
 	{
+		assert(getResource(id) == nullptr);
+
 		MeshResource* mesh = new MeshResource(id, file);
 
 		addResource(mesh);

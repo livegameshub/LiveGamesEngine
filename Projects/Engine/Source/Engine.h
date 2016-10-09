@@ -25,11 +25,11 @@ namespace ai
 
 		// TODO
 		// setup should return an int with some specific codes
-		static bool Setup(const std::string& mainWindowTitle);
+		static bool setup(const std::string& mainWindowTitle);
 		static void WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
 
-		Window* GetWindow(GLFWwindow* windowPtr);
-		Window* GetWindowByIndex(glm::u32 index);
+		Window* getWindow(GLFWwindow* windowPtr);
+		Window* getWindowByIndex(glm::u32 index);
 
 		static Engine& getInstance();
 
@@ -41,12 +41,12 @@ namespace ai
 		static void Release();
 
 		#ifndef WINDOWS_BUILD
-		static void WebLoop();
+		static void webLoop();
 		#endif
 
-		void Prepare();
-		void Loop();
-		void Run();
+		void prepare();
+		void loop();
+		void run();
 	};
 }
 

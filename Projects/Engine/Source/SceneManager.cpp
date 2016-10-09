@@ -69,9 +69,8 @@ namespace ai
 		/* process the resources */
 		ResourceManager::getInstance().flushPendingItems();
 
-		// TODO
-		// optimize this ugly code
-		Engine::getInstance().GetWindowByIndex(0)->GetRenderer().setScene(mMainScene);
+		/* set the scene for the renderer */
+		Engine::getInstance().getWindowByIndex(0)->GetRenderer().setScene(mMainScene);
 	}
 
 	BasicScene* SceneManager::getScene(glm::u32 index)
