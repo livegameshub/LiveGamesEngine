@@ -13,38 +13,38 @@ namespace ai
 	{
 	}
 
-	void ProgramResource::Use() const
+	void ProgramResource::use() const
 	{
 		glUseProgram(mProgramId);
 	}
 
-	void ProgramResource::Link() const
+	void ProgramResource::link() const
 	{
 		glLinkProgram(mProgramId);
 	}
 
-	void ProgramResource::AttachShader(ShaderResource* shader) const
+	void ProgramResource::attachShader(ShaderResource* shader) const
 	{
-		glAttachShader(mProgramId, shader->GetShaderId());
+		glAttachShader(mProgramId, shader->getShaderId());
 	}
 
-	void ProgramResource::DetachShader(ShaderResource* shader) const
+	void ProgramResource::detachShader(ShaderResource* shader) const
 	{
-		glDetachShader(mProgramId, shader->GetShaderId());
+		glDetachShader(mProgramId, shader->getShaderId());
 	}
 
-	void ProgramResource::AddShader(ShaderResource* shader)
+	void ProgramResource::addShader(ShaderResource* shader)
 	{
 		assert(shader != nullptr);
 
 		mShaders.push_back(shader);
 	}
 
-	void ProgramResource::RemoveShader(glm::u32 type)
+	void ProgramResource::removeShader(glm::u32 type)
 	{
 		for (auto it = mShaders.begin(); it != mShaders.end(); ++it)
 		{
-			if ((*it)->GetShaderType() == type)
+			if ((*it)->getShaderType() == type)
 			{
 				mShaders.erase(it);
 
@@ -53,61 +53,61 @@ namespace ai
 		}
 	}
 
-	void ProgramResource::AddUniform(const std::string& uniform_name)
+	void ProgramResource::addUniform(const std::string& uniform_name)
 	{
 		assert(mUniforms.find(uniform_name) == mUniforms.end());
 
 		mUniforms.insert({ uniform_name, -1 });
 	}
 
-	void ProgramResource::AddUniforms(const std::vector<std::string>& uniforms)
+	void ProgramResource::addUniforms(const std::vector<std::string>& uniforms)
 	{
 		for (auto uniform_name : uniforms)
 		{
-			AddUniform(uniform_name);
+			addUniform(uniform_name);
 		}
 	}
 
-	void ProgramResource::SetUniform(const std::string& uniform_name, const glm::mat4& matrix) const
+	void ProgramResource::setUniform(const std::string& uniform_name, const glm::mat4& matrix) const
 	{
 		glUniformMatrix4fv(mUniforms.at(uniform_name), 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
-	void ProgramResource::SetUniform(const std::string& uniform_name, const glm::vec3& vector) const
+	void ProgramResource::setUniform(const std::string& uniform_name, const glm::vec3& vector) const
 	{
 		glUniform3f(mUniforms.at(uniform_name), vector.x, vector.y, vector.z);
 	}
 
-	void ProgramResource::SetUniform(const std::string& uniform_name, glm::f32 value)
+	void ProgramResource::setUniform(const std::string& uniform_name, glm::f32 value)
 	{
 		glUniform1f(mUniforms.at(uniform_name), value);
 	}
 
-	void ProgramResource::SetUniform(const std::string& uniform_name, glm::i32 value)
+	void ProgramResource::setUniform(const std::string& uniform_name, glm::i32 value)
 	{
 		glUniform1i(mUniforms.at(uniform_name), value);
 	}
 
-	glm::i32 ProgramResource::GetAttributeLocation(glm::u32 index) const
+	glm::i32 ProgramResource::getAttributeLocation(glm::u32 index) const
 	{
 		assert(index < COUNT);
 
 		return mAttributes[index];
 	}
 
-	const glm::i32* ProgramResource::GetAttributes() const
+	const glm::i32* ProgramResource::getAttributes() const
 	{
 		return mAttributes;
 	}
 
-	glm::u32 ProgramResource::GetProgramId() const
+	glm::u32 ProgramResource::getProgramId() const
 	{
 		return mProgramId;
 	}
 
 	#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
-	bool ProgramResource::LinkingStatus() const
+	bool ProgramResource::linkingStatus() const
 	{
 		glm::i32 result;
 
@@ -132,7 +132,7 @@ namespace ai
 
 	#endif
 
-	bool ProgramResource::Create()
+	bool ProgramResource::create()
 	{
 		mProgramId = glCreateProgram();
 
@@ -143,30 +143,30 @@ namespace ai
 
 		for (auto shader : mShaders)
 		{
-			if (shader->Load())
+			if (shader->load())
 			{
-				AttachShader(shader);
+				attachShader(shader);
 			}
 		}
 
-		Link();
+		link();
 
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
-		if (!LinkingStatus())
+		if (!linkingStatus())
 		{
 			return false;
 		}
 
 		#endif
 
-		InitAttributes();
-		InitUniforms();
+		initAttributes();
+		initUniforms();
 
 		return true;
 	}
 
-	bool ProgramResource::Release()
+	bool ProgramResource::release()
 	{
 		if (!mProgramId)
 		{
@@ -175,11 +175,11 @@ namespace ai
 
 		for (auto shader : mShaders)
 		{
-			if (shader->GetReferencesCounter() > 0)
+			if (shader->getReferencesCounter() > 0)
 			{
-				DetachShader(shader);
+				detachShader(shader);
 
-				shader->Unload();
+				shader->unload();
 			}
 		}
 
@@ -190,14 +190,14 @@ namespace ai
 		return true;
 	}
 
-	void ProgramResource::InitAttributes()
+	void ProgramResource::initAttributes()
 	{
 		mAttributes[POSITION_INDEX] = glGetAttribLocation(mProgramId, "a_position");
 		mAttributes[TEXTURE_INDEX] = glGetAttribLocation(mProgramId, "a_uv");
 		mAttributes[NORMAL_INDEX] = glGetAttribLocation(mProgramId, "a_normal");
 	}
 
-	void ProgramResource::InitUniforms()
+	void ProgramResource::initUniforms()
 	{
 		for (auto it : mUniforms)
 		{

@@ -9,15 +9,15 @@ namespace ai
 		{
 			BasicResource* item = mPendingItems[i];
 
-			if (item->GetFlag().IsSet(BasicResource::IS_UNLOADED))
+			if (item->getFlag().isSet(BasicResource::IS_UNLOADED))
 			{
-				item->Load();
+				item->load();
 
-				item->GetFlag().Remove(BasicResource::IS_UNLOADED);
+				item->getFlag().remove(BasicResource::IS_UNLOADED);
 			}
 			else
 			{
-				item->Unload();
+				item->unload();
 			}
 		}
 
@@ -30,7 +30,7 @@ namespace ai
 
 		if (isUnloaded)
 		{
-			resource->GetFlag().Add(BasicResource::IS_UNLOADED);
+			resource->getFlag().add(BasicResource::IS_UNLOADED);
 		}
 
 		mPendingItems.push_back(resource);
@@ -45,7 +45,7 @@ namespace ai
 			BasicResource* resource = it.second;
 
 			assert(resource != nullptr);
-			assert(resource->GetReferencesCounter() == 0);
+			assert(resource->getReferencesCounter() == 0);
 
 			delete resource;
 			resource = nullptr;
@@ -58,7 +58,7 @@ namespace ai
 
 		assert(it != mAllResources.end());
 	
-		it->second->Unload();
+		it->second->unload();
 
 		mAllResources.erase(it);
 	}
@@ -66,21 +66,19 @@ namespace ai
 	void ResourceManager::addResource(BasicResource* resource)
 	{
 		assert(resource != nullptr);
-		assert(mAllResources.find(resource->GetId()) == mAllResources.end());
+		assert(mAllResources.find(resource->getId()) == mAllResources.end());
 
-		mAllResources.insert({ resource->GetId(), resource });	
+		mAllResources.insert({ resource->getId(), resource });	
 	}
 
 	BasicResource* ResourceManager::getResource(glm::u32 id) const
 	{
 		auto it = mAllResources.find(id);
 
-		#ifdef _DEBUG
 		if (it == mAllResources.end())
 		{
 			return nullptr;
 		}
-		#endif
 
 		return it->second;
 	}
@@ -100,11 +98,11 @@ namespace ai
 		assert(getResource(id) == nullptr);
 
 		ProgramResource* program = new ProgramResource(id);
-		program->AddUniforms(uniforms);
+		program->addUniforms(uniforms);
 
 		for (auto shader : shaders)
 		{
-			program->AddShader(shader);
+			program->addShader(shader);
 		}
 
 		addResource(program);
@@ -128,7 +126,7 @@ namespace ai
 		assert(getResource(id) == nullptr);
 
 		MaterialResource* material = new MaterialResource(id, diffuse, flag);
-		material->SetProgram(program);
+		material->setProgram(program);
 
 		addResource(material);
 

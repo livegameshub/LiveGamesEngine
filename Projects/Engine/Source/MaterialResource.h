@@ -21,15 +21,15 @@ namespace ai
 
 		virtual ~MaterialResource();
 
-		void SetProgram(ProgramResource* program);
+		void setProgram(ProgramResource* program);
 		void setDiffuseColor(const glm::vec3& color);
 
-		ProgramResource* GetProgram() const;
-		const glm::vec3& GetDiffuseColor() const;
+		ProgramResource* getProgram() const;
+		const glm::vec3& getDiffuseColor() const;
 
 	private:
-		bool Create() override;
-		bool Release() override;
+		bool create() override;
+		bool release() override;
 
 		ProgramResource* mProgram;
 

@@ -21,16 +21,16 @@ namespace ai
 		virtual ~BasicComponent();
 
 		virtual void update() = 0;
-		virtual void Reset() = 0;
+		virtual void reset() = 0;
 
-		void SetFlag(const Flag& flag);
-		void SetComponentType(glm::i32 type);
+		void setFlag(const Flag& flag);
+		void setComponentType(glm::i32 type);
 
-		const Flag& GetFlag() const;
-		glm::i32 GetComponentType() const;
+		const Flag& getFlag() const;
+		glm::i32 getComponentType() const;
 
-		void SetEnabled(bool value);
-		bool IsEnabled() const;
+		void setEnabled(bool value);
+		bool isEnabled() const;
 
 	protected:
 		bool mIsEnabled;

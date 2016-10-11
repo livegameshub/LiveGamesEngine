@@ -30,7 +30,7 @@ namespace ai
 		MaterialResource* material = ResourceManager::getInstance().createMaterial(4, program, glm::vec3(0.0f, 0.0f, 1.0f));
 		MeshResource* cube_mesh = ResourceManager::getInstance().createMesh(5, "Cube.mesh");
 
-		mCamera = createCamera(1, Engine::getInstance().getWindowByIndex(0)->GetSize(), glm::vec3(0.0f, 0.0f, 5.0f));
+		mCamera = createCamera(1, Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 5.0f));
 		mCubeNode = createModel(2, cube_mesh, material);
 
 		mRootNode.addChild(mCamera);
@@ -45,9 +45,9 @@ namespace ai
 
 		static glm::f32 angle = 0.0f;
 
-		angle += Time::GetDeltaTime() * 20.0f;
+		angle += Time::getDeltaTime() * 20.0f;
 
-		mCubeNode->getTransform().RotateOnY(angle);
+		mCubeNode->getTransform().rotateOnY(angle);
 
 		if (angle > 360.0f)
 		{

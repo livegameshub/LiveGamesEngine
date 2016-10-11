@@ -45,9 +45,9 @@ namespace ai
 		assert(node != nullptr);
 
 		/* check if we already have this node */
-		assert(getNode(node->GetId()) == nullptr);
+		assert(getNode(node->getId()) == nullptr);
 
-		mNodes.insert({ node->GetId(), node });	
+		mNodes.insert({ node->getId(), node });	
 	}
 
 	void BasicScene::addCamera(CameraNode* camera)
@@ -61,7 +61,7 @@ namespace ai
 	{
 		for (glm::u32 i = 0; i < mCameras.size(); ++i)
 		{
-			if (mCameras[i]->GetId() == id)
+			if (mCameras[i]->getId() == id)
 			{
 				mCameras.erase(mCameras.begin() + i);
 			}
@@ -81,7 +81,7 @@ namespace ai
 
 		if (it->second->getNodeType() == BasicNode::CAMERA_NODE)
 		{
-			removeCamera(it->second->GetId());
+			removeCamera(it->second->getId());
 		}
 
 		return it->second;
@@ -96,12 +96,10 @@ namespace ai
 	{
 		auto it = mNodes.find(id);
 
-		#ifdef _DEBUG
 		if (it == mNodes.end())
 		{
 			return nullptr;
 		}
-		#endif
 
 		return it->second;
 	}

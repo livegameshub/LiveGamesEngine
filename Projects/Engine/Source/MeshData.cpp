@@ -10,61 +10,61 @@ namespace ai
 	{
 	}
 
-	const std::vector<glm::f32>& MeshData::GetVertices() const
+	const std::vector<glm::f32>& MeshData::getVertices() const
 	{
 		return mVertices;
 	}
 
-	const std::vector<glm::u16>& MeshData::GetIndices() const
+	const std::vector<glm::u16>& MeshData::getIndices() const
 	{
 		return mIndices;
 	}
 
-	void MeshData::AddVertex(const glm::vec3& position)
+	void MeshData::addVertex(const glm::vec3& position)
 	{
 		mVertices.emplace_back(position.x);
 		mVertices.emplace_back(position.y);
 		mVertices.emplace_back(position.z);
 	}
 
-	void MeshData::AddVertex(const glm::vec3& position, const glm::vec3& normal)
+	void MeshData::addVertex(const glm::vec3& position, const glm::vec3& normal)
 	{
-		AddVertex(position);
+		addVertex(position);
 
 		mVertices.emplace_back(normal.x);
 		mVertices.emplace_back(normal.y);
 		mVertices.emplace_back(normal.z);
 	}
 
-	void MeshData::AddPoint(glm::u16 index_0)
+	void MeshData::addPoint(glm::u16 index_0)
 	{
 		mIndices.emplace_back(index_0);
 	}
 
-	void MeshData::AddLine(glm::u16 index_0, glm::u16 index_1)
+	void MeshData::addLine(glm::u16 index_0, glm::u16 index_1)
 	{
 		mIndices.emplace_back(index_0);
 		mIndices.emplace_back(index_1);
 	}
 
-	void MeshData::AddTriangle(glm::u16 index_0, glm::u16 index_1, glm::u16 index_2)
+	void MeshData::addTriangle(glm::u16 index_0, glm::u16 index_1, glm::u16 index_2)
 	{
 		mIndices.emplace_back(index_0);
 		mIndices.emplace_back(index_1);
 		mIndices.emplace_back(index_2);
 	}
 
-	void MeshData::ReserverVertices(glm::u32 size)
+	void MeshData::reserverVertices(glm::u32 size)
 	{
 		mVertices.reserve(size);
 	}
 
-	void MeshData::ReserveIndices(glm::u32 size)
+	void MeshData::reserveIndices(glm::u32 size)
 	{
 		mIndices.reserve(size);
 	}
 
-	void MeshData::ClearData()
+	void MeshData::clearData()
 	{
 		mVertices.clear();
 		mIndices.clear();

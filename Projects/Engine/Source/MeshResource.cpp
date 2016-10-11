@@ -30,32 +30,32 @@ namespace ai
 	{
 	}
 
-	void MeshResource::BindVbo() const
+	void MeshResource::bindVbo() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, mBuffers[VBO_BUFFER]);
 	}
 
-	void MeshResource::BindIbo() const
+	void MeshResource::bindIbo() const
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBuffers[IBO_BUFFER]);
 	}
 
-	glm::u32 MeshResource::GetIndicesSize() const
+	glm::u32 MeshResource::getIndicesSize() const
 	{
 		return mIndicesSize;
 	}
 
-	glm::u32 MeshResource::GetPrimitive() const
+	glm::u32 MeshResource::getPrimitive() const
 	{
 		return mPrimitive;
 	}
 
-	glm::u32 MeshResource::GetDrawType() const
+	glm::u32 MeshResource::getDrawType() const
 	{
 		return mDrawType;
 	}
 
-	bool MeshResource::ReadDataFromFile()
+	bool MeshResource::readDataFromFile()
 	{
 		std::ifstream read(ASSETS_PATH + mResourceFile, std::ios::in);
 
@@ -71,7 +71,7 @@ namespace ai
 		read >> mPrimitive;
 		read >> vertices_size;
 
-		mFlag.Add(flag);
+		mFlag.add(flag);
 
 		//u32 reserve_size = CalculateReserveSize();
 
@@ -90,7 +90,7 @@ namespace ai
 			vertices.emplace_back(position.y);
 			vertices.emplace_back(position.z);
 
-			if (mFlag.IsSet(MESH_NORMAL_FLAG))
+			if (mFlag.isSet(MESH_NORMAL_FLAG))
 			{
 				glm::vec3 normal;
 
@@ -119,15 +119,15 @@ namespace ai
 		read.close();
 
 		/* upload the data into the Gpu memory */
-		UploadData(vertices, indices);
+		uploadData(vertices, indices);
 
 		return true;
 	}
 
-	bool MeshResource::Create()
+	bool MeshResource::create()
 	{
 		/* create the buffers */
-		if (!CreateBuffers())
+		if (!createBuffers())
 		{
 			return false;
 		}
@@ -135,23 +135,23 @@ namespace ai
 		/* read the data from a file if you have it */
 		if (mResourceFile.size() > 0)
 		{
-			return ReadDataFromFile();
+			return readDataFromFile();
 		}
 
 		return true;
 	}
 
-	glm::u32 MeshResource::GetVertexSize() const
+	glm::u32 MeshResource::getVertexSize() const
 	{
 		return mVertexSize;
 	}
 
-	void MeshResource::Draw() const
+	void MeshResource::draw() const
 	{
 		glDrawElements(mPrimitive, mIndicesSize, GL_UNSIGNED_SHORT, static_cast<const void*>(0));
 	}
 
-	bool MeshResource::CreateBuffers()
+	bool MeshResource::createBuffers()
 	{
 		glGenBuffers(COUNT, &mBuffers[0]);
 
@@ -163,21 +163,21 @@ namespace ai
 		return true;
 	}
 
-	void MeshResource::CalculateVertexSize()
+	void MeshResource::calculateVertexSize()
 	{
-		if (mFlag.IsSet(MESH_NORMAL_FLAG))
+		if (mFlag.isSet(MESH_NORMAL_FLAG))
 		{
 			mNormalOffset += mVertexSize;
 			mVertexSize += sizeof(glm::vec3);
 		}
 	}
 
-	void MeshResource::UploadData(const MeshData& meshData)
+	void MeshResource::uploadData(const MeshData& meshData)
 	{
-		UploadData(meshData.GetVertices(), meshData.GetIndices());
+		uploadData(meshData.getVertices(), meshData.getIndices());
 	}
 
-	bool MeshResource::Release()
+	bool MeshResource::release()
 	{
 		if (!mBuffers[VBO_BUFFER] || !mBuffers[IBO_BUFFER])
 		{
@@ -194,7 +194,7 @@ namespace ai
 		return true;
 	}
 
-	void MeshResource::UploadAttributes(const glm::i32* attributes) const
+	void MeshResource::uploadAttributes(const glm::i32* attributes) const
 	{
 		glm::i32 position = attributes[ProgramResource::AttributeIndex::POSITION_INDEX];
 		glm::i32 normal = attributes[ProgramResource::AttributeIndex::NORMAL_INDEX];
@@ -212,14 +212,14 @@ namespace ai
 		}
 	}
 
-	void MeshResource::UploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices)
+	void MeshResource::uploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices)
 	{
-		CalculateVertexSize();
+		calculateVertexSize();
 
-		BindVbo();
+		bindVbo();
 		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::f32), &vertices[0], mDrawType);
 
-		BindIbo();
+		bindIbo();
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(glm::u16), &indices[0], mDrawType);
 	}
 }

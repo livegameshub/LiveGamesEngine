@@ -70,7 +70,7 @@ namespace ai
 		ResourceManager::getInstance().flushPendingItems();
 
 		/* set the scene for the renderer */
-		Engine::getInstance().getWindowByIndex(0)->GetRenderer().setScene(mMainScene);
+		Engine::getInstance().getWindowByIndex(0)->getRenderer().setScene(mMainScene);
 	}
 
 	BasicScene* SceneManager::getScene(glm::u32 index)

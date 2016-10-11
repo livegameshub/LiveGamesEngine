@@ -10,12 +10,12 @@ namespace ai
 
 	glm::i32 Graphics::smMaxSamples;
 
-	bool Graphics::InitApi()
+	bool Graphics::initApi()
 	{
 		return glewInit() == GLEW_OK ? true : false;
 	}
 
-	void Graphics::CheckApiVersion()
+	void Graphics::checkApiVersion()
 	{
 		glGetIntegerv(GL_MAJOR_VERSION, &smMajorApiVersion);
 		glGetIntegerv(GL_MINOR_VERSION, &smMinorApiVersion);
@@ -29,27 +29,27 @@ namespace ai
 		}
 	}
 
-	void Graphics::CheckMaxSamples()
+	void Graphics::checkMaxSamples()
 	{
 		glGetIntegerv(GL_MAX_SAMPLES, &smMaxSamples);
 	}
 
-	glm::i32 Graphics::GetMajorApiVersion()
+	glm::i32 Graphics::getMajorApiVersion()
 	{
 		return smMajorApiVersion;
 	}
 
-	glm::i32 Graphics::GetMinorApiVersion()
+	glm::i32 Graphics::getMinorApiVersion()
 	{
 		return smMinorApiVersion;
 	}
 
-	glm::i32 Graphics::GetMajorApiShaderVersion()
+	glm::i32 Graphics::getMajorApiShaderVersion()
 	{
 		return smMajorApiShaderVersion;
 	}
 
-	glm::i32 Graphics::GetMinorApiShaderVersion()
+	glm::i32 Graphics::getMinorApiShaderVersion()
 	{
 		return smMinorApiShaderVersion;
 	}

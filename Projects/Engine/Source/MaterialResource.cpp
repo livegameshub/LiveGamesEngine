@@ -28,12 +28,12 @@ namespace ai
 	{
 	}
 
-	const glm::vec3& MaterialResource::GetDiffuseColor() const
+	const glm::vec3& MaterialResource::getDiffuseColor() const
 	{
 		return mDiffuseColor;
 	}
 
-	ProgramResource* MaterialResource::GetProgram() const
+	ProgramResource* MaterialResource::getProgram() const
 	{
 		return mProgram;
 	}
@@ -43,7 +43,7 @@ namespace ai
 		mDiffuseColor = color;
 	}
 
-	void MaterialResource::SetProgram(ProgramResource* program)
+	void MaterialResource::setProgram(ProgramResource* program)
 	{
 		assert(program != nullptr);
 
@@ -57,12 +57,12 @@ namespace ai
 		ResourceManager::getInstance().addPendingItem(mProgram, true);
 	}
 
-	bool MaterialResource::Create()
+	bool MaterialResource::create()
 	{
 		return true;
 	}
 
-	bool MaterialResource::Release()
+	bool MaterialResource::release()
 	{
 		assert(mProgram != nullptr);
 

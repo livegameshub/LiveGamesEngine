@@ -32,7 +32,7 @@ namespace ai
 
 		/* update the ortho matrix (for the 2d or GUI) */
 
-		if (mFlag.IsSet(CAMERA_NEW_ORTHO_MATRIX))
+		if (mFlag.isSet(CAMERA_NEW_ORTHO_MATRIX))
 		{
 			smOrthoMatrix = glm::ortho(0.0f, mViewSize.x, mViewSize.y, 0.0f, -1.0f, 1.0f);
 
@@ -41,7 +41,7 @@ namespace ai
 
 		/* update the perspective matrix */
 
-		if (mFlag.IsSet(CAMERA_NEW_PERSPECTIVE_MATRIX))
+		if (mFlag.isSet(CAMERA_NEW_PERSPECTIVE_MATRIX))
 		{
 			mPerspectiveMatrix = glm::perspective(mFov, mViewSize.x / mViewSize.y, mNearPlane, mFarPlane);
 
@@ -50,9 +50,9 @@ namespace ai
 
 		/* update the view matrix */
 
-		if (mFlag.IsSet(CAMERA_NEW_VIEW_MATRIX))
+		if (mFlag.isSet(CAMERA_NEW_VIEW_MATRIX))
 		{
-			mViewMatrix = glm::inverse(mTransform.GetMatrix());
+			mViewMatrix = glm::inverse(mTransform.getMatrix());
 
 			mFlag -= CAMERA_NEW_VIEW_MATRIX;
 		}
@@ -60,40 +60,40 @@ namespace ai
 
 	void CameraNode::rotateOnX(glm::f32 amount)
 	{
-		mTransform.RotateOnX(amount);
+		mTransform.rotateOnX(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
 	void CameraNode::rotateOnY(glm::f32 amount)
 	{
-		mTransform.RotateOnY(amount);
+		mTransform.rotateOnY(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
 	void CameraNode::rotateOnZ(glm::f32 amount)
 	{
-		mTransform.RotateOnZ(amount);
+		mTransform.rotateOnZ(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
 	void CameraNode::moveForward(glm::f32 amount)
 	{
-		mTransform.translate(VECTOR_FORWARD * glm::inverse(mTransform.GetOrientation()) * amount);
+		mTransform.translate(VECTOR_FORWARD * glm::inverse(mTransform.getOrientation()) * amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
 	void CameraNode::lookAt(const glm::vec3& target)
 	{
-		mViewMatrix = glm::lookAt(mTransform.GetPosition(), target, VECTOR_UP);
+		mViewMatrix = glm::lookAt(mTransform.getPosition(), target, VECTOR_UP);
 	}
 
 	void CameraNode::moveAt(const glm::vec3& position)
 	{
-		mTransform.SetPosition(position);
+		mTransform.setPosition(position);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
@@ -133,7 +133,7 @@ namespace ai
 	{
 		mViewSize = size;
 
-		mFlag.Add(CAMERA_NEW_ORTHO_MATRIX | CAMERA_NEW_PERSPECTIVE_MATRIX);
+		mFlag.add(CAMERA_NEW_ORTHO_MATRIX | CAMERA_NEW_PERSPECTIVE_MATRIX);
 	}
 
 	const glm::mat4& CameraNode::getOrthoMatrix()

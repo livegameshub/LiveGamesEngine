@@ -25,11 +25,11 @@ namespace ai
 	{
 	}
 
-	bool BasicResource::Load()
+	bool BasicResource::load()
 	{
 		if (!mReferencesCounter)
 		{
-			if (!Create())
+			if (!create())
 			{
 				return false;
 			}
@@ -40,7 +40,7 @@ namespace ai
 		return true;
 	}
 
-	bool BasicResource::Unload()
+	bool BasicResource::unload()
 	{
 		if (!mReferencesCounter)
 		{
@@ -49,7 +49,7 @@ namespace ai
 
 		if (mReferencesCounter == 1)
 		{
-			if (!Release())
+			if (!release())
 			{
 				return false;
 			}
@@ -60,7 +60,7 @@ namespace ai
 		return true;
 	}
 
-	void BasicResource::SetResourceFile(const std::string& file)
+	void BasicResource::setResourceFile(const std::string& file)
 	{
 		mResourceFile = file;
 	}
@@ -70,7 +70,7 @@ namespace ai
 		return mResourceFile;
 	}
 
-	glm::u32 BasicResource::GetReferencesCounter() const
+	glm::u32 BasicResource::getReferencesCounter() const
 	{
 		return mReferencesCounter;
 	}

@@ -12,7 +12,7 @@ namespace ai
 	{
 		++smFrames;
 
-		smFramesTime += Time::GetDeltaTime();
+		smFramesTime += Time::getDeltaTime();
 
 		if (smFramesTime >= 1.0f)
 		{

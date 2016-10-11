@@ -32,32 +32,32 @@ namespace ai
 	{
 	}
 
-	const Flag& BasicComponent::GetFlag() const
+	const Flag& BasicComponent::getFlag() const
 	{
 		return mFlag;
 	}
 
-	glm::i32 BasicComponent::GetComponentType() const
+	glm::i32 BasicComponent::getComponentType() const
 	{
 		return mComponentType;
 	}
 
-	void BasicComponent::SetEnabled(bool value)
+	void BasicComponent::setEnabled(bool value)
 	{
 		mIsEnabled = value;
 	}
 
-	bool BasicComponent::IsEnabled() const
+	bool BasicComponent::isEnabled() const
 	{
 		return mIsEnabled;
 	}
 
-	void BasicComponent::SetFlag(const Flag& flag)
+	void BasicComponent::setFlag(const Flag& flag)
 	{
 		mFlag = flag;
 	}
 
-	void BasicComponent::SetComponentType(glm::i32 type)
+	void BasicComponent::setComponentType(glm::i32 type)
 	{
 		mComponentType = type;
 	}

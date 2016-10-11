@@ -20,7 +20,7 @@ namespace ai
 	{
 		for (glm::u32 i = 0; i < mWindows.size(); ++i)
 		{
-			if (mWindows[i].GetWindowPtr() == windowPtr)
+			if (mWindows[i].getWindowPtr() == windowPtr)
 			{
 				return &mWindows[i];
 			}
@@ -48,7 +48,7 @@ namespace ai
 	bool Engine::setup(const std::string& mainWindowTitle)
 	{
 		/* init the window api */
-		if (!Window::InitApi())
+		if (!Window::initApi())
 		{
 			return false;
 		}
@@ -56,7 +56,7 @@ namespace ai
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 			glm::ivec2 size = glm::ivec2(1024, 600);
 		#else 
-			glm::ivec2 size = Window::GetScreenSize();
+			glm::ivec2 size = Window::getScreenSize();
 		#endif
 
 		/* we should add at least the main window */
@@ -68,7 +68,7 @@ namespace ai
 		}
 
 		/* the first element is the main window */
-		getInstance().AddWindow(window);
+		getInstance().addWindow(window);
 
 		/* prepare the engine */
 		getInstance().prepare();
@@ -90,7 +90,7 @@ namespace ai
 	void Engine::prepare()
 	{
 		/* seed the random value */
-		Random::Seed();
+		Random::seed();
 
 		/* start to count the time */
 		Time::start();
@@ -107,9 +107,9 @@ namespace ai
 		Window& main_window = mWindows[0];
 
 		/* check if we are not on break with this loop */
-		if (!mFlag.IsSet(ENGINE_PAUSE_FLAG))
+		if (!mFlag.isSet(ENGINE_PAUSE_FLAG))
 		{
-			Time::Update();
+			Time::update();
 
 			#ifdef _DEBUG
 
@@ -119,8 +119,8 @@ namespace ai
 
 			SceneManager::getInstance().update();
 
-			main_window.Draw();
-			main_window.SwapBuffers();
+			main_window.draw();
+			main_window.swapBuffers();
 		}
 	}
 
@@ -128,12 +128,12 @@ namespace ai
 	{
 		/* on the first position should be the main window */
 
-		while (!mFlag.IsSet(ENGINE_STOP_FLAG) && !mWindows[0].IsClosing())
+		while (!mFlag.isSet(ENGINE_STOP_FLAG) && !mWindows[0].isClosing())
 		{
 			loop();
 
 			/* handle the events everytime */
-			Window::HandleEvents();
+			Window::handleEvents();
 		}
 	}
 
@@ -142,30 +142,30 @@ namespace ai
 		SceneManager::getInstance().release();
 		ResourceManager::getInstance().release();
 
-		Window::ReleaseApi();
+		Window::releaseApi();
 	}
 
-	void Engine::Stop()
+	void Engine::stop()
 	{
 		mFlag += ENGINE_STOP_FLAG;
 	}
 
-	void Engine::Pause()
+	void Engine::pause()
 	{
 		mFlag += ENGINE_PAUSE_FLAG;
 	}
 
-	void Engine::Resume()
+	void Engine::resume()
 	{
 		mFlag -= ENGINE_PAUSE_FLAG;
 	}
 
-	void Engine::AddWindow(const Window& window)
+	void Engine::addWindow(const Window& window)
 	{
 		mWindows.push_back(window);
 	}
 
-	void Engine::WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
+	void Engine::windowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
 	{
 		glm::ivec2 size(width, height);
 
@@ -173,7 +173,7 @@ namespace ai
 
 		assert(window != nullptr);
 
-		if (window->SetNewSize(size))
+		if (window->setNewSize(size))
 		{
 			/* update the cameras from the main scene with the new size */
 

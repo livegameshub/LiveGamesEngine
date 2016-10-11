@@ -65,25 +65,25 @@ namespace ai
 		const MaterialResource* material = model->getMaterial();
 		assert(material != nullptr);
 
-		const ProgramResource* program = material->GetProgram();
+		const ProgramResource* program = material->getProgram();
 		assert(program != nullptr);
 
-		program->Use();
+		program->use();
 
-		program->SetUniform("u_view", mScene->getCameraByIndex(0)->getViewMatrix());
-		program->SetUniform("u_projection", mScene->getCameraByIndex(0)->getPerspecitiveMatrix());
+		program->setUniform("u_view", mScene->getCameraByIndex(0)->getViewMatrix());
+		program->setUniform("u_projection", mScene->getCameraByIndex(0)->getPerspecitiveMatrix());
 
-		program->SetUniform("u_material.diffuse", material->GetDiffuseColor());
+		program->setUniform("u_material.diffuse", material->getDiffuseColor());
 
 		const MeshResource* mesh = model->getMesh();
 		assert(mesh != nullptr);
 
-		mesh->BindVbo();
-		mesh->UploadAttributes(program->GetAttributes());
-		mesh->BindIbo();
+		mesh->bindVbo();
+		mesh->uploadAttributes(program->getAttributes());
+		mesh->bindIbo();
 
-		program->SetUniform("u_model", model->getTransform().GetMatrix());
+		program->setUniform("u_model", model->getTransform().getMatrix());
 
-		mesh->Draw();
+		mesh->draw();
 	}
 }

@@ -37,28 +37,28 @@ namespace ai
 
 		~MeshResource();
 
-		void Draw() const;  
+		void draw() const;  
 
-		void BindVbo() const;
-		void BindIbo() const;
+		void bindVbo() const;
+		void bindIbo() const;
 
-		bool CreateBuffers();
-		bool ReadDataFromFile();
+		bool createBuffers();
+		bool readDataFromFile();
 
-		void CalculateVertexSize();
+		void calculateVertexSize();
 		
-		void UploadData(const MeshData& meshData);
-		void UploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices);
-		void UploadAttributes(const glm::i32* attributes) const;
+		void uploadData(const MeshData& meshData);
+		void uploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices);
+		void uploadAttributes(const glm::i32* attributes) const;
 
-		glm::u32 GetVertexSize() const;
-		glm::u32 GetIndicesSize() const;
-		glm::u32 GetPrimitive() const;
-		glm::u32 GetDrawType() const;
+		glm::u32 getVertexSize() const;
+		glm::u32 getIndicesSize() const;
+		glm::u32 getPrimitive() const;
+		glm::u32 getDrawType() const;
 
 	private:
-		bool Create() override;
-		bool Release() override;
+		bool create() override;
+		bool release() override;
 
 		glm::u32 mBuffers[COUNT];
 

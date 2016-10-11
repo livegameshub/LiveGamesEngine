@@ -44,7 +44,7 @@ namespace ai
 		{
 			assert(component != nullptr);
 
-			if (component->IsEnabled())
+			if (component->isEnabled())
 			{
 				component->update();
 			}
@@ -80,7 +80,7 @@ namespace ai
 	{
 		assert(component != nullptr);
 		/* check if we already have this type of component */
-		assert(getComponent(component->GetComponentType()) == nullptr);
+		assert(getComponent(component->getComponentType()) == nullptr);
 
 		mComponents.push_back(component);
 	}
@@ -90,7 +90,7 @@ namespace ai
 		assert(node != nullptr);
 
 		/* set the parent transformation for the child node */
-		node->getTransform().SetParentTransform(&mTransform);
+		node->getTransform().setParentTransform(&mTransform);
 
 		mChildren.push_back(node);
 	}
@@ -101,7 +101,7 @@ namespace ai
 
 		for (BasicComponent* component : mComponents)
 		{
-			if (component->GetComponentType() == type)
+			if (component->getComponentType() == type)
 			{
 				return component;
 			}
@@ -121,7 +121,7 @@ namespace ai
 		{
 			BasicComponent* component = mComponents[i];
 
-			if (component->GetComponentType() == type)
+			if (component->getComponentType() == type)
 			{
 				mComponents.erase(mComponents.begin() + i);
 
@@ -138,7 +138,7 @@ namespace ai
 
 		for (BasicNode* node : mChildren)
 		{
-			if (node->GetId() == id)
+			if (node->getId() == id)
 			{
 				return node;
 			}
@@ -158,12 +158,12 @@ namespace ai
 		{
 			BasicNode* node = mChildren[i];
 
-			if (node->GetId() == id)
+			if (node->getId() == id)
 			{
 				mChildren.erase(mChildren.begin() + i);
 
 				/* remove the parent transformation */
-				node->getTransform().SetParentTransform(nullptr);
+				node->getTransform().setParentTransform(nullptr);
 
 				return node;
 			}

@@ -20,19 +20,19 @@ namespace ai
 		virtual ~BasicResource();
 
 		std::string getResourceFile() const;
-		void SetResourceFile(const std::string& file);
+		void setResourceFile(const std::string& file);
 
-		glm::u32 GetReferencesCounter() const;
+		glm::u32 getReferencesCounter() const;
 
-		bool Unload();
-		bool Load();
+		bool unload();
+		bool load();
 
 	protected:
 		std::string mResourceFile;
 
 	private:
-		virtual bool Create() = 0;
-		virtual bool Release() = 0;
+		virtual bool create() = 0;
+		virtual bool release() = 0;
 
 		glm::u32 mReferencesCounter;
 	};

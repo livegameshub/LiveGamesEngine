@@ -13,13 +13,13 @@ namespace ai
 
 		virtual ~BasicElement();
 
-		void SetId(glm::u32 id);
-		void SetFlag(const Flag& flag);
+		void setId(glm::u32 id);
+		void setFlag(const Flag& flag);
 		
-		const Flag& GetFlag() const;
-		glm::u32 GetId() const;
+		const Flag& getFlag() const;
+		glm::u32 getId() const;
 
-		Flag& GetFlag();
+		Flag& getFlag();
 		
 	protected:
 		glm::u32 mId;

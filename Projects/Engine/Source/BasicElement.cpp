@@ -17,27 +17,27 @@ namespace ai
 	{
 	}
 
-	void BasicElement::SetId(glm::u32 id)
+	void BasicElement::setId(glm::u32 id)
 	{
 		mId = id;
 	}
 
-	void BasicElement::SetFlag(const Flag& flag)
+	void BasicElement::setFlag(const Flag& flag)
 	{
 		mFlag = flag;
 	}
 
-	glm::u32 BasicElement::GetId() const
+	glm::u32 BasicElement::getId() const
 	{
 		return mId;
 	}
 
-	const Flag& BasicElement::GetFlag() const
+	const Flag& BasicElement::getFlag() const
 	{
 		return mFlag;
 	}
 
-	Flag& BasicElement::GetFlag()
+	Flag& BasicElement::getFlag()
 	{
 		return mFlag;
 	}

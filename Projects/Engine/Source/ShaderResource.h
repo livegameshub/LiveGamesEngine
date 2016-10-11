@@ -18,21 +18,21 @@ namespace ai
 
 		~ShaderResource();
 
-		void Compile() const;
+		void compile() const;
 
-		void SetShaderType(glm::u32 type);
-		glm::u32 GetShaderType() const;
-		glm::u32 GetShaderId() const;
+		void setShaderType(glm::u32 type);
+		glm::u32 getShaderType() const;
+		glm::u32 getShaderId() const;
 		
 	private:
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
-		bool CompilationStatus() const;
+		bool compilationStatus() const;
 
 		#endif
 
-		bool Create() override;
-		bool Release() override;
+		bool create() override;
+		bool release() override;
 
 		glm::u32 mShaderId;
 		glm::u32 mShaderType;

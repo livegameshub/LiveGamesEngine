@@ -8,10 +8,10 @@ namespace ai
 	class ENGINE_API Time
 	{
 	public:
-		static glm::f32 GetDeltaTime();
-		static glm::f32 GetTimeInSeconds();
+		static glm::f32 getDeltaTime();
+		static glm::f32 getTimeInSeconds();
 
-		static void Update();
+		static void update();
 		static void start();
 
 	private:

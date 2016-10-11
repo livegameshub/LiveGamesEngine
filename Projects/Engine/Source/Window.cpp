@@ -27,20 +27,26 @@ namespace ai
 
 	bool Window::create(const std::string& title, bool isMain)
 	{
-		// TODO
-		// integrate maximed window option
-		// glfwWindowHint(GLFW_MAXIMIZED, true);
-
-		if (isMain && mSamples > 0)
+		if (isMain)
 		{
-			glfwWindowHint(GLFW_SAMPLES, mSamples);
+			#ifndef _DEBUG
+
+			// in the release we should be maximmized
+			glfwWindowHint(GLFW_MAXIMIZED, true);
+
+			#endif
+
+			if (mSamples > 0)
+			{
+				glfwWindowHint(GLFW_SAMPLES, mSamples);
+			}
 		}
 
 		mWindowPtr = glfwCreateWindow(mSize.x, mSize.y, title.c_str() , nullptr, nullptr);
 
 		if (mWindowPtr == nullptr)
 		{
-			ReleaseApi();
+			releaseApi();
 
 			return false;
 		}
@@ -49,28 +55,28 @@ namespace ai
 
 		if (isMain)
 		{
-			if (!Graphics::InitApi())
+			if (!Graphics::initApi())
 			{
-				ReleaseApi();
+				releaseApi();
 
 				return false;
 			}
 			
 			#ifdef WINDOWS_BUILD
 
-			Graphics::CheckApiVersion();
-			Graphics::CheckMaxSamples();
+			Graphics::checkApiVersion();
+			Graphics::checkMaxSamples();
 
 			#endif
 
 			/* init the callbacks for the main window */
-			InitWindowCallbacks();
+			initWindowCallbacks();
 		}
 
 		return true;
 	}
 
-	bool Window::SetNewSize(const glm::ivec2& size)
+	bool Window::setNewSize(const glm::ivec2& size)
 	{
 		if (mSize != size)
 		{
@@ -82,17 +88,17 @@ namespace ai
 		return false;
 	}
 
-	glm::u32 Window::GetSamples() const
+	glm::u32 Window::getSamples() const
 	{
 		return mSamples;
 	}
 
-	glm::i32 Window::IsClosing() const
+	glm::i32 Window::isClosing() const
 	{
 		return glfwWindowShouldClose(mWindowPtr);
 	}
 
-	glm::ivec2 Window::GetScreenSize()
+	glm::ivec2 Window::getScreenSize()
 	{
 		/* get the main monitor */
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
@@ -103,52 +109,52 @@ namespace ai
 		return glm::ivec2(mode->width, mode->height);
 	}
 
-	void Window::SwapBuffers() const
+	void Window::swapBuffers() const
 	{
 		glfwSwapBuffers(mWindowPtr);
 	}
 
-	void Window::Draw()
+	void Window::draw()
 	{
 		mRenderer.draw();
 	}
 
-	GLFWwindow* Window::GetWindowPtr() const
+	GLFWwindow* Window::getWindowPtr() const
 	{
 		return mWindowPtr;
 	}
 
-	Renderer& Window::GetRenderer()
+	Renderer& Window::getRenderer()
 	{
 		return mRenderer;
 	}
 
-	const glm::ivec2& Window::GetSize() const
+	const glm::ivec2& Window::getSize() const
 	{
 		return mSize;
 	}
 
-	bool Window::InitApi()
+	bool Window::initApi()
 	{
 		return glfwInit() ? true : false;
 	}
 
-	void Window::ReleaseApi()
+	void Window::releaseApi()
 	{
 		glfwTerminate();
 	}
 
-	void Window::HandleEvents()
+	void Window::handleEvents()
 	{
 		glfwPollEvents();
 	}
 
-	void Window::InitWindowCallbacks() const
+	void Window::initWindowCallbacks() const
 	{
-		glfwSetKeyCallback(mWindowPtr, Input::KeyboardKeysCallback);
-		glfwSetCursorPosCallback(mWindowPtr, Input::MousePositionCallback);
-		glfwSetMouseButtonCallback(mWindowPtr, Input::MouseClicksCallback);
+		glfwSetKeyCallback(mWindowPtr, Input::keyboardKeysCallback);
+		glfwSetCursorPosCallback(mWindowPtr, Input::mousePositionCallback);
+		glfwSetMouseButtonCallback(mWindowPtr, Input::mouseClicksCallback);
 
-		glfwSetWindowSizeCallback(mWindowPtr, Engine::WindowResizeCallback);
+		glfwSetWindowSizeCallback(mWindowPtr, Engine::windowResizeCallback);
 	}
 }

@@ -20,41 +20,40 @@ namespace ai
 		~TransformComponent();
 
 		void update() override;
-		void Reset() override;
+		void reset() override;
 
 		void translate(const glm::vec3& amount);
 		void Scale(const glm::vec3& scale);
 
-		void Rotate(const glm::vec3& axis, glm::f32 angle);
-		void Rotate(const glm::vec3& angles);
-		void RotateOnX(glm::f32 angle);
-		void RotateOnY(glm::f32 angle);
-		void RotateOnZ(glm::f32 angle);
+		void rotate(const glm::vec3& axis, glm::f32 angle);
+		void rotate(const glm::vec3& angles);
+		void rotateOnX(glm::f32 angle);
+		void rotateOnY(glm::f32 angle);
+		void rotateOnZ(glm::f32 angle);
 	
-		void SetParentTransform(TransformComponent* transform);
+		void setParentTransform(TransformComponent* transform);
 
-		void SetOrientation(const glm::quat& orientation);
-		void SetPosition(const glm::vec3& position);
-		void SetScale(const glm::vec3& scale);
+		void setOrientation(const glm::quat& orientation);
+		void setPosition(const glm::vec3& position);
+		void setScale(const glm::vec3& scale);
 
-		const glm::quat& GetOrientation() const;
-		const glm::vec3& GetPosition() const;
-		const glm::vec3& GetScale() const;
+		const glm::quat& getOrientation() const;
+		const glm::vec3& getPosition() const;
+		const glm::vec3& getScale() const;
 
-		bool HasUniformScale() const;
-		TransformComponent* GetParentTransform() const;
-		glm::mat4 GetMatrix() const;
+		bool hasUniformScale() const;
+		TransformComponent* getParentTransform() const;
+		glm::mat4 getMatrix() const;
 
 	private:
 		TransformComponent* mParentTransform;
 
-		glm::mat4 mMatrix;
+		bool mHasUniformScale;
 
+		glm::mat4 mMatrix;
 		glm::quat mOrientation;
 		glm::vec3 mPosition;
 		glm::vec3 mScale;
-
-		bool mHasUniformScale;
 	};
 }
 

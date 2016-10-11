@@ -21,40 +21,40 @@ namespace ai
 		ProgramResource(glm::u32 id);
 		~ProgramResource();
 	
-		void Use() const;
-		void Link() const;
+		void use() const;
+		void link() const;
 
-		void AttachShader(ShaderResource* shader) const;
-		void DetachShader(ShaderResource* shader) const;
+		void attachShader(ShaderResource* shader) const;
+		void detachShader(ShaderResource* shader) const;
 
-		void AddShader(ShaderResource* shader);
-		void RemoveShader(glm::u32 type);
+		void addShader(ShaderResource* shader);
+		void removeShader(glm::u32 type);
 
-		void AddUniform(const std::string& uniform_name);
-		void AddUniforms(const std::vector<std::string>& uniforms);
+		void addUniform(const std::string& uniform_name);
+		void addUniforms(const std::vector<std::string>& uniforms);
 
-		void SetUniform(const std::string& uniform_name, const glm::mat4& matrix) const;
-		void SetUniform(const std::string& uniform_name, const glm::vec3& vector) const;
-		void SetUniform(const std::string& uniform_name, glm::f32 value);
-		void SetUniform(const std::string& uniform_name, glm::i32 value);
+		void setUniform(const std::string& uniform_name, const glm::mat4& matrix) const;
+		void setUniform(const std::string& uniform_name, const glm::vec3& vector) const;
+		void setUniform(const std::string& uniform_name, glm::f32 value);
+		void setUniform(const std::string& uniform_name, glm::i32 value);
 
-		glm::i32 GetAttributeLocation(glm::u32 index) const;
+		glm::i32 getAttributeLocation(glm::u32 index) const;
 
-		const glm::i32* GetAttributes() const;
-		glm::u32 GetProgramId() const;
+		const glm::i32* getAttributes() const;
+		glm::u32 getProgramId() const;
 
 	private:
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
 
-		bool LinkingStatus() const;
+		bool linkingStatus() const;
 
 		#endif
 
-		bool Create() override;
-		bool Release() override;
+		bool create() override;
+		bool release() override;
 
-		void InitAttributes();
-		void InitUniforms();
+		void initAttributes();
+		void initUniforms();
 
 		std::map<std::string, glm::i32> mUniforms;
 		std::vector<ShaderResource*> mShaders;

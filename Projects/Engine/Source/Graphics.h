@@ -15,15 +15,15 @@ namespace ai
 	class ENGINE_API Graphics
 	{
 	public:
-		static bool InitApi();
-		static void CheckApiVersion();
-		static void CheckMaxSamples();
+		static bool initApi();
+		static void checkApiVersion();
+		static void checkMaxSamples();
 
-		static glm::i32 GetMajorApiVersion();
-		static glm::i32 GetMinorApiVersion();
+		static glm::i32 getMajorApiVersion();
+		static glm::i32 getMinorApiVersion();
 			   
-		static glm::i32 GetMajorApiShaderVersion();
-		static glm::i32 GetMinorApiShaderVersion();
+		static glm::i32 getMajorApiShaderVersion();
+		static glm::i32 getMinorApiShaderVersion();
 
 	private:
 		static glm::i32 smMajorApiVersion;

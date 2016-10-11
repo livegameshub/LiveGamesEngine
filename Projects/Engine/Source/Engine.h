@@ -17,16 +17,16 @@ namespace ai
 			ENGINE_PAUSE_FLAG = 2
 		};
 
-		void Stop();
-		void Pause();
-		void Resume();
+		void stop();
+		void pause();
+		void resume();
 
-		void AddWindow(const Window& window);
+		void addWindow(const Window& window);
 
 		// TODO
 		// setup should return an int with some specific codes
 		static bool setup(const std::string& mainWindowTitle);
-		static void WindowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
+		static void windowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
 
 		Window* getWindow(GLFWwindow* windowPtr);
 		Window* getWindowByIndex(glm::u32 index);
