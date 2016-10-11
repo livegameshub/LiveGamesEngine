@@ -1,10 +1,18 @@
 #ifndef _MATERIAL_RESOURCE_H_
 #define _MATERIAL_RESOURCE_H_
 
-#include "ProgramResource.h"
+#include "BasicResource.h"
+
+/* some useful constants */
+const std::string UNIFORM_VIEW = "u_view";
+const std::string UNIFORM_MODEL = "u_model";
+const std::string UNIFORM_PROJECTION = "u_projection";
+const std::string UNIFORM_MATERIAL_DIFFUSE = "u_material.diffuse";
 
 namespace ai
 {
+	class ProgramResource;
+
 	class ENGINE_API MaterialResource : public BasicResource
 	{
 	public:

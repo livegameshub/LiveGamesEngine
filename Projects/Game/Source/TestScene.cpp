@@ -25,7 +25,7 @@ namespace ai
 		ShaderResource* vertexShader = ResourceManager::getInstance().createShader(1, ShaderResource::VERTEX_SHADER, "DiffuseShader.vs");
 		ShaderResource* fragmentShader = ResourceManager::getInstance().createShader(2, ShaderResource::FRAGMENT_SHADER, "DiffuseShader.fs");
 
-		ProgramResource* program = ResourceManager::getInstance().createProgram(3, { vertexShader, fragmentShader }, { "u_view", "u_model", "u_projection", "u_material.diffuse" });
+		ProgramResource* program = ResourceManager::getInstance().createProgram(3, { vertexShader, fragmentShader });
 
 		MaterialResource* material = ResourceManager::getInstance().createMaterial(4, program, glm::vec3(0.0f, 0.0f, 1.0f));
 		MeshResource* cube_mesh = ResourceManager::getInstance().createMesh(5, "Cube.mesh");

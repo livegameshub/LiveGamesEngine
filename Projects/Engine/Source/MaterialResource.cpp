@@ -1,5 +1,6 @@
 #include "MaterialResource.h"
 #include "ResourceManager.h"
+#include "ProgramResource.h"
 
 namespace ai
 {
@@ -59,6 +60,16 @@ namespace ai
 
 	bool MaterialResource::create()
 	{
+		assert(mProgram != nullptr);
+
+		if (mProgram->getUniforms().size() == 0)
+		{
+			mProgram->addUniforms({ UNIFORM_VIEW, UNIFORM_PROJECTION, UNIFORM_MODEL,
+									UNIFORM_MATERIAL_DIFFUSE });
+
+			mProgram->initUniforms();
+		}
+
 		return true;
 	}
 

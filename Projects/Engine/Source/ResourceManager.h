@@ -1,11 +1,16 @@
 #ifndef _RESOURCE_MANAGER_H_
 #define _RESOURCE_MANAGER_H_
 
-#include "MaterialResource.h"
-#include "MeshResource.h"
+#include "Flag.h"
 
 namespace ai
 {
+	class MeshResource;
+	class MaterialResource;
+	class ProgramResource;
+	class BasicResource;
+	class ShaderResource;
+
 	class ENGINE_API ResourceManager
 	{
 	public:
@@ -25,7 +30,7 @@ namespace ai
 		ShaderResource* createShader(glm::u32 id, glm::u32 type, const std::string& file);
 
 		/* programs */
-		ProgramResource* createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders, const std::vector<std::string>& uniforms);
+		ProgramResource* createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders);
 
 		/* materials */
 		MaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);

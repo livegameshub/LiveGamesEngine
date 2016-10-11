@@ -2,11 +2,12 @@
 #define _MODEL_NODE_H_
 
 #include "BasicNode.h"
-#include "MeshResource.h"
-#include "MaterialResource.h"
 
 namespace ai
 {
+	class MeshResource;
+	class MaterialResource;
+
 	class ENGINE_API ModelNode : public BasicNode
 	{
 	public:

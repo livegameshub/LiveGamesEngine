@@ -133,6 +133,9 @@
     <ClInclude Include="Source\SceneManager.h">
       <Filter>Source\Scenes\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Source\RendererState.h">
+      <Filter>Source\Engine\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -209,6 +212,9 @@
     </ClCompile>
     <ClCompile Include="Source\SceneManager.cpp">
       <Filter>Source\Scenes\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RendererState.cpp">
+      <Filter>Source\Engine\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

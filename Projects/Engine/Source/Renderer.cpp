@@ -2,6 +2,11 @@
 #include "Graphics.h"
 #include "ModelNode.h"
 #include "CameraNode.h"
+#include "ProgramResource.h"
+#include "MaterialResource.h"
+#include "MeshResource.h"
+#include "BasicScene.h"
+#include "RendererState.h"
 
 namespace ai
 {
@@ -70,17 +75,20 @@ namespace ai
 
 		program->use();
 
-		program->setUniform("u_view", mScene->getCameraByIndex(0)->getViewMatrix());
-		program->setUniform("u_projection", mScene->getCameraByIndex(0)->getPerspecitiveMatrix());
+		program->setUniform(UNIFORM_VIEW, mScene->getCameraByIndex(0)->getViewMatrix());
+		program->setUniform(UNIFORM_PROJECTION, mScene->getCameraByIndex(0)->getPerspecitiveMatrix());
 
-		program->setUniform("u_material.diffuse", material->getDiffuseColor());
+		program->setUniform(UNIFORM_MATERIAL_DIFFUSE, material->getDiffuseColor());
 
 		const MeshResource* mesh = model->getMesh();
 		assert(mesh != nullptr);
 
-		mesh->bindVbo();
-		mesh->uploadAttributes(program->getAttributes());
-		mesh->bindIbo();
+		if (RendererState::CheckMeshId(mesh->getId()))
+		{
+			mesh->bindVbo();
+			mesh->uploadAttributes(program->getAttributes());
+			mesh->bindIbo();
+		}
 
 		program->setUniform("u_model", model->getTransform().getMatrix());
 

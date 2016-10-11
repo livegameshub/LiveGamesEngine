@@ -24,6 +24,8 @@ namespace ai
 		void use() const;
 		void link() const;
 
+		void initUniforms();
+
 		void attachShader(ShaderResource* shader) const;
 		void detachShader(ShaderResource* shader) const;
 
@@ -40,6 +42,7 @@ namespace ai
 
 		glm::i32 getAttributeLocation(glm::u32 index) const;
 
+		const std::map<std::string, glm::i32>& getUniforms() const;
 		const glm::i32* getAttributes() const;
 		glm::u32 getProgramId() const;
 
@@ -54,7 +57,6 @@ namespace ai
 		bool release() override;
 
 		void initAttributes();
-		void initUniforms();
 
 		std::map<std::string, glm::i32> mUniforms;
 		std::vector<ShaderResource*> mShaders;

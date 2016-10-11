@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "Engine.h"
+#include "BasicScene.h"
 
 namespace ai
 {

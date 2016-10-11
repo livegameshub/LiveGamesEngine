@@ -5,6 +5,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include "CameraNode.h"
+#include "BasicScene.h"
 
 #ifdef _DEBUG
 	#include "FpsCounter.h"

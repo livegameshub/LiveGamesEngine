@@ -2,10 +2,11 @@
 #define _SCENE_MANAGER_H_
 
 #include "EngineUtil.h"
-#include "BasicScene.h"
 
 namespace ai
 {
+	class BasicScene;
+
 	class ENGINE_API SceneManager
 	{
 	public:

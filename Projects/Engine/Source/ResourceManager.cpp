@@ -1,5 +1,8 @@
 #include "ResourceManager.h"
 #include "ShaderResource.h"
+#include "ProgramResource.h"
+#include "MeshResource.h"
+#include "MaterialResource.h"
 
 namespace ai
 {
@@ -93,12 +96,11 @@ namespace ai
 		return mAllResources;
 	}
 
-	ProgramResource* ResourceManager::createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders, const std::vector<std::string>& uniforms)
+	ProgramResource* ResourceManager::createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders)
 	{
 		assert(getResource(id) == nullptr);
 
 		ProgramResource* program = new ProgramResource(id);
-		program->addUniforms(uniforms);
 
 		for (auto shader : shaders)
 		{

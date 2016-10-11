@@ -95,6 +95,11 @@ namespace ai
 		return mAttributes[index];
 	}
 
+	const std::map<std::string, glm::i32>& ProgramResource::getUniforms() const
+	{
+		return mUniforms;
+	}
+
 	const glm::i32* ProgramResource::getAttributes() const
 	{
 		return mAttributes;
@@ -161,7 +166,6 @@ namespace ai
 		#endif
 
 		initAttributes();
-		initUniforms();
 
 		return true;
 	}
@@ -182,6 +186,9 @@ namespace ai
 				shader->unload();
 			}
 		}
+
+		// remove the uniforms
+		mUniforms.clear();
 
 		glDeleteProgram(mProgramId);
 

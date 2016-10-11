@@ -6,6 +6,8 @@
 
 namespace ai
 {
+	class TransformComponent;
+
 	class ENGINE_API BasicNode : public BasicElement
 	{
 	public:

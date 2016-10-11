@@ -1,5 +1,7 @@
 #include "ModelNode.h"
 #include "ResourceManager.h"
+#include "MeshResource.h"
+#include "MaterialResource.h"
 
 namespace ai
 {
