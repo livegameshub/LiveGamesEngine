@@ -42,7 +42,7 @@ namespace ai
 
 		#ifndef WINDOWS_BUILD
 		static void webLoop();
-		#endif
+		#endif // WINDOWS_BUILD
 
 		void prepare();
 		void loop();
@@ -50,4 +50,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _ENGINE_H_

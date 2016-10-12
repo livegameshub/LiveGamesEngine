@@ -12,4 +12,4 @@
 #include <vector>
 #include <map>
 
-#endif
+#endif // _PLATFORM_H_

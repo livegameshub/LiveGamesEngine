@@ -37,4 +37,4 @@ namespace ai
 	}
 }
 
-#endif
+#endif // _DEBUG

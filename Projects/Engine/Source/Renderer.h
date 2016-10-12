@@ -28,4 +28,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _RENDERER_H_

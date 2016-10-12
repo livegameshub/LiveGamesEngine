@@ -62,4 +62,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _TRANSFORM_COMPONENT_H_

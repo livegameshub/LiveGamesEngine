@@ -56,4 +56,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _BASIC_SCENE_H_

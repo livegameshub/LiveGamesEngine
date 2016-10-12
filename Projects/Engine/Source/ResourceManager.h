@@ -46,4 +46,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _RESOURCE_MANAGER_H_

@@ -12,12 +12,12 @@
 	#else
 		#define ENGINE_API __declspec(dllimport)
 		#define EXP_TEMPLATE extern
-	#endif
+	#endif // EXPORT_ENGINE_API
 #else 
 	// if we are not on windows we should
 	// replace ENGINE_API with blank space
 	#define ENGINE_API 
-#endif
+#endif // WINDOWS_BUILD
 
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
@@ -26,4 +26,4 @@
 
 const std::string ASSETS_PATH = "Assets/";
 
-#endif
+#endif // _ENGINE_UTIL_H_

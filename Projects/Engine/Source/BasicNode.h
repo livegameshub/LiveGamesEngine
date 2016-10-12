@@ -64,4 +64,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _BASIC_NODE_H_

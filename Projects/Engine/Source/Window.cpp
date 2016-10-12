@@ -34,7 +34,7 @@ namespace ai
 			// in the release we should be maximmized
 			glfwWindowHint(GLFW_MAXIMIZED, true);
 
-			#endif
+			#endif // _DEBUG
 
 			if (mSamples > 0)
 			{
@@ -67,7 +67,7 @@ namespace ai
 			Graphics::checkApiVersion();
 			Graphics::checkMaxSamples();
 
-			#endif
+			#endif // WINDOWS_BUILD
 
 			/* init the callbacks for the main window */
 			initWindowCallbacks();

@@ -32,4 +32,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _MODEL_NODE_H_

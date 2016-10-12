@@ -72,4 +72,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _MESH_RESOURCE_H_

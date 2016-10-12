@@ -73,7 +73,7 @@ namespace ai
 		return true;
 	}
 
-	#endif
+	#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 	bool ShaderResource::create()
 	{
@@ -106,7 +106,7 @@ namespace ai
 		return compilationStatus();
 		#else
 		return true;
-		#endif
+		#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 	}
 
 	bool ShaderResource::release()

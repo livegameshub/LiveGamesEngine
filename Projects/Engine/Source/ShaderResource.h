@@ -29,7 +29,7 @@ namespace ai
 
 		bool compilationStatus() const;
 
-		#endif
+		#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		bool create() override;
 		bool release() override;
@@ -39,4 +39,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _SHADER_RESOURCE_H_

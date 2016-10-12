@@ -135,7 +135,7 @@ namespace ai
 		return true;
 	}
 
-	#endif
+	#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 	bool ProgramResource::create()
 	{
@@ -163,7 +163,7 @@ namespace ai
 			return false;
 		}
 
-		#endif
+		#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		initAttributes();
 

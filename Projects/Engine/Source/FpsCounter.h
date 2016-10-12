@@ -17,5 +17,5 @@ namespace ai
 	};
 }
 
-#endif
-#endif
+#endif // _FPS_COUNTER_H_
+#endif // _DEBUG

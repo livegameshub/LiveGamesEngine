@@ -15,4 +15,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _RANDOM_H_

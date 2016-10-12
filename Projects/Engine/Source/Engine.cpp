@@ -9,11 +9,11 @@
 
 #ifdef _DEBUG
 	#include "FpsCounter.h"
-#endif
+#endif // _DEBUG
 
 #ifndef WINDOWS_BUILD
 	#include <emscripten/emscripten.h>
-#endif
+#endif // WINDOWS_BUILD
 
 namespace ai
 {
@@ -44,7 +44,7 @@ namespace ai
 		getInstance().loop();
 	}
 
-	#endif
+	#endif // WINDOWS_BUILD
 
 	bool Engine::setup(const std::string& mainWindowTitle)
 	{
@@ -58,7 +58,7 @@ namespace ai
 			glm::ivec2 size = glm::ivec2(1024, 600);
 		#else 
 			glm::ivec2 size = Window::getScreenSize();
-		#endif
+		#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		/* we should add at least the main window */
 		Window window(size, 0);
@@ -80,7 +80,7 @@ namespace ai
 		#else
 			/* run the main loop */
 			emscripten_set_main_loop(webLoop, 0, true);
-		#endif
+		#endif // WINDOWS_BUILD
 
 		/* release all the resources after we finish */
 		Release();
@@ -116,7 +116,7 @@ namespace ai
 
 			FpsCounter::update();
 
-			#endif
+			#endif // _DEBUG
 
 			SceneManager::getInstance().update();
 

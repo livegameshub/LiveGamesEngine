@@ -63,4 +63,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _CAMERA_NODE_H_

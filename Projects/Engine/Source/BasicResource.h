@@ -38,4 +38,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _BASIC_RESOURCE_H_

@@ -30,4 +30,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _FLAG_H_

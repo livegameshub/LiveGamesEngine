@@ -51,7 +51,7 @@ namespace ai
 
 		bool linkingStatus() const;
 
-		#endif
+		#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		bool create() override;
 		bool release() override;
@@ -66,4 +66,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _PROGRAM_RESOURCE_H_

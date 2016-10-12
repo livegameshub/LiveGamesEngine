@@ -29,9 +29,10 @@ namespace ai
 
 		virtual ~MaterialResource();
 
+		void UploadUniforms() const;
 		void setProgram(ProgramResource* program);
 		void setDiffuseColor(const glm::vec3& color);
-
+	
 		ProgramResource* getProgram() const;
 		const glm::vec3& getDiffuseColor() const;
 
@@ -45,4 +46,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _MATERIAL_RESOURCE_H_

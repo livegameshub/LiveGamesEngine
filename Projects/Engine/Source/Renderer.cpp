@@ -73,12 +73,18 @@ namespace ai
 		const ProgramResource* program = material->getProgram();
 		assert(program != nullptr);
 
-		program->use();
+		if (RendererState::CheckProgramId(program->getId()))
+		{
+			program->use();
+		}
 
 		program->setUniform(UNIFORM_VIEW, mScene->getCameraByIndex(0)->getViewMatrix());
 		program->setUniform(UNIFORM_PROJECTION, mScene->getCameraByIndex(0)->getPerspecitiveMatrix());
 
-		program->setUniform(UNIFORM_MATERIAL_DIFFUSE, material->getDiffuseColor());
+		if (RendererState::CheckMaterialId(material->getId()))
+		{
+			material->UploadUniforms();
+		}
 
 		const MeshResource* mesh = model->getMesh();
 		assert(mesh != nullptr);

@@ -46,4 +46,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _WINDOW_H_

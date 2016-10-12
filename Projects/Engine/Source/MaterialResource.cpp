@@ -29,6 +29,11 @@ namespace ai
 	{
 	}
 
+	void MaterialResource::UploadUniforms() const
+	{
+		mProgram->setUniform(UNIFORM_MATERIAL_DIFFUSE, mDiffuseColor);
+	}
+
 	const glm::vec3& MaterialResource::getDiffuseColor() const
 	{
 		return mDiffuseColor;

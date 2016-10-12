@@ -25,5 +25,5 @@ namespace ai
 	};
 }
 
-#endif
-#endif
+#endif // _CONSOLE_H_
+#endif // _DEBUG

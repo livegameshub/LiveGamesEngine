@@ -3,7 +3,7 @@
 
 #ifndef _DEBUG
 	#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
-#endif
+#endif // _DEBUG
 
 #include "Engine.h"
 #include "SceneManager.h"

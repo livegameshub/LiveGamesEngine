@@ -8,7 +8,7 @@
 #else 
 	// we have this choice for emscripten
 	#include <gl/glew.h>
-#endif
+#endif // WINDOWS_BUILD
 
 namespace ai
 {
@@ -36,4 +36,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _GRAPHICS_H_

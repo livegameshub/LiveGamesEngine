@@ -29,4 +29,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _INPUT_H_

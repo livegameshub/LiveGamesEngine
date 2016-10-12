@@ -41,4 +41,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _BASIC_COMPONENT_H_
