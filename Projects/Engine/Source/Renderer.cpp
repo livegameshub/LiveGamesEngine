@@ -3,7 +3,7 @@
 #include "ModelNode.h"
 #include "CameraNode.h"
 #include "ProgramResource.h"
-#include "MaterialResource.h"
+#include "BasicMaterialResource.h"
 #include "MeshResource.h"
 #include "BasicScene.h"
 #include "RendererState.h"
@@ -67,13 +67,13 @@ namespace ai
 
 	void Renderer::drawModel(const ModelNode* model) const
 	{
-		const MaterialResource* material = model->getMaterial();
+		const BasicMaterialResource* material = model->getMaterial();
 		assert(material != nullptr);
 
 		const ProgramResource* program = material->getProgram();
 		assert(program != nullptr);
 
-		if (RendererState::CheckProgramId(program->getId()))
+		if (RendererState::checkProgramId(program->getId()))
 		{
 			program->use();
 		}
@@ -81,7 +81,7 @@ namespace ai
 		program->setUniform(UNIFORM_VIEW, mScene->getCameraByIndex(0)->getViewMatrix());
 		program->setUniform(UNIFORM_PROJECTION, mScene->getCameraByIndex(0)->getPerspecitiveMatrix());
 
-		if (RendererState::CheckMaterialId(material->getId()))
+		if (RendererState::checkMaterialId(material->getId()))
 		{
 			material->UploadUniforms();
 		}
@@ -89,14 +89,14 @@ namespace ai
 		const MeshResource* mesh = model->getMesh();
 		assert(mesh != nullptr);
 
-		if (RendererState::CheckMeshId(mesh->getId()))
+		if (RendererState::checkMeshId(mesh->getId()))
 		{
 			mesh->bindVbo();
 			mesh->uploadAttributes(program->getAttributes());
 			mesh->bindIbo();
 		}
 
-		program->setUniform("u_model", model->getTransform().getMatrix());
+		program->setUniform(UNIFORM_MODEL, model->getTransform().getMatrix());
 
 		mesh->draw();
 	}

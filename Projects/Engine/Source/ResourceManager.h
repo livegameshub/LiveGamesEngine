@@ -6,7 +6,7 @@
 namespace ai
 {
 	class MeshResource;
-	class MaterialResource;
+	class BasicMaterialResource;
 	class ProgramResource;
 	class BasicResource;
 	class ShaderResource;
@@ -19,7 +19,8 @@ namespace ai
 
 		void removeResource(glm::u32 id);
 		void addResource(BasicResource* resource);
-		void addPendingItem(BasicResource* resource, bool isUnloaded);
+		void addItemToLoad(BasicResource* resource);
+		void addItemToUnload(BasicResource* resource);
 		
 		BasicResource* getResource(glm::u32 id) const;
 		BasicResource* operator[](glm::u32 id) const;
@@ -33,7 +34,7 @@ namespace ai
 		ProgramResource* createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders);
 
 		/* materials */
-		MaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);
+		BasicMaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);
 
 		/* meshes */
 		MeshResource* createMesh(glm::u32 id, const std::string& file);
@@ -42,7 +43,8 @@ namespace ai
 
 	private:
 		std::map<glm::u32, BasicResource*> mAllResources;
-		std::vector<BasicResource*> mPendingItems;
+		std::vector<BasicResource*> mItemsToUnload;
+		std::vector<BasicResource*> mItemsToLoad;
 	};
 }
 

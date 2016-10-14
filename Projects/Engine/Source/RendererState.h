@@ -8,9 +8,9 @@ namespace ai
 	class ENGINE_API RendererState
 	{
 	public:
-		static bool CheckMeshId(glm::u32 id);
-		static bool CheckProgramId(glm::u32 id);
-		static bool CheckMaterialId(glm::u32 id);
+		static bool checkMeshId(glm::u32 id);
+		static bool checkProgramId(glm::u32 id);
+		static bool checkMaterialId(glm::u32 id);
 
 	private:
 		static glm::u32 smCurrentMeshId;

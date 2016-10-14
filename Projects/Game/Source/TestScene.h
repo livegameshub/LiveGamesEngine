@@ -18,8 +18,9 @@ namespace ai
 		void release() override;
 
 	private:
+		std::vector<ModelNode*> mCubes;
+
 		CameraNode* mCamera;
-		ModelNode* mCubeNode;
 	};
 }
 

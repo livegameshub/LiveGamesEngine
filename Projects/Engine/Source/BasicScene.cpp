@@ -1,6 +1,7 @@
 #include "BasicScene.h"
 #include "ModelNode.h"
 #include "CameraNode.h"
+#include "DirectionalLightNode.h"
 
 namespace ai
 {
@@ -57,6 +58,13 @@ namespace ai
 		mCameras.push_back(camera);
 	}
 
+	void BasicScene::addLight(LightNode* light)
+	{
+		assert(light != nullptr);
+		
+		mLights.push_back(light);
+	}
+
 	void BasicScene::removeCamera(glm::u32 id)
 	{
 		for (glm::u32 i = 0; i < mCameras.size(); ++i)
@@ -64,6 +72,17 @@ namespace ai
 			if (mCameras[i]->getId() == id)
 			{
 				mCameras.erase(mCameras.begin() + i);
+			}
+		}
+	}
+
+	void BasicScene::removeLight(glm::u32 id)
+	{
+		for (glm::u32 i = 0; i < mLights.size(); ++i)
+		{
+			if (mLights[i]->getId() == id)
+			{
+				mLights.erase(mLights.begin() + i);
 			}
 		}
 	}
@@ -77,11 +96,13 @@ namespace ai
 		
 		mNodes.erase(it);
 
-		/* check if the node is a camera in order to remove it from the cameras */
-
 		if (it->second->getNodeType() == BasicNode::CAMERA_NODE)
 		{
 			removeCamera(it->second->getId());
+		}
+		else if (it->second->getNodeType() == BasicNode::LIGHT_NODE)
+		{
+			removeLight(it->second->getId());
 		}
 
 		return it->second;
@@ -111,6 +132,13 @@ namespace ai
 		return mCameras[index];
 	}
 
+	LightNode* BasicScene::getLightByIndex(glm::u32 index) const
+	{
+		assert(index < mLights.size());
+
+		return mLights[index];
+	}
+
 	const std::map<glm::u32, BasicNode*>& BasicScene::getNodes() const
 	{
 		return mNodes;
@@ -119,6 +147,11 @@ namespace ai
 	const std::vector<CameraNode*>& BasicScene::getCameras() const
 	{
 		return mCameras;
+	}
+
+	const std::vector<LightNode*>& BasicScene::getLights() const
+	{
+		return mLights;
 	}
 
 	const BasicNode& BasicScene::getRootNode() const
@@ -142,7 +175,19 @@ namespace ai
 		return node;
 	}
 
-	ModelNode* BasicScene::createModel(glm::u32 id, MeshResource* mesh, MaterialResource* material)
+	DirectionalLightNode* BasicScene::createDirectionalLight(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, const glm::vec3& direction)
+	{
+		assert(getNode(id) == nullptr);
+
+		DirectionalLightNode* light = new DirectionalLightNode(id, direction, diffuse, specular);
+
+		addLight(light);
+		addNode(light);
+
+		return light;
+	}
+
+	ModelNode* BasicScene::createModel(glm::u32 id, MeshResource* mesh, BasicMaterialResource* material)
 	{
 		assert(getNode(id) == nullptr);
 

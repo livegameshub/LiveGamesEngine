@@ -2,41 +2,39 @@
 #include "ShaderResource.h"
 #include "ProgramResource.h"
 #include "MeshResource.h"
-#include "MaterialResource.h"
+#include "BasicMaterialResource.h"
 
 namespace ai
 {
 	void ResourceManager::flushPendingItems()
 	{
-		for (glm::u32 i = 0; i < mPendingItems.size(); ++i)
+		for (int i = 0; i < mItemsToLoad.size(); i++)
 		{
-			BasicResource* item = mPendingItems[i];
-
-			if (item->getFlag().isSet(BasicResource::IS_UNLOADED))
-			{
-				item->load();
-
-				item->getFlag().remove(BasicResource::IS_UNLOADED);
-			}
-			else
-			{
-				item->unload();
-			}
+			mItemsToLoad[i]->load();
 		}
 
-		mPendingItems.clear();
+		mItemsToLoad.clear();
+
+		for (int i = 0; i < mItemsToUnload.size(); i++)
+		{
+			mItemsToUnload[i]->unload();
+		}
+
+		mItemsToUnload.clear();
 	}
 
-	void ResourceManager::addPendingItem(BasicResource* resource, bool isUnloaded)
+	void ResourceManager::addItemToLoad(BasicResource* resource)
 	{
 		assert(resource != nullptr);
 
-		if (isUnloaded)
-		{
-			resource->getFlag().add(BasicResource::IS_UNLOADED);
-		}
+		mItemsToLoad.push_back(resource);
+	}
 
-		mPendingItems.push_back(resource);
+	void ResourceManager::addItemToUnload(BasicResource* resource)
+	{
+		assert(resource != nullptr);
+
+		mItemsToUnload.push_back(resource);
 	}
 
 	void ResourceManager::release()
@@ -123,11 +121,11 @@ namespace ai
 		return shader;
 	}
 
-	MaterialResource* ResourceManager::createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag)
+	BasicMaterialResource* ResourceManager::createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag)
 	{
 		assert(getResource(id) == nullptr);
 
-		MaterialResource* material = new MaterialResource(id, diffuse, flag);
+		BasicMaterialResource* material = new BasicMaterialResource(id, diffuse, flag);
 		material->setProgram(program);
 
 		addResource(material);

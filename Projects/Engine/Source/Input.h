@@ -3,6 +3,8 @@
 
 #include "EngineUtil.h"
 
+#include <glfw/glfw3.h>
+
 struct GLFWwindow;
 
 namespace ai

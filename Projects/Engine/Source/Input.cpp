@@ -1,7 +1,5 @@
 #include "Input.h"
 
-#include <glfw/glfw3.h>
-
 namespace ai
 {
 	bool Input::smKeyboardKeys[1024];

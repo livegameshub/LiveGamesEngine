@@ -8,11 +8,6 @@ namespace ai
 	class ENGINE_API BasicResource : public BasicElement
 	{
 	public:
-		enum BasicResourceFlag : glm::u32
-		{
-			IS_UNLOADED = 1
-		};
-
 		BasicResource(glm::u32 id);
 		BasicResource(glm::u32 id, const Flag& flag);
 		BasicResource(glm::u32 id, const std::string& file);

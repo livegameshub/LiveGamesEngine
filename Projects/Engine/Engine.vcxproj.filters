@@ -50,6 +50,9 @@
     <Filter Include="Source\Scenes\Manager">
       <UniqueIdentifier>{c491d7ca-8fa1-45bc-a4ce-f344e2661e72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Scenes\Nodes\Lights">
+      <UniqueIdentifier>{7d0b0788-af38-47aa-b491-e6a16c57a7b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
@@ -118,9 +121,6 @@
     <ClInclude Include="Source\MeshResource.h">
       <Filter>Source\Resources\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MaterialResource.h">
-      <Filter>Source\Resources\Materials</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ProgramResource.h">
       <Filter>Source\Resources</Filter>
     </ClInclude>
@@ -135,6 +135,15 @@
     </ClInclude>
     <ClInclude Include="Source\RendererState.h">
       <Filter>Source\Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BasicMaterialResource.h">
+      <Filter>Source\Resources\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LightNode.h">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectionalLightNode.h">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -198,9 +207,6 @@
     <ClCompile Include="Source\MeshResource.cpp">
       <Filter>Source\Resources\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MaterialResource.cpp">
-      <Filter>Source\Resources\Materials</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ProgramResource.cpp">
       <Filter>Source\Resources</Filter>
     </ClCompile>
@@ -215,6 +221,15 @@
     </ClCompile>
     <ClCompile Include="Source\RendererState.cpp">
       <Filter>Source\Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicMaterialResource.cpp">
+      <Filter>Source\Resources\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LightNode.cpp">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectionalLightNode.cpp">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

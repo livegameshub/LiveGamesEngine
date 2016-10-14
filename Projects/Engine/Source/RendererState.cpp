@@ -6,7 +6,7 @@ namespace ai
 	glm::u32 RendererState::smCurrentProgramId = 0;
 	glm::u32 RendererState::smCurrentMaterialId = 0;
 
-	bool RendererState::CheckMeshId(glm::u32 id)
+	bool RendererState::checkMeshId(glm::u32 id)
 	{
 		if (smCurrentMeshId != id)
 		{
@@ -18,7 +18,7 @@ namespace ai
 		return false;
 	}
 
-	bool RendererState::CheckProgramId(glm::u32 id)
+	bool RendererState::checkProgramId(glm::u32 id)
 	{
 		if (smCurrentProgramId != id)
 		{
@@ -30,7 +30,7 @@ namespace ai
 		return false;
 	}
 
-	bool RendererState::CheckMaterialId(glm::u32 id)
+	bool RendererState::checkMaterialId(glm::u32 id)
 	{
 		if (smCurrentMaterialId != id)
 		{
