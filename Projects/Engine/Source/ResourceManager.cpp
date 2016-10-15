@@ -8,33 +8,37 @@ namespace ai
 {
 	void ResourceManager::flushPendingItems()
 	{
-		for (int i = 0; i < mItemsToLoad.size(); i++)
+		/* we use the classic for because the collection can grow */
+
+		for (int i = 0; i < mPendingItems.size(); i++)
 		{
-			mItemsToLoad[i]->load();
+			const BasicResourceContainer& item = mPendingItems[i];
+
+			if (item.flag.isSet(BasicResourceContainer::LOAD_ACTION))
+			{
+				item.resource->load();
+			}
+			else if (item.flag.isSet(BasicResourceContainer::UNLOAD_ACTION))
+			{
+				item.resource->unload();
+			}
 		}
 
-		mItemsToLoad.clear();
-
-		for (int i = 0; i < mItemsToUnload.size(); i++)
-		{
-			mItemsToUnload[i]->unload();
-		}
-
-		mItemsToUnload.clear();
+		mPendingItems.clear();
 	}
 
-	void ResourceManager::addItemToLoad(BasicResource* resource)
+	void ResourceManager::load(BasicResource* resource)
 	{
 		assert(resource != nullptr);
 
-		mItemsToLoad.push_back(resource);
+		mPendingItems.push_back(BasicResourceContainer(resource, BasicResourceContainer::LOAD_ACTION));
 	}
 
-	void ResourceManager::addItemToUnload(BasicResource* resource)
+	void ResourceManager::unload(BasicResource* resource)
 	{
 		assert(resource != nullptr);
 
-		mItemsToUnload.push_back(resource);
+		mPendingItems.push_back(BasicResourceContainer(resource, BasicResourceContainer::UNLOAD_ACTION));
 	}
 
 	void ResourceManager::release()

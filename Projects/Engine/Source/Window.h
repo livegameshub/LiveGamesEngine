@@ -19,7 +19,7 @@ namespace ai
 
 		bool setNewSize(const glm::ivec2& size);
 		void swapBuffers() const;
-		void draw();
+		void draw() const;
 
 		Renderer& getRenderer();
 

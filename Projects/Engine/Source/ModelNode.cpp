@@ -24,8 +24,8 @@ namespace ai
 		assert(mMesh != nullptr);
 		assert(mMaterial != nullptr);
 
-		ResourceManager::getInstance().addItemToUnload(mMesh);
-		ResourceManager::getInstance().addItemToUnload(mMaterial);
+		ResourceManager::getInstance().unload(mMesh);
+		ResourceManager::getInstance().unload(mMaterial);
 	}
 
 	void ModelNode::setMesh(MeshResource* mesh)
@@ -34,12 +34,12 @@ namespace ai
 
 		if (mMesh)
 		{
-			ResourceManager::getInstance().addItemToUnload(mMesh);
+			ResourceManager::getInstance().unload(mMesh);
 		}
 
 		mMesh = mesh;
 
-		ResourceManager::getInstance().addItemToLoad(mMesh);
+		ResourceManager::getInstance().load(mMesh);
 	}
 
 	void ModelNode::setMaterial(BasicMaterialResource* material)
@@ -48,12 +48,12 @@ namespace ai
 
 		if (mMaterial)
 		{
-			ResourceManager::getInstance().addItemToUnload(mMaterial);
+			ResourceManager::getInstance().unload(mMaterial);
 		}
 
 		mMaterial = material;
 
-		ResourceManager::getInstance().addItemToLoad(mMaterial);
+		ResourceManager::getInstance().load(mMaterial);
 	}
 
 	BasicMaterialResource* ModelNode::getMaterial() const

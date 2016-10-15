@@ -130,6 +130,7 @@
     <ClInclude Include="Source\BasicComponent.h" />
     <ClInclude Include="Source\BasicElement.h" />
     <ClInclude Include="Source\BasicResource.h" />
+    <ClInclude Include="Source\BasicResourceContainer.h" />
     <ClInclude Include="Source\BasicScene.h" />
     <ClInclude Include="Source\CameraNode.h" />
     <ClInclude Include="Source\Console.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Source\BasicComponent.cpp" />
     <ClCompile Include="Source\BasicElement.cpp" />
     <ClCompile Include="Source\BasicResource.cpp" />
+    <ClCompile Include="Source\BasicResourceContainer.cpp" />
     <ClCompile Include="Source\BasicScene.cpp" />
     <ClCompile Include="Source\CameraNode.cpp" />
     <ClCompile Include="Source\Console.cpp" />

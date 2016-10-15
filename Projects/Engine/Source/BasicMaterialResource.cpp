@@ -55,12 +55,12 @@ namespace ai
 
 		if (mProgram)
 		{
-			ResourceManager::getInstance().addItemToUnload(mProgram);
+			ResourceManager::getInstance().unload(mProgram);
 		}
 
 		mProgram = program;
 
-		ResourceManager::getInstance().addItemToLoad(mProgram);
+		ResourceManager::getInstance().load(mProgram);
 	}
 
 	bool BasicMaterialResource::create()
@@ -80,7 +80,7 @@ namespace ai
 	{
 		assert(mProgram != nullptr);
 
-		ResourceManager::getInstance().addItemToUnload(mProgram);
+		ResourceManager::getInstance().unload(mProgram);
 
 		return true;
 	}

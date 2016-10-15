@@ -29,7 +29,7 @@ namespace ai
 	{
 		if (isMain)
 		{
-			#ifndef _DEBUG
+			#if (!defined _DEBUG && defined WINDOWS_BUILD)
 
 			// in the release we should be maximmized
 			glfwWindowHint(GLFW_MAXIMIZED, true);
@@ -114,7 +114,7 @@ namespace ai
 		glfwSwapBuffers(mWindowPtr);
 	}
 
-	void Window::draw()
+	void Window::draw() const
 	{
 		mRenderer.draw();
 	}

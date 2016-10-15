@@ -53,6 +53,9 @@
     <Filter Include="Source\Scenes\Nodes\Lights">
       <UniqueIdentifier>{7d0b0788-af38-47aa-b491-e6a16c57a7b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Resources\Util">
+      <UniqueIdentifier>{ad0d0e63-79fd-4f01-8a1e-3a6e8077d3a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
@@ -145,6 +148,9 @@
     <ClInclude Include="Source\DirectionalLightNode.h">
       <Filter>Source\Scenes\Nodes\Lights</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BasicResourceContainer.h">
+      <Filter>Source\Resources\Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -230,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="Source\DirectionalLightNode.cpp">
       <Filter>Source\Scenes\Nodes\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicResourceContainer.cpp">
+      <Filter>Source\Resources\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

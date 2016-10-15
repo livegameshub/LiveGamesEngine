@@ -1,10 +1,12 @@
 #ifndef _RESOURCE_MANAGER_H_
 #define _RESOURCE_MANAGER_H_
 
-#include "Flag.h"
+#include "BasicResourceContainer.h"
 
 namespace ai
 {
+	struct BasicResourceContainer;
+
 	class MeshResource;
 	class BasicMaterialResource;
 	class ProgramResource;
@@ -17,10 +19,11 @@ namespace ai
 		void release();
 		void flushPendingItems();
 
+		void load(BasicResource* resource);
+		void unload(BasicResource* resource);
+
 		void removeResource(glm::u32 id);
 		void addResource(BasicResource* resource);
-		void addItemToLoad(BasicResource* resource);
-		void addItemToUnload(BasicResource* resource);
 		
 		BasicResource* getResource(glm::u32 id) const;
 		BasicResource* operator[](glm::u32 id) const;
@@ -43,8 +46,7 @@ namespace ai
 
 	private:
 		std::map<glm::u32, BasicResource*> mAllResources;
-		std::vector<BasicResource*> mItemsToUnload;
-		std::vector<BasicResource*> mItemsToLoad;
+		std::vector<BasicResourceContainer> mPendingItems;
 	};
 }
 

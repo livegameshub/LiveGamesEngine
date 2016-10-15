@@ -105,7 +105,7 @@ namespace ai
 
 	void Engine::loop()
 	{
-		Window& main_window = mWindows[0];
+		const Window& main_window = mWindows[0];
 
 		/* check if we are not on break with this loop */
 		if (!mFlag.isSet(ENGINE_PAUSE_FLAG))
