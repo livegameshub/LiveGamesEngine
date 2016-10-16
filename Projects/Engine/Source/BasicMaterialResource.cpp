@@ -69,7 +69,11 @@ namespace ai
 
 		if (!mProgram->getFlag().isSet(ProgramResource::BASIC_MATERIAL_UNIFORMS))
 		{
-			mProgram->addUniforms({ UNIFORM_VIEW, UNIFORM_PROJECTION, UNIFORM_MODEL, UNIFORM_MATERIAL_DIFFUSE });
+			mProgram->addUniforms({ UNIFORM_VIEW, 
+									UNIFORM_PROJECTION, 
+									UNIFORM_MODEL, 
+									UNIFORM_MATERIAL_DIFFUSE });
+
 			mProgram->initUniforms();
 
 			mProgram->getFlag().add(ProgramResource::BASIC_MATERIAL_UNIFORMS);
@@ -85,5 +89,20 @@ namespace ai
 		ResourceManager::getInstance().unload(mProgram);
 
 		return true;
+	}
+
+	bool BasicMaterialResource::IsLighted() const
+	{
+		return mFlag.isSet(IS_LIGHTED);
+	}
+
+	bool BasicMaterialResource::IsTextured() const
+	{
+		return mFlag.isSet(IS_TEXTURED);
+	}
+
+	bool BasicMaterialResource::IsShiny() const
+	{
+		return mFlag.isSet(IS_SHINY);
 	}
 }

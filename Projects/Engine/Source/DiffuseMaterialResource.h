@@ -5,6 +5,8 @@
 
 namespace ai
 {
+	class DirectionalLightNode;
+
 	class ENGINE_API DiffuseMaterialResource : public BasicMaterialResource
 	{
 	public:
@@ -14,6 +16,7 @@ namespace ai
 		~DiffuseMaterialResource();
 
 		void uploadUniforms() const override;
+		void uploadUniforms(DirectionalLightNode* light) const;
 
 		void setSpecularColor(const glm::vec3& color);
 		void setSpecularShininess(glm::f32 value);

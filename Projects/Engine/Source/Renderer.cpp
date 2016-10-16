@@ -7,6 +7,8 @@
 #include "MeshResource.h"
 #include "BasicScene.h"
 #include "RendererState.h"
+#include "DiffuseMaterialResource.h"
+#include "DirectionalLightNode.h"
 
 namespace ai
 {
@@ -67,7 +69,7 @@ namespace ai
 
 	void Renderer::drawModel(const ModelNode* model) const
 	{
-		const BasicMaterialResource* material = model->getMaterial();
+		BasicMaterialResource* material = model->getMaterial();
 		assert(material != nullptr);
 
 		const ProgramResource* program = material->getProgram();
@@ -84,9 +86,21 @@ namespace ai
 		program->setUniform(UNIFORM_VIEW, camera->getViewMatrix());
 		program->setUniform(UNIFORM_PROJECTION, camera->getPerspecitiveMatrix());
 
+		if (material->IsLighted())
+		{
+			program->setUniform(UNIFORM_CAMERA_POSITION, camera->getTransform().getPosition());
+		}
+
 		if (RendererState::checkMaterialId(material->getId()))
 		{
 			material->uploadUniforms();
+
+			if (material->IsLighted())
+			{
+				program->setUniform(UNIFORM_AMBIENT_LIGHT, mScene->getAmbientLight());
+
+				static_cast<DiffuseMaterialResource*>(material)->uploadUniforms(static_cast<DirectionalLightNode*>(mScene->getLightByIndex(0)));
+			}
 		}
 
 		const MeshResource* mesh = model->getMesh();
@@ -97,6 +111,18 @@ namespace ai
 			mesh->bindVbo();
 			mesh->uploadAttributes(program->getAttributes());
 			mesh->bindIbo();
+
+			if (material->IsLighted())
+			{
+				if (model->getTransform().hasUniformScale())
+				{
+					program->setUniform(UNIFORM_NORMAL, glm::mat3(model->getTransform().getMatrix()));
+				}
+				else
+				{
+					program->setUniform(UNIFORM_NORMAL, glm::mat3(glm::transpose(glm::inverse(model->getTransform().getMatrix()))));
+				}
+			}
 		}
 
 		program->setUniform(UNIFORM_MODEL, model->getTransform().getMatrix());

@@ -47,7 +47,10 @@ namespace ai
 		CameraNode* createCamera(glm::u32 id, const glm::vec2& size, const glm::vec3& position);
 
 		/* lights */
-		DirectionalLightNode* createDirectionalLight(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, const glm::vec3& direction);
+		DirectionalLightNode* createDirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse, const glm::vec3& specular);
+
+		void setAmbientLight(const glm::vec3& ambient);
+		const glm::vec3& getAmbientLight() const;
 
 		const std::map<glm::u32, BasicNode*>& getNodes() const;
 		const std::vector<CameraNode*>& getCameras() const;
@@ -64,6 +67,8 @@ namespace ai
 
 		std::vector<CameraNode*> mCameras;
 		std::vector<LightNode*> mLights;
+
+		glm::vec3 mAmbientLight;
 	};
 }
 

@@ -20,6 +20,7 @@ namespace ai
 	private:
 		std::vector<ModelNode*> mCubes;
 
+		DirectionalLightNode* mDirectionalLight;
 		CameraNode* mCamera;
 	};
 }

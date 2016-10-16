@@ -73,9 +73,19 @@ namespace ai
 		glUniformMatrix4fv(mUniforms.at(uniform_name), 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
+	void ProgramResource::setUniform(const std::string& uniform_name, const glm::mat3& matrix) const
+	{
+		glUniformMatrix3fv(mUniforms.at(uniform_name), 1, GL_FALSE, glm::value_ptr(matrix));
+	}
+
 	void ProgramResource::setUniform(const std::string& uniform_name, const glm::vec3& vector) const
 	{
 		glUniform3f(mUniforms.at(uniform_name), vector.x, vector.y, vector.z);
+	}
+
+	void ProgramResource::setUniform(const std::string& uniform_name, const glm::vec2& vector) const
+	{
+		glUniform2f(mUniforms.at(uniform_name), vector.x, vector.y);
 	}
 
 	void ProgramResource::setUniform(const std::string& uniform_name, glm::f32 value)

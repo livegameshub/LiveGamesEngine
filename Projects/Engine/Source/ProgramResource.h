@@ -42,7 +42,9 @@ namespace ai
 		void addUniforms(const std::vector<std::string>& uniforms);
 
 		void setUniform(const std::string& uniform_name, const glm::mat4& matrix) const;
+		void setUniform(const std::string& uniform_name, const glm::mat3& matrix) const;
 		void setUniform(const std::string& uniform_name, const glm::vec3& vector) const;
+		void setUniform(const std::string& uniform_name, const glm::vec2& vector) const;
 		void setUniform(const std::string& uniform_name, glm::f32 value);
 		void setUniform(const std::string& uniform_name, glm::i32 value);
 

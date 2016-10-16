@@ -7,6 +7,7 @@ namespace ai
 {
 	BasicScene::BasicScene()
 		: mRootNode(0)
+		, mAmbientLight(0.1f)
 	{
 	}
 
@@ -139,6 +140,11 @@ namespace ai
 		return mLights[index];
 	}
 
+	const glm::vec3& BasicScene::getAmbientLight() const
+	{
+		return mAmbientLight;
+	}
+
 	const std::map<glm::u32, BasicNode*>& BasicScene::getNodes() const
 	{
 		return mNodes;
@@ -175,7 +181,7 @@ namespace ai
 		return node;
 	}
 
-	DirectionalLightNode* BasicScene::createDirectionalLight(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, const glm::vec3& direction)
+	DirectionalLightNode* BasicScene::createDirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse, const glm::vec3& specular)
 	{
 		assert(getNode(id) == nullptr);
 
@@ -185,6 +191,11 @@ namespace ai
 		addNode(light);
 
 		return light;
+	}
+
+	void BasicScene::setAmbientLight(const glm::vec3& ambient)
+	{
+		mAmbientLight = ambient;
 	}
 
 	ModelNode* BasicScene::createModel(glm::u32 id, MeshResource* mesh, BasicMaterialResource* material)
