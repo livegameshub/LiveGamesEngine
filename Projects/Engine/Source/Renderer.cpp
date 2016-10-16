@@ -78,12 +78,15 @@ namespace ai
 			program->use();
 		}
 
-		program->setUniform(UNIFORM_VIEW, mScene->getCameraByIndex(0)->getViewMatrix());
-		program->setUniform(UNIFORM_PROJECTION, mScene->getCameraByIndex(0)->getPerspecitiveMatrix());
+		const CameraNode* camera = mScene->getCameraByIndex(0);
+		assert(camera != nullptr);
+
+		program->setUniform(UNIFORM_VIEW, camera->getViewMatrix());
+		program->setUniform(UNIFORM_PROJECTION, camera->getPerspecitiveMatrix());
 
 		if (RendererState::checkMaterialId(material->getId()))
 		{
-			material->UploadUniforms();
+			material->uploadUniforms();
 		}
 
 		const MeshResource* mesh = model->getMesh();

@@ -34,7 +34,7 @@ namespace ai
 			// in the release we should be maximmized
 			glfwWindowHint(GLFW_MAXIMIZED, true);
 
-			#endif // _DEBUG
+			#endif // (!defined _DEBUG && defined WINDOWS_BUILD)
 
 			if (mSamples > 0)
 			{

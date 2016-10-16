@@ -9,6 +9,7 @@ namespace ai
 
 	class MeshResource;
 	class BasicMaterialResource;
+	class DiffuseMaterialResource;
 	class ProgramResource;
 	class BasicResource;
 	class ShaderResource;
@@ -38,6 +39,7 @@ namespace ai
 
 		/* materials */
 		BasicMaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);
+		DiffuseMaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag = 0);
 
 		/* meshes */
 		MeshResource* createMesh(glm::u32 id, const std::string& file);

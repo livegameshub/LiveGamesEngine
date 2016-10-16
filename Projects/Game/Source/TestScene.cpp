@@ -6,6 +6,7 @@
 #include "Time.h"
 #include "Input.h"
 #include "SceneManager.h"
+#include "DiffuseMaterialResource.h"
 
 namespace ai
 {
@@ -23,15 +24,15 @@ namespace ai
 		/* call the basic init function */
 		BasicScene::init();
 
-		ShaderResource* vertexShader = ResourceManager::getInstance().createShader(1, ShaderResource::VERTEX_SHADER, "DiffuseShader.vs");
-		ShaderResource* fragmentShader = ResourceManager::getInstance().createShader(2, ShaderResource::FRAGMENT_SHADER, "DiffuseShader.fs");
+		ShaderResource* vertexShader = ResourceManager::getInstance().createShader(1, ShaderResource::VERTEX_SHADER, "BasicShader.vs");
+		ShaderResource* fragmentShader = ResourceManager::getInstance().createShader(2, ShaderResource::FRAGMENT_SHADER, "BasicShader.fs");
 
 		ProgramResource* program = ResourceManager::getInstance().createProgram(3, { vertexShader, fragmentShader });
 		MeshResource* cube_mesh = ResourceManager::getInstance().createMesh(4, "Cube.mesh");
 
 		BasicMaterialResource* red_material = ResourceManager::getInstance().createMaterial(5, program, glm::vec3(1.0f, 0.0f, 0.0f));
-		BasicMaterialResource* blue_material = ResourceManager::getInstance().createMaterial(6, program, glm::vec3(0.0f, 0.0f, 1.0f));
 		BasicMaterialResource* yellow_material = ResourceManager::getInstance().createMaterial(7, program, glm::vec3(1.0f, 1.0f, 0.0f));
+		DiffuseMaterialResource* blue_material = ResourceManager::getInstance().createMaterial(6, program, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f);
 
 		mCamera = createCamera(1, Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 		mRootNode.addChild(mCamera);

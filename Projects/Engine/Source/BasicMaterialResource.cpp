@@ -29,7 +29,7 @@ namespace ai
 	{
 	}
 
-	void BasicMaterialResource::UploadUniforms() const
+	void BasicMaterialResource::uploadUniforms() const
 	{
 		mProgram->setUniform(UNIFORM_MATERIAL_DIFFUSE, mDiffuseColor);
 	}
@@ -67,10 +67,12 @@ namespace ai
 	{
 		assert(mProgram != nullptr);
 
-		if (mProgram->getUniforms().size() == 0)
+		if (!mProgram->getFlag().isSet(ProgramResource::BASIC_MATERIAL_UNIFORMS))
 		{
 			mProgram->addUniforms({ UNIFORM_VIEW, UNIFORM_PROJECTION, UNIFORM_MODEL, UNIFORM_MATERIAL_DIFFUSE });
 			mProgram->initUniforms();
+
+			mProgram->getFlag().add(ProgramResource::BASIC_MATERIAL_UNIFORMS);
 		}
 
 		return true;

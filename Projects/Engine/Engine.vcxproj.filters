@@ -151,6 +151,9 @@
     <ClInclude Include="Source\BasicResourceContainer.h">
       <Filter>Source\Resources\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Source\DiffuseMaterialResource.h">
+      <Filter>Source\Resources\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -239,6 +242,9 @@
     </ClCompile>
     <ClCompile Include="Source\BasicResourceContainer.cpp">
       <Filter>Source\Resources\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DiffuseMaterialResource.cpp">
+      <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

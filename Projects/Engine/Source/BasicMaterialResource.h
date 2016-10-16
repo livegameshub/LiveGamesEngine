@@ -29,15 +29,18 @@ namespace ai
 
 		virtual ~BasicMaterialResource();
 
-		void UploadUniforms() const;
+		virtual void uploadUniforms() const;
+
 		void setProgram(ProgramResource* program);
 		void setDiffuseColor(const glm::vec3& color);
 	
 		ProgramResource* getProgram() const;
 		const glm::vec3& getDiffuseColor() const;
 
+	protected:
+		virtual bool create();
+
 	private:
-		bool create() override;
 		bool release() override;
 
 		ProgramResource* mProgram;

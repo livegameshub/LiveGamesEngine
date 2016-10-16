@@ -2,7 +2,7 @@
 #include "ShaderResource.h"
 #include "ProgramResource.h"
 #include "MeshResource.h"
-#include "BasicMaterialResource.h"
+#include "DiffuseMaterialResource.h"
 
 namespace ai
 {
@@ -130,6 +130,18 @@ namespace ai
 		assert(getResource(id) == nullptr);
 
 		BasicMaterialResource* material = new BasicMaterialResource(id, diffuse, flag);
+		material->setProgram(program);
+
+		addResource(material);
+
+		return material;
+	}
+
+	DiffuseMaterialResource* ResourceManager::createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
+	{
+		assert(getResource(id) == nullptr);
+
+		DiffuseMaterialResource* material = new DiffuseMaterialResource(id, diffuse, specular, shininess, flag);
 		material->setProgram(program);
 
 		addResource(material);
