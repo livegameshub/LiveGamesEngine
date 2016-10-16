@@ -55,6 +55,18 @@ namespace ai
 		return mDrawType;
 	}
 
+	glm::u32 MeshResource::calculateVerticesArraySize(const Flag& flag)
+	{
+		glm::u32 reserve_size = 3;
+
+		if (flag.isSet(MESH_NORMAL_FLAG))
+		{
+			reserve_size += 3;
+		}
+
+		return reserve_size;
+	}
+
 	bool MeshResource::readDataFromFile()
 	{
 		std::ifstream read(ASSETS_PATH + mResourceFile, std::ios::in);

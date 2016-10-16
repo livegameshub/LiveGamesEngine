@@ -11,7 +11,7 @@
 
 int main()
 {
-	ai::SceneManager::getInstance().addScene(new ai::TestScene());
+	ai::SceneManager::getInstance().addScene(new ai::TestScene(glm::vec3(0.2f)));
 	ai::SceneManager::getInstance().addScene(new ai::BasicScene());
 	
 	ai::Engine::setup("Live Games Hub");

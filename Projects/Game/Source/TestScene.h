@@ -11,6 +11,8 @@ namespace ai
 	{
 	public:
 		TestScene();
+		TestScene(const glm::vec3& ambientLight);
+
 		~TestScene();
 
 		void init() override;

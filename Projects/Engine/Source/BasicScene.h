@@ -16,6 +16,7 @@ namespace ai
 	{
 	public:
 		BasicScene();
+		BasicScene(const glm::vec3& ambientLight);
 
 		virtual ~BasicScene();
 

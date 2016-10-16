@@ -56,6 +56,8 @@ namespace ai
 		glm::u32 getPrimitive() const;
 		glm::u32 getDrawType() const;
 
+		static glm::u32 calculateVerticesArraySize(const Flag& flag);
+
 	private:
 		bool create() override;
 		bool release() override;

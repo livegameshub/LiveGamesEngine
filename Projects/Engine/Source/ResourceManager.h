@@ -39,6 +39,7 @@ namespace ai
 
 		/* materials */
 		BasicMaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);
+
 		DiffuseMaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag = 0);
 
 		/* meshes */

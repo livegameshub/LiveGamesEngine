@@ -11,6 +11,12 @@ namespace ai
 	{
 	}
 
+	BasicScene::BasicScene(const glm::vec3& ambientLight)
+		: mRootNode(0)
+		, mAmbientLight(ambientLight)
+	{
+	}
+
 	BasicScene::~BasicScene()
 	{
 	}

@@ -12,7 +12,15 @@
 namespace ai
 {
 	TestScene::TestScene()
-		: mCamera(nullptr)
+		: mDirectionalLight(nullptr)
+		, mCamera(nullptr)
+	{
+	}
+
+	TestScene::TestScene(const glm::vec3& ambientLight)
+		: BasicScene(ambientLight)
+		, mDirectionalLight(nullptr)
+		, mCamera(nullptr)
 	{
 	}
 
@@ -24,8 +32,6 @@ namespace ai
 	{
 		/* call the basic init function */
 		BasicScene::init();
-
-		setAmbientLight(glm::vec3(0.2f));
 
 		ShaderResource* vertexShader = ResourceManager::getInstance().createShader(1, ShaderResource::VERTEX_SHADER, "BasicShader.vs");
 		ShaderResource* fragmentShader = ResourceManager::getInstance().createShader(2, ShaderResource::FRAGMENT_SHADER, "BasicShader.fs");
