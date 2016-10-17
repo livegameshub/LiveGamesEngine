@@ -89,6 +89,15 @@ namespace ai
 		if (material->IsLighted())
 		{
 			program->setUniform(UNIFORM_CAMERA_POSITION, camera->getTransform().getPosition());
+
+			if (model->getTransform().hasUniformScale())
+			{
+				program->setUniform(UNIFORM_NORMAL, glm::mat3(model->getTransform().getMatrix()));
+			}
+			else
+			{
+				program->setUniform(UNIFORM_NORMAL, glm::mat3(glm::transpose(glm::inverse(model->getTransform().getMatrix()))));
+			}
 		}
 
 		if (RendererState::checkMaterialId(material->getId()))
@@ -111,18 +120,6 @@ namespace ai
 			mesh->bindVbo();
 			mesh->uploadAttributes(program->getAttributes());
 			mesh->bindIbo();
-
-			if (material->IsLighted())
-			{
-				if (model->getTransform().hasUniformScale())
-				{
-					program->setUniform(UNIFORM_NORMAL, glm::mat3(model->getTransform().getMatrix()));
-				}
-				else
-				{
-					program->setUniform(UNIFORM_NORMAL, glm::mat3(glm::transpose(glm::inverse(model->getTransform().getMatrix()))));
-				}
-			}
 		}
 
 		program->setUniform(UNIFORM_MODEL, model->getTransform().getMatrix());

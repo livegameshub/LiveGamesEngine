@@ -33,7 +33,7 @@ namespace ai
 		}
 		else
 		{
-			mProgram->setUniform(UNIFORM_MATERIAL_SHININESS, glm::vec3());
+			mProgram->setUniform(UNIFORM_MATERIAL_SPECULAR, glm::vec3());
 		}
 	}
 

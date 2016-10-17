@@ -47,14 +47,14 @@ namespace ai
 		//MeshResource* sphere_mesh = ResourceManager::getInstance().createMesh(20, "Sphere.mesh");
 
 		BasicMaterialResource* red_material = ResourceManager::getInstance().createMaterial(5, program, glm::vec3(1.0f, 0.0f, 0.0f));
-		BasicMaterialResource* yellow_material = ResourceManager::getInstance().createMaterial(7, program, glm::vec3(1.0f, 1.0f, 0.0f));
+		DiffuseMaterialResource* yellow_material = ResourceManager::getInstance().createMaterial(7, program2, glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.5f), 32.0f);
 		DiffuseMaterialResource* blue_material = ResourceManager::getInstance().createMaterial(6, program2, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f, BasicMaterialResource::IS_SHINY);
 
 		mCamera = createCamera(1, Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 		mRootNode.addChild(mCamera);
 
 		mCubes.push_back(createModel(2, cube_mesh2, blue_material));
-		mCubes.push_back(createModel(3, cube_mesh, yellow_material));
+		mCubes.push_back(createModel(3, cube_mesh2, yellow_material));
 		mCubes.push_back(createModel(4, cube_mesh, red_material));
 
 		mCubes[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));

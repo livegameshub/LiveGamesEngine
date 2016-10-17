@@ -55,7 +55,7 @@ namespace ai
 		return mDrawType;
 	}
 
-	glm::u32 MeshResource::calculateVerticesArraySize(const Flag& flag)
+	glm::u32 MeshResource::calculateVerticesArraySize(glm::u32 size, const Flag& flag)
 	{
 		glm::u32 reserve_size = 3;
 
@@ -64,7 +64,7 @@ namespace ai
 			reserve_size += 3;
 		}
 
-		return reserve_size;
+		return size * reserve_size;
 	}
 
 	bool MeshResource::readDataFromFile()
@@ -85,12 +85,9 @@ namespace ai
 
 		mFlag.add(flag);
 
-		//u32 reserve_size = CalculateReserveSize();
-
 		std::vector<glm::f32> vertices;
-		// TODO 
-		// rezolve this reserve
-		//vertices.reserve(vertices_size * reserve_size);
+
+		vertices.reserve(calculateVerticesArraySize(vertices_size, flag));
 
 		for (glm::u32 i = 0; i < vertices_size; ++i)
 		{
