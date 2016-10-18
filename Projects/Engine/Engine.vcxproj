@@ -134,7 +134,7 @@
     <ClInclude Include="Source\BasicScene.h" />
     <ClInclude Include="Source\CameraNode.h" />
     <ClInclude Include="Source\Console.h" />
-    <ClInclude Include="Source\DiffuseMaterialResource.h" />
+    <ClInclude Include="Source\DiffuseMaterial.h" />
     <ClInclude Include="Source\DirectionalLightNode.h" />
     <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\EngineUtil.h" />
@@ -142,7 +142,7 @@
     <ClInclude Include="Source\FpsCounter.h" />
     <ClInclude Include="Source\Graphics.h" />
     <ClInclude Include="Source\Input.h" />
-    <ClInclude Include="Source\BasicMaterialResource.h" />
+    <ClInclude Include="Source\BasicMaterial.h" />
     <ClInclude Include="Source\LightNode.h" />
     <ClInclude Include="Source\MeshResource.h" />
     <ClInclude Include="Source\MeshData.h" />
@@ -153,8 +153,8 @@
     <ClInclude Include="Source\Random.h" />
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\RendererState.h" />
-    <ClInclude Include="Source\ResourceManager.h" />
-    <ClInclude Include="Source\SceneManager.h" />
+    <ClInclude Include="Source\Resources.h" />
+    <ClInclude Include="Source\Scenes.h" />
     <ClInclude Include="Source\ShaderResource.h" />
     <ClInclude Include="Source\Time.h" />
     <ClInclude Include="Source\TransformComponent.h" />
@@ -168,14 +168,14 @@
     <ClCompile Include="Source\BasicScene.cpp" />
     <ClCompile Include="Source\CameraNode.cpp" />
     <ClCompile Include="Source\Console.cpp" />
-    <ClCompile Include="Source\DiffuseMaterialResource.cpp" />
+    <ClCompile Include="Source\DiffuseMaterial.cpp" />
     <ClCompile Include="Source\DirectionalLightNode.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Flag.cpp" />
     <ClCompile Include="Source\FpsCounter.cpp" />
     <ClCompile Include="Source\Graphics.cpp" />
     <ClCompile Include="Source\Input.cpp" />
-    <ClCompile Include="Source\BasicMaterialResource.cpp" />
+    <ClCompile Include="Source\BasicMaterial.cpp" />
     <ClCompile Include="Source\LightNode.cpp" />
     <ClCompile Include="Source\MeshResource.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
@@ -185,8 +185,8 @@
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\RendererState.cpp" />
-    <ClCompile Include="Source\ResourceManager.cpp" />
-    <ClCompile Include="Source\SceneManager.cpp" />
+    <ClCompile Include="Source\Resources.cpp" />
+    <ClCompile Include="Source\Scenes.cpp" />
     <ClCompile Include="Source\ShaderResource.cpp" />
     <ClCompile Include="Source\Time.cpp" />
     <ClCompile Include="Source\TransformComponent.cpp" />

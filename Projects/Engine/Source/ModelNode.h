@@ -6,7 +6,7 @@
 namespace ai
 {
 	class MeshResource;
-	class BasicMaterialResource;
+	class BasicMaterial;
 
 	class ENGINE_API ModelNode : public BasicNode
 	{
@@ -15,17 +15,17 @@ namespace ai
 		~ModelNode();
 
 		void release() override;
-		void setMaterial(BasicMaterialResource* material);
+		void setMaterial(BasicMaterial* material);
 		void setMesh(MeshResource* mesh);
 
-		BasicMaterialResource* getMaterial() const;
+		BasicMaterial* getMaterial() const;
 		MeshResource* getMesh() const;
 
 		void setVisible(bool value);
 		bool isVisible() const;
 
 	private:
-		BasicMaterialResource* mMaterial;
+		BasicMaterial* mMaterial;
 		MeshResource* mMesh;
 
 		bool mIsVisible;

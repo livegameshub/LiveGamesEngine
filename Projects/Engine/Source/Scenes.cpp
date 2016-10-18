@@ -1,16 +1,16 @@
-#include "SceneManager.h"
-#include "ResourceManager.h"
+#include "Scenes.h"
+#include "Resources.h"
 #include "Engine.h"
 #include "BasicScene.h"
 
 namespace ai
 {
-	SceneManager::SceneManager()
+	Scenes::Scenes()
 		: mMainScene(nullptr)
 	{
 	}
 
-	void SceneManager::update()
+	void Scenes::update()
 	{
 		if (mMainScene)
 		{
@@ -18,7 +18,7 @@ namespace ai
 		}
 	}
 
-	void SceneManager::release()
+	void Scenes::release()
 	{
 		for (BasicScene* scene : mScenes)
 		{
@@ -32,14 +32,14 @@ namespace ai
 		}
 	}
 
-	void SceneManager::addScene(BasicScene* scene)
+	void Scenes::addScene(BasicScene* scene)
 	{
 		assert(scene != nullptr);
 
 		mScenes.push_back(scene);
 	}
 
-	void SceneManager::removeScene(glm::u32 index)
+	void Scenes::removeScene(glm::u32 index)
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
@@ -49,7 +49,7 @@ namespace ai
 		mScenes.erase(mScenes.begin() + index);
 	}
 
-	void SceneManager::setMainScene(glm::u32 index)
+	void Scenes::setMainScene(glm::u32 index)
 	{
 		BasicScene* new_scene = getScene(index);
 
@@ -68,13 +68,13 @@ namespace ai
 		mMainScene = new_scene;
 
 		/* process the resources */
-		ResourceManager::getInstance().flushPendingItems();
+		Resources::getInstance().flushPendingItems();
 
 		/* set the scene for the renderer */
 		Engine::getInstance().getWindowByIndex(0)->getRenderer().setScene(mMainScene);
 	}
 
-	BasicScene* SceneManager::getScene(glm::u32 index)
+	BasicScene* Scenes::getScene(glm::u32 index)
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
@@ -82,24 +82,24 @@ namespace ai
 		return mScenes[index];
 	}
 
-	BasicScene* SceneManager::operator[](glm::u32 index)
+	BasicScene* Scenes::operator[](glm::u32 index)
 	{
 		return getScene(index);
 	}
 
-	const BasicScene* SceneManager::getMainScene() const
+	const BasicScene* Scenes::getMainScene() const
 	{
 		return mMainScene;
 	}
 
-	const std::vector<BasicScene*>& SceneManager::getScenes() const
+	const std::vector<BasicScene*>& Scenes::getScenes() const
 	{
 		return mScenes;
 	}
 
-	SceneManager& SceneManager::getInstance()
+	Scenes& Scenes::getInstance()
 	{
-		static SceneManager instance;
+		static Scenes instance;
 
 		return instance;
 	}

@@ -2,8 +2,8 @@
 #include "Random.h"
 #include "Graphics.h"
 #include "Time.h"
-#include "SceneManager.h"
-#include "ResourceManager.h"
+#include "Scenes.h"
+#include "Resources.h"
 #include "CameraNode.h"
 #include "BasicScene.h"
 
@@ -100,7 +100,7 @@ namespace ai
 		Renderer::init();
 
 		/* the first scene is the main one */
-		SceneManager::getInstance().setMainScene(0);
+		Scenes::getInstance().setMainScene(0);
 	}
 
 	void Engine::loop()
@@ -118,7 +118,7 @@ namespace ai
 
 			#endif // _DEBUG
 
-			SceneManager::getInstance().update();
+			Scenes::getInstance().update();
 
 			main_window.draw();
 			main_window.swapBuffers();
@@ -140,8 +140,8 @@ namespace ai
 
 	void Engine::Release()
 	{
-		SceneManager::getInstance().release();
-		ResourceManager::getInstance().release();
+		Scenes::getInstance().release();
+		Resources::getInstance().release();
 
 		Window::releaseApi();
 	}
@@ -178,7 +178,7 @@ namespace ai
 		{
 			/* update the cameras from the main scene with the new size */
 
-			for (CameraNode* camera : SceneManager::getInstance().getMainScene()->getCameras())
+			for (CameraNode* camera : Scenes::getInstance().getMainScene()->getCameras())
 			{
 				assert(camera != nullptr);
 

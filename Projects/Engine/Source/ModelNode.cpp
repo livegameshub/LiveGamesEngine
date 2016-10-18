@@ -1,7 +1,7 @@
 #include "ModelNode.h"
-#include "ResourceManager.h"
+#include "Resources.h"
 #include "MeshResource.h"
-#include "BasicMaterialResource.h"
+#include "BasicMaterial.h"
 
 namespace ai
 {
@@ -24,8 +24,8 @@ namespace ai
 		assert(mMesh != nullptr);
 		assert(mMaterial != nullptr);
 
-		ResourceManager::getInstance().unload(mMesh);
-		ResourceManager::getInstance().unload(mMaterial);
+		Resources::getInstance().unload(mMesh);
+		Resources::getInstance().unload(mMaterial);
 	}
 
 	void ModelNode::setMesh(MeshResource* mesh)
@@ -34,29 +34,29 @@ namespace ai
 
 		if (mMesh)
 		{
-			ResourceManager::getInstance().unload(mMesh);
+			Resources::getInstance().unload(mMesh);
 		}
 
 		mMesh = mesh;
 
-		ResourceManager::getInstance().load(mMesh);
+		Resources::getInstance().load(mMesh);
 	}
 
-	void ModelNode::setMaterial(BasicMaterialResource* material)
+	void ModelNode::setMaterial(BasicMaterial* material)
 	{
 		assert(material != nullptr);
 
 		if (mMaterial)
 		{
-			ResourceManager::getInstance().unload(mMaterial);
+			Resources::getInstance().unload(mMaterial);
 		}
 
 		mMaterial = material;
 
-		ResourceManager::getInstance().load(mMaterial);
+		Resources::getInstance().load(mMaterial);
 	}
 
-	BasicMaterialResource* ModelNode::getMaterial() const
+	BasicMaterial* ModelNode::getMaterial() const
 	{
 		return mMaterial;
 	}

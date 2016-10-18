@@ -204,7 +204,7 @@ namespace ai
 		mAmbientLight = ambient;
 	}
 
-	ModelNode* BasicScene::createModel(glm::u32 id, MeshResource* mesh, BasicMaterialResource* material)
+	ModelNode* BasicScene::createModel(glm::u32 id, MeshResource* mesh, BasicMaterial* material)
 	{
 		assert(getNode(id) == nullptr);
 

@@ -1,30 +1,30 @@
-#include "DiffuseMaterialResource.h"
+#include "DiffuseMaterial.h"
 #include "ProgramResource.h"
 #include "DirectionalLightNode.h"
 
 namespace ai
 {
-	DiffuseMaterialResource::DiffuseMaterialResource(glm::u32 id)
-		: BasicMaterialResource(id, IS_LIGHTED)
+	DiffuseMaterial::DiffuseMaterial(glm::u32 id)
+		: BasicMaterial(id, IS_LIGHTED)
 		, mSpecularColor(1.0f)
 		, mSpecularShininess(0.0f)
 	{
 	}
 
-	DiffuseMaterialResource::DiffuseMaterialResource(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
-		: BasicMaterialResource(id, diffuse, flag | IS_LIGHTED)
+	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
+		: BasicMaterial(id, diffuse, flag | IS_LIGHTED)
 		, mSpecularColor(specular)
 		, mSpecularShininess(shininess)
 	{
 	}
 
-	DiffuseMaterialResource::~DiffuseMaterialResource()
+	DiffuseMaterial::~DiffuseMaterial()
 	{
 	}
 
-	void DiffuseMaterialResource::uploadUniforms() const
+	void DiffuseMaterial::uploadUniforms() const
 	{
-		BasicMaterialResource::uploadUniforms();
+		BasicMaterial::uploadUniforms();
 
 		if (IsShiny())
 		{
@@ -37,7 +37,7 @@ namespace ai
 		}
 	}
 
-	void DiffuseMaterialResource::uploadUniforms(DirectionalLightNode* light) const
+	void DiffuseMaterial::uploadUniforms(DirectionalLightNode* light) const
 	{
 		mProgram->setUniform(UNIFORM_DIRECTIONAL_LIGHT_DIFFUSE, light->getDiffuseColor());
 		mProgram->setUniform(UNIFORM_DIRECTIONAL_LIGHT_DIRECTION, light->getDirection());
@@ -48,27 +48,27 @@ namespace ai
 		}
 	}
 
-	void DiffuseMaterialResource::setSpecularColor(const glm::vec3& color)
+	void DiffuseMaterial::setSpecularColor(const glm::vec3& color)
 	{
 		mSpecularColor = color;
 	}
 
-	void DiffuseMaterialResource::setSpecularShininess(glm::f32 value)
+	void DiffuseMaterial::setSpecularShininess(glm::f32 value)
 	{
 		mSpecularShininess = value;
 	}
 
-	const glm::vec3& DiffuseMaterialResource::getSpecularColor() const
+	const glm::vec3& DiffuseMaterial::getSpecularColor() const
 	{
 		return mSpecularColor;
 	}
 
-	glm::f32 DiffuseMaterialResource::getSpecularShininess() const
+	glm::f32 DiffuseMaterial::getSpecularShininess() const
 	{
 		return mSpecularShininess;
 	}
 
-	bool DiffuseMaterialResource::create()
+	bool DiffuseMaterial::create()
 	{
 		if (!mProgram->getFlag().isSet(ProgramResource::DIFFUSE_MATERIAL_UNIFORMS))
 		{
@@ -84,6 +84,6 @@ namespace ai
 			mProgram->getFlag().add(ProgramResource::DIFFUSE_MATERIAL_UNIFORMS);
 		}
 
-		return BasicMaterialResource::create();
+		return BasicMaterial::create();
 	}
 }

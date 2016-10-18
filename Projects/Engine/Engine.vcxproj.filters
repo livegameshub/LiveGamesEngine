@@ -130,17 +130,8 @@
     <ClInclude Include="Source\ShaderResource.h">
       <Filter>Source\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ResourceManager.h">
-      <Filter>Source\Resources\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\SceneManager.h">
-      <Filter>Source\Scenes\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RendererState.h">
       <Filter>Source\Engine\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BasicMaterialResource.h">
-      <Filter>Source\Resources\Materials</Filter>
     </ClInclude>
     <ClInclude Include="Source\LightNode.h">
       <Filter>Source\Scenes\Nodes\Lights</Filter>
@@ -151,7 +142,16 @@
     <ClInclude Include="Source\BasicResourceContainer.h">
       <Filter>Source\Resources\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DiffuseMaterialResource.h">
+    <ClInclude Include="Source\Resources.h">
+      <Filter>Source\Resources\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scenes.h">
+      <Filter>Source\Scenes\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BasicMaterial.h">
+      <Filter>Source\Resources\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DiffuseMaterial.h">
       <Filter>Source\Resources\Materials</Filter>
     </ClInclude>
   </ItemGroup>
@@ -222,17 +222,8 @@
     <ClCompile Include="Source\ShaderResource.cpp">
       <Filter>Source\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ResourceManager.cpp">
-      <Filter>Source\Resources\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\SceneManager.cpp">
-      <Filter>Source\Scenes\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RendererState.cpp">
       <Filter>Source\Engine\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BasicMaterialResource.cpp">
-      <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
     <ClCompile Include="Source\LightNode.cpp">
       <Filter>Source\Scenes\Nodes\Lights</Filter>
@@ -243,7 +234,16 @@
     <ClCompile Include="Source\BasicResourceContainer.cpp">
       <Filter>Source\Resources\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DiffuseMaterialResource.cpp">
+    <ClCompile Include="Source\Resources.cpp">
+      <Filter>Source\Resources\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scenes.cpp">
+      <Filter>Source\Scenes\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicMaterial.cpp">
+      <Filter>Source\Resources\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DiffuseMaterial.cpp">
       <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,5 @@
-#ifndef _BASIC_MATERIAL_RESOURCE_H_
-#define _BASIC_MATERIAL_RESOURCE_H_
+#ifndef _BASIC_MATERIAL_H_
+#define _BASIC_MATERIAL_H_
 
 #include "BasicResource.h"
 
@@ -25,7 +25,7 @@ namespace ai
 {
 	class ProgramResource;
 
-	class ENGINE_API BasicMaterialResource : public BasicResource
+	class ENGINE_API BasicMaterial : public BasicResource
 	{
 	public:
 		enum MaterialProperties : glm::u32
@@ -35,11 +35,11 @@ namespace ai
 			IS_SHINY = 4
 		};
 
-		BasicMaterialResource(glm::u32 id);
-		BasicMaterialResource(glm::u32 id, const Flag& flag);
-		BasicMaterialResource(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
+		BasicMaterial(glm::u32 id);
+		BasicMaterial(glm::u32 id, const Flag& flag);
+		BasicMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
 
-		virtual ~BasicMaterialResource();
+		virtual ~BasicMaterial();
 
 		virtual void uploadUniforms() const;
 

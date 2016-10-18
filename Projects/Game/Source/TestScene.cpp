@@ -2,11 +2,11 @@
 #include "ShaderResource.h"
 #include "Engine.h"
 #include "Window.h"
-#include "ResourceManager.h"
+#include "Resources.h"
 #include "Time.h"
 #include "Input.h"
-#include "SceneManager.h"
-#include "DiffuseMaterialResource.h"
+#include "Scenes.h"
+#include "DiffuseMaterial.h"
 #include "DirectionalLightNode.h"
 
 namespace ai
@@ -33,25 +33,36 @@ namespace ai
 		/* call the basic init function */
 		BasicScene::init();
 
-		ShaderResource* vertexShader = ResourceManager::getInstance().createShader(1, ShaderResource::VERTEX_SHADER, "BasicShader.vs");
-		ShaderResource* fragmentShader = ResourceManager::getInstance().createShader(2, ShaderResource::FRAGMENT_SHADER, "BasicShader.fs");
+		// shaders 
 
-		ShaderResource* vertexShader2 = ResourceManager::getInstance().createShader(8, ShaderResource::VERTEX_SHADER, "DiffuseShader.vs");
-		ShaderResource* fragmentShader2 = ResourceManager::getInstance().createShader(9, ShaderResource::FRAGMENT_SHADER, "DiffuseShader.fs");
+		ShaderResource* vertexShader = Resources::getInstance().createShader(1, ShaderResource::VERTEX_SHADER, "BasicShader.vs");
+		ShaderResource* fragmentShader = Resources::getInstance().createShader(2, ShaderResource::FRAGMENT_SHADER, "BasicShader.fs");
 
-		ProgramResource* program = ResourceManager::getInstance().createProgram(3, { vertexShader, fragmentShader });
-		ProgramResource* program2 = ResourceManager::getInstance().createProgram(10, { vertexShader2, fragmentShader2 });
+		ShaderResource* vertexShader2 = Resources::getInstance().createShader(8, ShaderResource::VERTEX_SHADER, "DiffuseShader.vs");
+		ShaderResource* fragmentShader2 = Resources::getInstance().createShader(9, ShaderResource::FRAGMENT_SHADER, "DiffuseShader.fs");
 
-		MeshResource* cube_mesh = ResourceManager::getInstance().createMesh(4, "Cube.mesh");
-		MeshResource* cube_mesh2 = ResourceManager::getInstance().createMesh(11, "Cube2.mesh");
-		//MeshResource* sphere_mesh = ResourceManager::getInstance().createMesh(20, "Sphere.mesh");
+		// programs
 
-		BasicMaterialResource* red_material = ResourceManager::getInstance().createMaterial(5, program, glm::vec3(1.0f, 0.0f, 0.0f));
-		DiffuseMaterialResource* yellow_material = ResourceManager::getInstance().createMaterial(7, program2, glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.5f), 32.0f);
-		DiffuseMaterialResource* blue_material = ResourceManager::getInstance().createMaterial(6, program2, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f, BasicMaterialResource::IS_SHINY);
+		ProgramResource* program = Resources::getInstance().createProgram(3, { vertexShader, fragmentShader });
+		ProgramResource* program2 = Resources::getInstance().createProgram(10, { vertexShader2, fragmentShader2 });
+
+		// meshes
+
+		MeshResource* cube_mesh = Resources::getInstance().createMesh(4, "Cube.mesh");
+		MeshResource* cube_mesh2 = Resources::getInstance().createMesh(11, "Cube2.mesh");
+
+		// materials
+
+		BasicMaterial* red_material = Resources::getInstance().createMaterial(5, program, glm::vec3(1.0f, 0.0f, 0.0f));
+		DiffuseMaterial* yellow_material = Resources::getInstance().createMaterial(7, program2, glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.5f), 32.0f);
+		DiffuseMaterial* blue_material = Resources::getInstance().createMaterial(6, program2, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f, BasicMaterial::IS_SHINY);
+
+		// camera 
 
 		mCamera = createCamera(1, Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 		mRootNode.addChild(mCamera);
+
+		// models
 
 		mCubes.push_back(createModel(2, cube_mesh2, blue_material));
 		mCubes.push_back(createModel(3, cube_mesh2, yellow_material));
@@ -60,13 +71,15 @@ namespace ai
 		mCubes[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));
 		mCubes[2]->getTransform().setPosition(glm::vec3(3.5f, 0.0f, 0.0f));
 
-		mDirectionalLight = createDirectionalLight(5, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(1.0f), glm::vec3(0.5f));
-		mRootNode.addChild(mDirectionalLight);
-
 		for (auto cube : mCubes)
 		{
 			mRootNode.addChild(cube);
 		}
+
+		// light
+
+		mDirectionalLight = createDirectionalLight(5, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(1.0f), glm::vec3(0.5f));
+		mRootNode.addChild(mDirectionalLight);
 	}
 
 	void TestScene::update()
@@ -116,7 +129,7 @@ namespace ai
 
 		if (Input::isKeyDown(GLFW_KEY_SPACE))
 		{
-			SceneManager::getInstance().setMainScene(1);
+			Scenes::getInstance().setMainScene(1);
 		}
 	}
 

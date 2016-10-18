@@ -21,9 +21,15 @@
     <ClCompile Include="Source\TestScene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Source\TestScene2.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\TestScene.h">
+      <Filter>Source\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TestScene2.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

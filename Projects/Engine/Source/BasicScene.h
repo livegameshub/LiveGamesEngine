@@ -6,7 +6,7 @@
 namespace ai
 {
 	class DirectionalLightNode;
-	class BasicMaterialResource;
+	class BasicMaterial;
 	class MeshResource;
 	class ModelNode;
 	class CameraNode;
@@ -42,7 +42,7 @@ namespace ai
 		BasicNode* createNode(glm::u32 id);
 
 		/* model */
-		ModelNode* createModel(glm::u32 id, MeshResource* mesh, BasicMaterialResource* material);
+		ModelNode* createModel(glm::u32 id, MeshResource* mesh, BasicMaterial* material);
 
 		/* camera */
 		CameraNode* createCamera(glm::u32 id, const glm::vec2& size, const glm::vec3& position);

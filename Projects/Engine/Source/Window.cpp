@@ -29,7 +29,7 @@ namespace ai
 	{
 		if (isMain)
 		{
-			#if (!defined _DEBUG && defined WINDOWS_BUILD)
+			#if (defined NDEBUG && defined WINDOWS_BUILD)
 
 			// in the release we should be maximmized
 			glfwWindowHint(GLFW_MAXIMIZED, true);

@@ -1,5 +1,5 @@
-#ifndef _RESOURCE_MANAGER_H_
-#define _RESOURCE_MANAGER_H_
+#ifndef _RESOURCES_H_
+#define _RESOURCES_H_
 
 #include "BasicResourceContainer.h"
 
@@ -8,13 +8,13 @@ namespace ai
 	struct BasicResourceContainer;
 
 	class MeshResource;
-	class BasicMaterialResource;
-	class DiffuseMaterialResource;
+	class BasicMaterial;
+	class DiffuseMaterial;
 	class ProgramResource;
 	class BasicResource;
 	class ShaderResource;
 
-	class ENGINE_API ResourceManager
+	class ENGINE_API Resources
 	{
 	public:
 		void release();
@@ -38,14 +38,14 @@ namespace ai
 		ProgramResource* createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders);
 
 		/* materials */
-		BasicMaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);
+		BasicMaterial* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);
 
-		DiffuseMaterialResource* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag = 0);
+		DiffuseMaterial* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag = 0);
 
 		/* meshes */
 		MeshResource* createMesh(glm::u32 id, const std::string& file);
 
-		static ResourceManager& getInstance();
+		static Resources& getInstance();
 
 	private:
 		std::map<glm::u32, BasicResource*> mAllResources;
@@ -53,4 +53,4 @@ namespace ai
 	};
 }
 
-#endif // _RESOURCE_MANAGER_H_
+#endif // _RESOURCES_H_

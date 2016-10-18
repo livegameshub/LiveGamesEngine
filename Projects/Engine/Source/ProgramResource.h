@@ -38,15 +38,15 @@ namespace ai
 		void addShader(ShaderResource* shader);
 		void removeShader(glm::u32 type);
 
-		void addUniform(const std::string& uniform_name);
+		void addUniform(const std::string& name);
 		void addUniforms(const std::vector<std::string>& uniforms);
 
-		void setUniform(const std::string& uniform_name, const glm::mat4& matrix) const;
-		void setUniform(const std::string& uniform_name, const glm::mat3& matrix) const;
-		void setUniform(const std::string& uniform_name, const glm::vec3& vector) const;
-		void setUniform(const std::string& uniform_name, const glm::vec2& vector) const;
-		void setUniform(const std::string& uniform_name, glm::f32 value);
-		void setUniform(const std::string& uniform_name, glm::i32 value);
+		void setUniform(const std::string& name, const glm::mat4& matrix) const;
+		void setUniform(const std::string& name, const glm::mat3& matrix) const;
+		void setUniform(const std::string& name, const glm::vec3& vector) const;
+		void setUniform(const std::string& name, const glm::vec2& vector) const;
+		void setUniform(const std::string& name, glm::f32 value);
+		void setUniform(const std::string& name, glm::i32 value);
 
 		glm::i32 getAttributeLocation(glm::u32 index) const;
 

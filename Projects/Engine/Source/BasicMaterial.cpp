@@ -1,69 +1,69 @@
-#include "BasicMaterialResource.h"
-#include "ResourceManager.h"
+#include "BasicMaterial.h"
+#include "Resources.h"
 #include "ProgramResource.h"
 
 namespace ai
 {
-	BasicMaterialResource::BasicMaterialResource(glm::u32 id)
+	BasicMaterial::BasicMaterial(glm::u32 id)
 		: BasicResource(id)
 		, mProgram(nullptr)
 		, mDiffuseColor(1.0f)
 	{
 	}
 
-	BasicMaterialResource::BasicMaterialResource(glm::u32 id, const Flag& flag)
+	BasicMaterial::BasicMaterial(glm::u32 id, const Flag& flag)
 		: BasicResource(id, flag)
 		, mProgram(nullptr)
 		, mDiffuseColor(1.0f)
 	{
 	}
 
-	BasicMaterialResource::BasicMaterialResource(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
+	BasicMaterial::BasicMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
 		: BasicResource(id, flag)
 		, mProgram(nullptr)
 		, mDiffuseColor(diffuse)
 	{
 	}
 
-	BasicMaterialResource::~BasicMaterialResource()
+	BasicMaterial::~BasicMaterial()
 	{
 	}
 
-	void BasicMaterialResource::uploadUniforms() const
+	void BasicMaterial::uploadUniforms() const
 	{
 		mProgram->setUniform(UNIFORM_MATERIAL_DIFFUSE, mDiffuseColor);
 	}
 
-	const glm::vec3& BasicMaterialResource::getDiffuseColor() const
+	const glm::vec3& BasicMaterial::getDiffuseColor() const
 	{
 		return mDiffuseColor;
 	}
 
-	ProgramResource* BasicMaterialResource::getProgram() const
+	ProgramResource* BasicMaterial::getProgram() const
 	{
 		return mProgram;
 	}
 
-	void BasicMaterialResource::setDiffuseColor(const glm::vec3& color)
+	void BasicMaterial::setDiffuseColor(const glm::vec3& color)
 	{
 		mDiffuseColor = color;
 	}
 
-	void BasicMaterialResource::setProgram(ProgramResource* program)
+	void BasicMaterial::setProgram(ProgramResource* program)
 	{
 		assert(program != nullptr);
 
 		if (mProgram)
 		{
-			ResourceManager::getInstance().unload(mProgram);
+			Resources::getInstance().unload(mProgram);
 		}
 
 		mProgram = program;
 
-		ResourceManager::getInstance().load(mProgram);
+		Resources::getInstance().load(mProgram);
 	}
 
-	bool BasicMaterialResource::create()
+	bool BasicMaterial::create()
 	{
 		assert(mProgram != nullptr);
 
@@ -82,26 +82,26 @@ namespace ai
 		return true;
 	}
 
-	bool BasicMaterialResource::release()
+	bool BasicMaterial::release()
 	{
 		assert(mProgram != nullptr);
 
-		ResourceManager::getInstance().unload(mProgram);
+		Resources::getInstance().unload(mProgram);
 
 		return true;
 	}
 
-	bool BasicMaterialResource::IsLighted() const
+	bool BasicMaterial::IsLighted() const
 	{
 		return mFlag.isSet(IS_LIGHTED);
 	}
 
-	bool BasicMaterialResource::IsTextured() const
+	bool BasicMaterial::IsTextured() const
 	{
 		return mFlag.isSet(IS_TEXTURED);
 	}
 
-	bool BasicMaterialResource::IsShiny() const
+	bool BasicMaterial::IsShiny() const
 	{
 		return mFlag.isSet(IS_SHINY);
 	}

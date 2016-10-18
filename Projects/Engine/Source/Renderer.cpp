@@ -3,11 +3,11 @@
 #include "ModelNode.h"
 #include "CameraNode.h"
 #include "ProgramResource.h"
-#include "BasicMaterialResource.h"
+#include "BasicMaterial.h"
 #include "MeshResource.h"
 #include "BasicScene.h"
 #include "RendererState.h"
-#include "DiffuseMaterialResource.h"
+#include "DiffuseMaterial.h"
 #include "DirectionalLightNode.h"
 
 namespace ai
@@ -69,7 +69,7 @@ namespace ai
 
 	void Renderer::drawModel(const ModelNode* model) const
 	{
-		BasicMaterialResource* material = model->getMaterial();
+		BasicMaterial* material = model->getMaterial();
 		assert(material != nullptr);
 
 		const ProgramResource* program = material->getProgram();
@@ -108,7 +108,7 @@ namespace ai
 			{
 				program->setUniform(UNIFORM_AMBIENT_LIGHT, mScene->getAmbientLight());
 
-				static_cast<DiffuseMaterialResource*>(material)->uploadUniforms(static_cast<DirectionalLightNode*>(mScene->getLightByIndex(0)));
+				static_cast<DiffuseMaterial*>(material)->uploadUniforms(static_cast<DirectionalLightNode*>(mScene->getLightByIndex(0)));
 			}
 		}
 

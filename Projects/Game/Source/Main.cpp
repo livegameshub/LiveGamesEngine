@@ -6,13 +6,14 @@
 #endif // _DEBUG
 
 #include "Engine.h"
-#include "SceneManager.h"
+#include "Scenes.h"
 #include "TestScene.h"
+#include "TestScene2.h"
 
 int main()
 {
-	ai::SceneManager::getInstance().addScene(new ai::TestScene(glm::vec3(0.2f)));
-	ai::SceneManager::getInstance().addScene(new ai::BasicScene());
+	ai::Scenes::getInstance().addScene(new ai::TestScene(glm::vec3(0.2f)));
+	ai::Scenes::getInstance().addScene(new ai::TestScene2(glm::vec3(0.2f)));
 	
 	ai::Engine::setup("Live Games Hub");
 

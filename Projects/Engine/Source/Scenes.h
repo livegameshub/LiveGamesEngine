@@ -1,5 +1,5 @@
-#ifndef _SCENE_MANAGER_H_
-#define _SCENE_MANAGER_H_
+#ifndef _SCENES_H_
+#define _SCENES_H_
 
 #include "EngineUtil.h"
 
@@ -7,7 +7,7 @@ namespace ai
 {
 	class BasicScene;
 
-	class ENGINE_API SceneManager
+	class ENGINE_API Scenes
 	{
 	public:
 		void update();
@@ -23,15 +23,15 @@ namespace ai
 		const std::vector<BasicScene*>& getScenes() const;
 		const BasicScene* getMainScene() const;
 
-		static SceneManager& getInstance();
+		static Scenes& getInstance();
 
 	private:
 		std::vector<BasicScene*> mScenes;
 
 		BasicScene* mMainScene;
 
-		SceneManager();
+		Scenes();
 	};
 }
 
-#endif // _SCENE_MANAGER_H_
+#endif // _SCENES_H_
