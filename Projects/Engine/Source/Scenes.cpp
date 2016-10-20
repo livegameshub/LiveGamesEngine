@@ -1,7 +1,8 @@
 #include "Scenes.h"
 #include "Resources.h"
 #include "Engine.h"
-#include "BasicScene.h"
+#include "Scene.h"
+#include "Input.h"
 
 namespace ai
 {
@@ -20,7 +21,7 @@ namespace ai
 
 	void Scenes::release()
 	{
-		for (BasicScene* scene : mScenes)
+		for (Scene* scene : mScenes)
 		{
 			assert(scene != nullptr);
 
@@ -28,11 +29,10 @@ namespace ai
 
 			delete scene;
 			scene = nullptr;
-			
 		}
 	}
 
-	void Scenes::addScene(BasicScene* scene)
+	void Scenes::addScene(Scene* scene)
 	{
 		assert(scene != nullptr);
 
@@ -51,7 +51,7 @@ namespace ai
 
 	void Scenes::setMainScene(glm::u32 index)
 	{
-		BasicScene* new_scene = getScene(index);
+		Scene* new_scene = getScene(index);
 
 		assert(new_scene != nullptr);
 		
@@ -72,9 +72,12 @@ namespace ai
 
 		/* set the scene for the renderer */
 		Engine::getInstance().getWindowByIndex(0)->getRenderer().setScene(mMainScene);
+
+		/* reset the input */
+		Input::reset();
 	}
 
-	BasicScene* Scenes::getScene(glm::u32 index)
+	Scene* Scenes::getScene(glm::u32 index)
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
@@ -82,17 +85,17 @@ namespace ai
 		return mScenes[index];
 	}
 
-	BasicScene* Scenes::operator[](glm::u32 index)
+	Scene* Scenes::operator[](glm::u32 index)
 	{
 		return getScene(index);
 	}
 
-	const BasicScene* Scenes::getMainScene() const
+	const Scene* Scenes::getMainScene() const
 	{
 		return mMainScene;
 	}
 
-	const std::vector<BasicScene*>& Scenes::getScenes() const
+	const std::vector<Scene*>& Scenes::getScenes() const
 	{
 		return mScenes;
 	}

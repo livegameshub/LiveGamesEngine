@@ -1,7 +1,7 @@
-#ifndef _BASIC_MATERIAL_H_
-#define _BASIC_MATERIAL_H_
+#ifndef _MATERIAL_H_
+#define _MATERIAL_H_
 
-#include "BasicResource.h"
+#include "Resource.h"
 
 /* some useful constants */
 const std::string UNIFORM_VIEW = "u_view";
@@ -23,9 +23,9 @@ const std::string UNIFORM_DIRECTIONAL_LIGHT_DIRECTION = "u_directional_light.dir
 
 namespace ai
 {
-	class ProgramResource;
+	class Program;
 
-	class ENGINE_API BasicMaterial : public BasicResource
+	class ENGINE_API Material : public Resource
 	{
 	public:
 		enum MaterialProperties : glm::u32
@@ -35,18 +35,18 @@ namespace ai
 			IS_SHINY = 4
 		};
 
-		BasicMaterial(glm::u32 id);
-		BasicMaterial(glm::u32 id, const Flag& flag);
-		BasicMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
+		Material(glm::u32 id);
+		Material(glm::u32 id, const Flag& flag);
+		Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
 
-		virtual ~BasicMaterial();
+		virtual ~Material();
 
 		virtual void uploadUniforms() const;
 
-		void setProgram(ProgramResource* program);
+		void setProgram(Program* program);
 		void setDiffuseColor(const glm::vec3& color);
 	
-		ProgramResource* getProgram() const;
+		Program* getProgram() const;
 		const glm::vec3& getDiffuseColor() const;
 
 		bool IsLighted() const;
@@ -54,7 +54,7 @@ namespace ai
 		bool IsShiny() const;
 
 	protected:
-		ProgramResource* mProgram;
+		Program* mProgram;
 
 		virtual bool create();
 
@@ -65,4 +65,4 @@ namespace ai
 	};
 }
 
-#endif // _BASIC_MATERIAL_RESOURCE_H_
+#endif // _MATERIAL_H_

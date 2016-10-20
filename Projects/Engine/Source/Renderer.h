@@ -5,9 +5,9 @@
 
 namespace ai
 {
-	class BasicScene;
-	class BasicNode;
-	class ModelNode;
+	class Scene;
+	class Node;
+	class Model;
 	
 	class ENGINE_API Renderer
 	{
@@ -17,14 +17,14 @@ namespace ai
 
 		void draw() const;
 
-		void drawNode(const BasicNode* node) const;
-		void drawModel(const ModelNode* model) const;
-		void setScene(BasicScene* scene);
+		void drawNode(const Node* node) const;
+		void drawModel(const Model* model) const;
+		void setScene(Scene* scene);
 
 		static void init();
 
 	private:
-		BasicScene* mScene;
+		Scene* mScene;
 	};
 }
 

@@ -97,50 +97,11 @@
     <ClInclude Include="Source\BasicElement.h">
       <Filter>Source\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BasicResource.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MeshData.h">
       <Filter>Source\Resources\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BasicComponent.h">
-      <Filter>Source\Scenes\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BasicNode.h">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BasicScene.h">
-      <Filter>Source\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CameraNode.h">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ModelNode.h">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\TransformComponent.h">
-      <Filter>Source\Scenes\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MeshResource.h">
-      <Filter>Source\Resources\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ProgramResource.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ShaderResource.h">
-      <Filter>Source\Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RendererState.h">
       <Filter>Source\Engine\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\LightNode.h">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\DirectionalLightNode.h">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BasicResourceContainer.h">
-      <Filter>Source\Resources\Util</Filter>
     </ClInclude>
     <ClInclude Include="Source\Resources.h">
       <Filter>Source\Resources\Manager</Filter>
@@ -148,11 +109,50 @@
     <ClInclude Include="Source\Scenes.h">
       <Filter>Source\Scenes\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BasicMaterial.h">
-      <Filter>Source\Resources\Materials</Filter>
-    </ClInclude>
     <ClInclude Include="Source\DiffuseMaterial.h">
       <Filter>Source\Resources\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera.h">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Node.h">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Light.h">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DirectionalLight.h">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Source\Scenes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shader.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Program.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mesh.h">
+      <Filter>Source\Resources\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Material.h">
+      <Filter>Source\Resources\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Model.h">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene.h">
+      <Filter>Source\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Component.h">
+      <Filter>Source\Scenes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resource.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceContainer.h">
+      <Filter>Source\Resources\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -189,50 +189,11 @@
     <ClCompile Include="Source\BasicElement.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BasicResource.cpp">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MeshData.cpp">
       <Filter>Source\Resources\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BasicComponent.cpp">
-      <Filter>Source\Scenes\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BasicNode.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BasicScene.cpp">
-      <Filter>Source\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CameraNode.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ModelNode.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TransformComponent.cpp">
-      <Filter>Source\Scenes\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MeshResource.cpp">
-      <Filter>Source\Resources\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProgramResource.cpp">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ShaderResource.cpp">
-      <Filter>Source\Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RendererState.cpp">
       <Filter>Source\Engine\Render</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\LightNode.cpp">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DirectionalLightNode.cpp">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BasicResourceContainer.cpp">
-      <Filter>Source\Resources\Util</Filter>
     </ClCompile>
     <ClCompile Include="Source\Resources.cpp">
       <Filter>Source\Resources\Manager</Filter>
@@ -240,11 +201,50 @@
     <ClCompile Include="Source\Scenes.cpp">
       <Filter>Source\Scenes\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BasicMaterial.cpp">
-      <Filter>Source\Resources\Materials</Filter>
-    </ClCompile>
     <ClCompile Include="Source\DiffuseMaterial.cpp">
       <Filter>Source\Resources\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera.cpp">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Node.cpp">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Light.cpp">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DirectionalLight.cpp">
+      <Filter>Source\Scenes\Nodes\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.cpp">
+      <Filter>Source\Scenes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Shader.cpp">
+      <Filter>Source\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Program.cpp">
+      <Filter>Source\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.cpp">
+      <Filter>Source\Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Material.cpp">
+      <Filter>Source\Resources\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Model.cpp">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Component.cpp">
+      <Filter>Source\Scenes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resource.cpp">
+      <Filter>Source\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResourceContainer.cpp">
+      <Filter>Source\Resources\Util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

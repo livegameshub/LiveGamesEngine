@@ -1,18 +1,18 @@
 #include "DiffuseMaterial.h"
-#include "ProgramResource.h"
-#include "DirectionalLightNode.h"
+#include "Program.h"
+#include "DirectionalLight.h"
 
 namespace ai
 {
 	DiffuseMaterial::DiffuseMaterial(glm::u32 id)
-		: BasicMaterial(id, IS_LIGHTED)
+		: Material(id, IS_LIGHTED)
 		, mSpecularColor(1.0f)
 		, mSpecularShininess(0.0f)
 	{
 	}
 
 	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
-		: BasicMaterial(id, diffuse, flag | IS_LIGHTED)
+		: Material(id, diffuse, flag | IS_LIGHTED)
 		, mSpecularColor(specular)
 		, mSpecularShininess(shininess)
 	{
@@ -24,7 +24,7 @@ namespace ai
 
 	void DiffuseMaterial::uploadUniforms() const
 	{
-		BasicMaterial::uploadUniforms();
+		Material::uploadUniforms();
 
 		if (IsShiny())
 		{
@@ -37,7 +37,7 @@ namespace ai
 		}
 	}
 
-	void DiffuseMaterial::uploadUniforms(DirectionalLightNode* light) const
+	void DiffuseMaterial::uploadUniforms(DirectionalLight* light) const
 	{
 		mProgram->setUniform(UNIFORM_DIRECTIONAL_LIGHT_DIFFUSE, light->getDiffuseColor());
 		mProgram->setUniform(UNIFORM_DIRECTIONAL_LIGHT_DIRECTION, light->getDirection());
@@ -70,7 +70,7 @@ namespace ai
 
 	bool DiffuseMaterial::create()
 	{
-		if (!mProgram->getFlag().isSet(ProgramResource::DIFFUSE_MATERIAL_UNIFORMS))
+		if (!mProgram->getFlag().isSet(Program::DIFFUSE_MATERIAL_UNIFORMS))
 		{
 			mProgram->addUniforms({ UNIFORM_MATERIAL_SPECULAR, 
 									UNIFORM_MATERIAL_SHININESS,
@@ -81,9 +81,9 @@ namespace ai
 									UNIFORM_DIRECTIONAL_LIGHT_DIRECTION, 
 									UNIFORM_DIRECTIONAL_LIGHT_SPECULAR});
 
-			mProgram->getFlag().add(ProgramResource::DIFFUSE_MATERIAL_UNIFORMS);
+			mProgram->getFlag().add(Program::DIFFUSE_MATERIAL_UNIFORMS);
 		}
 
-		return BasicMaterial::create();
+		return Material::create();
 	}
 }

@@ -1,30 +1,27 @@
 #ifndef _TEST_SCENE2_H_
 #define _TEST_SCENE2_H_
 
-#include "BasicScene.h"
-#include "CameraNode.h"
-#include "ModelNode.h"
+#include "Scene.h"
+#include "Camera.h"
+#include "Model.h"
 
-namespace ai
+class TestScene2 : public ai::Scene
 {
-	class TestScene2 : public BasicScene
-	{
-	public:
-		TestScene2();
-		TestScene2(const glm::vec3& ambientLight);
+public:
+	TestScene2();
+	TestScene2(const glm::vec3& ambientLight);
 
-		~TestScene2();
+	~TestScene2();
 
-		void init() override;
-		void update() override;
-		void release() override;
+	void init() override;
+	void update() override;
+	void release() override;
 
-	private:
-		std::vector<ModelNode*> mSpheres;
+private:
+	std::vector<ai::Model*> mSpheres;
 
-		DirectionalLightNode* mDirectionalLight;
-		CameraNode* mCamera;
-	};
-}
+	ai::DirectionalLight* mDirectionalLight;
+	ai::Camera* mCamera;
+};
 
-#endif //_TEST_SCENE_H_
+#endif //_TEST_SCENE2_H_

@@ -2,8 +2,8 @@
 
 namespace ai
 {
-	bool Input::smKeyboardKeys[1024];
-	bool Input::smMouseClicks[10];
+	bool Input::smKeyboardKeys[KEYBOARD_KEYS_SIZE];
+	bool Input::smMouseClicks[MOUSE_CLICKS_SIZE];
 
 	glm::f32 Input::smMousePositionX;
 	glm::f32 Input::smMousePositionY;
@@ -56,5 +56,18 @@ namespace ai
 	glm::f32 Input::getMousePositionY()
 	{
 		return smMousePositionY;
+	}
+
+	void Input::reset()
+	{
+		for (int i = 0; i < KEYBOARD_KEYS_SIZE; ++i)
+		{
+			smKeyboardKeys[i] = false;
+		}
+
+		for (int i = 0; i < MOUSE_CLICKS_SIZE; ++i)
+		{
+			smMouseClicks[i] = false;
+		}
 	}
 }

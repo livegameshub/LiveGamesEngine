@@ -1,18 +1,18 @@
 #ifndef _RESOURCES_H_
 #define _RESOURCES_H_
 
-#include "BasicResourceContainer.h"
+#include "ResourceContainer.h"
 
 namespace ai
 {
 	struct BasicResourceContainer;
 
-	class MeshResource;
-	class BasicMaterial;
+	class Mesh;
+	class Material;
 	class DiffuseMaterial;
-	class ProgramResource;
-	class BasicResource;
-	class ShaderResource;
+	class Program;
+	class Resource;
+	class Shader;
 
 	class ENGINE_API Resources
 	{
@@ -20,36 +20,36 @@ namespace ai
 		void release();
 		void flushPendingItems();
 
-		void load(BasicResource* resource);
-		void unload(BasicResource* resource);
+		void load(Resource* resource);
+		void unload(Resource* resource);
 
 		void removeResource(glm::u32 id);
-		void addResource(BasicResource* resource);
+		void addResource(Resource* resource);
 		
-		BasicResource* getResource(glm::u32 id) const;
-		BasicResource* operator[](glm::u32 id) const;
+		Resource* getResource(glm::u32 id) const;
+		Resource* operator[](glm::u32 id) const;
 
-		const std::map<glm::u32, BasicResource*>& getAllResources() const;
+		const std::map<glm::u32, Resource*>& getAllResources() const;
 
 		/* shaders */
-		ShaderResource* createShader(glm::u32 id, glm::u32 type, const std::string& file);
+		Shader* createShader(glm::u32 id, glm::u32 type, const std::string& file);
 
 		/* programs */
-		ProgramResource* createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders);
+		Program* createProgram(glm::u32 id, const std::vector<Shader*> shaders);
 
 		/* materials */
-		BasicMaterial* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag = 0);
+		Material* createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const Flag& flag = 0);
 
-		DiffuseMaterial* createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag = 0);
+		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag = 0);
 
 		/* meshes */
-		MeshResource* createMesh(glm::u32 id, const std::string& file);
+		Mesh* createMesh(glm::u32 id, const std::string& file);
 
 		static Resources& getInstance();
 
 	private:
-		std::map<glm::u32, BasicResource*> mAllResources;
-		std::vector<BasicResourceContainer> mPendingItems;
+		std::map<glm::u32, Resource*> mAllResources;
+		std::vector<ResourceContainer> mPendingItems;
 	};
 }
 

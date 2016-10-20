@@ -1,7 +1,7 @@
-#ifndef _TRANSFORM_COMPONENT_H_
-#define _TRANSFORM_COMPONENT_H_
+#ifndef _TRANSFORM_H_
+#define _TRANSFORM_H_
 
-#include "BasicComponent.h"
+#include "Component.h"
 
 /* some useful constants */
 const glm::vec3 VECTOR_UP = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -10,7 +10,7 @@ const glm::vec3 VECTOR_FORWARD = glm::vec3(0.0f, 0.0f, -1.0f);
 
 namespace ai
 {
-	class ENGINE_API TransformComponent : public BasicComponent
+	class ENGINE_API Transform : public Component
 	{
 	public:
 		enum TransformFlag : glm::u32
@@ -19,10 +19,10 @@ namespace ai
 			NEW_ROTATION_SCALE_MATRIX = 2
 		};
 
-		TransformComponent();
-		TransformComponent(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale);
+		Transform();
+		Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale);
 
-		~TransformComponent();
+		~Transform();
 
 		void update() override;
 		void reset() override;
@@ -36,7 +36,7 @@ namespace ai
 		void rotateOnY(glm::f32 angle);
 		void rotateOnZ(glm::f32 angle);
 	
-		void setParentTransform(TransformComponent* transform);
+		void setParentTransform(Transform* transform);
 
 		void setOrientation(const glm::quat& orientation);
 		void setPosition(const glm::vec3& position);
@@ -47,11 +47,11 @@ namespace ai
 		const glm::vec3& getScale() const;
 
 		bool hasUniformScale() const;
-		TransformComponent* getParentTransform() const;
+		Transform* getParentTransform() const;
 		glm::mat4 getMatrix() const;
 
 	private:
-		TransformComponent* mParentTransform;
+		Transform* mParentTransform;
 
 		bool mHasUniformScale;
 
@@ -62,4 +62,4 @@ namespace ai
 	};
 }
 
-#endif // _TRANSFORM_COMPONENT_H_
+#endif // _TRANSFORM_H_

@@ -1,11 +1,11 @@
-#ifndef _LIGHT_NODE_H_
-#define _LIGHT_NODE_H_
+#ifndef _LIGHT_H_
+#define _LIGHT_H_
 
-#include "BasicNode.h"
+#include "Node.h"
 
 namespace ai
 {
-	class ENGINE_API LightNode : public BasicNode
+	class ENGINE_API Light : public Node
 	{
 	public:
 		enum LightType : glm::u32
@@ -15,11 +15,11 @@ namespace ai
 			SPOT_LIGHT
 		};
 
-		LightNode(glm::u32 id, glm::i32 type);
-		LightNode(glm::u32 id, glm::i32 type, const glm::vec3& diffuse);
-		LightNode(glm::u32 id, glm::i32 type, const glm::vec3& diffuse, const glm::vec3& specular);
+		Light(glm::u32 id, glm::i32 type);
+		Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse);
+		Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse, const glm::vec3& specular);
 
-		virtual ~LightNode();
+		virtual ~Light();
 		
 		void setDiffuseColor(const glm::vec3& color);
 		void setSpecularColor(const glm::vec3& color);
@@ -37,4 +37,4 @@ namespace ai
 	};
 }
 
-#endif
+#endif // _LIGHT_H_

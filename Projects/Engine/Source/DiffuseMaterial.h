@@ -1,13 +1,13 @@
 #ifndef _DIFFUSE_MATERIAL_H_
 #define _DIFFUSE_MATERIAL_H_
 
-#include "BasicMaterial.h"
+#include "Material.h"
 
 namespace ai
 {
-	class DirectionalLightNode;
+	class DirectionalLight;
 
-	class ENGINE_API DiffuseMaterial : public BasicMaterial
+	class ENGINE_API DiffuseMaterial : public Material
 	{
 	public:
 		DiffuseMaterial(glm::u32 id);
@@ -16,7 +16,7 @@ namespace ai
 		~DiffuseMaterial();
 
 		void uploadUniforms() const override;
-		void uploadUniforms(DirectionalLightNode* light) const;
+		void uploadUniforms(DirectionalLight* light) const;
 
 		void setSpecularColor(const glm::vec3& color);
 		void setSpecularShininess(glm::f32 value);
@@ -32,4 +32,4 @@ namespace ai
 	};
 }
 
-#endif // _DIFFUSE_MATERIAL_RESOURCE_H_
+#endif // _DIFFUSE_MATERIAL_H_

@@ -1,25 +1,25 @@
-#include "ModelNode.h"
+#include "Model.h"
 #include "Resources.h"
-#include "MeshResource.h"
-#include "BasicMaterial.h"
+#include "Mesh.h"
+#include "Material.h"
 
 namespace ai
 {
-	ModelNode::ModelNode(glm::u32 id) 
-		: BasicNode(id, MODEL_NODE)
+	Model::Model(glm::u32 id) 
+		: Node(id, MODEL_NODE)
 		, mMaterial(nullptr)
 		, mMesh(nullptr)
 		, mIsVisible(true)
 	{
 	}
 
-	ModelNode::~ModelNode()
+	Model::~Model()
 	{
 	}
 
-	void ModelNode::release()
+	void Model::release()
 	{
-		BasicNode::release();
+		Node::release();
 
 		assert(mMesh != nullptr);
 		assert(mMaterial != nullptr);
@@ -28,7 +28,7 @@ namespace ai
 		Resources::getInstance().unload(mMaterial);
 	}
 
-	void ModelNode::setMesh(MeshResource* mesh)
+	void Model::setMesh(Mesh* mesh)
 	{
 		assert(mesh != nullptr);
 
@@ -42,7 +42,7 @@ namespace ai
 		Resources::getInstance().load(mMesh);
 	}
 
-	void ModelNode::setMaterial(BasicMaterial* material)
+	void Model::setMaterial(Material* material)
 	{
 		assert(material != nullptr);
 
@@ -56,22 +56,22 @@ namespace ai
 		Resources::getInstance().load(mMaterial);
 	}
 
-	BasicMaterial* ModelNode::getMaterial() const
+	Material* Model::getMaterial() const
 	{
 		return mMaterial;
 	}
 
-	MeshResource* ModelNode::getMesh() const
+	Mesh* Model::getMesh() const
 	{
 		return mMesh;
 	}
 
-	void ModelNode::setVisible(bool value)
+	void Model::setVisible(bool value)
 	{
 		mIsVisible = value;
 	}
 
-	bool ModelNode::isVisible() const
+	bool Model::isVisible() const
 	{
 		return mIsVisible;
 	}

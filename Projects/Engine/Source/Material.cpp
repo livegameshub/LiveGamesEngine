@@ -1,55 +1,55 @@
-#include "BasicMaterial.h"
+#include "Material.h"
 #include "Resources.h"
-#include "ProgramResource.h"
+#include "Program.h"
 
 namespace ai
 {
-	BasicMaterial::BasicMaterial(glm::u32 id)
-		: BasicResource(id)
+	Material::Material(glm::u32 id)
+		: Resource(id)
 		, mProgram(nullptr)
 		, mDiffuseColor(1.0f)
 	{
 	}
 
-	BasicMaterial::BasicMaterial(glm::u32 id, const Flag& flag)
-		: BasicResource(id, flag)
+	Material::Material(glm::u32 id, const Flag& flag)
+		: Resource(id, flag)
 		, mProgram(nullptr)
 		, mDiffuseColor(1.0f)
 	{
 	}
 
-	BasicMaterial::BasicMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
-		: BasicResource(id, flag)
+	Material::Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
+		: Resource(id, flag)
 		, mProgram(nullptr)
 		, mDiffuseColor(diffuse)
 	{
 	}
 
-	BasicMaterial::~BasicMaterial()
+	Material::~Material()
 	{
 	}
 
-	void BasicMaterial::uploadUniforms() const
+	void Material::uploadUniforms() const
 	{
 		mProgram->setUniform(UNIFORM_MATERIAL_DIFFUSE, mDiffuseColor);
 	}
 
-	const glm::vec3& BasicMaterial::getDiffuseColor() const
+	const glm::vec3& Material::getDiffuseColor() const
 	{
 		return mDiffuseColor;
 	}
 
-	ProgramResource* BasicMaterial::getProgram() const
+	Program* Material::getProgram() const
 	{
 		return mProgram;
 	}
 
-	void BasicMaterial::setDiffuseColor(const glm::vec3& color)
+	void Material::setDiffuseColor(const glm::vec3& color)
 	{
 		mDiffuseColor = color;
 	}
 
-	void BasicMaterial::setProgram(ProgramResource* program)
+	void Material::setProgram(Program* program)
 	{
 		assert(program != nullptr);
 
@@ -63,11 +63,11 @@ namespace ai
 		Resources::getInstance().load(mProgram);
 	}
 
-	bool BasicMaterial::create()
+	bool Material::create()
 	{
 		assert(mProgram != nullptr);
 
-		if (!mProgram->getFlag().isSet(ProgramResource::BASIC_MATERIAL_UNIFORMS))
+		if (!mProgram->getFlag().isSet(Program::BASIC_MATERIAL_UNIFORMS))
 		{
 			mProgram->addUniforms({ UNIFORM_VIEW, 
 									UNIFORM_PROJECTION, 
@@ -76,13 +76,13 @@ namespace ai
 
 			mProgram->initUniforms();
 
-			mProgram->getFlag().add(ProgramResource::BASIC_MATERIAL_UNIFORMS);
+			mProgram->getFlag().add(Program::BASIC_MATERIAL_UNIFORMS);
 		}
 
 		return true;
 	}
 
-	bool BasicMaterial::release()
+	bool Material::release()
 	{
 		assert(mProgram != nullptr);
 
@@ -91,17 +91,17 @@ namespace ai
 		return true;
 	}
 
-	bool BasicMaterial::IsLighted() const
+	bool Material::IsLighted() const
 	{
 		return mFlag.isSet(IS_LIGHTED);
 	}
 
-	bool BasicMaterial::IsTextured() const
+	bool Material::IsTextured() const
 	{
 		return mFlag.isSet(IS_TEXTURED);
 	}
 
-	bool BasicMaterial::IsShiny() const
+	bool Material::IsShiny() const
 	{
 		return mFlag.isSet(IS_SHINY);
 	}

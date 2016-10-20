@@ -1,31 +1,31 @@
-#include "BasicResource.h"
+#include "Resource.h"
 
 namespace ai
 {
-	BasicResource::BasicResource(glm::u32 id)
+	Resource::Resource(glm::u32 id)
 		: BasicElement(id)
 		, mReferencesCounter(0)
 	{
 	}
 
-	BasicResource::BasicResource(glm::u32 id, const Flag& flag)
+	Resource::Resource(glm::u32 id, const Flag& flag)
 		: BasicElement(id, flag)
 		, mReferencesCounter(0)
 	{
 	}
 
-	BasicResource::BasicResource(glm::u32 id, const std::string& file)
+	Resource::Resource(glm::u32 id, const std::string& file)
 		: BasicElement(id)
 		, mResourceFile(file)
 		, mReferencesCounter(0)
 	{
 	}
 
-	BasicResource::~BasicResource()
+	Resource::~Resource()
 	{
 	}
 
-	bool BasicResource::load()
+	bool Resource::load()
 	{
 		if (!mReferencesCounter)
 		{
@@ -40,7 +40,7 @@ namespace ai
 		return true;
 	}
 
-	bool BasicResource::unload()
+	bool Resource::unload()
 	{
 		if (!mReferencesCounter)
 		{
@@ -60,17 +60,17 @@ namespace ai
 		return true;
 	}
 
-	void BasicResource::setResourceFile(const std::string& file)
+	void Resource::setResourceFile(const std::string& file)
 	{
 		mResourceFile = file;
 	}
 
-	std::string BasicResource::getResourceFile() const
+	const std::string& Resource::getResourceFile() const
 	{
 		return mResourceFile;
 	}
 
-	glm::u32 BasicResource::getReferencesCounter() const
+	glm::u32 Resource::getReferencesCounter() const
 	{
 		return mReferencesCounter;
 	}

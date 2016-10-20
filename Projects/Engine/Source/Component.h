@@ -1,11 +1,11 @@
-#ifndef _BASIC_COMPONENT_H_
-#define _BASIC_COMPONENT_H_
+#ifndef _COMPONENT_H_
+#define _COMPONENT_H_
 
 #include "Flag.h"
 
 namespace ai
 {
-	class ENGINE_API BasicComponent
+	class ENGINE_API Component
 	{
 	public:
 		enum ComponentType : glm::i32
@@ -13,12 +13,12 @@ namespace ai
 			TRANSFORM_COMPONENT
 		};
 
-		BasicComponent();
-		BasicComponent(glm::i32 type);
-		BasicComponent(glm::i32 type, const Flag& flag);
-		BasicComponent(const Flag& flag);
+		Component();
+		Component(glm::i32 type);
+		Component(glm::i32 type, const Flag& flag);
+		Component(const Flag& flag);
 
-		virtual ~BasicComponent();
+		virtual ~Component();
 
 		virtual void update() = 0;
 		virtual void reset() = 0;
@@ -41,4 +41,4 @@ namespace ai
 	};
 }
 
-#endif // _BASIC_COMPONENT_H_
+#endif // _COMPONENT_H_

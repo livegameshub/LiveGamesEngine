@@ -4,8 +4,8 @@
 #include "Time.h"
 #include "Scenes.h"
 #include "Resources.h"
-#include "CameraNode.h"
-#include "BasicScene.h"
+#include "Camera.h"
+#include "Scene.h"
 
 #ifdef _DEBUG
 	#include "FpsCounter.h"
@@ -178,7 +178,7 @@ namespace ai
 		{
 			/* update the cameras from the main scene with the new size */
 
-			for (CameraNode* camera : Scenes::getInstance().getMainScene()->getCameras())
+			for (Camera* camera : Scenes::getInstance().getMainScene()->getCameras())
 			{
 				assert(camera != nullptr);
 

@@ -1,7 +1,7 @@
 #include "Resources.h"
-#include "ShaderResource.h"
-#include "ProgramResource.h"
-#include "MeshResource.h"
+#include "Shader.h"
+#include "Program.h"
+#include "Mesh.h"
 #include "DiffuseMaterial.h"
 
 namespace ai
@@ -12,13 +12,13 @@ namespace ai
 
 		for (int i = 0; i < mPendingItems.size(); i++)
 		{
-			const BasicResourceContainer& item = mPendingItems[i];
+			const ResourceContainer& item = mPendingItems[i];
 
-			if (item.flag.isSet(BasicResourceContainer::LOAD_ACTION))
+			if (item.flag.isSet(ResourceContainer::LOAD_ACTION))
 			{
 				item.resource->load();
 			}
-			else if (item.flag.isSet(BasicResourceContainer::UNLOAD_ACTION))
+			else if (item.flag.isSet(ResourceContainer::UNLOAD_ACTION))
 			{
 				item.resource->unload();
 			}
@@ -27,18 +27,18 @@ namespace ai
 		mPendingItems.clear();
 	}
 
-	void Resources::load(BasicResource* resource)
+	void Resources::load(Resource* resource)
 	{
 		assert(resource != nullptr);
 
-		mPendingItems.push_back(BasicResourceContainer(resource, BasicResourceContainer::LOAD_ACTION));
+		mPendingItems.push_back(ResourceContainer(resource, ResourceContainer::LOAD_ACTION));
 	}
 
-	void Resources::unload(BasicResource* resource)
+	void Resources::unload(Resource* resource)
 	{
 		assert(resource != nullptr);
 
-		mPendingItems.push_back(BasicResourceContainer(resource, BasicResourceContainer::UNLOAD_ACTION));
+		mPendingItems.push_back(ResourceContainer(resource, ResourceContainer::UNLOAD_ACTION));
 	}
 
 	void Resources::release()
@@ -47,7 +47,7 @@ namespace ai
 
 		for (auto it : mAllResources)
 		{
-			BasicResource* resource = it.second;
+			Resource* resource = it.second;
 
 			assert(resource != nullptr);
 			assert(resource->getReferencesCounter() == 0);
@@ -68,7 +68,7 @@ namespace ai
 		mAllResources.erase(it);
 	}
 
-	void Resources::addResource(BasicResource* resource)
+	void Resources::addResource(Resource* resource)
 	{
 		assert(resource != nullptr);
 		assert(mAllResources.find(resource->getId()) == mAllResources.end());
@@ -76,7 +76,7 @@ namespace ai
 		mAllResources.insert({ resource->getId(), resource });	
 	}
 
-	BasicResource* Resources::getResource(glm::u32 id) const
+	Resource* Resources::getResource(glm::u32 id) const
 	{
 		auto it = mAllResources.find(id);
 
@@ -88,21 +88,21 @@ namespace ai
 		return it->second;
 	}
 
-	BasicResource* Resources::operator[](glm::u32 id) const
+	Resource* Resources::operator[](glm::u32 id) const
 	{
 		return getResource(id);
 	}
 
-	const std::map<glm::u32, BasicResource*>& Resources::getAllResources() const
+	const std::map<glm::u32, Resource*>& Resources::getAllResources() const
 	{
 		return mAllResources;
 	}
 
-	ProgramResource* Resources::createProgram(glm::u32 id, const std::vector<ShaderResource*> shaders)
+	Program* Resources::createProgram(glm::u32 id, const std::vector<Shader*> shaders)
 	{
 		assert(getResource(id) == nullptr);
 
-		ProgramResource* program = new ProgramResource(id);
+		Program* program = new Program(id);
 
 		for (auto shader : shaders)
 		{
@@ -114,22 +114,22 @@ namespace ai
 		return program;
 	}
 
-	ShaderResource* Resources::createShader(glm::u32 id, glm::u32 type, const std::string& file)
+	Shader* Resources::createShader(glm::u32 id, glm::u32 type, const std::string& file)
 	{
 		assert(getResource(id) == nullptr);
 
-		ShaderResource* shader = new ShaderResource(id, type, file);
+		Shader* shader = new Shader(id, type, file);
 
 		addResource(shader);
 
 		return shader;
 	}
 
-	BasicMaterial* Resources::createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const Flag& flag)
+	Material* Resources::createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const Flag& flag)
 	{
 		assert(getResource(id) == nullptr);
 
-		BasicMaterial* material = new BasicMaterial(id, diffuse, flag);
+		Material* material = new Material(id, diffuse, flag);
 		material->setProgram(program);
 
 		addResource(material);
@@ -137,7 +137,7 @@ namespace ai
 		return material;
 	}
 
-	DiffuseMaterial* Resources::createMaterial(glm::u32 id, ProgramResource* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
+	DiffuseMaterial* Resources::createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
 	{
 		assert(getResource(id) == nullptr);
 
@@ -149,11 +149,11 @@ namespace ai
 		return material;
 	}
 
-	MeshResource* Resources::createMesh(glm::u32 id, const std::string& file)
+	Mesh* Resources::createMesh(glm::u32 id, const std::string& file)
 	{
 		assert(getResource(id) == nullptr);
 
-		MeshResource* mesh = new MeshResource(id, file);
+		Mesh* mesh = new Mesh(id, file);
 
 		addResource(mesh);
 

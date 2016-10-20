@@ -5,7 +5,7 @@
 
 namespace ai
 {
-	class BasicScene;
+	class Scene;
 
 	class ENGINE_API Scenes
 	{
@@ -13,22 +13,22 @@ namespace ai
 		void update();
 		void release();
 
-		void addScene(BasicScene* scene);
+		void addScene(Scene* scene);
 		void setMainScene(glm::u32 index);
 		void removeScene(glm::u32 index);
 
-		BasicScene* getScene(glm::u32 index);
-		BasicScene* operator[](glm::u32 index);
+		Scene* getScene(glm::u32 index);
+		Scene* operator[](glm::u32 index);
 
-		const std::vector<BasicScene*>& getScenes() const;
-		const BasicScene* getMainScene() const;
+		const std::vector<Scene*>& getScenes() const;
+		const Scene* getMainScene() const;
 
 		static Scenes& getInstance();
 
 	private:
-		std::vector<BasicScene*> mScenes;
+		std::vector<Scene*> mScenes;
 
-		BasicScene* mMainScene;
+		Scene* mMainScene;
 
 		Scenes();
 	};

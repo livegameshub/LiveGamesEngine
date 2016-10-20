@@ -1,17 +1,17 @@
-#include "TransformComponent.h"
+#include "Transform.h"
 
 namespace ai
 {
-	TransformComponent::TransformComponent()
-		: BasicComponent(TRANSFORM_COMPONENT)
+	Transform::Transform()
+		: Component(TRANSFORM_COMPONENT)
 		, mParentTransform(nullptr)
 		, mHasUniformScale(true)
 		, mScale(1.0f)
 	{
 	}
 
-	TransformComponent::TransformComponent(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
-		: BasicComponent(TRANSFORM_COMPONENT, NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
+	Transform::Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
+		: Component(TRANSFORM_COMPONENT, NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
 		, mParentTransform(nullptr)
 		, mHasUniformScale(true)
 		, mOrientation(orientation)
@@ -20,11 +20,11 @@ namespace ai
 	{
 	}
 
-	TransformComponent::~TransformComponent()
+	Transform::~Transform()
 	{
 	}
 
-	void TransformComponent::update()
+	void Transform::update()
 	{
 		if (mFlag.isSet(NEW_ROTATION_SCALE_MATRIX))
 		{
@@ -51,7 +51,7 @@ namespace ai
 		}
 	}
 
-	void TransformComponent::reset()
+	void Transform::reset()
 	{
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 
@@ -60,48 +60,48 @@ namespace ai
 		mPosition = glm::vec3();
 	}
 
-	void TransformComponent::setParentTransform(TransformComponent* transform)
+	void Transform::setParentTransform(Transform* transform)
 	{
 		mParentTransform = transform;
 	}
 
-	void TransformComponent::translate(const glm::vec3& amount)
+	void Transform::translate(const glm::vec3& amount)
 	{
 		mPosition += amount;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void TransformComponent::rotate(const glm::vec3& axis, glm::f32 angle)
+	void Transform::rotate(const glm::vec3& axis, glm::f32 angle)
 	{
 		mOrientation = glm::angleAxis(glm::radians(angle), axis);
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void TransformComponent::rotate(const glm::vec3& angles)
+	void Transform::rotate(const glm::vec3& angles)
 	{
 		mOrientation = glm::quat(glm::radians(angles));
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void TransformComponent::rotateOnX(glm::f32 angle)
+	void Transform::rotateOnX(glm::f32 angle)
 	{
 		rotate(VECTOR_RIGHT, angle);
 	}
 
-	void TransformComponent::rotateOnY(glm::f32 angle)
+	void Transform::rotateOnY(glm::f32 angle)
 	{
 		rotate(VECTOR_UP, angle);
 	}
 
-	void TransformComponent::rotateOnZ(glm::f32 angle)
+	void Transform::rotateOnZ(glm::f32 angle)
 	{
 		rotate(-VECTOR_FORWARD, angle);
 	}
 
-	void TransformComponent::Scale(const glm::vec3& scale)
+	void Transform::Scale(const glm::vec3& scale)
 	{
 		mScale = scale;
 
@@ -111,53 +111,53 @@ namespace ai
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void TransformComponent::setOrientation(const glm::quat& orientation)
+	void Transform::setOrientation(const glm::quat& orientation)
 	{
 		mOrientation = orientation;
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void TransformComponent::setPosition(const glm::vec3& position)
+	void Transform::setPosition(const glm::vec3& position)
 	{
 		mPosition = position;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void TransformComponent::setScale(const glm::vec3& scale)
+	void Transform::setScale(const glm::vec3& scale)
 	{
 		mScale = scale;
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	const glm::quat& TransformComponent::getOrientation() const
+	const glm::quat& Transform::getOrientation() const
 	{
 		return mOrientation;
 	}
 
-	const glm::vec3& TransformComponent::getPosition() const
+	const glm::vec3& Transform::getPosition() const
 	{
 		return mPosition;
 	}
 
-	const glm::vec3& TransformComponent::getScale() const
+	const glm::vec3& Transform::getScale() const
 	{
 		return mScale;
 	}
 
-	bool TransformComponent::hasUniformScale() const
+	bool Transform::hasUniformScale() const
 	{
 		return mHasUniformScale;
 	}
 
-	TransformComponent* TransformComponent::getParentTransform() const
+	Transform* Transform::getParentTransform() const
 	{
 		return mParentTransform;
 	}
 
-	glm::mat4 TransformComponent::getMatrix() const
+	glm::mat4 Transform::getMatrix() const
 	{
 		if (mParentTransform)
 		{

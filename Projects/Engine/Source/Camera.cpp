@@ -1,11 +1,11 @@
-#include "CameraNode.h"
+#include "Camera.h"
 
 namespace ai
 {
-	glm::mat4 CameraNode::smOrthoMatrix;
+	glm::mat4 Camera::smOrthoMatrix;
 
-	CameraNode::CameraNode(glm::u32 id)
-		: BasicNode(id, CAMERA_NODE)
+	Camera::Camera(glm::u32 id)
+		: Node(id, CAMERA_NODE)
 		, mHasCustomViewSize(false)
 		, mNearPlane(0.1f)
 		, mFarPlane(1000.0f)
@@ -13,8 +13,8 @@ namespace ai
 	{
 	}
 
-	CameraNode::CameraNode(glm::u32 id, glm::f32 fov, glm::f32 near, glm::f32 far)
-		: BasicNode(id, CAMERA_NODE)
+	Camera::Camera(glm::u32 id, glm::f32 fov, glm::f32 near, glm::f32 far)
+		: Node(id, CAMERA_NODE)
 		, mHasCustomViewSize(false)
 		, mNearPlane(near)
 		, mFarPlane(far)
@@ -22,13 +22,13 @@ namespace ai
 	{
 	}
 
-	CameraNode::~CameraNode()
+	Camera::~Camera()
 	{
 	}
 
-	void CameraNode::update()
+	void Camera::update()
 	{
-		BasicNode::update();
+		Node::update();
 
 		/* update the ortho matrix (for the 2d or GUI) */
 
@@ -58,115 +58,115 @@ namespace ai
 		}
 	}
 
-	void CameraNode::rotateOnX(glm::f32 amount)
+	void Camera::rotateOnX(glm::f32 amount)
 	{
 		mTransform.rotateOnX(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void CameraNode::rotateOnY(glm::f32 amount)
+	void Camera::rotateOnY(glm::f32 amount)
 	{
 		mTransform.rotateOnY(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void CameraNode::rotateOnZ(glm::f32 amount)
+	void Camera::rotateOnZ(glm::f32 amount)
 	{
 		mTransform.rotateOnZ(amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void CameraNode::moveForward(glm::f32 amount)
+	void Camera::moveForward(glm::f32 amount)
 	{
 		mTransform.translate(VECTOR_FORWARD * glm::inverse(mTransform.getOrientation()) * amount);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	void CameraNode::lookAt(const glm::vec3& target)
+	void Camera::lookAt(const glm::vec3& target)
 	{
 		mViewMatrix = glm::lookAt(mTransform.getPosition(), target, VECTOR_UP);
 	}
 
-	void CameraNode::moveAt(const glm::vec3& position)
+	void Camera::moveAt(const glm::vec3& position)
 	{
 		mTransform.setPosition(position);
 
 		mFlag += CAMERA_NEW_VIEW_MATRIX;
 	}
 
-	bool CameraNode::hasCustomViewSize() const
+	bool Camera::hasCustomViewSize() const
 	{
 		return mHasCustomViewSize;
 	}
 
-	void CameraNode::hasCustomViewSize(bool value)
+	void Camera::hasCustomViewSize(bool value)
 	{
 		mHasCustomViewSize = value;
 	}
 
-	void CameraNode::setFov(glm::f32 value)
+	void Camera::setFov(glm::f32 value)
 	{
 		mFov = value;
 
 		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
 	}
 
-	void CameraNode::setNearPlane(glm::f32 value)
+	void Camera::setNearPlane(glm::f32 value)
 	{
 		mNearPlane = value;
 
 		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
 	}
 
-	void CameraNode::setFarPlane(glm::f32 value)
+	void Camera::setFarPlane(glm::f32 value)
 	{
 		mFarPlane = value;
 
 		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
 	}
 
-	void CameraNode::setViewSize(const glm::vec2& size)
+	void Camera::setViewSize(const glm::vec2& size)
 	{
 		mViewSize = size;
 
 		mFlag.add(CAMERA_NEW_ORTHO_MATRIX | CAMERA_NEW_PERSPECTIVE_MATRIX);
 	}
 
-	const glm::mat4& CameraNode::getOrthoMatrix()
+	const glm::mat4& Camera::getOrthoMatrix()
 	{
 		return smOrthoMatrix;
 	}
 
-	const glm::mat4& CameraNode::getPerspecitiveMatrix() const
+	const glm::mat4& Camera::getPerspecitiveMatrix() const
 	{
 		return mPerspectiveMatrix;
 	}
 
-	const glm::mat4& CameraNode::getViewMatrix() const
+	const glm::mat4& Camera::getViewMatrix() const
 	{
 		return mViewMatrix;
 	}
 
-	const glm::vec2& CameraNode::getViewSize() const
+	const glm::vec2& Camera::getViewSize() const
 	{
 		return mViewSize;
 	}
 
-	glm::f32 CameraNode::getNearPlane() const
+	glm::f32 Camera::getNearPlane() const
 	{
 		return mNearPlane;
 	}
 
-	glm::f32 CameraNode::getFarPlane() const
+	glm::f32 Camera::getFarPlane() const
 	{
 		return mFarPlane;
 	}
 
-	glm::f32 CameraNode::getFov() const
+	glm::f32 Camera::getFov() const
 	{
 		return mFov;
 	}

@@ -1,40 +1,40 @@
-#include "BasicScene.h"
-#include "ModelNode.h"
-#include "CameraNode.h"
-#include "DirectionalLightNode.h"
+#include "Scene.h"
+#include "Model.h"
+#include "Camera.h"
+#include "DirectionalLight.h"
 
 namespace ai
 {
-	BasicScene::BasicScene()
+	Scene::Scene()
 		: mRootNode(0)
 		, mAmbientLight(0.1f)
 	{
 	}
 
-	BasicScene::BasicScene(const glm::vec3& ambientLight)
+	Scene::Scene(const glm::vec3& ambientLight)
 		: mRootNode(0)
 		, mAmbientLight(ambientLight)
 	{
 	}
 
-	BasicScene::~BasicScene()
+	Scene::~Scene()
 	{
 	}
 
-	void BasicScene::init()
+	void Scene::init()
 	{
 	}
 
-	void BasicScene::update()
+	void Scene::update()
 	{
 		mRootNode.update();
 	}
 
-	void BasicScene::release()
+	void Scene::release()
 	{
 		for (auto it : mNodes)
 		{
-			BasicNode* node = it.second;
+			Node* node = it.second;
 
 			assert(node != nullptr);
 			
@@ -48,7 +48,7 @@ namespace ai
 		mNodes.clear();
 	}
 
-	void BasicScene::addNode(BasicNode* node)
+	void Scene::addNode(Node* node)
 	{
 		assert(node != nullptr);
 
@@ -58,21 +58,21 @@ namespace ai
 		mNodes.insert({ node->getId(), node });	
 	}
 
-	void BasicScene::addCamera(CameraNode* camera)
+	void Scene::addCamera(Camera* camera)
 	{
 		assert(camera != nullptr);
 
 		mCameras.push_back(camera);
 	}
 
-	void BasicScene::addLight(LightNode* light)
+	void Scene::addLight(Light* light)
 	{
 		assert(light != nullptr);
 		
 		mLights.push_back(light);
 	}
 
-	void BasicScene::removeCamera(glm::u32 id)
+	void Scene::removeCamera(glm::u32 id)
 	{
 		for (glm::u32 i = 0; i < mCameras.size(); ++i)
 		{
@@ -83,7 +83,7 @@ namespace ai
 		}
 	}
 
-	void BasicScene::removeLight(glm::u32 id)
+	void Scene::removeLight(glm::u32 id)
 	{
 		for (glm::u32 i = 0; i < mLights.size(); ++i)
 		{
@@ -94,7 +94,7 @@ namespace ai
 		}
 	}
 
-	BasicNode* BasicScene::removeNode(glm::u32 id)
+	Node* Scene::removeNode(glm::u32 id)
 	{
 		auto it = mNodes.find(id);
 
@@ -103,11 +103,11 @@ namespace ai
 		
 		mNodes.erase(it);
 
-		if (it->second->getNodeType() == BasicNode::CAMERA_NODE)
+		if (it->second->getNodeType() == Node::CAMERA_NODE)
 		{
 			removeCamera(it->second->getId());
 		}
-		else if (it->second->getNodeType() == BasicNode::LIGHT_NODE)
+		else if (it->second->getNodeType() == Node::LIGHT_NODE)
 		{
 			removeLight(it->second->getId());
 		}
@@ -115,12 +115,12 @@ namespace ai
 		return it->second;
 	}
 
-	BasicNode* BasicScene::operator[](glm::u32 id) const
+	Node* Scene::operator[](glm::u32 id) const
 	{
 		return getNode(id);
 	}
 
-	BasicNode* BasicScene::getNode(glm::u32 id) const
+	Node* Scene::getNode(glm::u32 id) const
 	{
 		auto it = mNodes.find(id);
 
@@ -132,66 +132,66 @@ namespace ai
 		return it->second;
 	}
 
-	CameraNode* BasicScene::getCameraByIndex(glm::u32 index) const
+	Camera* Scene::getCameraByIndex(glm::u32 index) const
 	{
 		assert(index < mCameras.size());
 
 		return mCameras[index];
 	}
 
-	LightNode* BasicScene::getLightByIndex(glm::u32 index) const
+	Light* Scene::getLightByIndex(glm::u32 index) const
 	{
 		assert(index < mLights.size());
 
 		return mLights[index];
 	}
 
-	const glm::vec3& BasicScene::getAmbientLight() const
+	const glm::vec3& Scene::getAmbientLight() const
 	{
 		return mAmbientLight;
 	}
 
-	const std::map<glm::u32, BasicNode*>& BasicScene::getNodes() const
+	const std::map<glm::u32, Node*>& Scene::getNodes() const
 	{
 		return mNodes;
 	}
 
-	const std::vector<CameraNode*>& BasicScene::getCameras() const
+	const std::vector<Camera*>& Scene::getCameras() const
 	{
 		return mCameras;
 	}
 
-	const std::vector<LightNode*>& BasicScene::getLights() const
+	const std::vector<Light*>& Scene::getLights() const
 	{
 		return mLights;
 	}
 
-	const BasicNode& BasicScene::getRootNode() const
+	const Node& Scene::getRootNode() const
 	{
 		return mRootNode;
 	}
 
-	BasicNode& BasicScene::getRootNode()
+	Node& Scene::getRootNode()
 	{
 		return mRootNode;
 	}
 
-	BasicNode* BasicScene::createNode(glm::u32 id)
+	Node* Scene::createNode(glm::u32 id)
 	{
 		assert(getNode(id) == nullptr);
 
-		BasicNode* node = new BasicNode(id);
+		Node* node = new Node(id);
 
 		addNode(node);
 
 		return node;
 	}
 
-	DirectionalLightNode* BasicScene::createDirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse, const glm::vec3& specular)
+	DirectionalLight* Scene::createDirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse, const glm::vec3& specular)
 	{
 		assert(getNode(id) == nullptr);
 
-		DirectionalLightNode* light = new DirectionalLightNode(id, direction, diffuse, specular);
+		DirectionalLight* light = new DirectionalLight(id, direction, diffuse, specular);
 
 		addLight(light);
 		addNode(light);
@@ -199,16 +199,16 @@ namespace ai
 		return light;
 	}
 
-	void BasicScene::setAmbientLight(const glm::vec3& ambient)
+	void Scene::setAmbientLight(const glm::vec3& ambient)
 	{
 		mAmbientLight = ambient;
 	}
 
-	ModelNode* BasicScene::createModel(glm::u32 id, MeshResource* mesh, BasicMaterial* material)
+	Model* Scene::createModel(glm::u32 id, Mesh* mesh, Material* material)
 	{
 		assert(getNode(id) == nullptr);
 
-		ModelNode* model = new ModelNode(id);
+		Model* model = new Model(id);
 		model->setMesh(mesh);
 		model->setMaterial(material);
 
@@ -217,11 +217,11 @@ namespace ai
 		return model;
 	}
 
-	CameraNode* BasicScene::createCamera(glm::u32 id, const glm::vec2& size, const glm::vec3& position)
+	Camera* Scene::createCamera(glm::u32 id, const glm::vec2& size, const glm::vec3& position)
 	{
 		assert(getNode(id) == nullptr);
 
-		CameraNode* camera = new CameraNode(id);
+		Camera* camera = new Camera(id);
 		camera->setViewSize(size);
 		camera->moveAt(position);
 

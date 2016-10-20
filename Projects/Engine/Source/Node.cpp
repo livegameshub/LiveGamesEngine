@@ -1,46 +1,46 @@
-#include "BasicNode.h"
+#include "Node.h"
 
 namespace ai
 {
-	BasicNode::BasicNode(glm::u32 id)
+	Node::Node(glm::u32 id)
 		: BasicElement(id)
 		, mIsEnabled(true)
 		, mNodeType(BASIC_NODE)
 	{
 	}
 
-	BasicNode::BasicNode(glm::u32 id, glm::i32 type)
+	Node::Node(glm::u32 id, glm::i32 type)
 		: BasicElement(id)
 		, mIsEnabled(true)
 		, mNodeType(type)
 	{
 	}
 
-	BasicNode::BasicNode(glm::u32 id, glm::i32 type, const Flag& flag)
+	Node::Node(glm::u32 id, glm::i32 type, const Flag& flag)
 		: BasicElement(id, flag)
 		, mIsEnabled(true)
 		, mNodeType(type)
 	{
 	}
 
-	BasicNode::BasicNode(glm::u32 id, const Flag& flag)
+	Node::Node(glm::u32 id, const Flag& flag)
 		: BasicElement(id, flag)
 		, mIsEnabled(true)
 		, mNodeType(BASIC_NODE)
 	{
 	}
 
-	BasicNode::~BasicNode()
+	Node::~Node()
 	{
 	}
 
-	void BasicNode::update()
+	void Node::update()
 	{
 		mTransform.update();
 	
 		/* update the components */
 
-		for (BasicComponent* component : mComponents)
+		for (Component* component : mComponents)
 		{
 			assert(component != nullptr);
 
@@ -52,7 +52,7 @@ namespace ai
 
 		/* update the children */
 
-		for (BasicNode* child : mChildren)
+		for (Node* child : mChildren)
 		{
 			assert(child != nullptr);
 
@@ -63,11 +63,11 @@ namespace ai
 		}
 	}
 
-	void BasicNode::release()
+	void Node::release()
 	{
 		/* release the components */
 
-		for (BasicComponent* component : mComponents)
+		for (Component* component : mComponents)
 		{
 			assert(component != nullptr);
 			
@@ -76,7 +76,7 @@ namespace ai
 		}
 	}
 
-	void BasicNode::addComponent(BasicComponent* component)
+	void Node::addComponent(Component* component)
 	{
 		assert(component != nullptr);
 		/* check if we already have this type of component */
@@ -85,7 +85,7 @@ namespace ai
 		mComponents.push_back(component);
 	}
 
-	void BasicNode::addChild(BasicNode* node)
+	void Node::addChild(Node* node)
 	{
 		assert(node != nullptr);
 
@@ -95,11 +95,11 @@ namespace ai
 		mChildren.push_back(node);
 	}
 
-	BasicComponent* BasicNode::getComponent(glm::i32 type) const
+	Component* Node::getComponent(glm::i32 type) const
 	{
 		/* if we do not find any component we should return nullptr */
 
-		for (BasicComponent* component : mComponents)
+		for (Component* component : mComponents)
 		{
 			if (component->getComponentType() == type)
 			{
@@ -110,16 +110,16 @@ namespace ai
 		return nullptr;
 	}
 
-	BasicComponent* BasicNode::operator[](glm::i32 type) const
+	Component* Node::operator[](glm::i32 type) const
 	{
 		return getComponent(type);
 	}
 
-	BasicComponent* BasicNode::removeComponent(glm::i32 type)
+	Component* Node::removeComponent(glm::i32 type)
 	{
 		for (glm::u32 i = 0; i < mComponents.size(); ++i)
 		{
-			BasicComponent* component = mComponents[i];
+			Component* component = mComponents[i];
 
 			if (component->getComponentType() == type)
 			{
@@ -132,11 +132,11 @@ namespace ai
 		return nullptr;
 	}
 
-	BasicNode* BasicNode::getChild(glm::u32 id) const
+	Node* Node::getChild(glm::u32 id) const
 	{
 		/* if we do not find any node we should return nullptr */
 
-		for (BasicNode* node : mChildren)
+		for (Node* node : mChildren)
 		{
 			if (node->getId() == id)
 			{
@@ -147,16 +147,16 @@ namespace ai
 		return nullptr;
 	}
 
-	BasicNode* BasicNode::operator[](glm::u32 id) const
+	Node* Node::operator[](glm::u32 id) const
 	{
 		return getChild(id);
 	}
 
-	BasicNode* BasicNode::removeChild(glm::u32 id)
+	Node* Node::removeChild(glm::u32 id)
 	{
 		for (glm::u32 i = 0; i < mChildren.size(); ++i)
 		{
-			BasicNode* node = mChildren[i];
+			Node* node = mChildren[i];
 
 			if (node->getId() == id)
 			{
@@ -172,42 +172,42 @@ namespace ai
 		return nullptr;
 	}
 
-	const std::vector<BasicComponent*>& BasicNode::getComponents() const
+	const std::vector<Component*>& Node::getComponents() const
 	{
 		return mComponents;
 	}
 
-	const std::vector<BasicNode*>& BasicNode::getChildren() const
+	const std::vector<Node*>& Node::getChildren() const
 	{
 		return mChildren;
 	}
 
-	const TransformComponent& BasicNode::getTransform() const
+	const Transform& Node::getTransform() const
 	{
 		return mTransform;
 	}
 
-	TransformComponent& BasicNode::getTransform()
+	Transform& Node::getTransform()
 	{
 		return mTransform;
 	}
 
-	void BasicNode::setNodeType(glm::i32 type)
+	void Node::setNodeType(glm::i32 type)
 	{
 		mNodeType = type;
 	}
 
-	glm::i32 BasicNode::getNodeType() const
+	glm::i32 Node::getNodeType() const
 	{
 		return mNodeType;
 	}
 
-	void BasicNode::setEnabled(bool value)
+	void Node::setEnabled(bool value)
 	{
 		mIsEnabled = value;
 	}
 
-	bool BasicNode::isEnabled() const
+	bool Node::isEnabled() const
 	{
 		return mIsEnabled;
 	}
