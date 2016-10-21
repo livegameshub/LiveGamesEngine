@@ -18,7 +18,7 @@ namespace ai
 	{
 	public:
 		void release();
-		void flushPendingItems();
+		void processPendingItems();
 
 		void load(Resource* resource);
 		void unload(Resource* resource);

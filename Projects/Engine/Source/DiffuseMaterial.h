@@ -15,17 +15,17 @@ namespace ai
 
 		~DiffuseMaterial();
 
-		void uploadUniforms() const override;
-		void uploadUniforms(DirectionalLight* light) const;
-
 		void setSpecularColor(const glm::vec3& color);
 		void setSpecularShininess(glm::f32 value);
 
 		const glm::vec3& getSpecularColor() const;
 		glm::f32 getSpecularShininess() const;
 
+		virtual void uploadUniforms(DirectionalLight* light) const;
+		virtual void uploadUniforms() const;
+
 	private:
-		bool create() override;
+		virtual bool create();
 
 		glm::vec3 mSpecularColor;
 		glm::f32 mSpecularShininess;

@@ -31,6 +31,7 @@ namespace ai
 		Window* getWindow(GLFWwindow* windowPtr);
 		Window* getWindowByIndex(glm::u32 index);
 
+		static void loadScene(glm::u32 index);
 		static Engine& getInstance();
 
 	private:

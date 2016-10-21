@@ -6,6 +6,7 @@
 #include "Resources.h"
 #include "Camera.h"
 #include "Scene.h"
+#include "Input.h"
 
 #ifdef _DEBUG
 	#include "FpsCounter.h"
@@ -100,7 +101,7 @@ namespace ai
 		Renderer::init();
 
 		/* the first scene is the main one */
-		Scenes::getInstance().setMainScene(0);
+		loadScene(0);
 	}
 
 	void Engine::loop()
@@ -164,6 +165,20 @@ namespace ai
 	void Engine::addWindow(const Window& window)
 	{
 		mWindows.push_back(window);
+	}
+
+	void Engine::loadScene(glm::u32 index)
+	{	
+		Input::reset();
+
+		/* set the main scene */
+		Scenes::getInstance().setMainScene(index);
+
+		/* process the resources */
+		Resources::getInstance().processPendingItems();
+
+		/* set the scene for the renderer */
+		getInstance().getWindowByIndex(0)->getRenderer().setScene(Scenes::getInstance().getMainScene());
 	}
 
 	void Engine::windowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)

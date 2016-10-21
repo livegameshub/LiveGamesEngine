@@ -1,4 +1,4 @@
-#include "TestScene.h"
+#include "CubesScene.h"
 #include "Shader.h"
 #include "Engine.h"
 #include "Window.h"
@@ -9,27 +9,27 @@
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
 
-TestScene::TestScene()
+CubesScene::CubesScene()
 	: mDirectionalLight(nullptr)
 	, mCamera(nullptr)
 {
 }
 
-TestScene::TestScene(const glm::vec3& ambientLight)
-	: ai::Scene(ambientLight)
+CubesScene::CubesScene(const glm::vec3& ambientLight)
+	: Scene(ambientLight)
 	, mDirectionalLight(nullptr)
 	, mCamera(nullptr)
 {
 }
 
-TestScene::~TestScene()
+CubesScene::~CubesScene()
 {
 }
 
-void TestScene::init()
+void CubesScene::init()
 {
 	/* call the basic init function */
-	ai::Scene::init();
+	Scene::init();
 
 	// shaders 
 
@@ -80,11 +80,11 @@ void TestScene::init()
 	mRootNode.addChild(mDirectionalLight);
 }
 
-void TestScene::update()
+void CubesScene::update()
 {
 	/* call the basic update function */
 
-	ai::Scene::update();
+	Scene::update();
 
 	static glm::f32 cameraAngle = 0.0f;
 	static glm::f32 angle = 0.0f;
@@ -127,13 +127,6 @@ void TestScene::update()
 
 	if (ai::Input::isKeyDown(GLFW_KEY_SPACE))
 	{
-		ai::Scenes::getInstance().setMainScene(1);
+		ai::Engine::loadScene(1);
 	}
-}
-
-void TestScene::release()
-{
-	/* class the basic release function */
-
-	ai::Scene::release();
 }

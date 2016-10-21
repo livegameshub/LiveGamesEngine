@@ -1,4 +1,4 @@
-#include "TestScene2.h"
+#include "SpheresScene.h"
 #include "Shader.h"
 #include "Engine.h"
 #include "Window.h"
@@ -9,27 +9,27 @@
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
 
-TestScene2::TestScene2()
+SpheresScene::SpheresScene()
 	: mDirectionalLight(nullptr)
 	, mCamera(nullptr)
 {
 }
 
-TestScene2::TestScene2(const glm::vec3& ambientLight)
-	: ai::Scene(ambientLight)
+SpheresScene::SpheresScene(const glm::vec3& ambientLight)
+	: Scene(ambientLight)
 	, mDirectionalLight(nullptr)
 	, mCamera(nullptr)
 {
 }
 
-TestScene2::~TestScene2()
+SpheresScene::~SpheresScene()
 {
 }
 
-void TestScene2::init()
+void SpheresScene::init()
 {
 	/* call the basic init function */
-	ai::Scene::init();
+	Scene::init();
 
 	// meshes
 
@@ -66,11 +66,11 @@ void TestScene2::init()
 	mRootNode.addChild(mDirectionalLight);
 }
 
-void TestScene2::update()
+void SpheresScene::update()
 {
 	/* call the basic update function */
 
-	ai::Scene::update();
+	Scene::update();
 
 	static glm::f32 cameraAngle = 0.0f;
 	static glm::f32 speed = 10.0f;
@@ -96,11 +96,4 @@ void TestScene2::update()
 
 		mCamera->rotateOnY(cameraAngle);
 	}
-}
-
-void TestScene2::release()
-{
-	/* class the basic release function */
-
-	ai::Scene::release();
 }

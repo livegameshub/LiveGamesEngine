@@ -18,18 +18,18 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TestScene.cpp">
+    <ClCompile Include="Source\CubesScene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TestScene2.cpp">
+    <ClCompile Include="Source\SpheresScene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\TestScene.h">
+    <ClInclude Include="Source\CubesScene.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\TestScene2.h">
+    <ClInclude Include="Source\SpheresScene.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

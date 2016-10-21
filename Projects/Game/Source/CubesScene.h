@@ -1,21 +1,20 @@
-#ifndef _TEST_SCENE_H_
-#define _TEST_SCENE_H_
+#ifndef _CUBES_SCENE_H_
+#define _CUBES_SCENE_H_
 
 #include "Scene.h"
 #include "Camera.h"
 #include "Model.h"
 
-class TestScene : public ai::Scene
+class CubesScene : public ai::Scene
 {
 public:
-	TestScene();
-	TestScene(const glm::vec3& ambientLight);
+	CubesScene();
+	CubesScene(const glm::vec3& ambientLight);
 
-	~TestScene();
+	~CubesScene();
 
 	void init() override;
 	void update() override;
-	void release() override;
 
 private:
 	std::vector<ai::Model*> mCubes;
@@ -24,4 +23,4 @@ private:
 	ai::Camera* mCamera;
 };
 
-#endif //_TEST_SCENE_H_
+#endif //_CUBES_SCENE_H_

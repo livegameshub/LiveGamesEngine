@@ -29,7 +29,7 @@ namespace ai
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	void Renderer::setScene(Scene* scene)
+	void Renderer::setScene(const Scene* scene)
 	{
 		mScene = scene;
 	}

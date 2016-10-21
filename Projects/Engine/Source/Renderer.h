@@ -19,12 +19,12 @@ namespace ai
 
 		void drawNode(const Node* node) const;
 		void drawModel(const Model* model) const;
-		void setScene(Scene* scene);
+		void setScene(const Scene* scene);
 
 		static void init();
 
 	private:
-		Scene* mScene;
+		const Scene* mScene;
 	};
 }
 

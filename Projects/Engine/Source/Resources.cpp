@@ -6,7 +6,7 @@
 
 namespace ai
 {
-	void Resources::flushPendingItems()
+	void Resources::processPendingItems()
 	{
 		/* we use the classic for because the collection can grow */
 
@@ -43,7 +43,7 @@ namespace ai
 
 	void Resources::release()
 	{
-		flushPendingItems();
+		processPendingItems();
 
 		for (auto it : mAllResources)
 		{

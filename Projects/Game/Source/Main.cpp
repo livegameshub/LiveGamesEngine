@@ -7,13 +7,13 @@
 
 #include "Engine.h"
 #include "Scenes.h"
-#include "TestScene.h"
-#include "TestScene2.h"
+#include "CubesScene.h"
+#include "SpheresScene.h"
 
 int main()
 {
-	ai::Scenes::getInstance().addScene(new TestScene(glm::vec3(0.2f)));
-	ai::Scenes::getInstance().addScene(new TestScene2(glm::vec3(0.2f)));
+	ai::Scenes::getInstance().addScene(new CubesScene(glm::vec3(0.2f)));
+	ai::Scenes::getInstance().addScene(new SpheresScene(glm::vec3(0.2f)));
 	
 	ai::Engine::setup("Live Games Hub");
 

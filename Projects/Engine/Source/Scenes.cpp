@@ -66,15 +66,6 @@ namespace ai
 
 		// swap the scenes
 		mMainScene = new_scene;
-
-		/* process the resources */
-		Resources::getInstance().flushPendingItems();
-
-		/* set the scene for the renderer */
-		Engine::getInstance().getWindowByIndex(0)->getRenderer().setScene(mMainScene);
-
-		/* reset the input */
-		Input::reset();
 	}
 
 	Scene* Scenes::getScene(glm::u32 index)
