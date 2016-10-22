@@ -3,6 +3,7 @@
 
 #include "Resource.h"
 #include "Graphics.h"
+#include "MeshData.h"
 
 namespace ai
 {
@@ -11,12 +12,12 @@ namespace ai
 	class ENGINE_API Mesh : public Resource
 	{
 	public:
-		const glm::u32 LINES_MESH = GL_LINES;
-		const glm::u32 POINTS_MESH = GL_POINTS;
-		const glm::u32 TRIANGLES_MESH = GL_TRIANGLES;
+		static const glm::u32 LINES_MESH = GL_LINES;
+		static const glm::u32 POINTS_MESH = GL_POINTS;
+		static const glm::u32 TRIANGLES_MESH = GL_TRIANGLES;
 
-		const glm::u32 STATIC_MESH_DRAW = GL_STATIC_DRAW;
-		const glm::u32 DYNAMIC_MESH_DRAW = GL_DYNAMIC_DRAW;
+		static const glm::u32 STATIC_MESH_DRAW = GL_STATIC_DRAW;
+		static const glm::u32 DYNAMIC_MESH_DRAW = GL_DYNAMIC_DRAW;
 
 		enum MeshBuffer : glm::u32
 		{
@@ -27,9 +28,10 @@ namespace ai
 
 		enum MeshFlag : glm::u32
 		{
-			MESH_POSITION_FLAG = 1,
-			MESH_NORMAL_FLAG = 2,
-			MESH_TEXTURE_FLAG = 4
+			MESH_NORMAL_FLAG = 1,
+			MESH_TEXTURE_FLAG = 2,
+
+			MESH_REMOVE_DATA_FLAG = 4
 		};
 
 		Mesh(glm::u32 id, const std::string& file);
@@ -38,25 +40,24 @@ namespace ai
 		~Mesh();
 
 		void draw() const;  
-
 		void bindVbo() const;
 		void bindIbo() const;
 
 		bool createBuffers();
 		bool readDataFromFile();
-
 		void calculateVertexSize();
-		
+
 		void uploadData(const MeshData& meshData);
-		void uploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices);
 		void uploadAttributes(const glm::i32* attributes) const;
+
+		glm::u32 calculateVerticesArraySize(glm::u32 size) const;
 
 		glm::u32 getVertexSize() const;
 		glm::u32 getIndicesSize() const;
 		glm::u32 getPrimitive() const;
 		glm::u32 getDrawType() const;
 
-		static glm::u32 calculateVerticesArraySize(glm::u32 size, const Flag& flag);
+		MeshData& getData();
 
 	private:
 		bool create() override;
@@ -71,6 +72,8 @@ namespace ai
 		glm::u32 mIndicesSize;
 		glm::u32 mPrimitive;
 		glm::u32 mDrawType;
+
+		MeshData mData;
 	};
 }
 

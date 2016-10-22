@@ -22,18 +22,26 @@ namespace ai
 
 	void MeshData::addVertex(const glm::vec3& position)
 	{
-		mVertices.emplace_back(position.x);
-		mVertices.emplace_back(position.y);
-		mVertices.emplace_back(position.z);
+		addVec3(position);
 	}
 
 	void MeshData::addVertex(const glm::vec3& position, const glm::vec3& normal)
 	{
-		addVertex(position);
+		addVec3(position);
+		addVec3(normal);
+	}
 
-		mVertices.emplace_back(normal.x);
-		mVertices.emplace_back(normal.y);
-		mVertices.emplace_back(normal.z);
+	void MeshData::addVec3(const glm::vec3& vector)
+	{
+		mVertices.emplace_back(vector.x);
+		mVertices.emplace_back(vector.y);
+		mVertices.emplace_back(vector.z);
+	}
+
+	void MeshData::addVec2(const glm::vec3& vector)
+	{
+		mVertices.emplace_back(vector.x);
+		mVertices.emplace_back(vector.y);
 	}
 
 	void MeshData::addPoint(glm::u16 index_0)

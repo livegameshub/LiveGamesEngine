@@ -44,6 +44,7 @@ namespace ai
 
 		/* meshes */
 		Mesh* createMesh(glm::u32 id, const std::string& file);
+		Mesh* createMesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
 
 		static Resources& getInstance();
 

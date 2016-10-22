@@ -96,4 +96,10 @@ void SpheresScene::update()
 
 		mCamera->rotateOnY(cameraAngle);
 	}
+
+
+	if (ai::Input::isKeyDown(GLFW_KEY_SPACE))
+	{
+		ai::Engine::loadScene(2);
+	}
 }

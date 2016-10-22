@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\CubesScene.cpp" />
+    <ClCompile Include="Source\SimpleScene.cpp" />
     <ClCompile Include="Source\SpheresScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CubesScene.h" />
+    <ClInclude Include="Source\SimpleScene.h" />
     <ClInclude Include="Source\SpheresScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

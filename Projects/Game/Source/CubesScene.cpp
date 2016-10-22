@@ -8,6 +8,8 @@
 #include "Scenes.h"
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
+#include <Console.h>
+#include <array>
 
 CubesScene::CubesScene()
 	: mDirectionalLight(nullptr)

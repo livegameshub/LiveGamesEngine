@@ -24,12 +24,18 @@
     <ClCompile Include="Source\SpheresScene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SimpleScene.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CubesScene.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Source\SpheresScene.h">
+      <Filter>Source\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SimpleScene.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

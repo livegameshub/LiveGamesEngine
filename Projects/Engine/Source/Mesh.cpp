@@ -55,11 +55,16 @@ namespace ai
 		return mDrawType;
 	}
 
-	glm::u32 Mesh::calculateVerticesArraySize(glm::u32 size, const Flag& flag)
+	MeshData& Mesh::getData()
+	{
+		return mData;
+	}
+
+	glm::u32 Mesh::calculateVerticesArraySize(glm::u32 size) const
 	{
 		glm::u32 reserve_size = 3;
 
-		if (flag.isSet(MESH_NORMAL_FLAG))
+		if (mFlag.isSet(MESH_NORMAL_FLAG))
 		{
 			reserve_size += 3;
 		}
@@ -85,9 +90,7 @@ namespace ai
 
 		mFlag.add(flag);
 
-		std::vector<glm::f32> vertices;
-
-		vertices.reserve(calculateVerticesArraySize(vertices_size, flag));
+		mData.reserverVertices(calculateVerticesArraySize(vertices_size));
 
 		for (glm::u32 i = 0; i < vertices_size; ++i)
 		{
@@ -95,9 +98,7 @@ namespace ai
 
 			read >> position.x >> position.y >> position.z;
 
-			vertices.emplace_back(position.x);
-			vertices.emplace_back(position.y);
-			vertices.emplace_back(position.z);
+			mData.addVec3(position);
 
 			if (mFlag.isSet(MESH_NORMAL_FLAG))
 			{
@@ -105,30 +106,25 @@ namespace ai
 
 				read >> normal.x >> normal.y >> normal.z;
 
-				vertices.emplace_back(normal.x);
-				vertices.emplace_back(normal.y);
-				vertices.emplace_back(normal.z);
+				mData.addVec3(normal);
 			}
 		}
 
 		glm::u16 index;
+		glm::u32 indices_size;
 
-		read >> mIndicesSize;
+		read >> indices_size;
 
-		std::vector<glm::u16> indices;
-		indices.reserve(mIndicesSize);
+		mData.reserveIndices(indices_size);
 
-		for (glm::u32 i = 0; i < mIndicesSize; ++i)
+		for (glm::u32 i = 0; i < indices_size; ++i)
 		{
 			read >> index;
 
-			indices.emplace_back(index);
+			mData.addPoint(index);
 		}
 
 		read.close();
-
-		/* upload the data into the Gpu memory */
-		uploadData(vertices, indices);
 
 		return true;
 	}
@@ -144,7 +140,19 @@ namespace ai
 		/* read the data from a file if you have it */
 		if (mResourceFile.size() > 0)
 		{
-			return readDataFromFile();
+			if (!readDataFromFile())
+			{
+				return false;
+			}
+		}
+
+		/* upload the data into the Gpu memory */
+		uploadData(mData);
+
+		/* clear the data if is not needed */
+		if (mFlag.isSet(MESH_REMOVE_DATA_FLAG))
+		{
+			mData.clearData();
 		}
 
 		return true;
@@ -183,7 +191,15 @@ namespace ai
 
 	void Mesh::uploadData(const MeshData& meshData)
 	{
-		uploadData(meshData.getVertices(), meshData.getIndices());
+		calculateVertexSize();
+
+		bindVbo();
+		glBufferData(GL_ARRAY_BUFFER, meshData.getVertices().size() * sizeof(glm::f32), &meshData.getVertices()[0], mDrawType);
+
+		bindIbo();
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, meshData.getIndices().size() * sizeof(glm::u16), &meshData.getIndices()[0], mDrawType);
+
+		mIndicesSize = meshData.getIndices().size();
 	}
 
 	bool Mesh::release()
@@ -219,16 +235,5 @@ namespace ai
 			glEnableVertexAttribArray(normal);
 			glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, mVertexSize, reinterpret_cast<const void*>(mNormalOffset));
 		}
-	}
-
-	void Mesh::uploadData(const std::vector<glm::f32>& vertices, const std::vector<glm::u16>& indices)
-	{
-		calculateVertexSize();
-
-		bindVbo();
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::f32), &vertices[0], mDrawType);
-
-		bindIbo();
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(glm::u16), &indices[0], mDrawType);
 	}
 }

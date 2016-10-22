@@ -9,11 +9,13 @@
 #include "Scenes.h"
 #include "CubesScene.h"
 #include "SpheresScene.h"
+#include "SimpleScene.h"
 
 int main()
 {
 	ai::Scenes::getInstance().addScene(new CubesScene(glm::vec3(0.2f)));
 	ai::Scenes::getInstance().addScene(new SpheresScene(glm::vec3(0.2f)));
+	ai::Scenes::getInstance().addScene(new SimpleScene(glm::vec3(0.2f)));
 	
 	ai::Engine::setup("Live Games Hub");
 
