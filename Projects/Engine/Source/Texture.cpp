@@ -35,7 +35,15 @@ namespace ai
 
 	bool Texture::create()
 	{
-		glGenTextures(1, &mTextureId);
+		FILE * pFile;
+
+		fopen_s(&pFile, std::string(ASSETS_PATH + mResourceFile).c_str(), "rb");
+
+		fread(&mWidth, sizeof(glm::u32), 1, pFile);
+		fread(&mHeight, sizeof(glm::u32), 1, pFile);
+		fread(&mBitsPerPixel, sizeof(glm::u32), 1, pFile);
+
+ 		glGenTextures(1, &mTextureId);
 
 		return true;
 	}

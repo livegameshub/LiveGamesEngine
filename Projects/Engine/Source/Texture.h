@@ -10,6 +10,7 @@ namespace ai
 	public:
 		Texture(glm::u32 id);
 		Texture(glm::u32 id, const std::string& file);
+
 		~Texture();
 
 		void bind() const;
@@ -25,6 +26,7 @@ namespace ai
 		bool release() override;
 
 		glm::u32 mTextureId;
+		glm::u32 mBitsPerPixel;
 		glm::u32 mWidth;
 		glm::u32 mHeight;
 	};

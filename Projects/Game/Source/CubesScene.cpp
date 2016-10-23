@@ -8,8 +8,6 @@
 #include "Scenes.h"
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
-#include <Console.h>
-#include <array>
 
 CubesScene::CubesScene()
 	: mDirectionalLight(nullptr)
@@ -58,7 +56,7 @@ void CubesScene::init()
 
 	// textures
 
-	ai::Texture* plane_texture = ai::Resources::getInstance().createTexture(ai::Resources::getNextAvailableId(), "Texture.tga");
+	ai::Texture* plane_texture = ai::Resources::getInstance().createTexture(ai::Resources::getNextAvailableId(), "grass.texture");
 
 	// materials
 
@@ -77,6 +75,11 @@ void CubesScene::init()
 	// models
 
 	ai::Model* plane = createModel(2, plane_mesh, plane_material);
+	ai::Transform& plane_transform = plane->getTransform();
+	plane_transform.setScale(glm::vec3(8.0f));
+	plane_transform.translate(glm::vec3(0.0f, -1.5f, 0.0f));
+	plane_transform.rotateOnX(90.0f);
+
 	mRootNode.addChild(plane);
 
 	mCubes.push_back(createModel(3, cube_mesh2, blue_material));
