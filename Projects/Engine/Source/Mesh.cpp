@@ -94,12 +94,14 @@ namespace ai
 
 		for (glm::u32 i = 0; i < vertices_size; ++i)
 		{
+			// by default we have a position vector
 			glm::vec3 position;
 
 			read >> position.x >> position.y >> position.z;
 
 			mData.addVec3(position);
 
+			// read the normal vector
 			if (mFlag.isSet(MESH_NORMAL_FLAG))
 			{
 				glm::vec3 normal;
@@ -107,6 +109,16 @@ namespace ai
 				read >> normal.x >> normal.y >> normal.z;
 
 				mData.addVec3(normal);
+			}
+
+			// read the texture vector
+			if (mFlag.isSet(MESH_TEXTURE_FLAG))
+			{
+				glm::vec2 texture;
+
+				read >> texture.x >> texture.y;
+
+				mData.addVec2(texture);
 			}
 		}
 
@@ -182,10 +194,18 @@ namespace ai
 
 	void Mesh::calculateVertexSize()
 	{
+		// check if we have normals
 		if (mFlag.isSet(MESH_NORMAL_FLAG))
 		{
-			mNormalOffset += mVertexSize;
+			mNormalOffset = mVertexSize;
 			mVertexSize += sizeof(glm::vec3);
+		}
+
+		// check if we have textures
+		if(mFlag.isSet(MESH_TEXTURE_FLAG))
+		{
+			mTextureOffset = mVertexSize;
+			mVertexSize += sizeof(glm::vec2);
 		}
 	}
 
@@ -223,6 +243,7 @@ namespace ai
 	{
 		glm::i32 position = attributes[Program::AttributeIndex::POSITION_INDEX];
 		glm::i32 normal = attributes[Program::AttributeIndex::NORMAL_INDEX];
+		glm::i32 texture = attributes[Program::AttributeIndex::TEXTURE_INDEX];
 
 		if (position >= 0)
 		{
@@ -234,6 +255,12 @@ namespace ai
 		{
 			glEnableVertexAttribArray(normal);
 			glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, mVertexSize, reinterpret_cast<const void*>(mNormalOffset));
+		}
+
+		if (texture >= 0 && mTextureOffset > 0)
+		{
+			glEnableVertexAttribArray(texture);
+			glVertexAttribPointer(texture, 2, GL_FLOAT, GL_FALSE, mVertexSize, reinterpret_cast<const void*>(mTextureOffset));
 		}
 	}
 }

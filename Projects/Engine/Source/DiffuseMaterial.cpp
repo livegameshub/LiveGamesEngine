@@ -1,6 +1,8 @@
 #include "DiffuseMaterial.h"
 #include "Program.h"
 #include "DirectionalLight.h"
+#include "Resources.h"
+#include "Texture.h"
 
 namespace ai
 {
@@ -8,6 +10,7 @@ namespace ai
 		: Material(id, IS_LIGHTED)
 		, mSpecularColor(1.0f)
 		, mSpecularShininess(0.0f)
+		, mDiffuseTexture(nullptr)
 	{
 	}
 
@@ -15,11 +18,31 @@ namespace ai
 		: Material(id, diffuse, flag | IS_LIGHTED)
 		, mSpecularColor(specular)
 		, mSpecularShininess(shininess)
+		, mDiffuseTexture(nullptr)
 	{
 	}
 
 	DiffuseMaterial::~DiffuseMaterial()
 	{
+	}
+
+	void DiffuseMaterial::setDiffuseTexture(Texture* texture)
+	{
+		assert(texture != nullptr);
+
+		if (mDiffuseTexture)
+		{
+			Resources::getInstance().unload(mDiffuseTexture);
+		}
+
+		mDiffuseTexture = texture;
+
+		Resources::getInstance().load(mDiffuseTexture);
+	}
+
+	Texture* DiffuseMaterial::getDiffuseTexture() const
+	{
+		return mDiffuseTexture;
 	}
 
 	void DiffuseMaterial::uploadUniforms() const
@@ -85,5 +108,15 @@ namespace ai
 		}
 
 		return Material::create();
+	}
+
+	bool DiffuseMaterial::release()
+	{
+		if (mDiffuseTexture)
+		{
+ 			Resources::getInstance().unload(mDiffuseTexture);
+		}
+
+		return Material::release();
 	}
 }

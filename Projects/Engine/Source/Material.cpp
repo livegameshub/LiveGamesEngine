@@ -6,22 +6,22 @@ namespace ai
 {
 	Material::Material(glm::u32 id)
 		: Resource(id)
-		, mProgram(nullptr)
 		, mDiffuseColor(1.0f)
+		, mProgram(nullptr)
 	{
 	}
 
 	Material::Material(glm::u32 id, const Flag& flag)
 		: Resource(id, flag)
-		, mProgram(nullptr)
 		, mDiffuseColor(1.0f)
+		, mProgram(nullptr)
 	{
 	}
 
 	Material::Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
 		: Resource(id, flag)
-		, mProgram(nullptr)
 		, mDiffuseColor(diffuse)
+		, mProgram(nullptr)
 	{
 	}
 

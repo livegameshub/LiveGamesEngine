@@ -3,6 +3,7 @@
 #include "Program.h"
 #include "Mesh.h"
 #include "DiffuseMaterial.h"
+#include "Texture.h"
 
 namespace ai
 {
@@ -169,6 +170,24 @@ namespace ai
 		addResource(mesh);
 
 		return mesh;
+	}
+
+	Texture* Resources::createTexture(glm::u32 id, const std::string& file)
+	{
+		assert(getResource(id) == nullptr);
+
+		Texture* texture = new Texture(id, file);
+
+		addResource(texture);
+
+		return texture;
+	}
+
+	glm::u32 Resources::getNextAvailableId()
+	{
+		static glm::u32 current_id = 0;
+
+		return ++current_id;
 	}
 
 	Resources& Resources::getInstance()

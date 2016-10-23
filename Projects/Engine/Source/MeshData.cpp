@@ -31,6 +31,19 @@ namespace ai
 		addVec3(normal);
 	}
 
+	void MeshData::addvertex(const glm::vec3& position, const glm::vec2& texture)
+	{
+		addVec3(position);
+		addVec2(texture);
+	}
+
+	void MeshData::addVertex(const glm::vec3& position, const glm::vec3& normal, const glm::vec2& texture)
+	{
+		addVec3(position);
+		addVec3(normal);
+		addVec2(texture);
+	}
+
 	void MeshData::addVec3(const glm::vec3& vector)
 	{
 		mVertices.emplace_back(vector.x);
@@ -38,7 +51,7 @@ namespace ai
 		mVertices.emplace_back(vector.z);
 	}
 
-	void MeshData::addVec2(const glm::vec3& vector)
+	void MeshData::addVec2(const glm::vec2& vector)
 	{
 		mVertices.emplace_back(vector.x);
 		mVertices.emplace_back(vector.y);

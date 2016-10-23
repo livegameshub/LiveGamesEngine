@@ -33,13 +33,13 @@ void SpheresScene::init()
 
 	// meshes
 
-	ai::Mesh* sphere_mesh = ai::Resources::getInstance().createMesh(20, "Sphere.mesh");
+	ai::Mesh* sphere_mesh = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), "Sphere.mesh");
 
 	// materials
 
-	ai::Material* red_material = static_cast<ai::Material*>(ai::Resources::getInstance().getResource(5));
-	ai::DiffuseMaterial* yellow_material = static_cast<ai::DiffuseMaterial*>(ai::Resources::getInstance().getResource(7));
-	ai::DiffuseMaterial* blue_material = static_cast<ai::DiffuseMaterial*>(ai::Resources::getInstance().getResource(6));
+	ai::Material* red_material = static_cast<ai::Material*>(ai::Resources::getInstance().getResource(14));
+	ai::DiffuseMaterial* yellow_material = static_cast<ai::DiffuseMaterial*>(ai::Resources::getInstance().getResource(15));
+	ai::DiffuseMaterial* blue_material = static_cast<ai::DiffuseMaterial*>(ai::Resources::getInstance().getResource(16));
 
 	// camera 
 
@@ -48,9 +48,9 @@ void SpheresScene::init()
 
 	// models
 
-	mSpheres.push_back(createModel(20, sphere_mesh, blue_material));
-	mSpheres.push_back(createModel(21, sphere_mesh, yellow_material));
-	mSpheres.push_back(createModel(22, sphere_mesh, red_material));
+	mSpheres.push_back(createModel(2, sphere_mesh, blue_material));
+	mSpheres.push_back(createModel(3, sphere_mesh, yellow_material));
+	mSpheres.push_back(createModel(4, sphere_mesh, red_material));
 
 	mSpheres[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));
 	mSpheres[2]->getTransform().setPosition(glm::vec3(3.5f, 0.0f, 0.0f));

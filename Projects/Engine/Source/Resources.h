@@ -13,6 +13,7 @@ namespace ai
 	class Program;
 	class Resource;
 	class Shader;
+	class Texture;
 
 	class ENGINE_API Resources
 	{
@@ -46,6 +47,10 @@ namespace ai
 		Mesh* createMesh(glm::u32 id, const std::string& file);
 		Mesh* createMesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
 
+		/*textures */
+		Texture* createTexture(glm::u32 id, const std::string& file);
+
+		static glm::u32 getNextAvailableId();
 		static Resources& getInstance();
 
 	private:
