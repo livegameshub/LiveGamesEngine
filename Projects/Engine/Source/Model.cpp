@@ -3,7 +3,7 @@
 #include "Mesh.h"
 #include "Material.h"
 
-namespace ai
+namespace lg
 {
 	Model::Model(glm::u32 id) 
 		: Node(id, MODEL_NODE)

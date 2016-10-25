@@ -5,7 +5,7 @@
 #include "Camera.h"
 #include "Model.h"
 
-class CubesScene : public ai::Scene
+class CubesScene : public lg::Scene
 {
 public:
 	CubesScene();
@@ -17,10 +17,10 @@ public:
 	void update() override;
 
 private:
-	std::vector<ai::Model*> mCubes;
+	std::vector<lg::Model*> mCubes;
 
-	ai::DirectionalLight* mDirectionalLight;
-	ai::Camera* mCamera;
+	lg::DirectionalLight* mDirectionalLight;
+	lg::Camera* mCamera;
 };
 
 #endif //_CUBES_SCENE_H_

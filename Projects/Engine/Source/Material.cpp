@@ -2,26 +2,19 @@
 #include "Resources.h"
 #include "Program.h"
 
-namespace ai
+namespace lg
 {
-	Material::Material(glm::u32 id)
-		: Resource(id)
-		, mDiffuseColor(1.0f)
-		, mProgram(nullptr)
-	{
-	}
-
 	Material::Material(glm::u32 id, const Flag& flag)
 		: Resource(id, flag)
-		, mDiffuseColor(1.0f)
 		, mProgram(nullptr)
+		, mDiffuseColor(1.0f)
 	{
 	}
 
 	Material::Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
 		: Resource(id, flag)
-		, mDiffuseColor(diffuse)
 		, mProgram(nullptr)
+		, mDiffuseColor(diffuse)
 	{
 	}
 

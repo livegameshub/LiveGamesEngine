@@ -5,7 +5,7 @@
 
 #include <glfw/glfw3.h>
 
-namespace ai
+namespace lg
 {
 	Window::Window(const glm::ivec2& size)
 		: mSamples(0)

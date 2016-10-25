@@ -35,17 +35,17 @@ void SimpleScene::init()
 	Scene::init();
 
 	// shaders 
-	ai::Program* program = static_cast<ai::Program*>(ai::Resources::getInstance().getResource(7));
+	lg::Program* program = static_cast<lg::Program*>(lg::Resources::getInstance().getResource(7));
 
 	// meshes
 
-	ai::Mesh* point_mesh = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), ai::Mesh::POINTS_MESH, ai::Mesh::STATIC_MESH_DRAW, ai::Mesh::MESH_REMOVE_DATA_FLAG);
-	ai::Mesh* line_mesh = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), ai::Mesh::LINES_MESH, ai::Mesh::STATIC_MESH_DRAW, ai::Mesh::MESH_REMOVE_DATA_FLAG);
-	ai::Mesh* triangle_mesh = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), ai::Mesh::TRIANGLES_MESH, ai::Mesh::STATIC_MESH_DRAW, ai::Mesh::MESH_REMOVE_DATA_FLAG);
+	lg::Mesh* point_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::POINTS_MESH, lg::Mesh::STATIC_MESH_DRAW, lg::Mesh::MESH_REMOVE_DATA_FLAG);
+	lg::Mesh* line_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::LINES_MESH, lg::Mesh::STATIC_MESH_DRAW, lg::Mesh::MESH_REMOVE_DATA_FLAG);
+	lg::Mesh* triangle_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::TRIANGLES_MESH, lg::Mesh::STATIC_MESH_DRAW, lg::Mesh::MESH_REMOVE_DATA_FLAG);
 
-	ai::MeshData& point_data = point_mesh->getData();
-	ai::MeshData& line_data = line_mesh->getData(); 
-	ai::MeshData& triangle_data = triangle_mesh->getData();
+	lg::MeshData& point_data = point_mesh->getData();
+	lg::MeshData& line_data = line_mesh->getData(); 
+	lg::MeshData& triangle_data = triangle_mesh->getData();
 
 	point_data.addVertex(glm::vec3());
 	point_data.addPoint(0);
@@ -62,13 +62,13 @@ void SimpleScene::init()
 
 	// materials
 
-	ai::Material* red_material =  ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 0.0f, 0.0f));
-	ai::Material* yellow_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 1.0f, 0.0f));
-	ai::Material* blue_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program, glm::vec3(0.0f, 0.0f, 1.0f));
+	lg::Material* red_material =  lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 0.0f, 0.0f));
+	lg::Material* yellow_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 1.0f, 0.0f));
+	lg::Material* blue_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(0.0f, 0.0f, 1.0f));
 
 	// camera 
 
-	mCamera = createCamera(1, ai::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
+	mCamera = createCamera(1, lg::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 
 	// models
@@ -100,24 +100,24 @@ void SimpleScene::update()
 	static glm::f32 cameraAngle = 0.0f;
 	static glm::f32 speed = 10.0f;
 
-	if (ai::Input::isKeyDown(GLFW_KEY_UP))
+	if (lg::Input::isKeyDown(GLFW_KEY_UP))
 	{
-		mCamera->moveForward(speed * ai::Time::getDeltaTime());
+		mCamera->moveForward(speed * lg::Time::getDeltaTime());
 	}
-	else if (ai::Input::isKeyDown(GLFW_KEY_DOWN))
+	else if (lg::Input::isKeyDown(GLFW_KEY_DOWN))
 	{
-		mCamera->moveForward(-speed * ai::Time::getDeltaTime());
+		mCamera->moveForward(-speed * lg::Time::getDeltaTime());
 	}
 
-	if (ai::Input::isKeyDown(GLFW_KEY_RIGHT))
+	if (lg::Input::isKeyDown(GLFW_KEY_RIGHT))
 	{
-		cameraAngle -= ai::Time::getDeltaTime() * 75.0f;
+		cameraAngle -= lg::Time::getDeltaTime() * 75.0f;
 
 		mCamera->rotateOnY(cameraAngle);
 	}
-	else if (ai::Input::isKeyDown(GLFW_KEY_LEFT))
+	else if (lg::Input::isKeyDown(GLFW_KEY_LEFT))
 	{
-		cameraAngle += ai::Time::getDeltaTime() * 75.0f;
+		cameraAngle += lg::Time::getDeltaTime() * 75.0f;
 
 		mCamera->rotateOnY(cameraAngle);
 	}

@@ -3,7 +3,7 @@
 
 #include "Light.h"
 
-namespace ai
+namespace lg
 {
 	class ENGINE_API DirectionalLight : public Light
 	{

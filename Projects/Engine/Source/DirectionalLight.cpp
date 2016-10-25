@@ -1,6 +1,6 @@
 #include "DirectionalLight.h"
 
-namespace ai
+namespace lg
 {
 	DirectionalLight::DirectionalLight(glm::u32 id)
 		: Light(id, DIRECTIONAL_LIGHT)

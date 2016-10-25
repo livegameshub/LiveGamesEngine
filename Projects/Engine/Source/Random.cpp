@@ -4,7 +4,7 @@
 
 #include <time.h>
 
-namespace ai
+namespace lg
 {
 	void Random::seed()
 	{

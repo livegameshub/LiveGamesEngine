@@ -5,7 +5,7 @@
 #include "Graphics.h"
 #include "MeshData.h"
 
-namespace ai
+namespace lg
 {
 	class MeshData;
 

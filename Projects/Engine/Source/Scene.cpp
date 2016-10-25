@@ -3,7 +3,7 @@
 #include "Camera.h"
 #include "DirectionalLight.h"
 
-namespace ai
+namespace lg
 {
 	Scene::Scene()
 		: mRootNode(0)

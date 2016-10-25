@@ -3,7 +3,7 @@
 
 #include "Resource.h"
 
-namespace ai
+namespace lg
 {
 	class ENGINE_API Texture : public Resource
 	{
@@ -16,7 +16,9 @@ namespace ai
 		void bind() const;
 
 		const glm::ivec2& getSize() const;
+		glm::u32 getTextureFormat() const;
 		glm::u32 getTextureId() const;
+		
 		
 		static void Activate(glm::u32 index);
 
@@ -24,9 +26,9 @@ namespace ai
 		bool create() override;
 		bool release() override;
 
-		glm::u32 mTextureId;
-		glm::u32 mBitsPerPixel;
 		glm::ivec2 mSize;
+		glm::u32 mTextureId;
+		glm::u32 mBits;
 	};
 }
 

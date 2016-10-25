@@ -3,7 +3,7 @@
 #include "Time.h"
 #include "Console.h"
 
-namespace ai
+namespace lg
 {
 	glm::u32 FpsCounter::smFrames = 0;
 	glm::f32 FpsCounter::smFramesTime = 0.0f;

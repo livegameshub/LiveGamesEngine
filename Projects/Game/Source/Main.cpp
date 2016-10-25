@@ -13,11 +13,11 @@
 
 int main()
 {
-	ai::Scenes::getInstance().addScene(new CubesScene(glm::vec3(0.2f)));
-	ai::Scenes::getInstance().addScene(new SpheresScene(glm::vec3(0.2f)));
-	ai::Scenes::getInstance().addScene(new SimpleScene(glm::vec3(0.2f)));
+	lg::Scenes::getInstance().addScene(new CubesScene(glm::vec3(0.2f)));
+	lg::Scenes::getInstance().addScene(new SpheresScene(glm::vec3(0.2f)));
+	lg::Scenes::getInstance().addScene(new SimpleScene(glm::vec3(0.2f)));
 	
-	ai::Engine::setup("Live Games Hub");
+	lg::Engine::setup("Live Games Hub");
 
 	return 0;
 }

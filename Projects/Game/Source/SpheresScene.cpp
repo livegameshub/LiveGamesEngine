@@ -33,17 +33,17 @@ void SpheresScene::init()
 
 	// meshes
 
-	ai::Mesh* sphere_mesh = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), "Sphere.mesh");
+	lg::Mesh* sphere_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere.mesh");
 
 	// materials
 
-	ai::Material* red_material = static_cast<ai::Material*>(ai::Resources::getInstance().getResource(14));
-	ai::DiffuseMaterial* yellow_material = static_cast<ai::DiffuseMaterial*>(ai::Resources::getInstance().getResource(15));
-	ai::DiffuseMaterial* blue_material = static_cast<ai::DiffuseMaterial*>(ai::Resources::getInstance().getResource(16));
+	lg::Material* red_material = static_cast<lg::Material*>(lg::Resources::getInstance().getResource(14));
+	lg::DiffuseMaterial* yellow_material = static_cast<lg::DiffuseMaterial*>(lg::Resources::getInstance().getResource(15));
+	lg::DiffuseMaterial* blue_material = static_cast<lg::DiffuseMaterial*>(lg::Resources::getInstance().getResource(16));
 
 	// camera 
 
-	mCamera = createCamera(1, ai::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
+	mCamera = createCamera(1, lg::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 
 	// models
@@ -75,31 +75,31 @@ void SpheresScene::update()
 	static glm::f32 cameraAngle = 0.0f;
 	static glm::f32 speed = 10.0f;
 
-	if (ai::Input::isKeyDown(GLFW_KEY_UP))
+	if (lg::Input::isKeyDown(GLFW_KEY_UP))
 	{
-		mCamera->moveForward(speed * ai::Time::getDeltaTime());
+		mCamera->moveForward(speed * lg::Time::getDeltaTime());
 	}
-	else if (ai::Input::isKeyDown(GLFW_KEY_DOWN))
+	else if (lg::Input::isKeyDown(GLFW_KEY_DOWN))
 	{
-		mCamera->moveForward(-speed * ai::Time::getDeltaTime());
+		mCamera->moveForward(-speed * lg::Time::getDeltaTime());
 	}
 
-	if (ai::Input::isKeyDown(GLFW_KEY_RIGHT))
+	if (lg::Input::isKeyDown(GLFW_KEY_RIGHT))
 	{
-		cameraAngle -= ai::Time::getDeltaTime() * 75.0f;
+		cameraAngle -= lg::Time::getDeltaTime() * 75.0f;
 
 		mCamera->rotateOnY(cameraAngle);
 	}
-	else if (ai::Input::isKeyDown(GLFW_KEY_LEFT))
+	else if (lg::Input::isKeyDown(GLFW_KEY_LEFT))
 	{
-		cameraAngle += ai::Time::getDeltaTime() * 75.0f;
+		cameraAngle += lg::Time::getDeltaTime() * 75.0f;
 
 		mCamera->rotateOnY(cameraAngle);
 	}
 
 
-	if (ai::Input::isKeyDown(GLFW_KEY_SPACE))
+	if (lg::Input::isKeyDown(GLFW_KEY_SPACE))
 	{
-		ai::Engine::loadScene(2);
+		lg::Engine::loadScene(2);
 	}
 }

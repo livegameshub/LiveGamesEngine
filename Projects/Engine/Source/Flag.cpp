@@ -1,6 +1,6 @@
 #include "Flag.h"
 
-namespace ai
+namespace lg
 {
 	Flag::Flag()
 		: mValue(0)

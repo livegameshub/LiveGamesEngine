@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-namespace ai
+namespace lg
 {
 	Transform::Transform()
 		: Component(TRANSFORM_COMPONENT)

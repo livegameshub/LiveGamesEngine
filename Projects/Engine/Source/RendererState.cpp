@@ -1,6 +1,6 @@
 #include "RendererState.h"
 
-namespace ai
+namespace lg
 {
 	glm::u32 RendererState::smCurrentMeshId = 0;
 	glm::u32 RendererState::smCurrentProgramId = 0;

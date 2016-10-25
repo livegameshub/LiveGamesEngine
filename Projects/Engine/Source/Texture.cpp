@@ -1,19 +1,19 @@
 #include "Texture.h"
 #include "Graphics.h"
 
-namespace ai
+namespace lg
 {
 	Texture::Texture(glm::u32 id)
 		: Resource(id)
 		, mTextureId(0)
-		, mBitsPerPixel(0)
+		, mBits(0)
 	{		
 	}
 
 	Texture::Texture(glm::u32 id, const std::string& file)
 		: Resource(id, file)
 		, mTextureId(0)
-		, mBitsPerPixel(0)
+		, mBits(0)
 	{
 	}
 
@@ -40,9 +40,16 @@ namespace ai
 
 		fread(&mSize.x, sizeof(glm::i32), 1, pFile);
 		fread(&mSize.y, sizeof(glm::i32), 1, pFile);
-		fread(&mBitsPerPixel, sizeof(glm::u32), 1, pFile);
+		fread(&mBits, sizeof(glm::u32), 1, pFile);
 
-		glm::i32 image_size = mSize.x * mSize.y * (mBitsPerPixel / 8);
+		glm::u32 format = getTextureFormat();
+		
+		if (!format)
+		{
+			return false;
+		}
+
+		glm::i32 image_size = mSize.x * mSize.y * (mBits / 8);
 
 		unsigned char* texture_data = new unsigned char[image_size];
 
@@ -68,7 +75,7 @@ namespace ai
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mSize.x, mSize.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, texture_data);
+		glTexImage2D(GL_TEXTURE_2D, 0, format, mSize.x, mSize.y, 0, format, GL_UNSIGNED_BYTE, texture_data);
 
 		delete[] texture_data;
 		texture_data = nullptr;
@@ -93,6 +100,21 @@ namespace ai
 	glm::u32 Texture::getTextureId() const
 	{
 		return mTextureId;
+	}
+
+	glm::u32 Texture::getTextureFormat() const
+	{
+		if (mBits == 32)
+		{
+			return GL_RGBA;
+		}
+
+		if (mBits == GL_RGB)
+		{
+			return GL_RGB;
+		}
+
+		return 0;
 	}
 
 	const glm::ivec2& Texture::getSize() const

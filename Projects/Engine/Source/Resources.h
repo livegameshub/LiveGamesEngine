@@ -3,7 +3,7 @@
 
 #include "ResourceContainer.h"
 
-namespace ai
+namespace lg
 {
 	struct BasicResourceContainer;
 
@@ -39,9 +39,10 @@ namespace ai
 		Program* createProgram(glm::u32 id, const std::vector<Shader*> shaders);
 
 		/* materials */
-		Material* createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const Flag& flag = 0);
+		Material* createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse);
 
-		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag = 0);
+		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag);
+		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag);
 
 		/* meshes */
 		Mesh* createMesh(glm::u32 id, const std::string& file);

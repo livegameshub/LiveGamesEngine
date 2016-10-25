@@ -1,6 +1,6 @@
 #include "BasicElement.h"
 
-namespace ai
+namespace lg
 {
 	BasicElement::BasicElement(glm::u32 id)
 		: mId(id)

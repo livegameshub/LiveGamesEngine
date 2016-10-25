@@ -16,7 +16,7 @@
 	#include <emscripten/emscripten.h>
 #endif // WINDOWS_BUILD
 
-namespace ai
+namespace lg
 {
 	Window* Engine::getWindow(GLFWwindow* windowPtr)
 	{

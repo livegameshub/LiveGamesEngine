@@ -5,7 +5,7 @@
 #include "DiffuseMaterial.h"
 #include "Texture.h"
 
-namespace ai
+namespace lg
 {
 	void Resources::processPendingItems()
 	{
@@ -126,11 +126,11 @@ namespace ai
 		return shader;
 	}
 
-	Material* Resources::createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const Flag& flag)
+	Material* Resources::createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse)
 	{
 		assert(getResource(id) == nullptr);
 
-		Material* material = new Material(id, diffuse, flag);
+		Material* material = new Material(id, diffuse);
 		material->setProgram(program);
 
 		addResource(material);
@@ -138,12 +138,36 @@ namespace ai
 		return material;
 	}
 
-	DiffuseMaterial* Resources::createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
+	DiffuseMaterial* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag)
+	{
+		assert(getResource(id) == nullptr);
+
+		DiffuseMaterial* material = new DiffuseMaterial(id, diffuse, flag);
+		material->setProgram(program);
+
+		if (texture)
+		{
+			// if we have a texture assign it
+			material->setDiffuseTexture(texture);
+		}
+
+		addResource(material);
+
+		return material;
+	}
+
+	DiffuseMaterial* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
 	{
 		assert(getResource(id) == nullptr);
 
 		DiffuseMaterial* material = new DiffuseMaterial(id, diffuse, specular, shininess, flag);
 		material->setProgram(program);
+
+		if (texture)
+		{
+			// if we have a texture assign it
+			material->setDiffuseTexture(texture);
+		}
 
 		addResource(material);
 

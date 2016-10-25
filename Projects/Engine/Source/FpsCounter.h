@@ -4,7 +4,7 @@
 
 #include "EngineUtil.h"
 
-namespace ai
+namespace lg
 {
 	class FpsCounter
 	{

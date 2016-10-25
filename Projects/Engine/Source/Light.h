@@ -3,7 +3,7 @@
 
 #include "Node.h"
 
-namespace ai
+namespace lg
 {
 	class ENGINE_API Light : public Node
 	{

@@ -1,6 +1,6 @@
 #include "ResourceContainer.h"
 
-namespace ai
+namespace lg
 {
 	ResourceContainer::ResourceContainer(Resource* resource, const Flag& flag)
 		: resource(resource)

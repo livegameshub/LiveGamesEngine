@@ -2,7 +2,7 @@
 
 #include <glfw/glfw3.h>
 
-namespace ai
+namespace lg
 {
 	glm::f32 Time::smLastTime = 0.0f;
 	glm::f32 Time::smDeltaTime = 0.0f;

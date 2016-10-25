@@ -4,7 +4,7 @@
 #include "BasicElement.h"
 #include "Transform.h"
 
-namespace ai
+namespace lg
 {
 	class Transform;
 

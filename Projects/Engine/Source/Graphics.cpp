@@ -1,6 +1,6 @@
 #include "Graphics.h"
 
-namespace ai
+namespace lg
 {
 	glm::i32 Graphics::smMinorApiVersion;
 	glm::i32 Graphics::smMajorApiVersion;

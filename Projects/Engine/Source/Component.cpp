@@ -1,6 +1,6 @@
 #include "Component.h"
 
-namespace ai
+namespace lg
 {
 	Component::Component()
 		: mIsEnabled(true)

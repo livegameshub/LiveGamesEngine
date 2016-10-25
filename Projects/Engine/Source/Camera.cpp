@@ -1,6 +1,6 @@
 #include "Camera.h"
 
-namespace ai
+namespace lg
 {
 	glm::mat4 Camera::smOrthoMatrix;
 

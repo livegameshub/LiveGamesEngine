@@ -7,7 +7,7 @@
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 
-namespace ai
+namespace lg
 {
 	bool Exporter::ExportTexture(const std::string& file)
 	{
@@ -31,13 +31,13 @@ namespace ai
 
 		FIBITMAP* bitmap = FreeImage_Load(format, temp_file.c_str());
 
-		int bits_per_pixel = FreeImage_GetBPP(bitmap);
+		int bits = FreeImage_GetBPP(bitmap);
 
-		if (bits_per_pixel == 32)
+		if (bits == 32)
 		{
 			std::cout << "Image is 32 bits per pixel" << std::endl;
 		}
-		else if (bits_per_pixel == 24)
+		else if (bits == 24)
 		{
 			std::cout << "Image is 24 bits per pixel" << std::endl;
 		}
@@ -62,13 +62,13 @@ namespace ai
 
 		fwrite(&image_width, sizeof(int), 1, pFile);
 		fwrite(&image_height, sizeof(int), 1, pFile);
-		fwrite(&bits_per_pixel, sizeof(int), 1, pFile);
+		fwrite(&bits, sizeof(int), 1, pFile);
 
-		glm::u32 image_size = image_width * image_height * (bits_per_pixel / 8);
+		glm::u32 image_size = image_width * image_height * (bits / 8);
 
 		/* swap the pixels for BGRA */
 
-		for (glm::u32 i = 0; i < image_size; i += bits_per_pixel / 8)
+		for (glm::u32 i = 0; i < image_size; i += bits / 8)
 		{
 			unsigned char temp = texture_data[i];
 

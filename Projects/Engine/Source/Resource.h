@@ -3,7 +3,7 @@
 
 #include "BasicElement.h"
 
-namespace ai
+namespace lg
 {
 	class ENGINE_API Resource : public BasicElement
 	{

@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <iostream>
 
-namespace ai
+namespace lg
 {
 	glm::u32 Console::smCurrentMsgType = INFO_MSG;
 

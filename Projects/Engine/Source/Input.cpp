@@ -1,6 +1,6 @@
 #include "Input.h"
 
-namespace ai
+namespace lg
 {
 	bool Input::smKeyboardKeys[KEYBOARD_KEYS_SIZE];
 	bool Input::smMouseClicks[MOUSE_CLICKS_SIZE];

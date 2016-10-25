@@ -1,6 +1,6 @@
 #include "Node.h"
 
-namespace ai
+namespace lg
 {
 	Node::Node(glm::u32 id)
 		: BasicElement(id)

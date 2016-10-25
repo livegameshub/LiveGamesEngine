@@ -3,7 +3,7 @@
 
 #include "Resource.h"
 
-namespace ai
+namespace lg
 {
 	struct ENGINE_API ResourceContainer
 	{

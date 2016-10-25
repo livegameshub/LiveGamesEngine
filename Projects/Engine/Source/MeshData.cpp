@@ -1,6 +1,6 @@
 #include "MeshData.h"
 
-namespace ai
+namespace lg
 {
 	MeshData::MeshData()
 	{

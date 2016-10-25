@@ -33,49 +33,48 @@ void CubesScene::init()
 
 	// shaders 
 
-	ai::Shader* vertexShader = ai::Resources::getInstance().createShader(ai::Resources::getNextAvailableId(), ai::Shader::VERTEX_SHADER, "BasicShader.vs");
-	ai::Shader* fragmentShader = ai::Resources::getInstance().createShader(ai::Resources::getNextAvailableId(), ai::Shader::FRAGMENT_SHADER, "BasicShader.fs");
+	lg::Shader* vertexShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX_SHADER, "BasicShader.vs");
+	lg::Shader* fragmentShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT_SHADER, "BasicShader.fs");
 
-	ai::Shader* vertexShader2 = ai::Resources::getInstance().createShader(ai::Resources::getNextAvailableId(), ai::Shader::VERTEX_SHADER, "DiffuseShader.vs");
-	ai::Shader* fragmentShader2 = ai::Resources::getInstance().createShader(ai::Resources::getNextAvailableId(), ai::Shader::FRAGMENT_SHADER, "DiffuseShader.fs");
+	lg::Shader* vertexShader2 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX_SHADER, "DiffuseShader.vs");
+	lg::Shader* fragmentShader2 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT_SHADER, "DiffuseShader.fs");
 
-	ai::Shader* vertexShader3 = ai::Resources::getInstance().createShader(ai::Resources::getNextAvailableId(), ai::Shader::VERTEX_SHADER, "DiffuseTextureShader.vs");
-	ai::Shader* fragmentShader3 = ai::Resources::getInstance().createShader(ai::Resources::getNextAvailableId(), ai::Shader::FRAGMENT_SHADER, "DiffuseTextureShader.fs");
+	lg::Shader* vertexShader3 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX_SHADER, "DiffuseTextureShader.vs");
+	lg::Shader* fragmentShader3 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT_SHADER, "DiffuseTextureShader.fs");
 
 	// programs
 
-	ai::Program* program = ai::Resources::getInstance().createProgram(ai::Resources::getNextAvailableId(), { vertexShader, fragmentShader });
-	ai::Program* program2 = ai::Resources::getInstance().createProgram(ai::Resources::getNextAvailableId(), { vertexShader2, fragmentShader2 });
-	ai::Program* program3 = ai::Resources::getInstance().createProgram(ai::Resources::getNextAvailableId(), { vertexShader3, fragmentShader3 });
+	lg::Program* program = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader, fragmentShader });
+	lg::Program* program2 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader2, fragmentShader2 });
+	lg::Program* program3 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader3, fragmentShader3 });
 
 	// meshes
 
-	ai::Mesh* cube_mesh = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), "Cube.mesh");
-	ai::Mesh* cube_mesh2 = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), "Cube2.mesh");
-	ai::Mesh* plane_mesh = ai::Resources::getInstance().createMesh(ai::Resources::getNextAvailableId(), "Plane.mesh");
+	lg::Mesh* cube_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Cube.mesh");
+	lg::Mesh* cube_mesh2 = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Cube2.mesh");
+	lg::Mesh* plane_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Plane.mesh");
 
 	// textures
 
-	ai::Texture* plane_texture = ai::Resources::getInstance().createTexture(ai::Resources::getNextAvailableId(), "grass.texture");
+	lg::Texture* plane_texture = lg::Resources::getInstance().createTexture(lg::Resources::getNextAvailableId(), "grass.texture");
 
 	// materials
 
-	ai::Material* red_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 0.0f, 0.0f));
-	ai::DiffuseMaterial* yellow_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program2, glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.5f), 32.0f);
-	ai::DiffuseMaterial* blue_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program2, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f, ai::Material::IS_SHINY);
+	lg::Material* red_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 0.0f, 0.0f));
+	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
+	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f, lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
 
-	ai::DiffuseMaterial* plane_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program3, glm::vec3(1.0f), glm::vec3(0.5f), 32.0f, ai::Material::IS_SHINY | ai::Material::IS_TEXTURED);
-	plane_material->setDiffuseTexture(plane_texture);
+	lg::DiffuseMaterial* plane_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program3, plane_texture, glm::vec3(1.0f), glm::vec3(0.5f), 32.0f, lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
 
 	// camera 
 
-	mCamera = createCamera(1, ai::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
+	mCamera = createCamera(1, lg::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 
 	// models
 
-	ai::Model* plane = createModel(2, plane_mesh, plane_material);
-	ai::Transform& plane_transform = plane->getTransform();
+	lg::Model* plane = createModel(2, plane_mesh, plane_material);
+	lg::Transform& plane_transform = plane->getTransform();
 	plane_transform.setScale(glm::vec3(8.0f));
 	plane_transform.translate(glm::vec3(0.0f, -1.5f, 0.0f));
 	plane_transform.rotateOnX(270.0f);
@@ -110,7 +109,7 @@ void CubesScene::update()
 	static glm::f32 angle = 0.0f;
 	static glm::f32 speed = 10.0f;
 
-	angle += ai::Time::getDeltaTime() * 20.0f;
+	angle += lg::Time::getDeltaTime() * 20.0f;
 
 	for (auto cube : mCubes)
 	{
@@ -122,31 +121,31 @@ void CubesScene::update()
 		angle -= 360.0f;
 	}
 
-	if (ai::Input::isKeyDown(GLFW_KEY_UP))
+	if (lg::Input::isKeyDown(GLFW_KEY_UP))
 	{
-		mCamera->moveForward(speed * ai::Time::getDeltaTime());
+		mCamera->moveForward(speed * lg::Time::getDeltaTime());
 	}
-	else if(ai::Input::isKeyDown(GLFW_KEY_DOWN))
+	else if(lg::Input::isKeyDown(GLFW_KEY_DOWN))
 	{
-		mCamera->moveForward(-speed * ai::Time::getDeltaTime());
+		mCamera->moveForward(-speed * lg::Time::getDeltaTime());
 	}
 
-	if (ai::Input::isKeyDown(GLFW_KEY_RIGHT))
+	if (lg::Input::isKeyDown(GLFW_KEY_RIGHT))
 	{
-		cameraAngle -= ai::Time::getDeltaTime() * 75.0f;
+		cameraAngle -= lg::Time::getDeltaTime() * 75.0f;
 
 		mCamera->rotateOnY(cameraAngle);
 	}
-	else if (ai::Input::isKeyDown(GLFW_KEY_LEFT))
+	else if (lg::Input::isKeyDown(GLFW_KEY_LEFT))
 	{
-		cameraAngle += ai::Time::getDeltaTime() * 75.0f;
+		cameraAngle += lg::Time::getDeltaTime() * 75.0f;
 
 		mCamera->rotateOnY(cameraAngle);
 	}
 			
 
-	if (ai::Input::isKeyDown(GLFW_KEY_SPACE))
+	if (lg::Input::isKeyDown(GLFW_KEY_SPACE))
 	{
-		ai::Engine::loadScene(1);
+		lg::Engine::loadScene(1);
 	}
 }

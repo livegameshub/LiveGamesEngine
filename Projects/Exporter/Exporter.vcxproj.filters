@@ -5,18 +5,21 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Source\Exporter">
+      <UniqueIdentifier>{89131633-fd32-4c33-9f1a-ea4b31a64e7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Exporter.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Exporter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Exporter.h">
-      <Filter>Source</Filter>
+      <Filter>Source\Exporter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

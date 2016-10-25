@@ -1,6 +1,6 @@
 #include "Light.h"
 
-namespace ai
+namespace lg
 {
 	Light::Light(glm::u32 id, glm::i32 type)
 		: Node(id, LIGHT_NODE)

@@ -10,7 +10,7 @@
 	#include <gl/glew.h>
 #endif // WINDOWS_BUILD
 
-namespace ai
+namespace lg
 {
 	class ENGINE_API Graphics
 	{

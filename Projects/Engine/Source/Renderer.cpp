@@ -11,7 +11,7 @@
 #include "DirectionalLight.h"
 #include "Texture.h"
 
-namespace ai
+namespace lg
 {
 	Renderer::Renderer()
 		: mScene(nullptr)

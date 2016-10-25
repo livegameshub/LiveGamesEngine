@@ -14,7 +14,7 @@ int main()
 
 	if (isTexture)
 	{
-		ai::Exporter::ExportTexture(file);
+		lg::Exporter::ExportTexture(file);
 	}
 	else
 	{
@@ -23,7 +23,7 @@ int main()
 
 		if (isModel)
 		{
-			ai::Exporter::ExportModel(file);
+			lg::Exporter::ExportModel(file);
 		}
 	}
 

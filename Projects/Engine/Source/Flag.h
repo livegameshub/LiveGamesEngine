@@ -3,7 +3,7 @@
 
 #include "EngineUtil.h"
 
-namespace ai
+namespace lg
 {
 	struct ENGINE_API Flag
 	{

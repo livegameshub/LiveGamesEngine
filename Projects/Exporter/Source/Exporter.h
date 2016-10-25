@@ -5,7 +5,7 @@
 #include <string>
 #include <glm/glm.hpp>
 
-namespace ai
+namespace lg
 {
 	class Exporter
 	{

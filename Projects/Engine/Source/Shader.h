@@ -4,7 +4,7 @@
 #include "Resource.h"
 #include "Graphics.h"
 
-namespace ai
+namespace lg
 {
 	class ENGINE_API Shader : public Resource
 	{

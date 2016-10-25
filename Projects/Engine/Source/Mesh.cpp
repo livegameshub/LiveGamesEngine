@@ -2,7 +2,7 @@
 #include "Program.h"
 #include "MeshData.h"
 
-namespace ai
+namespace lg
 {
 	Mesh::Mesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag)
 		: Resource(id, flag)

@@ -1,7 +1,7 @@
 #include "Program.h"
 #include "Shader.h"
 
-namespace ai
+namespace lg
 {
 	Program::Program(glm::u32 id)
 		: Resource(id)

@@ -4,45 +4,24 @@
 #include "Resources.h"
 #include "Texture.h"
 
-namespace ai
+namespace lg
 {
-	DiffuseMaterial::DiffuseMaterial(glm::u32 id)
-		: Material(id, IS_LIGHTED)
+	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
+		: SpriteMaterial(id, diffuse, flag)
 		, mSpecularColor(1.0f)
 		, mSpecularShininess(0.0f)
-		, mDiffuseTexture(nullptr)
 	{
 	}
 
 	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
-		: Material(id, diffuse, flag | IS_LIGHTED)
+		: SpriteMaterial(id, diffuse, flag)
 		, mSpecularColor(specular)
 		, mSpecularShininess(shininess)
-		, mDiffuseTexture(nullptr)
 	{
 	}
 
 	DiffuseMaterial::~DiffuseMaterial()
 	{
-	}
-
-	void DiffuseMaterial::setDiffuseTexture(Texture* texture)
-	{
-		assert(texture != nullptr);
-
-		if (mDiffuseTexture)
-		{
-			Resources::getInstance().unload(mDiffuseTexture);
-		}
-
-		mDiffuseTexture = texture;
-
-		Resources::getInstance().load(mDiffuseTexture);
-	}
-
-	Texture* DiffuseMaterial::getDiffuseTexture() const
-	{
-		return mDiffuseTexture;
 	}
 
 	void DiffuseMaterial::uploadUniforms() const
@@ -107,16 +86,11 @@ namespace ai
 			mProgram->getFlag().add(Program::DIFFUSE_MATERIAL_UNIFORMS);
 		}
 
-		return Material::create();
+		return SpriteMaterial::create();
 	}
 
 	bool DiffuseMaterial::release()
 	{
-		if (mDiffuseTexture)
-		{
- 			Resources::getInstance().unload(mDiffuseTexture);
-		}
-
-		return Material::release();
+		return SpriteMaterial::release();
 	}
 }

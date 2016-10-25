@@ -1,6 +1,6 @@
 #include "Resource.h"
 
-namespace ai
+namespace lg
 {
 	Resource::Resource(glm::u32 id)
 		: BasicElement(id)

@@ -7,7 +7,7 @@
 
 struct GLFWwindow;
 
-namespace ai
+namespace lg
 {
 	class ENGINE_API Input
 	{

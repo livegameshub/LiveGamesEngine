@@ -4,7 +4,7 @@
 #include "Resource.h"
 #include "MaterialUtil.h"
 
-namespace ai
+namespace lg
 {
 	class Program;
 
@@ -18,9 +18,8 @@ namespace ai
 			IS_SHINY = 4
 		};
 
-		Material(glm::u32 id);
-		Material(glm::u32 id, const Flag& flag);
-		Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
+		Material(glm::u32 id, const Flag& flag = 0);
+		Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag = 0);
 
 		virtual ~Material();
 
@@ -40,8 +39,10 @@ namespace ai
 		virtual bool create();
 		virtual bool release();
 
-		glm::vec3 mDiffuseColor;
 		Program* mProgram;
+
+	private:
+		glm::vec3 mDiffuseColor;
 	};
 }
 

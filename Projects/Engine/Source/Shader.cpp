@@ -1,7 +1,7 @@
 #include "Shader.h"
 #include "Engine.h"
 
-namespace ai
+namespace lg
 {
 	Shader::Shader(glm::u32 id)
 		: Resource(id)
