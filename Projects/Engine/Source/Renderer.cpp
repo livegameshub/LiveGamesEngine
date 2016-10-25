@@ -9,6 +9,7 @@
 #include "RendererState.h"
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
+#include "Texture.h"
 
 namespace ai
 {
@@ -109,6 +110,17 @@ namespace ai
 				program->setUniform(UNIFORM_AMBIENT_LIGHT, mScene->getAmbientLight());
 
 				static_cast<DiffuseMaterial*>(material)->uploadUniforms(static_cast<DirectionalLight*>(mScene->getLightByIndex(0)));
+			}
+		}
+
+		if (material->IsTextured())
+		{
+			Texture* texture = static_cast<DiffuseMaterial*>(material)->getDiffuseTexture();
+			assert(texture != nullptr);
+
+			if (RendererState::checkTextureId(texture->getId()))
+			{
+				texture->bind();
 			}
 		}
 

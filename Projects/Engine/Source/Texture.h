@@ -15,10 +15,9 @@ namespace ai
 
 		void bind() const;
 
+		const glm::ivec2& getSize() const;
 		glm::u32 getTextureId() const;
-		glm::u32 getWidth() const;
-		glm::u32 getHeight() const;
-
+		
 		static void Activate(glm::u32 index);
 
 	private:
@@ -27,8 +26,7 @@ namespace ai
 
 		glm::u32 mTextureId;
 		glm::u32 mBitsPerPixel;
-		glm::u32 mWidth;
-		glm::u32 mHeight;
+		glm::ivec2 mSize;
 	};
 }
 

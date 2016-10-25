@@ -26,13 +26,16 @@ uniform DirectionalLight u_directional_light;
 uniform vec3 u_camera_position;
 uniform vec3 u_ambient_light;
 
+uniform sampler2D u_diffuse_sampler;
+
 varying vec3 v_position;
 varying vec3 v_normal;
+varying vec2 v_uv;
 
-vec3 calculateDirectionalLight(vec3 view_direction, vec3 normal)
+vec3 calculateDirectionalLight(vec3 view_direction, vec3 normal, vec3 diffuse_color)
 {
 	// process the ambient light
-	vec3 result = u_ambient_light * u_material.diffuse;
+	vec3 result = u_ambient_light * diffuse_color;
 
 	// process the diffuse light
 	vec3 light_direction = normalize(-u_directional_light.direction);
@@ -40,7 +43,7 @@ vec3 calculateDirectionalLight(vec3 view_direction, vec3 normal)
 
 	if (diffuse_factor > 0.0)
 	{
-		result += u_directional_light.light.diffuse * u_material.diffuse * diffuse_factor;
+		result += u_directional_light.light.diffuse * diffuse_color * diffuse_factor;
 		
 		// process the specular light
 		vec3 reflect_direction = reflect(-light_direction, normal);
@@ -62,7 +65,9 @@ void main()
 	vec3 normal = normalize(v_normal);
 	vec3 view_direction = normalize(u_camera_position - v_position);
 	
-	vec3 color = calculateDirectionalLight(view_direction, normal);
+	// calculate the diffuse color
+	vec3 diffuse_color = u_material.diffuse *  vec3(texture2D(u_diffuse_sampler, v_uv.xy));
+	vec3 color = calculateDirectionalLight(view_direction, normal, diffuse_color);
 
 	gl_FragColor = vec4(color, 1.0);
 }

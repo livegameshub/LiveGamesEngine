@@ -5,6 +5,7 @@ namespace ai
 	glm::u32 RendererState::smCurrentMeshId = 0;
 	glm::u32 RendererState::smCurrentProgramId = 0;
 	glm::u32 RendererState::smCurrentMaterialId = 0;
+	glm::u32 RendererState::smCurrentTextureId = 0;
 
 	bool RendererState::checkMeshId(glm::u32 id)
 	{
@@ -35,6 +36,18 @@ namespace ai
 		if (smCurrentMaterialId != id)
 		{
 			smCurrentMaterialId = id;
+
+			return true;
+		}
+
+		return false;
+	}
+
+	bool RendererState::checkTextureId(glm::u32 id)
+	{
+		if (smCurrentTextureId != id)
+		{
+			smCurrentTextureId = id;
 
 			return true;
 		}

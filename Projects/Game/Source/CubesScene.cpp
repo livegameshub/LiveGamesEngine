@@ -64,7 +64,7 @@ void CubesScene::init()
 	ai::DiffuseMaterial* yellow_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program2, glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.5f), 32.0f);
 	ai::DiffuseMaterial* blue_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program2, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f, ai::Material::IS_SHINY);
 
-	ai::DiffuseMaterial* plane_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program3, glm::vec3(1.0f), glm::vec3(0.5f), 32.0f, ai::Material::IS_SHINY);
+	ai::DiffuseMaterial* plane_material = ai::Resources::getInstance().createMaterial(ai::Resources::getNextAvailableId(), program3, glm::vec3(1.0f), glm::vec3(0.5f), 32.0f, ai::Material::IS_SHINY | ai::Material::IS_TEXTURED);
 	plane_material->setDiffuseTexture(plane_texture);
 
 	// camera 
@@ -78,7 +78,7 @@ void CubesScene::init()
 	ai::Transform& plane_transform = plane->getTransform();
 	plane_transform.setScale(glm::vec3(8.0f));
 	plane_transform.translate(glm::vec3(0.0f, -1.5f, 0.0f));
-	plane_transform.rotateOnX(90.0f);
+	plane_transform.rotateOnX(270.0f);
 
 	mRootNode.addChild(plane);
 

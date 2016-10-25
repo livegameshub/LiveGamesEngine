@@ -6,16 +6,14 @@ namespace ai
 	Texture::Texture(glm::u32 id)
 		: Resource(id)
 		, mTextureId(0)
-		, mWidth(0)
-		, mHeight(0)
+		, mBitsPerPixel(0)
 	{		
 	}
 
 	Texture::Texture(glm::u32 id, const std::string& file)
 		: Resource(id, file)
 		, mTextureId(0)
-		, mWidth(0)
-		, mHeight(0)
+		, mBitsPerPixel(0)
 	{
 	}
 
@@ -37,13 +35,43 @@ namespace ai
 	{
 		FILE * pFile;
 
+		// read the pixels
 		fopen_s(&pFile, std::string(ASSETS_PATH + mResourceFile).c_str(), "rb");
 
-		fread(&mWidth, sizeof(glm::u32), 1, pFile);
-		fread(&mHeight, sizeof(glm::u32), 1, pFile);
+		fread(&mSize.x, sizeof(glm::i32), 1, pFile);
+		fread(&mSize.y, sizeof(glm::i32), 1, pFile);
 		fread(&mBitsPerPixel, sizeof(glm::u32), 1, pFile);
 
- 		glGenTextures(1, &mTextureId);
+		glm::i32 image_size = mSize.x * mSize.y * (mBitsPerPixel / 8);
+
+		unsigned char* texture_data = new unsigned char[image_size];
+
+		if (!texture_data)
+		{
+			return false;
+		}
+
+		fread(texture_data, image_size, 1, pFile);
+
+		fclose(pFile);
+
+		// generate the texture
+		glGenTextures(1, &mTextureId);
+
+		if (!mTextureId)
+		{
+			return false;
+		}
+
+		bind();
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mSize.x, mSize.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, texture_data);
+
+		delete[] texture_data;
+		texture_data = nullptr;
 
 		return true;
 	}
@@ -67,13 +95,8 @@ namespace ai
 		return mTextureId;
 	}
 
-	glm::u32 Texture::getHeight() const
+	const glm::ivec2& Texture::getSize() const
 	{
-		return mHeight;
-	}
-
-	glm::u32 Texture::getWidth() const
-	{
-		return mWidth;
+		return mSize;
 	}
 }
