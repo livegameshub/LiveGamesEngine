@@ -1,17 +1,17 @@
-#ifndef _BASIC_ELEMENT_H_
-#define _BASIC_ELEMENT_H_
+#ifndef _OBJECT_H_
+#define _OBJECT_H_
 
 #include "Flag.h"
 
 namespace lg
 {
-	class ENGINE_API BasicElement
+	class ENGINE_API Object
 	{
 	public:
-		BasicElement(glm::u32 id);
-		BasicElement(glm::u32 id, const Flag& flag);
+		Object(glm::u32 id);
+		Object(glm::u32 id, const Flag& flag);
 
-		virtual ~BasicElement();
+		virtual ~Object();
 
 		void setId(glm::u32 id);
 		void setFlag(const Flag& flag);
@@ -27,4 +27,4 @@ namespace lg
 	};
 }
 
-#endif // _BASIC_ELEMENT_H_
+#endif // _OBJECT_H_

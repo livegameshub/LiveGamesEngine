@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Source\Component.h" />
-    <ClInclude Include="Source\BasicElement.h" />
+    <ClInclude Include="Source\Object.h" />
     <ClInclude Include="Source\MaterialUtil.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\ResourceContainer.h" />
@@ -148,15 +148,15 @@
     <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\MeshData.h" />
     <ClInclude Include="Source\Node.h" />
-    <ClInclude Include="Source\Model.h" />
+    <ClInclude Include="Source\Renderable.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Program.h" />
     <ClInclude Include="Source\Random.h" />
     <ClInclude Include="Source\Renderer.h" />
-    <ClInclude Include="Source\RendererState.h" />
     <ClInclude Include="Source\Resources.h" />
     <ClInclude Include="Source\Scenes.h" />
     <ClInclude Include="Source\Shader.h" />
+    <ClInclude Include="Source\Sprite.h" />
     <ClInclude Include="Source\SpriteMaterial.h" />
     <ClInclude Include="Source\Texture.h" />
     <ClInclude Include="Source\Time.h" />
@@ -165,7 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Component.cpp" />
-    <ClCompile Include="Source\BasicElement.cpp" />
+    <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\Resource.cpp" />
     <ClCompile Include="Source\ResourceContainer.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
@@ -183,14 +183,14 @@
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
     <ClCompile Include="Source\Node.cpp" />
-    <ClCompile Include="Source\Model.cpp" />
+    <ClCompile Include="Source\Renderable.cpp" />
     <ClCompile Include="Source\Program.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
-    <ClCompile Include="Source\RendererState.cpp" />
     <ClCompile Include="Source\Resources.cpp" />
     <ClCompile Include="Source\Scenes.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
+    <ClCompile Include="Source\Sprite.cpp" />
     <ClCompile Include="Source\SpriteMaterial.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Time.cpp" />

@@ -97,14 +97,8 @@
     <ClInclude Include="Source\Renderer.h">
       <Filter>Source\Engine\Render</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BasicElement.h">
-      <Filter>Source\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Source\MeshData.h">
       <Filter>Source\Resources\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\RendererState.h">
-      <Filter>Source\Engine\Render</Filter>
     </ClInclude>
     <ClInclude Include="Source\Resources.h">
       <Filter>Source\Resources\Manager</Filter>
@@ -142,9 +136,6 @@
     <ClInclude Include="Source\Material.h">
       <Filter>Source\Resources\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Model.h">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
@@ -165,6 +156,15 @@
     </ClInclude>
     <ClInclude Include="Source\SpriteMaterial.h">
       <Filter>Source\Resources\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sprite.h">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Object.h">
+      <Filter>Source\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderable.h">
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -198,14 +198,8 @@
     <ClCompile Include="Source\Renderer.cpp">
       <Filter>Source\Engine\Render</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BasicElement.cpp">
-      <Filter>Source\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MeshData.cpp">
       <Filter>Source\Resources\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\RendererState.cpp">
-      <Filter>Source\Engine\Render</Filter>
     </ClCompile>
     <ClCompile Include="Source\Resources.cpp">
       <Filter>Source\Resources\Manager</Filter>
@@ -243,9 +237,6 @@
     <ClCompile Include="Source\Material.cpp">
       <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Model.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
@@ -263,6 +254,15 @@
     </ClCompile>
     <ClCompile Include="Source\SpriteMaterial.cpp">
       <Filter>Source\Resources\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>Source\Scenes\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object.cpp">
+      <Filter>Source\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderable.cpp">
+      <Filter>Source\Scenes\Nodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

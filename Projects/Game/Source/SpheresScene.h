@@ -3,7 +3,7 @@
 
 #include "Scene.h"
 #include "Camera.h"
-#include "Model.h"
+#include "Renderable.h"
 
 class SpheresScene : public lg::Scene
 {
@@ -17,7 +17,7 @@ public:
 	void update() override;
 
 private:
-	std::vector<lg::Model*> mSpheres;
+	std::vector<lg::Renderable*> mSpheres;
 
 	lg::DirectionalLight* mDirectionalLight;
 	lg::Camera* mCamera;

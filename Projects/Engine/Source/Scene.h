@@ -8,9 +8,11 @@ namespace lg
 	class DirectionalLight;
 	class Material;
 	class Mesh;
-	class Model;
+	class Renderable;
 	class Camera;
 	class Light;
+	class Sprite;
+	class SpriteMaterial;
 
 	class ENGINE_API Scene
 	{
@@ -41,8 +43,10 @@ namespace lg
 		/* node */
 		Node* createNode(glm::u32 id);
 
-		/* model */
-		Model* createModel(glm::u32 id, Mesh* mesh, Material* material);
+		/* renderable */
+		Renderable* createRenderable(glm::u32 id, Mesh* mesh, Material* material);
+
+		Sprite* createSprite(glm::u32 id, SpriteMaterial* material, const glm::vec4& rectangle, glm::f32 textureSize);
 
 		/* camera */
 		Camera* createCamera(glm::u32 id, const glm::vec2& size, const glm::vec3& position);

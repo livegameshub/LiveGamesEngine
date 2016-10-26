@@ -138,6 +138,19 @@ namespace lg
 		return material;
 	}
 
+	SpriteMaterial* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse)
+	{
+		assert(getResource(id) == nullptr);
+
+		SpriteMaterial* material = new SpriteMaterial(id, diffuse);
+		material->setProgram(program);
+		material->setDiffuseTexture(texture);
+
+		addResource(material);
+
+		return material;
+	}
+
 	DiffuseMaterial* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag)
 	{
 		assert(getResource(id) == nullptr);
@@ -190,6 +203,27 @@ namespace lg
 		assert(getResource(id) == nullptr);
 
 		Mesh* mesh = new Mesh(id, primitive, drawType, flag);
+
+		addResource(mesh);
+
+		return mesh;
+	}
+
+	Mesh* Resources::createMesh(glm::u32 id, const glm::vec4& rectangle, glm::f32 textureSize)
+	{
+		assert(getResource(id) == nullptr);
+
+		Mesh* mesh = new Mesh(id, Mesh::TRIANGLES_MESH, Mesh::STATIC_MESH_DRAW, Mesh::MESH_TEXTURE_FLAG);
+
+		lg::MeshData& data = mesh->getData();
+
+		data.addVertex(glm::vec3(rectangle.z * 0.5f, rectangle.w * 0.5f, 0.0f), glm::vec2((rectangle.x + rectangle.z) / textureSize, (rectangle.y + rectangle.w) / textureSize));
+		data.addVertex(glm::vec3(rectangle.z * 0.5f, -(rectangle.w * 0.5f), 0.0f), glm::vec2((rectangle.x + rectangle.z) / textureSize, rectangle.y / textureSize));
+		data.addVertex(glm::vec3(-(rectangle.z * 0.5f), -(rectangle.w * 0.5f), 0.0f), glm::vec2(rectangle.x / textureSize, rectangle.y / textureSize));
+		data.addVertex(glm::vec3(-(rectangle.z * 0.5f), rectangle.w * 0.5f, 0.0f), glm::vec2(rectangle.x / textureSize, (rectangle.y + rectangle.w) / textureSize));
+			 
+		data.addTriangle(0, 1, 3);
+		data.addTriangle(1, 2, 3);
 
 		addResource(mesh);
 

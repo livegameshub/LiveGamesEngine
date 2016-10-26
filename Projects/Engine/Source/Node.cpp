@@ -3,28 +3,28 @@
 namespace lg
 {
 	Node::Node(glm::u32 id)
-		: BasicElement(id)
+		: Object(id)
 		, mIsEnabled(true)
 		, mNodeType(BASIC_NODE)
 	{
 	}
 
 	Node::Node(glm::u32 id, glm::i32 type)
-		: BasicElement(id)
+		: Object(id)
 		, mIsEnabled(true)
 		, mNodeType(type)
 	{
 	}
 
 	Node::Node(glm::u32 id, glm::i32 type, const Flag& flag)
-		: BasicElement(id, flag)
+		: Object(id, flag)
 		, mIsEnabled(true)
 		, mNodeType(type)
 	{
 	}
 
 	Node::Node(glm::u32 id, const Flag& flag)
-		: BasicElement(id, flag)
+		: Object(id, flag)
 		, mIsEnabled(true)
 		, mNodeType(BASIC_NODE)
 	{

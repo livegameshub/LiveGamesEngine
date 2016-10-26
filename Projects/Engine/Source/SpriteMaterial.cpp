@@ -10,6 +10,12 @@ namespace lg
 	{
 	}
 
+	SpriteMaterial::SpriteMaterial(glm::u32 id, const glm::vec3& diffuse)
+		: Material(id, diffuse)
+		, mDiffuseTexture(nullptr)
+	{
+	}
+
 	SpriteMaterial::SpriteMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
 		: Material(id, diffuse, flag)
 		, mDiffuseTexture(nullptr)

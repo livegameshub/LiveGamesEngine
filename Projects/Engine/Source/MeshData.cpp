@@ -31,7 +31,7 @@ namespace lg
 		addVec3(normal);
 	}
 
-	void MeshData::addvertex(const glm::vec3& position, const glm::vec2& texture)
+	void MeshData::addVertex(const glm::vec3& position, const glm::vec2& texture)
 	{
 		addVec3(position);
 		addVec2(texture);

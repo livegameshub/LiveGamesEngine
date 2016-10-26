@@ -1,23 +1,31 @@
-#include "Model.h"
+#include "Renderable.h"
 #include "Resources.h"
 #include "Mesh.h"
 #include "Material.h"
 
 namespace lg
 {
-	Model::Model(glm::u32 id) 
-		: Node(id, MODEL_NODE)
+	Renderable::Renderable(glm::u32 id)
+		: Node(id, RENDERABLE_NODE)
 		, mMaterial(nullptr)
 		, mMesh(nullptr)
 		, mIsVisible(true)
 	{
 	}
 
-	Model::~Model()
+	Renderable::Renderable(glm::u32 id, glm::i32 type)
+		: Node(id, type)
+		, mMaterial(nullptr)
+		, mMesh(nullptr)
+		, mIsVisible(true)
 	{
 	}
 
-	void Model::release()
+	Renderable::~Renderable()
+	{
+	}
+
+	void Renderable::release()
 	{
 		Node::release();
 
@@ -28,7 +36,7 @@ namespace lg
 		Resources::getInstance().unload(mMaterial);
 	}
 
-	void Model::setMesh(Mesh* mesh)
+	void Renderable::setMesh(Mesh* mesh)
 	{
 		assert(mesh != nullptr);
 
@@ -42,7 +50,7 @@ namespace lg
 		Resources::getInstance().load(mMesh);
 	}
 
-	void Model::setMaterial(Material* material)
+	void Renderable::setMaterial(Material* material)
 	{
 		assert(material != nullptr);
 
@@ -56,22 +64,22 @@ namespace lg
 		Resources::getInstance().load(mMaterial);
 	}
 
-	Material* Model::getMaterial() const
+	Material* Renderable::getMaterial() const
 	{
 		return mMaterial;
 	}
 
-	Mesh* Model::getMesh() const
+	Mesh* Renderable::getMesh() const
 	{
 		return mMesh;
 	}
 
-	void Model::setVisible(bool value)
+	void Renderable::setVisible(bool value)
 	{
 		mIsVisible = value;
 	}
 
-	bool Model::isVisible() const
+	bool Renderable::isVisible() const
 	{
 		return mIsVisible;
 	}

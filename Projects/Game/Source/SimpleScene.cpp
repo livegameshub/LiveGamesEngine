@@ -73,9 +73,9 @@ void SimpleScene::init()
 
 	// models
 
-	mPrimitives.push_back(createModel(2, point_mesh, blue_material));
-	mPrimitives.push_back(createModel(3, line_mesh, yellow_material));
-	mPrimitives.push_back(createModel(4, triangle_mesh, red_material));
+	mPrimitives.push_back(createRenderable(2, point_mesh, blue_material));
+	mPrimitives.push_back(createRenderable(3, line_mesh, yellow_material));
+	mPrimitives.push_back(createRenderable(4, triangle_mesh, red_material));
 	
 	mPrimitives[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));
 	mPrimitives[2]->getTransform().setPosition(glm::vec3(3.5f, 0.0f, 0.0f));

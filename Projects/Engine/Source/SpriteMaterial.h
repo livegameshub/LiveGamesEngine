@@ -11,6 +11,7 @@ namespace lg
 	{
 	public:
 		SpriteMaterial(glm::u32 id, const Flag& flag);
+		SpriteMaterial(glm::u32 id, const glm::vec3& diffuse);
 		SpriteMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
 
 		virtual ~SpriteMaterial();

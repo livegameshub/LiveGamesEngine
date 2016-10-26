@@ -1,21 +1,21 @@
 #ifndef _NODE_H_
 #define _NODE_H_
 
-#include "BasicElement.h"
+#include "Object.h"
 #include "Transform.h"
 
 namespace lg
 {
 	class Transform;
 
-	class ENGINE_API Node : public BasicElement
+	class ENGINE_API Node : public Object
 	{
 	public:
 		enum NodeType : glm::i32
 		{
 			BASIC_NODE,
 			CAMERA_NODE,
-			MODEL_NODE,
+			RENDERABLE_NODE,
 			SPRITE_NODE,
 			LIGHT_NODE
 		};
@@ -29,17 +29,20 @@ namespace lg
 
 		virtual void update();
 		virtual void release();
-
-		void addComponent(Component* component);
-		void addChild(Node* node);
-
-		Component* getComponent(glm::i32 type) const;
-		Component* operator[](glm::i32 type) const;
-		Component* removeComponent(glm::i32 type);
 		
+		/* nodes */
+
+		void addChild(Node* node);
 		Node* getChild(glm::u32 id) const;
 		Node* operator[](glm::u32 id) const;
 		Node* removeChild(glm::u32 id);
+
+		/* components */
+
+		void addComponent(Component* component);
+		Component* getComponent(glm::i32 type) const;
+		Component* operator[](glm::i32 type) const;
+		Component* removeComponent(glm::i32 type);
 		
 		const std::vector<Component*>& getComponents() const;
 		const std::vector<Node*>& getChildren() const;

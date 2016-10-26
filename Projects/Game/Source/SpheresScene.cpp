@@ -48,9 +48,9 @@ void SpheresScene::init()
 
 	// models
 
-	mSpheres.push_back(createModel(2, sphere_mesh, blue_material));
-	mSpheres.push_back(createModel(3, sphere_mesh, yellow_material));
-	mSpheres.push_back(createModel(4, sphere_mesh, red_material));
+	mSpheres.push_back(createRenderable(2, sphere_mesh, blue_material));
+	mSpheres.push_back(createRenderable(3, sphere_mesh, yellow_material));
+	mSpheres.push_back(createRenderable(4, sphere_mesh, red_material));
 
 	mSpheres[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));
 	mSpheres[2]->getTransform().setPosition(glm::vec3(3.5f, 0.0f, 0.0f));

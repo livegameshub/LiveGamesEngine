@@ -1,5 +1,5 @@
-#ifndef _MODEL_H_
-#define _MODEL_H_
+#ifndef _RENDERABLE_H_
+#define _RENDERABLE_H_
 
 #include "Node.h"
 
@@ -8,13 +8,16 @@ namespace lg
 	class Mesh;
 	class Material;
 
-	class ENGINE_API Model : public Node
+	class ENGINE_API Renderable : public Node
 	{
 	public:
-		Model(glm::u32 id);
-		~Model();
+		Renderable(glm::u32 id);
+		Renderable(glm::u32 id, glm::i32 type);
 
-		void release() override;
+		virtual ~Renderable();
+
+		virtual void release();
+
 		void setMaterial(Material* material);
 		void setMesh(Mesh* mesh);
 
@@ -32,4 +35,4 @@ namespace lg
 	};
 }
 
-#endif // _MODEL_H_
+#endif // _RENDERABLE_H_

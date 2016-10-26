@@ -19,7 +19,7 @@ namespace lg
 
 		void addVertex(const glm::vec3& position);
 		void addVertex(const glm::vec3& position, const glm::vec3& normal);
-		void addvertex(const glm::vec3& position, const glm::vec2& texture);
+		void addVertex(const glm::vec3& position, const glm::vec2& texture);
 		void addVertex(const glm::vec3& position, const glm::vec3& normal, const glm::vec2& texture);
 
 		void addPoint(glm::u16 index_0);

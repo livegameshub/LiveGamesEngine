@@ -1,11 +1,11 @@
 #ifndef _RESOURCE_H_
 #define _RESOURCE_H_
 
-#include "BasicElement.h"
+#include "Object.h"
 
 namespace lg
 {
-	class ENGINE_API Resource : public BasicElement
+	class ENGINE_API Resource : public Object
 	{
 	public:
 		Resource(glm::u32 id);

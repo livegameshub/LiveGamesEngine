@@ -32,29 +32,29 @@ namespace lg
 
 		/* update the ortho matrix (for the 2d or GUI) */
 
-		if (mFlag.isSet(CAMERA_NEW_ORTHO_MATRIX))
+		if (mFlag.isSet(REBUILD_ORTHO_MATRIX))
 		{
 			smOrthoMatrix = glm::ortho(0.0f, mViewSize.x, mViewSize.y, 0.0f, -1.0f, 1.0f);
 
-			mFlag -= CAMERA_NEW_ORTHO_MATRIX;
+			mFlag -= REBUILD_ORTHO_MATRIX;
 		}
 
 		/* update the perspective matrix */
 
-		if (mFlag.isSet(CAMERA_NEW_PERSPECTIVE_MATRIX))
+		if (mFlag.isSet(REBUILD_PERSPECTIVE_MATRIX))
 		{
 			mPerspectiveMatrix = glm::perspective(mFov, mViewSize.x / mViewSize.y, mNearPlane, mFarPlane);
 
-			mFlag -= CAMERA_NEW_PERSPECTIVE_MATRIX;
+			mFlag -= REBUILD_PERSPECTIVE_MATRIX;
 		}
 
 		/* update the view matrix */
 
-		if (mFlag.isSet(CAMERA_NEW_VIEW_MATRIX))
+		if (mFlag.isSet(REBUILD_VIEW_MATRIX))
 		{
 			mViewMatrix = glm::inverse(mTransform.getMatrix());
 
-			mFlag -= CAMERA_NEW_VIEW_MATRIX;
+			mFlag -= REBUILD_VIEW_MATRIX;
 		}
 	}
 
@@ -62,28 +62,28 @@ namespace lg
 	{
 		mTransform.rotateOnX(amount);
 
-		mFlag += CAMERA_NEW_VIEW_MATRIX;
+		mFlag += REBUILD_VIEW_MATRIX;
 	}
 
 	void Camera::rotateOnY(glm::f32 amount)
 	{
 		mTransform.rotateOnY(amount);
 
-		mFlag += CAMERA_NEW_VIEW_MATRIX;
+		mFlag += REBUILD_VIEW_MATRIX;
 	}
 
 	void Camera::rotateOnZ(glm::f32 amount)
 	{
 		mTransform.rotateOnZ(amount);
 
-		mFlag += CAMERA_NEW_VIEW_MATRIX;
+		mFlag += REBUILD_VIEW_MATRIX;
 	}
 
 	void Camera::moveForward(glm::f32 amount)
 	{
 		mTransform.translate(VECTOR_FORWARD * glm::inverse(mTransform.getOrientation()) * amount);
 
-		mFlag += CAMERA_NEW_VIEW_MATRIX;
+		mFlag += REBUILD_VIEW_MATRIX;
 	}
 
 	void Camera::lookAt(const glm::vec3& target)
@@ -95,7 +95,7 @@ namespace lg
 	{
 		mTransform.setPosition(position);
 
-		mFlag += CAMERA_NEW_VIEW_MATRIX;
+		mFlag += REBUILD_VIEW_MATRIX;
 	}
 
 	bool Camera::hasCustomViewSize() const
@@ -112,28 +112,28 @@ namespace lg
 	{
 		mFov = value;
 
-		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
+		mFlag += REBUILD_PERSPECTIVE_MATRIX;
 	}
 
 	void Camera::setNearPlane(glm::f32 value)
 	{
 		mNearPlane = value;
 
-		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
+		mFlag += REBUILD_PERSPECTIVE_MATRIX;
 	}
 
 	void Camera::setFarPlane(glm::f32 value)
 	{
 		mFarPlane = value;
 
-		mFlag += CAMERA_NEW_PERSPECTIVE_MATRIX;
+		mFlag += REBUILD_PERSPECTIVE_MATRIX;
 	}
 
 	void Camera::setViewSize(const glm::vec2& size)
 	{
 		mViewSize = size;
 
-		mFlag.add(CAMERA_NEW_ORTHO_MATRIX | CAMERA_NEW_PERSPECTIVE_MATRIX);
+		mFlag.add(REBUILD_ORTHO_MATRIX | REBUILD_PERSPECTIVE_MATRIX);
 	}
 
 	const glm::mat4& Camera::getOrthoMatrix()

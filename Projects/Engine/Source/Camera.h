@@ -10,9 +10,9 @@ namespace lg
 	public:
 		enum CameraFlag : glm::u32
 		{
-			CAMERA_NEW_VIEW_MATRIX = 1,
-			CAMERA_NEW_ORTHO_MATRIX = 2,
-			CAMERA_NEW_PERSPECTIVE_MATRIX = 4
+			REBUILD_VIEW_MATRIX = 1,
+			REBUILD_ORTHO_MATRIX = 2,
+			REBUILD_PERSPECTIVE_MATRIX = 4
 		};
 
 		Camera(glm::u32 id);

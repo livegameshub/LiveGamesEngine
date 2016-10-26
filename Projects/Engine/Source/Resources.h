@@ -5,8 +5,7 @@
 
 namespace lg
 {
-	struct BasicResourceContainer;
-
+	class SpriteMaterial;	
 	class Mesh;
 	class Material;
 	class DiffuseMaterial;
@@ -40,6 +39,8 @@ namespace lg
 
 		/* materials */
 		Material* createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse);
+		
+		SpriteMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse);
 
 		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag);
 		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag);
@@ -47,6 +48,7 @@ namespace lg
 		/* meshes */
 		Mesh* createMesh(glm::u32 id, const std::string& file);
 		Mesh* createMesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
+		Mesh* createMesh(glm::u32 id, const glm::vec4& rectangle, glm::f32 textureSize);
 
 		/*textures */
 		Texture* createTexture(glm::u32 id, const std::string& file);

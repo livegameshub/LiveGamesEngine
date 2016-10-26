@@ -3,19 +3,19 @@
 namespace lg
 {
 	Resource::Resource(glm::u32 id)
-		: BasicElement(id)
+		: Object(id)
 		, mReferencesCounter(0)
 	{
 	}
 
 	Resource::Resource(glm::u32 id, const Flag& flag)
-		: BasicElement(id, flag)
+		: Object(id, flag)
 		, mReferencesCounter(0)
 	{
 	}
 
 	Resource::Resource(glm::u32 id, const std::string& file)
-		: BasicElement(id)
+		: Object(id)
 		, mResourceFile(file)
 		, mReferencesCounter(0)
 	{

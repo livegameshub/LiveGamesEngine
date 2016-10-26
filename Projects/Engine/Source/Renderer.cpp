@@ -1,18 +1,25 @@
 #include "Renderer.h"
 #include "Graphics.h"
-#include "Model.h"
+#include "Renderable.h"
 #include "Camera.h"
 #include "Program.h"
 #include "Material.h"
 #include "Mesh.h"
 #include "Scene.h"
-#include "RendererState.h"
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
 #include "Texture.h"
+#include "Sprite.h"
+#include "SpriteMaterial.h"
 
 namespace lg
 {
+	glm::u32 Renderer::smCurrentMeshId = 0;
+	glm::u32 Renderer::smCurrentProgramId = 0;
+	glm::u32 Renderer::smCurrentMaterialId = 0;
+	glm::u32 Renderer::smCurrentTextureId = 0;
+	bool Renderer::smIsUsing2d = false;
+
 	Renderer::Renderer()
 		: mScene(nullptr)
 	{
@@ -53,13 +60,26 @@ namespace lg
 
 			if (node_instance->isEnabled())
 			{
-				if (node_instance->getNodeType() == Node::MODEL_NODE)
+				if (node_instance->getNodeType() == Node::RENDERABLE_NODE)
 				{
-					Model* model = static_cast<Model*>(node_instance);
+					Renderable* model = static_cast<Renderable*>(node_instance);
 
 					if (model->isVisible())
 					{
-						drawModel(model);
+						disable2d();
+
+						drawRenderable(model);
+					}
+				}
+				else if (node_instance->getNodeType() == Node::SPRITE_NODE)
+				{
+					Sprite* sprite = static_cast<Sprite*>(node_instance);
+
+					if (sprite->isVisible())
+					{
+						enable2d();
+
+						drawSprite(sprite);
 					}
 				}
 
@@ -68,7 +88,61 @@ namespace lg
 		}
 	}
 
-	void Renderer::drawModel(const Model* model) const
+	void Renderer::drawSprite(const Sprite* sprite) const
+	{
+		const SpriteMaterial* material = static_cast<SpriteMaterial*>(sprite->getMaterial());
+		assert(material != nullptr);
+
+		const Program* program = material->getProgram();
+		assert(program != nullptr);
+
+		if (smCurrentProgramId != program->getId())
+		{
+			smCurrentProgramId = program->getId();
+
+			program->use();
+		}
+
+		const Camera* camera = mScene->getCameraByIndex(0);
+		assert(camera != nullptr);
+
+		program->setUniform(UNIFORM_PROJECTION, camera->getOrthoMatrix());
+
+		if (smCurrentMaterialId != material->getId())
+		{
+			smCurrentMaterialId = material->getId();
+
+			material->uploadUniforms();
+		}
+
+		const Texture* texture = material->getDiffuseTexture();
+		assert(texture != nullptr);
+
+		if (smCurrentTextureId != texture->getId())
+		{
+			smCurrentTextureId = texture->getId();
+
+			texture->bind();
+		}
+
+		const Mesh* mesh = sprite->getMesh();
+		assert(mesh != nullptr);
+
+		if (smCurrentMeshId != mesh->getId())
+		{
+			smCurrentMeshId = mesh->getId();
+
+			mesh->bindVbo();
+			mesh->uploadAttributes(program->getAttributes());
+			mesh->bindIbo();
+		}
+
+		program->setUniform(UNIFORM_MODEL, sprite->getTransform().getMatrix());
+
+		mesh->draw();
+	}
+
+	void Renderer::drawRenderable(const Renderable* model) const
 	{
 		Material* material = model->getMaterial();
 		assert(material != nullptr);
@@ -76,8 +150,10 @@ namespace lg
 		const Program* program = material->getProgram();
 		assert(program != nullptr);
 
-		if (RendererState::checkProgramId(program->getId()))
+		if (smCurrentProgramId != program->getId())
 		{
+			smCurrentProgramId = program->getId();
+
 			program->use();
 		}
 
@@ -101,8 +177,10 @@ namespace lg
 			}
 		}
 
-		if (RendererState::checkMaterialId(material->getId()))
+		if (smCurrentMaterialId != material->getId())
 		{
+			smCurrentMaterialId = material->getId();
+
 			material->uploadUniforms();
 
 			if (material->IsLighted())
@@ -115,11 +193,13 @@ namespace lg
 
 		if (material->IsTextured())
 		{
-			Texture* texture = static_cast<DiffuseMaterial*>(material)->getDiffuseTexture();
+			const Texture* texture = static_cast<DiffuseMaterial*>(material)->getDiffuseTexture();
 			assert(texture != nullptr);
 
-			if (RendererState::checkTextureId(texture->getId()))
+			if (smCurrentTextureId != texture->getId())
 			{
+				smCurrentTextureId = texture->getId();
+
 				texture->bind();
 			}
 		}
@@ -127,8 +207,10 @@ namespace lg
 		const Mesh* mesh = model->getMesh();
 		assert(mesh != nullptr);
 
-		if (RendererState::checkMeshId(mesh->getId()))
+		if (smCurrentMeshId != mesh->getId())
 		{
+			smCurrentMeshId = mesh->getId();
+
 			mesh->bindVbo();
 			mesh->uploadAttributes(program->getAttributes());
 			mesh->bindIbo();
@@ -138,4 +220,31 @@ namespace lg
 
 		mesh->draw();
 	}
+
+	void Renderer::enable2d()
+	{
+		if (!smIsUsing2d)
+		{
+			glEnable(GL_BLEND);
+
+			glDisable(GL_DEPTH_TEST);
+			glDisable(GL_MULTISAMPLE);
+
+			smIsUsing2d = true;
+		}
+	}
+
+	void Renderer::disable2d()
+	{
+		if (smIsUsing2d)
+		{
+			glDisable(GL_BLEND);
+
+			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_MULTISAMPLE);
+
+			smIsUsing2d = false;
+		}
+	}
 }
+
