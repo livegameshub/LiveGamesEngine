@@ -109,7 +109,7 @@ namespace lg
 			return GL_RGBA;
 		}
 
-		if (mBits == GL_RGB)
+		if (mBits == 24)
 		{
 			return GL_RGB;
 		}

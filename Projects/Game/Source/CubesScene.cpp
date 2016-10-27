@@ -9,6 +9,7 @@
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
 #include "Sprite.h"
+#include "Texture.h"
 
 CubesScene::CubesScene()
 	: mDirectionalLight(nullptr)
@@ -43,17 +44,19 @@ void CubesScene::init()
 	lg::Shader* vertexShader3 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX_SHADER, "DiffuseTextureShader.vs");
 	lg::Shader* fragmentShader3 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT_SHADER, "DiffuseTextureShader.fs");
 
-
-	lg::Shader* vertexShader4 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX_SHADER, "SpriteShader.vs");
-	lg::Shader* fragmentShader4 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT_SHADER, "SpriteShader.fs");
-
+	//lg::Shader* vertexShader4 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX_SHADER, "SpriteShader.vs");
+	//lg::Shader* fragmentShader4 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT_SHADER, "SpriteShader.fs");
 
 	// programs
 
 	lg::Program* program = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader, fragmentShader });
 	lg::Program* program2 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader2, fragmentShader2 });
 	lg::Program* program3 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader3, fragmentShader3 });
-	lg::Program* program4 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader4, fragmentShader4 });
+	//lg::Program* program4 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader4, fragmentShader4 });
+
+	// textures
+
+	lg::Texture* plane_texture = lg::Resources::getInstance().createTexture(lg::Resources::getNextAvailableId(), "floor.texture");
 
 	// meshes
 
@@ -61,9 +64,7 @@ void CubesScene::init()
 	lg::Mesh* cube_mesh2 = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Cube2.mesh");
 	lg::Mesh* plane_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Plane.mesh");
 
-	// textures
-
-	lg::Texture* plane_texture = lg::Resources::getInstance().createTexture(lg::Resources::getNextAvailableId(), "grass.texture");
+	//lg::Mesh* sprite_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), glm::vec2(), glm::vec2(512.0f, 256.0f), glm::vec2(512.0f, 256.0f));
 
 	// materials
 
@@ -73,7 +74,7 @@ void CubesScene::init()
 
 	lg::DiffuseMaterial* plane_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program3, plane_texture, glm::vec3(1.0f), glm::vec3(0.5f), 32.0f, lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
 
-	lg::SpriteMaterial* sprite_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program4, plane_texture, glm::vec3(1.0f));
+	//lg::SpriteMaterial* sprite_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program4, plane_texture, glm::vec3(1.0f));
 
 	// camera 
 
@@ -103,9 +104,11 @@ void CubesScene::init()
 		mRootNode.addChild(cube);
 	}
 
-	lg::Sprite* sprite = createSprite(6, sprite_material, glm::vec4(0.0f, 0.0f, 256.0f, 256.0f), 512);
-	sprite->getTransform().setPosition(glm::vec3(300, 300, 0.0f));
-	mRootNode.addChild(sprite);
+	// sprite
+
+	//lg::Sprite* sprite = createSprite(6, sprite_mesh, sprite_material);
+	//sprite->getTransform().setPosition(glm::vec3(300, 300, 0.0f));
+	//mRootNode.addChild(sprite);
 
 	// light
 

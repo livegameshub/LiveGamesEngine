@@ -45,8 +45,7 @@ namespace lg
 
 		/* renderable */
 		Renderable* createRenderable(glm::u32 id, Mesh* mesh, Material* material);
-
-		Sprite* createSprite(glm::u32 id, SpriteMaterial* material, const glm::vec4& rectangle, glm::f32 textureSize);
+		Sprite* createSprite(glm::u32 id, Mesh* mesh, SpriteMaterial* material);
 
 		/* camera */
 		Camera* createCamera(glm::u32 id, const glm::vec2& size, const glm::vec3& position);

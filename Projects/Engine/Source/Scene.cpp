@@ -212,22 +212,20 @@ namespace lg
 		assert(getNode(id) == nullptr);
 
 		Renderable* model = new Renderable(id);
-		model->setMesh(mesh);
 		model->setMaterial(material);
+		model->setMesh(mesh);
 
 		addNode(model);
 
 		return model;
 	}
 
-	Sprite* Scene::createSprite(glm::u32 id, SpriteMaterial* material, const glm::vec4& rectangle, glm::f32 textureSize)
+	Sprite* Scene::createSprite(glm::u32 id, Mesh* mesh, SpriteMaterial* material)
 	{
 		assert(getNode(id) == nullptr);
 
 		Sprite* sprite = new Sprite(id);
 		sprite->setMaterial(material);
-
-		Mesh* mesh = Resources::getInstance().createMesh(Resources::getNextAvailableId(), rectangle, textureSize);
 		sprite->setMesh(mesh);
 
 		addNode(sprite);
