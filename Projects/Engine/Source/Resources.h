@@ -51,7 +51,7 @@ namespace lg
 		Mesh* createMesh(glm::u32 id, const glm::vec2& startPoint, const glm::vec2& size, const glm::vec2& textureSize);
 
 		/*textures */
-		Texture* createTexture(glm::u32 id, const std::string& file);
+		Texture* createTexture(glm::u32 id, const std::string& file, bool generateMipmaps);
 
 		static glm::u32 getNextAvailableId();
 		static Resources& getInstance();

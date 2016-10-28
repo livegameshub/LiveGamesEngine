@@ -121,4 +121,9 @@ void SimpleScene::update()
 
 		mCamera->rotateOnY(cameraAngle);
 	}
+
+	if (lg::Input::isKeyDown(GLFW_KEY_SPACE))
+	{
+		lg::Engine::loadScene(3);
+	}
 }

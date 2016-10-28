@@ -62,7 +62,7 @@ namespace lg
 		#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		/* we should add at least the main window */
-		Window window(size, 0);
+		Window window(size, 4);
 
 		if (!window.create(mainWindowTitle, true))
 		{
@@ -179,32 +179,6 @@ namespace lg
 
 		/* set the scene for the renderer */
 		getInstance().getWindowByIndex(0)->getRenderer().setScene(Scenes::getInstance().getMainScene());
-	}
-
-	void Engine::windowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
-	{
-		glm::ivec2 size(width, height);
-
-		Window* window = getInstance().getWindow(windowPtr);
-
-		assert(window != nullptr);
-
-		if (window->setNewSize(size))
-		{
-			/* update the cameras from the main scene with the new size */
-
-			for (Camera* camera : Scenes::getInstance().getMainScene()->getCameras())
-			{
-				assert(camera != nullptr);
-
-				if (camera->hasCustomViewSize() == false)
-				{
-					camera->setViewSize(size);
-				}
-			}
-
-			glViewport(0, 0, width, height);
-		}
 	}
 
 	Engine& Engine::getInstance()

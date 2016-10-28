@@ -53,8 +53,7 @@ namespace lg
 			assert(resource != nullptr);
 			assert(resource->getReferencesCounter() == 0);
 
-			delete resource;
-			resource = nullptr;
+			SAFE_DELETE(resource);
 		}
 	}
 
@@ -230,11 +229,11 @@ namespace lg
 		return mesh;
 	}
 
-	Texture* Resources::createTexture(glm::u32 id, const std::string& file)
+	Texture* Resources::createTexture(glm::u32 id, const std::string& file, bool generateMipmaps)
 	{
 		assert(getResource(id) == nullptr);
 
-		Texture* texture = new Texture(id, file);
+		Texture* texture = new Texture(id, file, generateMipmaps);
 
 		addResource(texture);
 

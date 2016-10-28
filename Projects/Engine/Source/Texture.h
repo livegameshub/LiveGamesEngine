@@ -9,7 +9,7 @@ namespace lg
 	{
 	public:
 		Texture(glm::u32 id);
-		Texture(glm::u32 id, const std::string& file);
+		Texture(glm::u32 id, const std::string& file, bool generateMipmaps);
 
 		~Texture();
 
@@ -19,12 +19,13 @@ namespace lg
 		glm::u32 getTextureFormat() const;
 		glm::u32 getTextureId() const;
 		
-		
 		static void Activate(glm::u32 index);
 
 	private:
 		bool create() override;
 		bool release() override;
+
+		bool mGenerateMipmaps;
 
 		glm::ivec2 mSize;
 		glm::u32 mTextureId;

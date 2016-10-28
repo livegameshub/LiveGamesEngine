@@ -27,8 +27,7 @@ namespace lg
 
 			scene->release();
 
-			delete scene;
-			scene = nullptr;
+			SAFE_DELETE(scene);
 		}
 	}
 

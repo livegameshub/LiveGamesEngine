@@ -29,6 +29,7 @@ namespace lg
 		GLFWwindow* getWindowPtr() const;
 		glm::i32 isClosing() const;
 		
+		static void resizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
 		static glm::ivec2 getScreenSize();
 
 		static bool initApi();

@@ -26,4 +26,8 @@
 
 const std::string ASSETS_PATH = "Assets/";
 
+// safe delete macro
+#define SAFE_DELETE(p) { if (p) { delete (p); (p) = nullptr; } }
+#define SAFE_ARRAY_DELETE(p) { if (p) { delete[] (p); (p) = nullptr; } }
+
 #endif // _ENGINE_UTIL_H_

@@ -5,13 +5,15 @@ namespace lg
 {
 	Texture::Texture(glm::u32 id)
 		: Resource(id)
+		, mGenerateMipmaps(false)
 		, mTextureId(0)
 		, mBits(0)
 	{		
 	}
 
-	Texture::Texture(glm::u32 id, const std::string& file)
+	Texture::Texture(glm::u32 id, const std::string& file, bool generateMipmaps)
 		: Resource(id, file)
+		, mGenerateMipmaps(generateMipmaps)
 		, mTextureId(0)
 		, mBits(0)
 	{
@@ -72,13 +74,22 @@ namespace lg
 
 		bind();
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
 		glTexImage2D(GL_TEXTURE_2D, 0, format, mSize.x, mSize.y, 0, format, GL_UNSIGNED_BYTE, texture_data);
 
-		delete[] texture_data;
-		texture_data = nullptr;
+		if (mGenerateMipmaps)
+		{
+			glGenerateMipmap(GL_TEXTURE_2D);
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		}
+		else
+		{
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		}
+
+		SAFE_ARRAY_DELETE(texture_data);
 
 		return true;
 	}

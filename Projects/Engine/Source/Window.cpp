@@ -2,6 +2,9 @@
 #include "Graphics.h"
 #include "Engine.h"
 #include "Input.h"
+#include "Camera.h"
+#include "Scenes.h"
+#include "Scene.h"
 
 #include <glfw/glfw3.h>
 
@@ -155,6 +158,34 @@ namespace lg
 		glfwSetCursorPosCallback(mWindowPtr, Input::mousePositionCallback);
 		glfwSetMouseButtonCallback(mWindowPtr, Input::mouseClicksCallback);
 
-		glfwSetWindowSizeCallback(mWindowPtr, Engine::windowResizeCallback);
+		glfwSetWindowSizeCallback(mWindowPtr, resizeCallback);
+	}
+
+	void Window::resizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
+	{
+		Window* window = Engine::getInstance().getWindow(windowPtr);
+		assert(window != nullptr);
+
+		glm::ivec2 size(width, height);
+
+		if (window->setNewSize(size))
+		{
+			/* update the cameras from the main scene with the new size */
+
+			const Scene* scene = Scenes::getInstance().getMainScene();
+			assert(scene != nullptr);
+
+			for (Camera* camera : scene->getCameras())
+			{
+				assert(camera != nullptr);
+
+				if (!camera->hasCustomViewSize())
+				{
+					camera->setViewSize(size);
+				}
+			}
+
+			glViewport(0, 0, width, height);
+		}
 	}
 }

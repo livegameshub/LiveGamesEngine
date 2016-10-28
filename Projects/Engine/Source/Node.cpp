@@ -71,8 +71,7 @@ namespace lg
 		{
 			assert(component != nullptr);
 			
-			delete component;
-			component = nullptr;
+			SAFE_DELETE(component);
 		}
 	}
 

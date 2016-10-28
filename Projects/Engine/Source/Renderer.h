@@ -23,8 +23,8 @@ namespace lg
 
 		void setScene(const Scene* scene);
 
-		static void enable2d();
-		static void disable2d();
+		static void enable2dDrawing();
+		static void disable2dDrawing();
 		static void init();
 
 	private:
@@ -32,7 +32,7 @@ namespace lg
 		static glm::u32 smCurrentProgramId;
 		static glm::u32 smCurrentMaterialId;
 		static glm::u32 smCurrentTextureId;
-		static bool smIsUsing2d;
+		static bool smIsDrawing2d;
 
 		const Scene* mScene;
 	};

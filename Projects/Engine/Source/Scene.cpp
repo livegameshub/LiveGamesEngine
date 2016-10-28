@@ -43,8 +43,7 @@ namespace lg
 			
 			node->release();
 
-			delete node;
-			node = nullptr;
+			SAFE_DELETE(node);
 		}
 
 		mCameras.clear();

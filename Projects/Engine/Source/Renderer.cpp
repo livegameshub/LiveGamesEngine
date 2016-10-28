@@ -18,7 +18,7 @@ namespace lg
 	glm::u32 Renderer::smCurrentProgramId = 0;
 	glm::u32 Renderer::smCurrentMaterialId = 0;
 	glm::u32 Renderer::smCurrentTextureId = 0;
-	bool Renderer::smIsUsing2d = false;
+	bool Renderer::smIsDrawing2d = false;
 
 	Renderer::Renderer()
 		: mScene(nullptr)
@@ -66,7 +66,7 @@ namespace lg
 
 					if (model->isVisible())
 					{
-						disable2d();
+						disable2dDrawing();
 
 						drawRenderable(model);
 					}
@@ -77,7 +77,7 @@ namespace lg
 
 					if (sprite->isVisible())
 					{
-						enable2d();
+						enable2dDrawing();
 
 						drawSprite(sprite);
 					}
@@ -221,29 +221,29 @@ namespace lg
 		mesh->draw();
 	}
 
-	void Renderer::enable2d()
+	void Renderer::enable2dDrawing()
 	{
-		if (!smIsUsing2d)
+		if (!smIsDrawing2d)
 		{
 			glEnable(GL_BLEND);
 
 			glDisable(GL_DEPTH_TEST);
-			glDisable(GL_MULTISAMPLE);
+			//glDisable(GL_MULTISAMPLE);
 
-			smIsUsing2d = true;
+			smIsDrawing2d = true;
 		}
 	}
 
-	void Renderer::disable2d()
+	void Renderer::disable2dDrawing()
 	{
-		if (smIsUsing2d)
+		if (smIsDrawing2d)
 		{
 			glDisable(GL_BLEND);
 
 			glEnable(GL_DEPTH_TEST);
-			glEnable(GL_MULTISAMPLE);
+			//glEnable(GL_MULTISAMPLE);
 
-			smIsUsing2d = false;
+			smIsDrawing2d = false;
 		}
 	}
 }

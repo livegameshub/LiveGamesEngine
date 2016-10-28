@@ -26,7 +26,6 @@ namespace lg
 		// TODO
 		// setup should return an int with some specific codes
 		static bool setup(const std::string& mainWindowTitle);
-		static void windowResizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
 
 		Window* getWindow(GLFWwindow* windowPtr);
 		Window* getWindowByIndex(glm::u32 index);
