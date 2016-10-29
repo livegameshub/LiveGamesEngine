@@ -38,10 +38,9 @@ void SimpleScene::init()
 	lg::Program* program = lg::Resources::getInstance().getResource<lg::Program>(7);
 
 	// meshes
-
-	lg::Mesh* point_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::POINTS_MESH, lg::Mesh::STATIC_MESH_DRAW, lg::Mesh::MESH_REMOVE_DATA_FLAG);
-	lg::Mesh* line_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::LINES_MESH, lg::Mesh::STATIC_MESH_DRAW, lg::Mesh::MESH_REMOVE_DATA_FLAG);
-	lg::Mesh* triangle_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::TRIANGLES_MESH, lg::Mesh::STATIC_MESH_DRAW, lg::Mesh::MESH_REMOVE_DATA_FLAG);
+	lg::Mesh* point_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::POINTS, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
+	lg::Mesh* line_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::LINES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
+	lg::Mesh* triangle_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::TRIANGLES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
 
 	lg::MeshData& point_data = point_mesh->getData();
 	lg::MeshData& line_data = line_mesh->getData(); 
@@ -61,18 +60,15 @@ void SimpleScene::init()
 	triangle_data.addTriangle(0, 1, 2);
 
 	// materials
-
 	lg::Material* red_material =  lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(1.0f, 0.0f, 0.0f));
 	lg::Material* yellow_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(1.0f, 1.0f, 0.0f));
 	lg::Material* blue_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(0.0f, 0.0f, 1.0f));
 
 	// camera 
-
 	mCamera = createCamera(1, lg::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 
 	// models
-
 	mPrimitives.push_back(createRenderable(2, point_mesh, blue_material));
 	mPrimitives.push_back(createRenderable(3, line_mesh, yellow_material));
 	mPrimitives.push_back(createRenderable(4, triangle_mesh, red_material));
@@ -86,8 +82,7 @@ void SimpleScene::init()
 	}
 
 	// light
-
-	mDirectionalLight = createDirectionalLight(5, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(1.0f), glm::vec3(0.5f));
+	mDirectionalLight = createDirectionalLight(5, glm::vec3(0.0f, 0.0f, -1.0f));
 	mRootNode.addChild(mDirectionalLight);
 }
 

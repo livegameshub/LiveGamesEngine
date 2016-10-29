@@ -44,8 +44,8 @@ namespace lg
 		/* materials */
 		template <class T> T* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag = 0);
 
+		/* template methods */
 		template <class T> T* getResource(glm::u32 id) const;
-		template <class T> T* operator[](glm::u32 id) const;
 
 		static glm::u32 getNextAvailableId();
 		static Resources& getInstance();
@@ -86,12 +86,6 @@ namespace lg
 		}
 
 		return static_cast<T*>(it->second);
-	}
-
-	template <class T>
-	T* Resources::operator[](glm::u32 id) const
-	{
-		return getResource<T>(id);
 	}
 	/* template class methods - end */
 }

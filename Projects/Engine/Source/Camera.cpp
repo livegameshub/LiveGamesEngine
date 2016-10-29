@@ -5,7 +5,7 @@ namespace lg
 	glm::mat4 Camera::smOrthoMatrix;
 
 	Camera::Camera(glm::u32 id)
-		: Node(id, CAMERA_NODE)
+		: Node(id, CAMERA)
 		, mHasCustomViewSize(false)
 		, mNearPlane(0.1f)
 		, mFarPlane(1000.0f)
@@ -14,7 +14,7 @@ namespace lg
 	}
 
 	Camera::Camera(glm::u32 id, glm::f32 fov, glm::f32 near, glm::f32 far)
-		: Node(id, CAMERA_NODE)
+		: Node(id, CAMERA)
 		, mHasCustomViewSize(false)
 		, mNearPlane(near)
 		, mFarPlane(far)

@@ -8,9 +8,7 @@ namespace lg
 	class ENGINE_API DirectionalLight : public Light
 	{
 	public:
-		DirectionalLight(glm::u32 id);
 		DirectionalLight(glm::u32 id, const glm::vec3& direction);
-		DirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse);
 		DirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse, const glm::vec3& specular);
 
 		~DirectionalLight();

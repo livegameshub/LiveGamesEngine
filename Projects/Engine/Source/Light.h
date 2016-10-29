@@ -3,6 +3,10 @@
 
 #include "Node.h"
 
+/* default values */
+#define LIGHT_DEFAULT_DIFFUSE_COLOR glm::vec3(1.0f)
+#define LIGHT_DEFAULT_SPECULAR_COLOR glm::vec3(0.5f)
+
 namespace lg
 {
 	class ENGINE_API Light : public Node
@@ -16,7 +20,6 @@ namespace lg
 		};
 
 		Light(glm::u32 id, glm::i32 type);
-		Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse);
 		Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse, const glm::vec3& specular);
 
 		virtual ~Light();

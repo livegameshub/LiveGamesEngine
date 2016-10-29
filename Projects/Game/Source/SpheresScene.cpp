@@ -32,22 +32,18 @@ void SpheresScene::init()
 	Scene::init();
 
 	// meshes
-
 	lg::Mesh* sphere_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere.mesh");
 
 	// materials
-
 	lg::Material* red_material = lg::Resources::getInstance().getResource<lg::Material>(14);
 	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(15);
 	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(16);
 
 	// camera 
-
 	mCamera = createCamera(1, lg::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 
 	// models
-
 	mSpheres.push_back(createRenderable(2, sphere_mesh, blue_material));
 	mSpheres.push_back(createRenderable(3, sphere_mesh, yellow_material));
 	mSpheres.push_back(createRenderable(4, sphere_mesh, red_material));
@@ -61,8 +57,7 @@ void SpheresScene::init()
 	}
 
 	// light
-
-	mDirectionalLight = createDirectionalLight(5, glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(1.0f), glm::vec3(0.5f));
+	mDirectionalLight = createDirectionalLight(5, glm::vec3(0.0f, 0.0f, -1.0f));
 	mRootNode.addChild(mDirectionalLight);
 }
 

@@ -6,7 +6,7 @@
 namespace lg
 {
 	MeshRenderer::MeshRenderer(glm::u32 id)
-		: Node(id, RENDERABLE_NODE, IS_VISIBLE)
+		: Node(id, MESH_RENDERER, IS_VISIBLE)
 		, mMaterial(nullptr)
 		, mMesh(nullptr)
 	{

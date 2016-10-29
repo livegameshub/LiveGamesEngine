@@ -72,7 +72,7 @@ namespace lg
 
 	bool DiffuseMaterial::create()
 	{
-		if (!mProgram->getFlag().isSet(Program::DIFFUSE_MATERIAL_UNIFORMS))
+		if (!mProgram->getFlag().isSet(Program::DIFFUSE_MATERIAL))
 		{
 			mProgram->addUniforms({ UNIFORM_MATERIAL_SPECULAR, 
 									UNIFORM_MATERIAL_SHININESS,
@@ -83,7 +83,7 @@ namespace lg
 									UNIFORM_DIRECTIONAL_LIGHT_DIRECTION, 
 									UNIFORM_DIRECTIONAL_LIGHT_SPECULAR});
 
-			mProgram->getFlag().add(Program::DIFFUSE_MATERIAL_UNIFORMS);
+			mProgram->getFlag().add(Program::DIFFUSE_MATERIAL);
 		}
 
 		return Material::create();

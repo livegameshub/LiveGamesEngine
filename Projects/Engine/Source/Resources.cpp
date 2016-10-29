@@ -134,7 +134,7 @@ namespace lg
 	{
 		assert(getResource<Mesh>(id) == nullptr);
 
-		Mesh* mesh = new Mesh(id, Mesh::TRIANGLES_MESH, Mesh::STATIC_MESH_DRAW, Mesh::MESH_TEXTURE_FLAG);
+		Mesh* mesh = new Mesh(id, Mesh::TRIANGLES, Mesh::STATIC_DRAW, Mesh::USE_TEXTURES);
 
 		MeshData& data = mesh->getData();
 

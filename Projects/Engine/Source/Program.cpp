@@ -209,9 +209,9 @@ namespace lg
 
 	void Program::initAttributes()
 	{
-		mAttributes[POSITION_INDEX] = glGetAttribLocation(mProgramId, "a_position");
-		mAttributes[TEXTURE_INDEX] = glGetAttribLocation(mProgramId, "a_uv");
-		mAttributes[NORMAL_INDEX] = glGetAttribLocation(mProgramId, "a_normal");
+		mAttributes[POSITION] = glGetAttribLocation(mProgramId, "a_position");
+		mAttributes[TEXTURE] = glGetAttribLocation(mProgramId, "a_uv");
+		mAttributes[NORMAL] = glGetAttribLocation(mProgramId, "a_normal");
 	}
 
 	void Program::initUniforms()

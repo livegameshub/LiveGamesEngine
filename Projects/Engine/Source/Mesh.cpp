@@ -22,7 +22,7 @@ namespace lg
 		, mVertexSize(sizeof(glm::vec3))
 		, mIndicesSize(0)
 		, mPrimitive(0)
-		, mDrawType(STATIC_MESH_DRAW)
+		, mDrawType(STATIC_DRAW)
 	{
 	}
 
@@ -64,7 +64,7 @@ namespace lg
 	{
 		glm::u32 reserve_size = 3;
 
-		if (mFlag.isSet(MESH_NORMAL_FLAG))
+		if (mFlag.isSet(USE_NORMALS))
 		{
 			reserve_size += 3;
 		}
@@ -102,7 +102,7 @@ namespace lg
 			mData.addVec3(position);
 
 			// read the normal vector
-			if (mFlag.isSet(MESH_NORMAL_FLAG))
+			if (mFlag.isSet(USE_NORMALS))
 			{
 				glm::vec3 normal;
 
@@ -112,7 +112,7 @@ namespace lg
 			}
 
 			// read the texture vector
-			if (mFlag.isSet(MESH_TEXTURE_FLAG))
+			if (mFlag.isSet(USE_TEXTURES))
 			{
 				glm::vec2 texture;
 
@@ -162,7 +162,7 @@ namespace lg
 		uploadData(mData);
 
 		/* clear the data if is not needed */
-		if (mFlag.isSet(MESH_REMOVE_DATA_FLAG))
+		if (mFlag.isSet(REMOVE_DATA))
 		{
 			mData.clearData();
 		}
@@ -195,14 +195,14 @@ namespace lg
 	void Mesh::calculateVertexSize()
 	{
 		// check if we have normals
-		if (mFlag.isSet(MESH_NORMAL_FLAG))
+		if (mFlag.isSet(USE_NORMALS))
 		{
 			mNormalOffset = mVertexSize;
 			mVertexSize += sizeof(glm::vec3);
 		}
 
 		// check if we have textures
-		if(mFlag.isSet(MESH_TEXTURE_FLAG))
+		if(mFlag.isSet(USE_TEXTURES))
 		{
 			mTextureOffset = mVertexSize;
 			mVertexSize += sizeof(glm::vec2);
@@ -241,9 +241,9 @@ namespace lg
 
 	void Mesh::uploadAttributes(const glm::i32* attributes) const
 	{
-		glm::i32 position = attributes[Program::AttributeIndex::POSITION_INDEX];
-		glm::i32 normal = attributes[Program::AttributeIndex::NORMAL_INDEX];
-		glm::i32 texture = attributes[Program::AttributeIndex::TEXTURE_INDEX];
+		glm::i32 position = attributes[Program::AttributeIndex::POSITION];
+		glm::i32 normal = attributes[Program::AttributeIndex::NORMAL];
+		glm::i32 texture = attributes[Program::AttributeIndex::TEXTURE];
 
 		if (position >= 0)
 		{

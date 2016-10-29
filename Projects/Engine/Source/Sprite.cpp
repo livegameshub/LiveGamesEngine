@@ -3,7 +3,7 @@
 namespace lg
 {
 	Sprite::Sprite(glm::u32 id, const glm::vec2& size)
-		: MeshRenderer(id, SPRITE_NODE)
+		: MeshRenderer(id, SPRITE)
 		, mSize(size)
 	{
 	}

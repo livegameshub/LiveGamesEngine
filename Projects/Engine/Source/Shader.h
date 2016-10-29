@@ -9,8 +9,8 @@ namespace lg
 	class ENGINE_API Shader : public Resource
 	{
 	public:
-		static const glm::u32 VERTEX_SHADER = GL_VERTEX_SHADER;
-		static const glm::u32 FRAGMENT_SHADER = GL_FRAGMENT_SHADER;
+		static const glm::u32 VERTEX = GL_VERTEX_SHADER;
+		static const glm::u32 FRAGMENT = GL_FRAGMENT_SHADER;
 
 		Shader(glm::u32 id);
 		Shader(glm::u32 id, glm::u32 shaderType);

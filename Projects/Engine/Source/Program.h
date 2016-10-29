@@ -12,15 +12,15 @@ namespace lg
 	public:
 		enum UniformsType : glm::u32
 		{
-			BASIC_MATERIAL_UNIFORMS = 1,
-			DIFFUSE_MATERIAL_UNIFORMS = 2
+			BASIC_MATERIAL = 1,
+			DIFFUSE_MATERIAL = 2
 		};
 
 		enum AttributeIndex : glm::u32
 		{
-			POSITION_INDEX,
-			TEXTURE_INDEX,
-			NORMAL_INDEX,
+			POSITION,
+			TEXTURE,
+			NORMAL,
 			COUNT
 		};
 

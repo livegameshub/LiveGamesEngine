@@ -19,11 +19,11 @@ namespace lg
 
 		enum NodeType : glm::i32
 		{
-			BASIC_NODE,
-			CAMERA_NODE,
-			RENDERABLE_NODE,
-			SPRITE_NODE,
-			LIGHT_NODE
+			NODE,
+			CAMERA,
+			MESH_RENDERER,
+			SPRITE,
+			LIGHT
 		};
 
 		Node(glm::u32 id);
@@ -37,26 +37,25 @@ namespace lg
 		virtual void release();
 		
 		/* nodes */
-
 		void addChild(Node* node);
-		Node* getChild(glm::u32 id) const;
-		Node* operator[](glm::u32 id) const;
 		Node* removeChild(glm::u32 id);
 
 		/* components */
-
 		void addComponent(Component* component);
-		Component* getComponent(glm::i32 type) const;
-		Component* operator[](glm::i32 type) const;
 		Component* removeComponent(glm::i32 type);
+
+		/* template functions */
+		template <class T> T* getChild(glm::u32 id) const;
+		template <class T> T* getFistChild(glm::u32 type) const;
+		template <class T> T* getComponent(glm::i32 type) const;
 		
 		const std::vector<Component*>& getComponents() const;
 		const std::vector<Node*>& getChildren() const;
 		const Transform& getTransform() const;
 		Transform& getTransform();
 
-		void setNodeType(glm::i32 type);
-		glm::i32 getNodeType() const;
+		void setType(glm::i32 type);
+		glm::i32 getType() const;
 
 		bool isVisible() const;
 		bool isEnabled() const;
@@ -68,8 +67,56 @@ namespace lg
 		std::vector<Component*> mComponents;
 		std::vector<Node*> mChildren;
 
-		glm::i32 mNodeType;
+		glm::i32 mType;
 	};
+
+	/* template class methods - begin */
+	template <class T>
+	T* Node::getChild(glm::u32 id) const
+	{
+		/* if we do not find any node we should return nullptr */
+
+		for (Node* node : mChildren)
+		{
+			if (node->getId() == id)
+			{
+				return static_cast<T*>(node);
+			}
+		}
+
+		return nullptr;
+	}
+
+	template <class T>
+	T* Node::getComponent(glm::i32 type) const
+	{
+		/* if we do not find any component we should return nullptr */
+
+		for (Component* component : mComponents)
+		{
+			if (component->getType() == type)
+			{
+				return static_cast<T*>(component);
+			}
+		}
+
+		return nullptr;
+	}
+
+	template <class T>
+	T* Node::getFistChild(glm::u32 type) const
+	{
+		for (Node* node : mChildren)
+		{
+			if (node->getType() == type)
+			{
+				return static_cast<T*>(node);
+			}
+		}
+
+		return nullptr;
+	}
+	/* template class methods - end */
 }
 
 #endif // _NODE_H_

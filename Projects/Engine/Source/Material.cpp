@@ -82,7 +82,7 @@ namespace lg
 	{
 		assert(mProgram != nullptr);
 
-		if (!mProgram->getFlag().isSet(Program::BASIC_MATERIAL_UNIFORMS))
+		if (!mProgram->getFlag().isSet(Program::BASIC_MATERIAL))
 		{
 			mProgram->addUniforms({ UNIFORM_VIEW, 
 									UNIFORM_PROJECTION, 
@@ -91,7 +91,7 @@ namespace lg
 
 			mProgram->initUniforms();
 
-			mProgram->getFlag().add(Program::BASIC_MATERIAL_UNIFORMS);
+			mProgram->getFlag().add(Program::BASIC_MATERIAL);
 		}
 
 		return true;

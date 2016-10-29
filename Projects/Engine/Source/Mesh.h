@@ -12,12 +12,12 @@ namespace lg
 	class ENGINE_API Mesh : public Resource
 	{
 	public:
-		static const glm::u32 LINES_MESH = GL_LINES;
-		static const glm::u32 POINTS_MESH = GL_POINTS;
-		static const glm::u32 TRIANGLES_MESH = GL_TRIANGLES;
+		static const glm::u32 LINES = GL_LINES;
+		static const glm::u32 POINTS = GL_POINTS;
+		static const glm::u32 TRIANGLES = GL_TRIANGLES;
 
-		static const glm::u32 STATIC_MESH_DRAW = GL_STATIC_DRAW;
-		static const glm::u32 DYNAMIC_MESH_DRAW = GL_DYNAMIC_DRAW;
+		static const glm::u32 STATIC_DRAW = GL_STATIC_DRAW;
+		static const glm::u32 DYNAMIC_DRAW = GL_DYNAMIC_DRAW;
 
 		enum MeshBuffer : glm::u32
 		{
@@ -28,10 +28,9 @@ namespace lg
 
 		enum MeshFlag : glm::u32
 		{
-			MESH_NORMAL_FLAG = 1,
-			MESH_TEXTURE_FLAG = 2,
-
-			MESH_REMOVE_DATA_FLAG = 4
+			USE_NORMALS = 1,
+			USE_TEXTURES = 2,
+			REMOVE_DATA = 4
 		};
 
 		Mesh(glm::u32 id, const std::string& file);

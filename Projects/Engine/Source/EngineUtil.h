@@ -30,4 +30,9 @@ const std::string ASSETS_PATH = "Assets/";
 #define SAFE_DELETE(p) { if (p) { delete (p); (p) = nullptr; } }
 #define SAFE_ARRAY_DELETE(p) { if (p) { delete[] (p); (p) = nullptr; } }
 
+/* some useful constants */
+#define VECTOR_UP glm::vec3(0.0f, 1.0f, 0.0f)
+#define VECTOR_RIGHT glm::vec3(1.0f, 0.0f, 0.0f)
+#define VECTOR_FORWARD glm::vec3(0.0f, 0.0f, -1.0f)
+
 #endif // _ENGINE_UTIL_H_

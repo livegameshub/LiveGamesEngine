@@ -19,10 +19,10 @@ namespace lg
 		virtual void reset() = 0;
 
 		void setFlag(const Flag& flag);
-		void setComponentType(glm::i32 type);
+		void setType(glm::i32 type);
 
 		const Flag& getFlag() const;
-		glm::i32 getComponentType() const;
+		glm::i32 getType() const;
 
 		void setEnabled(bool value);
 		bool isEnabled() const;
@@ -32,7 +32,7 @@ namespace lg
 		Flag mFlag;
 
 	private:
-		glm::i32 mComponentType;
+		glm::i32 mType;
 	};
 }
 

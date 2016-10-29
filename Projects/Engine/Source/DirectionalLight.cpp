@@ -2,19 +2,8 @@
 
 namespace lg
 {
-	DirectionalLight::DirectionalLight(glm::u32 id)
-		: Light(id, DIRECTIONAL_LIGHT)
-	{
-	}
-
 	DirectionalLight::DirectionalLight(glm::u32 id, const glm::vec3& direction)
 		: Light(id, DIRECTIONAL_LIGHT)
-		, mDirection(direction)
-	{
-	}
-
-	DirectionalLight::DirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse)
-		: Light(id, DIRECTIONAL_LIGHT, diffuse)
 		, mDirection(direction)
 	{
 	}

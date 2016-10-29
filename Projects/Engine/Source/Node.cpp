@@ -4,25 +4,25 @@ namespace lg
 {
 	Node::Node(glm::u32 id)
 		: Object(id, IS_ENABLED)
-		, mNodeType(BASIC_NODE)
+		, mType(NODE)
 	{
 	}
 
 	Node::Node(glm::u32 id, glm::i32 type)
 		: Object(id, IS_ENABLED)
-		, mNodeType(type)
+		, mType(type)
 	{
 	}
 
 	Node::Node(glm::u32 id, glm::i32 type, const Flag& flag)
 		: Object(id, flag | IS_ENABLED)
-		, mNodeType(type)
+		, mType(type)
 	{
 	}
 
 	Node::Node(glm::u32 id, const Flag& flag)
 		: Object(id, flag | IS_ENABLED)
-		, mNodeType(BASIC_NODE)
+		, mType(NODE)
 	{
 	}
 
@@ -75,7 +75,7 @@ namespace lg
 	{
 		assert(component != nullptr);
 		/* check if we already have this type of component */
-		assert(getComponent(component->getComponentType()) == nullptr);
+		assert(getComponent<Component>(component->getType()) == nullptr);
 
 		mComponents.push_back(component);
 	}
@@ -83,31 +83,13 @@ namespace lg
 	void Node::addChild(Node* node)
 	{
 		assert(node != nullptr);
+		/* check if we already have this node in the children */
+		assert(getChild<Node>(node->getId()) == nullptr);
 
 		/* set the parent transformation for the child node */
 		node->getTransform().setParentTransform(&mTransform);
 
 		mChildren.push_back(node);
-	}
-
-	Component* Node::getComponent(glm::i32 type) const
-	{
-		/* if we do not find any component we should return nullptr */
-
-		for (Component* component : mComponents)
-		{
-			if (component->getComponentType() == type)
-			{
-				return component;
-			}
-		}
-
-		return nullptr;
-	}
-
-	Component* Node::operator[](glm::i32 type) const
-	{
-		return getComponent(type);
 	}
 
 	Component* Node::removeComponent(glm::i32 type)
@@ -116,7 +98,7 @@ namespace lg
 		{
 			Component* component = mComponents[i];
 
-			if (component->getComponentType() == type)
+			if (component->getType() == type)
 			{
 				mComponents.erase(mComponents.begin() + i);
 
@@ -125,26 +107,6 @@ namespace lg
 		}
 
 		return nullptr;
-	}
-
-	Node* Node::getChild(glm::u32 id) const
-	{
-		/* if we do not find any node we should return nullptr */
-
-		for (Node* node : mChildren)
-		{
-			if (node->getId() == id)
-			{
-				return node;
-			}
-		}
-
-		return nullptr;
-	}
-
-	Node* Node::operator[](glm::u32 id) const
-	{
-		return getChild(id);
 	}
 
 	Node* Node::removeChild(glm::u32 id)
@@ -187,14 +149,14 @@ namespace lg
 		return mTransform;
 	}
 
-	void Node::setNodeType(glm::i32 type)
+	void Node::setType(glm::i32 type)
 	{
-		mNodeType = type;
+		mType = type;
 	}
 
-	glm::i32 Node::getNodeType() const
+	glm::i32 Node::getType() const
 	{
-		return mNodeType;
+		return mType;
 	}
 
 	bool Node::isEnabled() const

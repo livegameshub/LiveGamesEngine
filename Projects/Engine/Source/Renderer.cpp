@@ -62,14 +62,14 @@ namespace lg
 			{
 				if (node_instance->isVisible())
 				{
-					if (node_instance->getNodeType() == Node::RENDERABLE_NODE)
+					if (node_instance->getType() == Node::MESH_RENDERER)
 					{
 						MeshRenderer* model = static_cast<MeshRenderer*>(node_instance);
 
 						disable2dDrawing();
 						drawRenderable(model);
 					}
-					else if (node_instance->getNodeType() == Node::SPRITE_NODE)
+					else if (node_instance->getType() == Node::SPRITE)
 					{
 						Sprite* sprite = static_cast<Sprite*>(node_instance);
 
@@ -100,7 +100,7 @@ namespace lg
 			program->use();
 		}
 
-		const Camera* camera = mScene->getCameraByIndex(0);
+		const Camera* camera = mScene->getRootNode().getFistChild<Camera>(Node::CAMERA);
 		assert(camera != nullptr);
 
 		program->setUniform(UNIFORM_PROJECTION, camera->getOrthoMatrix());
@@ -154,7 +154,7 @@ namespace lg
 			program->use();
 		}
 
-		const Camera* camera = mScene->getCameraByIndex(0);
+		const Camera* camera = mScene->getRootNode().getFistChild<Camera>(Node::CAMERA);
 		assert(camera != nullptr);
 
 		program->setUniform(UNIFORM_VIEW, camera->getViewMatrix());
@@ -182,9 +182,12 @@ namespace lg
 
 			if (material->IsLighted())
 			{
-				program->setUniform(UNIFORM_AMBIENT_LIGHT, mScene->getAmbientLight());
+				DirectionalLight* light = mScene->getRootNode().getFistChild<DirectionalLight>(Node::LIGHT);
+				assert(light != nullptr);
 
-				static_cast<DiffuseMaterial*>(material)->uploadUniforms(static_cast<DirectionalLight*>(mScene->getLightByIndex(0)));
+				static_cast<DiffuseMaterial*>(material)->uploadUniforms(light);
+
+				program->setUniform(UNIFORM_AMBIENT_LIGHT, mScene->getAmbientLight());
 			}
 		}
 

@@ -3,23 +3,15 @@
 namespace lg
 {
 	Light::Light(glm::u32 id, glm::i32 type)
-		: Node(id, LIGHT_NODE)
-		, mSpecularColor(0.5f)
-		, mDiffuseColor(1.0f)
-		, mLightType(type)
-	{
-	}
-
-	Light::Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse)
-		: Node(id, LIGHT_NODE)
-		, mSpecularColor(0.5f)
-		, mDiffuseColor(diffuse)
+		: Node(id, LIGHT)
+		, mSpecularColor(LIGHT_DEFAULT_SPECULAR_COLOR)
+		, mDiffuseColor(LIGHT_DEFAULT_DIFFUSE_COLOR)
 		, mLightType(type)
 	{
 	}
 
 	Light::Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse, const glm::vec3& specular)
-		: Node(id, LIGHT_NODE)
+		: Node(id, LIGHT)
 		, mSpecularColor(specular)
 		, mDiffuseColor(diffuse)
 		, mLightType(type)

@@ -4,27 +4,27 @@ namespace lg
 {
 	Component::Component()
 		: mIsEnabled(true)
-		, mComponentType(-1)
+		, mType(-1)
 	{
 	}
 
 	Component::Component(glm::i32 type)
 		: mIsEnabled(true)
-		, mComponentType(type)
+		, mType(type)
 	{
 	}
 
 	Component::Component(glm::i32 type, const Flag& flag)
 		: mIsEnabled(true)
 		, mFlag(flag)
-		, mComponentType(type)
+		, mType(type)
 	{
 	}
 
 	Component::Component(const Flag& flag)
 		: mIsEnabled(true)
 		, mFlag(flag)
-		, mComponentType(-1)
+		, mType(-1)
 	{
 	}
 
@@ -37,9 +37,9 @@ namespace lg
 		return mFlag;
 	}
 
-	glm::i32 Component::getComponentType() const
+	glm::i32 Component::getType() const
 	{
-		return mComponentType;
+		return mType;
 	}
 
 	void Component::setEnabled(bool value)
@@ -57,8 +57,8 @@ namespace lg
 		mFlag = flag;
 	}
 
-	void Component::setComponentType(glm::i32 type)
+	void Component::setType(glm::i32 type)
 	{
-		mComponentType = type;
+		mType = type;
 	}
 }
