@@ -1,17 +1,17 @@
 #ifndef _DIFFUSE_MATERIAL_H_
 #define _DIFFUSE_MATERIAL_H_
 
-#include "SpriteMaterial.h"
+#include "Material.h"
 
 namespace lg
 {
 	class DirectionalLight;
 
-	class ENGINE_API DiffuseMaterial : public SpriteMaterial
+	class ENGINE_API DiffuseMaterial : public Material
 	{
 	public:
+		DiffuseMaterial(glm::u32 id, const Flag& flag = 0);
 		DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
-		DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag);
 
 		~DiffuseMaterial();
 		

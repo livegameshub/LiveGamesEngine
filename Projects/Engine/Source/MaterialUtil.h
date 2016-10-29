@@ -24,5 +24,9 @@
 #define UNIFORM_DIRECTIONAL_LIGHT_SPECULAR "u_directional_light.light.specular"
 #define UNIFORM_DIRECTIONAL_LIGHT_DIRECTION "u_directional_light.direction"
 
+/* default values */
+#define MATERIAL_DEFAULT_DIFFUSE_COLOR glm::vec3(1.0f)
+#define MATERIAL_DEFAULT_SPECULAR_COLOR glm::vec3(0.5f)
+#define MATERIAL_DEFAULT_SHININESS 32.0f
 
 #endif // _MATERIAL_UTIL_H_

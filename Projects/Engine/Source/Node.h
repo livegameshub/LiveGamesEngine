@@ -11,6 +11,12 @@ namespace lg
 	class ENGINE_API Node : public Object
 	{
 	public:
+		enum NodeFlag : glm::i32
+		{
+			IS_ENABLED = 1,
+			IS_VISIBLE = 2
+		};
+
 		enum NodeType : glm::i32
 		{
 			BASIC_NODE,
@@ -52,12 +58,11 @@ namespace lg
 		void setNodeType(glm::i32 type);
 		glm::i32 getNodeType() const;
 
-		void setEnabled(bool value);
+		bool isVisible() const;
 		bool isEnabled() const;
 
 	protected:
 		Transform mTransform;
-		bool mIsEnabled;
 
 	private:
 		std::vector<Component*> mComponents;

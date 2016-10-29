@@ -1,18 +1,21 @@
 #include "Material.h"
 #include "Resources.h"
 #include "Program.h"
+#include "Texture.h"
 
 namespace lg
 {
 	Material::Material(glm::u32 id, const Flag& flag)
 		: Resource(id, flag)
+		, mDiffuseTexture(nullptr)
 		, mProgram(nullptr)
-		, mDiffuseColor(1.0f)
+		, mDiffuseColor(MATERIAL_DEFAULT_DIFFUSE_COLOR)
 	{
 	}
 
 	Material::Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
 		: Resource(id, flag)
+		, mDiffuseTexture(nullptr)
 		, mProgram(nullptr)
 		, mDiffuseColor(diffuse)
 	{
@@ -35,6 +38,25 @@ namespace lg
 	Program* Material::getProgram() const
 	{
 		return mProgram;
+	}
+
+	void Material::setDiffuseTexture(Texture* texture)
+	{
+		assert(texture != nullptr);
+
+		if (mDiffuseTexture)
+		{
+			Resources::getInstance().unload(mDiffuseTexture);
+		}
+
+		mDiffuseTexture = texture;
+
+		Resources::getInstance().load(mDiffuseTexture);
+	}
+
+	Texture* Material::getDiffuseTexture() const
+	{
+		return mDiffuseTexture;
 	}
 
 	void Material::setDiffuseColor(const glm::vec3& color)
@@ -78,8 +100,13 @@ namespace lg
 	bool Material::release()
 	{
 		assert(mProgram != nullptr);
-
 		Resources::getInstance().unload(mProgram);
+	
+		if (mDiffuseTexture)
+		{
+			// unload the texture
+			Resources::getInstance().unload(mDiffuseTexture);
+		}
 
 		return true;
 	}

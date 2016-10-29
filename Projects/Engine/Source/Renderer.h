@@ -8,7 +8,7 @@ namespace lg
 	class Sprite;
 	class Scene;
 	class Node;
-	class Renderable;
+	class MeshRenderer;
 	
 	class ENGINE_API Renderer
 	{
@@ -19,7 +19,7 @@ namespace lg
 		void draw() const;
 		void drawNode(const Node* node) const;
 		void drawSprite(const Sprite* sprite) const;
-		void drawRenderable(const Renderable* model) const;
+		void drawRenderable(const MeshRenderer* model) const;
 
 		void setScene(const Scene* scene);
 

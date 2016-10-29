@@ -4,7 +4,7 @@ namespace lg
 {
 	Light::Light(glm::u32 id, glm::i32 type)
 		: Node(id, LIGHT_NODE)
-		, mSpecularColor(1.0f)
+		, mSpecularColor(0.5f)
 		, mDiffuseColor(1.0f)
 		, mLightType(type)
 	{
@@ -12,7 +12,7 @@ namespace lg
 
 	Light::Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse)
 		: Node(id, LIGHT_NODE)
-		, mSpecularColor(1.0f)
+		, mSpecularColor(0.5f)
 		, mDiffuseColor(diffuse)
 		, mLightType(type)
 	{

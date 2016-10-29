@@ -2,12 +2,11 @@
 #define _RESOURCES_H_
 
 #include "ResourceContainer.h"
+#include "Material.h"
 
 namespace lg
 {
-	class SpriteMaterial;	
 	class Mesh;
-	class Material;
 	class DiffuseMaterial;
 	class Program;
 	class Resource;
@@ -25,9 +24,6 @@ namespace lg
 
 		void removeResource(glm::u32 id);
 		void addResource(Resource* resource);
-		
-		Resource* getResource(glm::u32 id) const;
-		Resource* operator[](glm::u32 id) const;
 
 		const std::map<glm::u32, Resource*>& getAllResources() const;
 
@@ -37,14 +33,6 @@ namespace lg
 		/* programs */
 		Program* createProgram(glm::u32 id, const std::vector<Shader*> shaders);
 
-		/* materials */
-		Material* createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse);
-		
-		SpriteMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse);
-
-		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag);
-		DiffuseMaterial* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag);
-
 		/* meshes */
 		Mesh* createMesh(glm::u32 id, const std::string& file);
 		Mesh* createMesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
@@ -53,6 +41,12 @@ namespace lg
 		/*textures */
 		Texture* createTexture(glm::u32 id, const std::string& file, bool generateMipmaps);
 
+		/* materials */
+		template <class T> T* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag = 0);
+
+		template <class T> T* getResource(glm::u32 id) const;
+		template <class T> T* operator[](glm::u32 id) const;
+
 		static glm::u32 getNextAvailableId();
 		static Resources& getInstance();
 
@@ -60,6 +54,46 @@ namespace lg
 		std::map<glm::u32, Resource*> mAllResources;
 		std::vector<ResourceContainer> mPendingItems;
 	};
+
+	/* template class methods - begin */
+	template <class T>
+	T* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag)
+	{
+		assert(getResource<T>(id) == nullptr);
+
+		T* material = new T(id, diffuse, flag);
+		material->setProgram(program);
+
+		if (texture)
+		{
+			// if we have a texture assign it (don't forget the cast)
+			material->setDiffuseTexture(texture);
+		}
+
+		addResource(material);
+
+		return static_cast<T*>(material);
+	}
+
+	template <class T>
+	T* Resources::getResource(glm::u32 id) const
+	{
+		auto it = mAllResources.find(id);
+
+		if (it == mAllResources.end())
+		{
+			return nullptr;
+		}
+
+		return static_cast<T*>(it->second);
+	}
+
+	template <class T>
+	T* Resources::operator[](glm::u32 id) const
+	{
+		return getResource<T>(id);
+	}
+	/* template class methods - end */
 }
 
 #endif // _RESOURCES_H_

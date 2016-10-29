@@ -1,6 +1,6 @@
 #include "Renderer.h"
 #include "Graphics.h"
-#include "Renderable.h"
+#include "MeshRenderer.h"
 #include "Camera.h"
 #include "Program.h"
 #include "Material.h"
@@ -10,7 +10,6 @@
 #include "DirectionalLight.h"
 #include "Texture.h"
 #include "Sprite.h"
-#include "SpriteMaterial.h"
 
 namespace lg
 {
@@ -18,6 +17,7 @@ namespace lg
 	glm::u32 Renderer::smCurrentProgramId = 0;
 	glm::u32 Renderer::smCurrentMaterialId = 0;
 	glm::u32 Renderer::smCurrentTextureId = 0;
+
 	bool Renderer::smIsDrawing2d = false;
 
 	Renderer::Renderer()
@@ -60,37 +60,34 @@ namespace lg
 
 			if (node_instance->isEnabled())
 			{
-				if (node_instance->getNodeType() == Node::RENDERABLE_NODE)
+				if (node_instance->isVisible())
 				{
-					Renderable* model = static_cast<Renderable*>(node_instance);
-
-					if (model->isVisible())
+					if (node_instance->getNodeType() == Node::RENDERABLE_NODE)
 					{
-						disable2dDrawing();
+						MeshRenderer* model = static_cast<MeshRenderer*>(node_instance);
 
+						disable2dDrawing();
 						drawRenderable(model);
 					}
-				}
-				else if (node_instance->getNodeType() == Node::SPRITE_NODE)
-				{
-					Sprite* sprite = static_cast<Sprite*>(node_instance);
-
-					if (sprite->isVisible())
+					else if (node_instance->getNodeType() == Node::SPRITE_NODE)
 					{
-						enable2dDrawing();
+						Sprite* sprite = static_cast<Sprite*>(node_instance);
 
+						enable2dDrawing();
 						drawSprite(sprite);
 					}
 				}
-
-				drawNode(node_instance);
+				else
+				{
+					drawNode(node_instance);
+				}
 			}
 		}
 	}
 
 	void Renderer::drawSprite(const Sprite* sprite) const
 	{
-		const SpriteMaterial* material = static_cast<SpriteMaterial*>(sprite->getMaterial());
+		const Material* material = sprite->getMaterial();
 		assert(material != nullptr);
 
 		const Program* program = material->getProgram();
@@ -142,7 +139,7 @@ namespace lg
 		mesh->draw();
 	}
 
-	void Renderer::drawRenderable(const Renderable* model) const
+	void Renderer::drawRenderable(const MeshRenderer* model) const
 	{
 		Material* material = model->getMaterial();
 		assert(material != nullptr);

@@ -1,10 +1,9 @@
 #include "Scene.h"
-#include "Renderable.h"
+#include "MeshRenderer.h"
 #include "Camera.h"
 #include "DirectionalLight.h"
 #include "Resources.h"
 #include "Sprite.h"
-#include "SpriteMaterial.h"
 
 namespace lg
 {
@@ -206,11 +205,11 @@ namespace lg
 		mAmbientLight = ambient;
 	}
 
-	Renderable* Scene::createRenderable(glm::u32 id, Mesh* mesh, Material* material)
+	MeshRenderer* Scene::createRenderable(glm::u32 id, Mesh* mesh, Material* material)
 	{
 		assert(getNode(id) == nullptr);
 
-		Renderable* model = new Renderable(id);
+		MeshRenderer* model = new MeshRenderer(id);
 		model->setMaterial(material);
 		model->setMesh(mesh);
 
@@ -219,11 +218,11 @@ namespace lg
 		return model;
 	}
 
-	Sprite* Scene::createSprite(glm::u32 id, Mesh* mesh, SpriteMaterial* material)
+	Sprite* Scene::createSprite(glm::u32 id, Mesh* mesh, Material* material, const glm::vec2& size)
 	{
 		assert(getNode(id) == nullptr);
 
-		Sprite* sprite = new Sprite(id);
+		Sprite* sprite = new Sprite(id, size);
 		sprite->setMaterial(material);
 		sprite->setMesh(mesh);
 

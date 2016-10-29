@@ -6,17 +6,17 @@
 
 namespace lg
 {
-	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
-		: SpriteMaterial(id, diffuse, flag)
-		, mSpecularColor(1.0f)
-		, mSpecularShininess(0.0f)
+	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const Flag& flag)
+		: Material(id, flag)
+		, mSpecularColor(MATERIAL_DEFAULT_SPECULAR_COLOR)
+		, mSpecularShininess(MATERIAL_DEFAULT_SHININESS)
 	{
 	}
 
-	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
-		: SpriteMaterial(id, diffuse, flag)
-		, mSpecularColor(specular)
-		, mSpecularShininess(shininess)
+	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
+		: Material(id, diffuse, flag)
+		, mSpecularColor(MATERIAL_DEFAULT_SPECULAR_COLOR)
+		, mSpecularShininess(MATERIAL_DEFAULT_SHININESS)
 	{
 	}
 
@@ -86,11 +86,11 @@ namespace lg
 			mProgram->getFlag().add(Program::DIFFUSE_MATERIAL_UNIFORMS);
 		}
 
-		return SpriteMaterial::create();
+		return Material::create();
 	}
 
 	bool DiffuseMaterial::release()
 	{
-		return SpriteMaterial::release();
+		return Material::release();
 	}
 }

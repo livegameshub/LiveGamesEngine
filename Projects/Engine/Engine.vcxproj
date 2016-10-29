@@ -148,7 +148,7 @@
     <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\MeshData.h" />
     <ClInclude Include="Source\Node.h" />
-    <ClInclude Include="Source\Renderable.h" />
+    <ClInclude Include="Source\MeshRenderer.h" />
     <ClInclude Include="Source\Platform.h" />
     <ClInclude Include="Source\Program.h" />
     <ClInclude Include="Source\Random.h" />
@@ -157,7 +157,6 @@
     <ClInclude Include="Source\Scenes.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Sprite.h" />
-    <ClInclude Include="Source\SpriteMaterial.h" />
     <ClInclude Include="Source\Texture.h" />
     <ClInclude Include="Source\Time.h" />
     <ClInclude Include="Source\Transform.h" />
@@ -183,7 +182,7 @@
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
     <ClCompile Include="Source\Node.cpp" />
-    <ClCompile Include="Source\Renderable.cpp" />
+    <ClCompile Include="Source\MeshRenderer.cpp" />
     <ClCompile Include="Source\Program.cpp" />
     <ClCompile Include="Source\Random.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
@@ -191,7 +190,6 @@
     <ClCompile Include="Source\Scenes.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
-    <ClCompile Include="Source\SpriteMaterial.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Time.cpp" />
     <ClCompile Include="Source\Transform.cpp" />

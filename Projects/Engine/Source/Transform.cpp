@@ -3,7 +3,7 @@
 namespace lg
 {
 	Transform::Transform()
-		: Component(TRANSFORM_COMPONENT)
+		: Component()
 		, mParentTransform(nullptr)
 		, mHasUniformScale(true)
 		, mScale(1.0f)
@@ -11,7 +11,7 @@ namespace lg
 	}
 
 	Transform::Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
-		: Component(TRANSFORM_COMPONENT, NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
+		: Component(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
 		, mParentTransform(nullptr)
 		, mHasUniformScale(true)
 		, mOrientation(orientation)

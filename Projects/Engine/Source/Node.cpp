@@ -3,29 +3,25 @@
 namespace lg
 {
 	Node::Node(glm::u32 id)
-		: Object(id)
-		, mIsEnabled(true)
+		: Object(id, IS_ENABLED)
 		, mNodeType(BASIC_NODE)
 	{
 	}
 
 	Node::Node(glm::u32 id, glm::i32 type)
-		: Object(id)
-		, mIsEnabled(true)
+		: Object(id, IS_ENABLED)
 		, mNodeType(type)
 	{
 	}
 
 	Node::Node(glm::u32 id, glm::i32 type, const Flag& flag)
-		: Object(id, flag)
-		, mIsEnabled(true)
+		: Object(id, flag | IS_ENABLED)
 		, mNodeType(type)
 	{
 	}
 
 	Node::Node(glm::u32 id, const Flag& flag)
-		: Object(id, flag)
-		, mIsEnabled(true)
+		: Object(id, flag | IS_ENABLED)
 		, mNodeType(BASIC_NODE)
 	{
 	}
@@ -201,13 +197,13 @@ namespace lg
 		return mNodeType;
 	}
 
-	void Node::setEnabled(bool value)
-	{
-		mIsEnabled = value;
-	}
-
 	bool Node::isEnabled() const
 	{
-		return mIsEnabled;
+		return mFlag.isSet(IS_ENABLED);
+	}
+
+	bool Node::isVisible() const
+	{
+		return mFlag.isSet(IS_VISIBLE);
 	}
 }

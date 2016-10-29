@@ -1,3 +1,14 @@
 .vs
 LiveGamesEngine.VC.db
 Temp
+Build/Exporter/Exporter.exe
+Build/Exporter/Exporter.ilk
+Build/Exporter/Exporter.pdb
+Build/Game/Engine.dll
+Build/Game/Engine.exp
+Build/Game/Engine.ilk
+Build/Game/Engine.lib
+Build/Game/Engine.pdb
+Build/Game/Game.exe
+Build/Game/Game.pdb
+Build/Game/Game.ilk

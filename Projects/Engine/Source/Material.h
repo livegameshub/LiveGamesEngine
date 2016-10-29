@@ -6,6 +6,7 @@
 
 namespace lg
 {
+	class Texture;
 	class Program;
 
 	class ENGINE_API Material : public Resource
@@ -28,9 +29,11 @@ namespace lg
 		bool IsShiny() const;
 
 		void setProgram(Program* program);
+		void setDiffuseTexture(Texture* texture);
 		void setDiffuseColor(const glm::vec3& color);
 	
 		Program* getProgram() const;
+		Texture* getDiffuseTexture() const;
 		const glm::vec3& getDiffuseColor() const;
 
 		virtual void uploadUniforms() const;
@@ -39,6 +42,7 @@ namespace lg
 		virtual bool create();
 		virtual bool release();
 
+		Texture* mDiffuseTexture;
 		Program* mProgram;
 
 	private:

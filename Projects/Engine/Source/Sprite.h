@@ -1,18 +1,20 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#include "Renderable.h"
+#include "MeshRenderer.h"
 
 namespace lg
 {
-	class ENGINE_API Sprite : public Renderable
+	class ENGINE_API Sprite : public MeshRenderer
 	{
 	public:
-		Sprite(glm::u32 id);
+		Sprite(glm::u32 id, const glm::vec2& size);
 		~Sprite();
 
-	private:
+		const glm::vec2& getSize() const;
 
+	private:
+		glm::vec2 mSize;
 	};
 }
 

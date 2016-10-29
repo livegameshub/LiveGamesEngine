@@ -154,16 +154,13 @@
     <ClInclude Include="Source\MaterialUtil.h">
       <Filter>Source\Resources\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SpriteMaterial.h">
-      <Filter>Source\Resources\Materials</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Sprite.h">
       <Filter>Source\Scenes\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Object.h">
       <Filter>Source\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Renderable.h">
+    <ClInclude Include="Source\MeshRenderer.h">
       <Filter>Source\Scenes\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -252,16 +249,13 @@
     <ClCompile Include="Source\Texture.cpp">
       <Filter>Source\Resources\Textures</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SpriteMaterial.cpp">
-      <Filter>Source\Resources\Materials</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Sprite.cpp">
       <Filter>Source\Scenes\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="Source\Object.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Renderable.cpp">
+    <ClCompile Include="Source\MeshRenderer.cpp">
       <Filter>Source\Scenes\Nodes</Filter>
     </ClCompile>
   </ItemGroup>

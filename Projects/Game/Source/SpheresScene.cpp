@@ -37,9 +37,9 @@ void SpheresScene::init()
 
 	// materials
 
-	lg::Material* red_material = static_cast<lg::Material*>(lg::Resources::getInstance().getResource(14));
-	lg::DiffuseMaterial* yellow_material = static_cast<lg::DiffuseMaterial*>(lg::Resources::getInstance().getResource(15));
-	lg::DiffuseMaterial* blue_material = static_cast<lg::DiffuseMaterial*>(lg::Resources::getInstance().getResource(16));
+	lg::Material* red_material = lg::Resources::getInstance().getResource<lg::Material>(14);
+	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(15);
+	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(16);
 
 	// camera 
 

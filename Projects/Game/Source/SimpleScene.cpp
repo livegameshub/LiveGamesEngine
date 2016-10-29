@@ -35,7 +35,7 @@ void SimpleScene::init()
 	Scene::init();
 
 	// shaders 
-	lg::Program* program = static_cast<lg::Program*>(lg::Resources::getInstance().getResource(7));
+	lg::Program* program = lg::Resources::getInstance().getResource<lg::Program>(7);
 
 	// meshes
 
@@ -62,9 +62,9 @@ void SimpleScene::init()
 
 	// materials
 
-	lg::Material* red_material =  lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 0.0f, 0.0f));
-	lg::Material* yellow_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 1.0f, 0.0f));
-	lg::Material* blue_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(0.0f, 0.0f, 1.0f));
+	lg::Material* red_material =  lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(1.0f, 0.0f, 0.0f));
+	lg::Material* yellow_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(1.0f, 1.0f, 0.0f));
+	lg::Material* blue_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(0.0f, 0.0f, 1.0f));
 
 	// camera 
 

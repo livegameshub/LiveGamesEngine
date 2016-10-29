@@ -62,11 +62,10 @@ void CubesScene::init()
 
 	// materials
 
-	lg::Material* red_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program, glm::vec3(1.0f, 0.0f, 0.0f));
-	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
-	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.5f), 32.0f, lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
-
-	lg::DiffuseMaterial* plane_material = lg::Resources::getInstance().createMaterial(lg::Resources::getNextAvailableId(), program3, plane_texture, glm::vec3(1.0f), glm::vec3(0.5f), 32.0f, lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
+	lg::Material* red_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(1.0f, 0.0f, 0.0f));
+	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
+	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(0.0f, 0.0f, 1.0f), lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
+	lg::DiffuseMaterial* plane_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program3, plane_texture, glm::vec3(1.0f), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
 
 	// camera 
 
@@ -75,7 +74,7 @@ void CubesScene::init()
 
 	// models
 
-	lg::Renderable* plane = createRenderable(2, plane_mesh, plane_material);
+	lg::MeshRenderer* plane = createRenderable(2, plane_mesh, plane_material);
 
 	lg::Transform& plane_transform = plane->getTransform();
 	plane_transform.setScale(glm::vec3(8.0f));

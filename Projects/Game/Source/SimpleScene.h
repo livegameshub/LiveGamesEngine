@@ -3,7 +3,7 @@
 
 #include "Scene.h"
 #include "Camera.h"
-#include "Renderable.h"
+#include "MeshRenderer.h"
 
 class SimpleScene : public lg::Scene
 {
@@ -17,7 +17,7 @@ public:
 	void update() override;
 
 private:
-	std::vector<lg::Renderable*> mPrimitives;
+	std::vector<lg::MeshRenderer*> mPrimitives;
 
 	lg::DirectionalLight* mDirectionalLight;
 	lg::Camera* mCamera;

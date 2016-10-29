@@ -8,11 +8,6 @@ namespace lg
 	class ENGINE_API Component
 	{
 	public:
-		enum ComponentType : glm::i32
-		{
-			TRANSFORM_COMPONENT
-		};
-
 		Component();
 		Component(glm::i32 type);
 		Component(glm::i32 type, const Flag& flag);

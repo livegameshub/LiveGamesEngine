@@ -36,7 +36,7 @@ namespace lg
 		{
 			smOrthoMatrix = glm::ortho(0.0f, mViewSize.x, mViewSize.y, 0.0f, -1.0f, 1.0f);
 
-			mFlag -= REBUILD_ORTHO_MATRIX;
+  			mFlag -= REBUILD_ORTHO_MATRIX; 
 		}
 
 		/* update the perspective matrix */
@@ -54,7 +54,7 @@ namespace lg
 		{
 			mViewMatrix = glm::inverse(mTransform.getMatrix());
 
-			mFlag -= REBUILD_VIEW_MATRIX;
+ 			mFlag -= REBUILD_VIEW_MATRIX;
 		}
 	}
 

@@ -76,23 +76,6 @@ namespace lg
 		mAllResources.insert({ resource->getId(), resource });	
 	}
 
-	Resource* Resources::getResource(glm::u32 id) const
-	{
-		auto it = mAllResources.find(id);
-
-		if (it == mAllResources.end())
-		{
-			return nullptr;
-		}
-
-		return it->second;
-	}
-
-	Resource* Resources::operator[](glm::u32 id) const
-	{
-		return getResource(id);
-	}
-
 	const std::map<glm::u32, Resource*>& Resources::getAllResources() const
 	{
 		return mAllResources;
@@ -100,7 +83,7 @@ namespace lg
 
 	Program* Resources::createProgram(glm::u32 id, const std::vector<Shader*> shaders)
 	{
-		assert(getResource(id) == nullptr);
+		assert(getResource<Program>(id) == nullptr);
 
 		Program* program = new Program(id);
 
@@ -116,7 +99,7 @@ namespace lg
 
 	Shader* Resources::createShader(glm::u32 id, glm::u32 type, const std::string& file)
 	{
-		assert(getResource(id) == nullptr);
+		assert(getResource<Shader>(id) == nullptr);
 
 		Shader* shader = new Shader(id, type, file);
 
@@ -125,70 +108,9 @@ namespace lg
 		return shader;
 	}
 
-	Material* Resources::createMaterial(glm::u32 id, Program* program, const glm::vec3& diffuse)
-	{
-		assert(getResource(id) == nullptr);
-
-		Material* material = new Material(id, diffuse);
-		material->setProgram(program);
-
-		addResource(material);
-
-		return material;
-	}
-
-	SpriteMaterial* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse)
-	{
-		assert(getResource(id) == nullptr);
-
-		SpriteMaterial* material = new SpriteMaterial(id, diffuse);
-		material->setProgram(program);
-		material->setDiffuseTexture(texture);
-
-		addResource(material);
-
-		return material;
-	}
-
-	DiffuseMaterial* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag)
-	{
-		assert(getResource(id) == nullptr);
-
-		DiffuseMaterial* material = new DiffuseMaterial(id, diffuse, flag);
-		material->setProgram(program);
-
-		if (texture)
-		{
-			// if we have a texture assign it
-			material->setDiffuseTexture(texture);
-		}
-
-		addResource(material);
-
-		return material;
-	}
-
-	DiffuseMaterial* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const glm::vec3& specular, glm::f32 shininess, const Flag& flag)
-	{
-		assert(getResource(id) == nullptr);
-
-		DiffuseMaterial* material = new DiffuseMaterial(id, diffuse, specular, shininess, flag);
-		material->setProgram(program);
-
-		if (texture)
-		{
-			// if we have a texture assign it
-			material->setDiffuseTexture(texture);
-		}
-
-		addResource(material);
-
-		return material;
-	}
-
 	Mesh* Resources::createMesh(glm::u32 id, const std::string& file)
 	{
-		assert(getResource(id) == nullptr);
+		assert(getResource<Mesh>(id) == nullptr);
 
 		Mesh* mesh = new Mesh(id, file);
 
@@ -199,7 +121,7 @@ namespace lg
 
 	Mesh* Resources::createMesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag)
 	{
-		assert(getResource(id) == nullptr);
+		assert(getResource<Mesh>(id) == nullptr);
 
 		Mesh* mesh = new Mesh(id, primitive, drawType, flag);
 
@@ -210,7 +132,7 @@ namespace lg
 
 	Mesh* Resources::createMesh(glm::u32 id, const glm::vec2& startPoint, const glm::vec2& size, const glm::vec2& textureSize)
 	{
-		assert(getResource(id) == nullptr);
+		assert(getResource<Mesh>(id) == nullptr);
 
 		Mesh* mesh = new Mesh(id, Mesh::TRIANGLES_MESH, Mesh::STATIC_MESH_DRAW, Mesh::MESH_TEXTURE_FLAG);
 
@@ -231,7 +153,7 @@ namespace lg
 
 	Texture* Resources::createTexture(glm::u32 id, const std::string& file, bool generateMipmaps)
 	{
-		assert(getResource(id) == nullptr);
+		assert(getResource<Texture>(id) == nullptr);
 
 		Texture* texture = new Texture(id, file, generateMipmaps);
 
