@@ -121,8 +121,13 @@ namespace lg
 
 			Scenes::getInstance().update();
 
-			main_window.draw();
-			main_window.swapBuffers();
+			// don't draw anything if we 
+			// don't have focus on the window
+			if (main_window.isFocused())
+			{
+				main_window.draw();
+				main_window.swapBuffers();
+			}
 		}
 	}
 

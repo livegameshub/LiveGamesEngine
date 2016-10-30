@@ -59,6 +59,9 @@
     <Filter Include="Source\Resources\Textures">
       <UniqueIdentifier>{a739b88d-e72a-4dd9-8597-103d0bd32bb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Scenes\Nodes\Sprites">
+      <UniqueIdentifier>{77632d99-3cf4-406f-becf-356f79c20e55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Platform.h">
@@ -154,14 +157,17 @@
     <ClInclude Include="Source\MaterialUtil.h">
       <Filter>Source\Resources\Util</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Sprite.h">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Object.h">
       <Filter>Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\MeshRenderer.h">
       <Filter>Source\Scenes\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sprite.h">
+      <Filter>Source\Scenes\Nodes\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Text.h">
+      <Filter>Source\Scenes\Nodes\Sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -249,14 +255,17 @@
     <ClCompile Include="Source\Texture.cpp">
       <Filter>Source\Resources\Textures</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Sprite.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Object.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\MeshRenderer.cpp">
       <Filter>Source\Scenes\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sprite.cpp">
+      <Filter>Source\Scenes\Nodes\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Text.cpp">
+      <Filter>Source\Scenes\Nodes\Sprites</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

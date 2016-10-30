@@ -157,6 +157,7 @@
     <ClInclude Include="Source\Scenes.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Sprite.h" />
+    <ClInclude Include="Source\Text.h" />
     <ClInclude Include="Source\Texture.h" />
     <ClInclude Include="Source\Time.h" />
     <ClInclude Include="Source\Transform.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="Source\Scenes.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\Sprite.cpp" />
+    <ClCompile Include="Source\Text.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\Time.cpp" />
     <ClCompile Include="Source\Transform.cpp" />

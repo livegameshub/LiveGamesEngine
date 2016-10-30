@@ -11,14 +11,16 @@
 namespace lg
 {
 	Window::Window(const glm::ivec2& size)
-		: mSamples(0)
+		: mIsFocused(1)
+		, mSamples(0)
 		, mSize(size)
 		, mWindowPtr(nullptr)
 	{
 	}
 
 	Window::Window(const glm::ivec2& size, glm::u32 samples)
-		: mSamples(samples)
+		: mIsFocused(1)
+		, mSamples(samples)
 		, mSize(size)
 		, mWindowPtr(nullptr)
 	{
@@ -73,7 +75,7 @@ namespace lg
 			#endif // WINDOWS_BUILD
 
 			/* init the callbacks for the main window */
-			initWindowCallbacks();
+			initCallbacks();
 		}
 
 		return true;
@@ -91,6 +93,11 @@ namespace lg
 		return false;
 	}
 
+	void Window::setIsFocused(glm::i32 isFocused)
+	{
+		mIsFocused = isFocused;
+	}
+
 	glm::u32 Window::getSamples() const
 	{
 		return mSamples;
@@ -99,6 +106,11 @@ namespace lg
 	glm::i32 Window::isClosing() const
 	{
 		return glfwWindowShouldClose(mWindowPtr);
+	}
+
+	glm::i32 Window::isFocused() const
+	{
+		return mIsFocused;
 	}
 
 	glm::ivec2 Window::getScreenSize()
@@ -152,17 +164,33 @@ namespace lg
 		glfwPollEvents();
 	}
 
-	void Window::initWindowCallbacks() const
+	void Window::initCallbacks() const
 	{
 		glfwSetKeyCallback(mWindowPtr, Input::keyboardKeysCallback);
 		glfwSetCursorPosCallback(mWindowPtr, Input::mousePositionCallback);
 		glfwSetMouseButtonCallback(mWindowPtr, Input::mouseClicksCallback);
 
+		glfwSetWindowFocusCallback(mWindowPtr, focusCallback);
 		glfwSetWindowSizeCallback(mWindowPtr, resizeCallback);
+	}
+
+	void Window::focusCallback(GLFWwindow* windowPtr, glm::i32 isFocused)
+	{
+		Window* window = Engine::getInstance().getWindow(windowPtr);
+		assert(window != nullptr);
+
+		window->setIsFocused(isFocused);
 	}
 
 	void Window::resizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
 	{
+		if (width == 0 || height == 0)
+		{
+			// no resize if we have 0 values
+			// it will cause an error
+			return;
+		}
+
 		Window* window = Engine::getInstance().getWindow(windowPtr);
 		assert(window != nullptr);
 

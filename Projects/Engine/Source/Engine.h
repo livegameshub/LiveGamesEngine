@@ -17,15 +17,12 @@ namespace lg
 			ENGINE_PAUSE_FLAG = 2
 		};
 
-		void stop();
-		void pause();
-		void resume();
-
 		void addWindow(const Window& window);
 
 		// TODO
 		// setup should return an int with some specific codes
 		static bool setup(const std::string& mainWindowTitle);
+		static void Release();
 
 		Window* getWindow(GLFWwindow* windowPtr);
 		Window* getWindowByIndex(glm::u32 index);
@@ -33,13 +30,11 @@ namespace lg
 		static void loadScene(glm::u32 index);
 		static Engine& getInstance();
 
+		void resume();
+		void pause();
+		void stop();
+		
 	private:
-		Flag mFlag;
-
-		std::vector<Window> mWindows;
-
-		static void Release();
-
 		#ifndef WINDOWS_BUILD
 		static void webLoop();
 		#endif // WINDOWS_BUILD
@@ -47,6 +42,9 @@ namespace lg
 		void prepare();
 		void loop();
 		void run();
+
+		std::vector<Window> mWindows;
+		Flag mFlag;
 	};
 }
 

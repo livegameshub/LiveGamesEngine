@@ -24,8 +24,6 @@ namespace lg
 		Material* getMaterial() const;
 		Mesh* getMesh() const;
 
-
-
 	private:
 		Material* mMaterial;
 		Mesh* mMesh;

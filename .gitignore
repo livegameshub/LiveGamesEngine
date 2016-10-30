@@ -1,9 +1,10 @@
-.vs
-LiveGamesEngine.VC.db
-Temp
+Build/Exporter/Input
+Build/Exporter/Output
 Build/Exporter/Exporter.exe
 Build/Exporter/Exporter.ilk
 Build/Exporter/Exporter.pdb
+Build/Game/Engine.iobj
+Build/Game/Engine.ipdb
 Build/Game/Engine.dll
 Build/Game/Engine.exp
 Build/Game/Engine.ilk
@@ -12,3 +13,6 @@ Build/Game/Engine.pdb
 Build/Game/Game.exe
 Build/Game/Game.pdb
 Build/Game/Game.ilk
+LiveGamesEngine.VC.db
+Temp
+.vs
