@@ -60,6 +60,8 @@ namespace lg
 
 	void Input::reset()
 	{
+		// TODO
+		// memset ??
 		for (int i = 0; i < KEYBOARD_KEYS_SIZE; ++i)
 		{
 			smKeyboardKeys[i] = false;

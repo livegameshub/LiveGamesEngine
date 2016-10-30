@@ -31,7 +31,7 @@ namespace lg
 		void rotateOnY(glm::f32 angle);
 		void rotateOnZ(glm::f32 angle);
 	
-		void setParentTransform(Transform* transform);
+		void setParent(Transform* transform);
 
 		void setOrientation(const glm::quat& orientation);
 		void setPosition(const glm::vec3& position);
@@ -42,11 +42,11 @@ namespace lg
 		const glm::vec3& getScale() const;
 
 		bool hasUniformScale() const;
-		Transform* getParentTransform() const;
+		Transform* getParent() const;
 		glm::mat4 getMatrix() const;
 
 	private:
-		Transform* mParentTransform;
+		Transform* mParent;
 
 		bool mHasUniformScale;
 

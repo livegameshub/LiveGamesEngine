@@ -33,6 +33,7 @@ void SpheresScene::init()
 
 	// meshes
 	lg::Mesh* sphere_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere.mesh");
+	lg::Mesh* sphere_mesh2 = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere2.mesh");
 
 	// materials
 	lg::Material* red_material = lg::Resources::getInstance().getResource<lg::Material>(14);
@@ -46,7 +47,7 @@ void SpheresScene::init()
 	// models
 	mSpheres.push_back(createRenderable(2, sphere_mesh, blue_material));
 	mSpheres.push_back(createRenderable(3, sphere_mesh, yellow_material));
-	mSpheres.push_back(createRenderable(4, sphere_mesh, red_material));
+	mSpheres.push_back(createRenderable(4, sphere_mesh2, red_material));
 
 	mSpheres[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));
 	mSpheres[2]->getTransform().setPosition(glm::vec3(3.5f, 0.0f, 0.0f));

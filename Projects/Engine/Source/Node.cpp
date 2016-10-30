@@ -1,5 +1,7 @@
 #include "Node.h"
 
+#include <algorithm>
+
 namespace lg
 {
 	Node::Node(glm::u32 id)
@@ -87,46 +89,41 @@ namespace lg
 		assert(getChild<Node>(node->getId()) == nullptr);
 
 		/* set the parent transformation for the child node */
-		node->getTransform().setParentTransform(&mTransform);
+		node->getTransform().setParent(&mTransform);
 
 		mChildren.push_back(node);
 	}
 
 	Component* Node::removeComponent(glm::i32 type)
 	{
-		for (glm::u32 i = 0; i < mComponents.size(); ++i)
+		auto it = std::find_if(mComponents.begin(), mComponents.end(), [type] (Component* component)
+		{ 
+			return component->getType() == type;
+		});
+
+		if (*it)
 		{
-			Component* component = mComponents[i];
-
-			if (component->getType() == type)
-			{
-				mComponents.erase(mComponents.begin() + i);
-
-				return component;
-			}
+			mComponents.erase(it);
 		}
 
-		return nullptr;
+		return *it;
 	}
 
 	Node* Node::removeChild(glm::u32 id)
 	{
-		for (glm::u32 i = 0; i < mChildren.size(); ++i)
+		auto it = std::find_if(mChildren.begin(), mChildren.end(), [id] (Node* node)
 		{
-			Node* node = mChildren[i];
+			return node->getId() == id;
+		});
 
-			if (node->getId() == id)
-			{
-				mChildren.erase(mChildren.begin() + i);
+		if (*it)
+		{
+			(*it)->getTransform().setParent(nullptr);
 
-				/* remove the parent transformation */
-				node->getTransform().setParentTransform(nullptr);
-
-				return node;
-			}
+			mChildren.erase(it);
 		}
 
-		return nullptr;
+		return *it;
 	}
 
 	const std::vector<Component*>& Node::getComponents() const

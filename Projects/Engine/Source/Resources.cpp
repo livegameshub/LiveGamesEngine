@@ -60,7 +60,6 @@ namespace lg
 	void Resources::removeResource(glm::u32 id)
 	{
 		auto it = mAllResources.find(id);
-
 		assert(it != mAllResources.end());
 	
 		it->second->unload();

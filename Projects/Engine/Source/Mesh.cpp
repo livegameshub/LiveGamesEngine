@@ -166,6 +166,16 @@ namespace lg
 		{
 			mData.clearData();
 		}
+		
+		#ifndef WINDOWS_BUILD
+
+		// if we are not on windows we need to 
+		// disable this atrributes every time
+		glDisableVertexAttribArray(0);	// position
+		glDisableVertexAttribArray(1);	// normal
+		glDisableVertexAttribArray(2);	// texture
+
+		#endif
 
 		return true;
 	}

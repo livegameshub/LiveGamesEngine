@@ -37,8 +37,18 @@ namespace lg
 	{
 		FILE * pFile;
 
-		// read the pixels
+		#ifdef WINDOWS_BUILD
+
 		fopen_s(&pFile, std::string(ASSETS_PATH + mResourceFile).c_str(), "rb");
+		#else
+
+		pFile = fopen(std::string(ASSETS_PATH + mResourceFile).c_str(), "rb");
+		#endif
+
+		if (!pFile)
+		{
+			return false;
+		}
 
 		fread(&mSize.x, sizeof(glm::i32), 1, pFile);
 		fread(&mSize.y, sizeof(glm::i32), 1, pFile);
@@ -60,6 +70,7 @@ namespace lg
 			return false;
 		}
 
+		// read the pixels
 		fread(texture_data, image_size, 1, pFile);
 
 		fclose(pFile);

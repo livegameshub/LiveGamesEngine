@@ -8,7 +8,7 @@ namespace lg
 {
 	glm::u32 Console::smCurrentMsgType = INFO_MSG;
 
-	void Console::write(const std::string& message, ConsoleMsgType msgType)
+	void Console::write(const std::string& message, MsgType msgType)
 	{
 		if (smCurrentMsgType != msgType)
 		{

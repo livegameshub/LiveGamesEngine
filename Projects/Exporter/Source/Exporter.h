@@ -12,10 +12,9 @@ namespace lg
 	public:
 		enum MeshFlag : glm::u32
 		{
-			MESH_NORMAL_FLAG = 1,
-			MESH_TEXTURE_FLAG = 2,
-
-			MESH_REMOVE_DATA_FLAG = 4
+			USE_NORMALS = 1,
+			USE_TEXTURES = 2,
+			REMOVE_DATA = 4
 		};
 
 		static bool ExportTexture(const std::string& file);

@@ -50,7 +50,6 @@ namespace lg
 	void Scene::addNode(Node* node)
 	{
 		assert(node != nullptr);
-
 		/* check if we already have this node */
 		assert(getNode<Node>(node->getId()) == nullptr);
 

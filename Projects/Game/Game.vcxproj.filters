@@ -13,6 +13,9 @@
     <Filter Include="Source\Nodes">
       <UniqueIdentifier>{0f284b24-ea47-44a4-a48e-67189da1dfc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game">
+      <UniqueIdentifier>{fa2aa6ed-8d97-4c65-87c2-ce2cd0462bba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -27,6 +30,9 @@
     <ClCompile Include="Source\SimpleScene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameScene.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CubesScene.h">
@@ -36,6 +42,9 @@
       <Filter>Source\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Source\SimpleScene.h">
+      <Filter>Source\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameScene.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

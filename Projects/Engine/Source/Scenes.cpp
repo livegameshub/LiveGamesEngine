@@ -24,7 +24,6 @@ namespace lg
 		for (Scene* scene : mScenes)
 		{
 			assert(scene != nullptr);
-
 			scene->release();
 
 			SAFE_DELETE(scene);
@@ -34,7 +33,6 @@ namespace lg
 	void Scenes::addScene(Scene* scene)
 	{
 		assert(scene != nullptr);
-
 		mScenes.push_back(scene);
 	}
 
@@ -42,7 +40,6 @@ namespace lg
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
-
 		mScenes[index]->release();
 
 		mScenes.erase(mScenes.begin() + index);
@@ -51,7 +48,6 @@ namespace lg
 	void Scenes::setMainScene(glm::u32 index)
 	{
 		Scene* new_scene = getScene(index);
-
 		assert(new_scene != nullptr);
 		
 		// init the new scene
@@ -71,7 +67,6 @@ namespace lg
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
-		
 		return mScenes[index];
 	}
 

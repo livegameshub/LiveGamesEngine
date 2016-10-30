@@ -99,19 +99,7 @@ namespace lg
 		// export the meshes
 		for (glm::u32 i = 0; i < scene->mNumMeshes; ++i)
 		{
-			int flag = 0;
 			const aiMesh* mesh = scene->mMeshes[i];
-
-			// check the mesh flags
-			if (mesh->HasNormals())
-			{
-				flag |= MESH_NORMAL_FLAG;
-			}
-
-			if (mesh->HasTextureCoords(0))
-			{
-				flag |= MESH_TEXTURE_FLAG;
-			}
 
 			// write the file
 			std::ofstream new_file;
@@ -125,6 +113,31 @@ namespace lg
 				return false;
 			}
 
+			bool hasNormals;
+			std::cout << "Export normals for " + filename + ".mesh? ";
+			std::cin >> hasNormals;
+
+			// check the mesh flags
+			int flag = 0;
+			if (mesh->HasNormals() && hasNormals)
+			{
+				flag |= USE_NORMALS;
+			}
+
+			if (mesh->HasTextureCoords(0))
+			{
+				flag |= USE_TEXTURES;
+			}
+
+			bool removeData;
+			std::cout << "Remove data after loading? ";
+			std::cin >> removeData;
+
+			if (removeData)
+			{
+				flag |= REMOVE_DATA;
+			}
+
 			new_file << flag << std::endl;
 			new_file << mesh->mPrimitiveTypes << std::endl;
 			new_file << mesh->mNumVertices << std::endl;
@@ -136,16 +149,16 @@ namespace lg
 				const aiVector3D& normal = mesh->mNormals[v];
 				const aiVector3D& texture = mesh->mTextureCoords[0][v];
 
-				new_file << position.x << " " << position.y << " " << position.z << " ";
+				new_file << position.x << " " << position.y << " " << position.z;
 
-				if (flag & MESH_NORMAL_FLAG)
+				if (flag & USE_NORMALS && hasNormals)
 				{
-					new_file << normal.x << " " << normal.y << " " << normal.z << " ";
+					new_file << " " << normal.x << " " << normal.y << " " << normal.z;
 				}
 
-				if (flag & MESH_TEXTURE_FLAG)
+				if (flag & USE_TEXTURES)
 				{
-					new_file << texture.x << " " << texture.y;
+					new_file << " " << texture.x << " " << texture.y;
 				}
 
 				new_file << std::endl;

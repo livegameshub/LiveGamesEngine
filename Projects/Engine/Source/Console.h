@@ -9,7 +9,7 @@ namespace lg
 	class ENGINE_API Console
 	{
 	public:
-		enum ConsoleMsgType : glm::u32
+		enum MsgType : glm::u32
 		{
 			IMPORTANT_MSG = 1,
 			SUCCESS_MSG = 2,
@@ -18,7 +18,7 @@ namespace lg
 			INFO_MSG = 15
 		};
 
-		static void write(const std::string& message, ConsoleMsgType msgType);
+		static void write(const std::string& message, MsgType msgType);
 
 	private:
 		static glm::u32 smCurrentMsgType;

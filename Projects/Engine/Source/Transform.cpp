@@ -4,7 +4,7 @@ namespace lg
 {
 	Transform::Transform()
 		: Component()
-		, mParentTransform(nullptr)
+		, mParent(nullptr)
 		, mHasUniformScale(true)
 		, mScale(1.0f)
 	{
@@ -12,7 +12,7 @@ namespace lg
 
 	Transform::Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
 		: Component(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
-		, mParentTransform(nullptr)
+		, mParent(nullptr)
 		, mHasUniformScale(true)
 		, mOrientation(orientation)
 		, mPosition(position)
@@ -60,9 +60,9 @@ namespace lg
 		mPosition = glm::vec3();
 	}
 
-	void Transform::setParentTransform(Transform* transform)
+	void Transform::setParent(Transform* transform)
 	{
-		mParentTransform = transform;
+		mParent = transform;
 	}
 
 	void Transform::translate(const glm::vec3& amount)
@@ -152,16 +152,16 @@ namespace lg
 		return mHasUniformScale;
 	}
 
-	Transform* Transform::getParentTransform() const
+	Transform* Transform::getParent() const
 	{
-		return mParentTransform;
+		return mParent;
 	}
 
 	glm::mat4 Transform::getMatrix() const
 	{
-		if (mParentTransform)
+		if (mParent)
 		{
-			return mParentTransform->getMatrix() * mMatrix;
+			return mParent->getMatrix() * mMatrix;
 		}
 
 		return mMatrix;

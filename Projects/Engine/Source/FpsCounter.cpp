@@ -20,15 +20,15 @@ namespace lg
 
 			if (smFrames < 30)
 			{
-				Console::write(message, Console::ConsoleMsgType::FAILED_MSG);
+				Console::write(message, Console::MsgType::FAILED_MSG);
 			}
 			else if (smFrames < 60)
 			{
-				Console::write(message, Console::ConsoleMsgType::WARNING_MSG);
+				Console::write(message, Console::MsgType::WARNING_MSG);
 			}
 			else
 			{
-				Console::write(message, Console::ConsoleMsgType::INFO_MSG);
+				Console::write(message, Console::MsgType::INFO_MSG);
 			}
 
 			smFramesTime = 0.0f;

@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameScene.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\CubesScene.cpp" />
     <ClCompile Include="Source\SimpleScene.cpp" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CubesScene.h" />
+    <ClInclude Include="Source\GameScene.h" />
     <ClInclude Include="Source\SimpleScene.h" />
     <ClInclude Include="Source\SpheresScene.h" />
   </ItemGroup>

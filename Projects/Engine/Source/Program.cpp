@@ -1,6 +1,8 @@
 #include "Program.h"
 #include "Shader.h"
 
+#include <algorithm>
+
 namespace lg
 {
 	Program::Program(glm::u32 id)
@@ -47,7 +49,6 @@ namespace lg
 			if ((*it)->getShaderType() == type)
 			{
 				mShaders.erase(it);
-
 				break;
 			}
 		}
