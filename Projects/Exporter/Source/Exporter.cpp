@@ -7,6 +7,9 @@
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 
+#include <ft2build.h>
+#include FT_FREETYPE_H  
+
 namespace lg
 {
 	bool Exporter::ExportTexture(const std::string& file)
@@ -176,6 +179,45 @@ namespace lg
 			}
 
 			new_file.close();
+		}
+
+		return true;
+	}
+
+	bool Exporter::ExportFont(const std::string& file)
+	{
+		std::string new_file = "Input/" + file;
+
+		FT_Library ft;
+		if (FT_Init_FreeType(&ft))
+		{
+			std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
+			return false;
+		}
+
+		FT_Face face;
+		if (FT_New_Face(ft, new_file.c_str(), 0, &face))
+		{
+			std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
+			return false;
+		}
+
+		int font_size;
+		std::cout << "Insert the font size ";
+		std::cin >> font_size;
+
+		FT_Set_Pixel_Sizes(face, 0, font_size);
+
+		// look after every character
+		for (glm::u32 c = 0; c < 128; ++c)
+		{
+			if (FT_Load_Char(face, c, FT_LOAD_RENDER))
+			{
+				std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
+				return false;
+			}
+
+			face->glyph->bitmap;
 		}
 
 		return true;

@@ -2,28 +2,34 @@
 
 int main()
 {
+	int option;
 	std::string file;
-	bool isTexture;
-	bool isModel;
-
+	
 	std::cout << "Insert your file: ";
 	std::cin >> file;
 
-	std::cout << "Is a texture? ";
-	std::cin >> isTexture;
+	std::cout << "1 - Texture" << std::endl;
+	std::cout << "2 - Model" << std::endl;
+	std::cout << "3 - Font" << std::endl;
 
-	if (isTexture)
-	{
-		lg::Exporter::ExportTexture(file);
-	}
-	else
-	{
-		std::cout << "Is a model? ";
-		std::cin >> isModel;
+	std::cin >> option;
 
-		if (isModel)
+	switch(option)
+	{
+		case 1:
+		{
+			lg::Exporter::ExportTexture(file);
+			break;
+		}
+		case 2:
 		{
 			lg::Exporter::ExportModel(file);
+			break;
+		}
+		case 3:
+		{
+			lg::Exporter::ExportFont(file);
+			break;
 		}
 	}
 

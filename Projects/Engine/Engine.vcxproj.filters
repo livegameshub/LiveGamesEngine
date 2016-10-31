@@ -169,6 +169,9 @@
     <ClInclude Include="Source\Text.h">
       <Filter>Source\Scenes\Nodes\Sprites</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Font.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Random.cpp">
@@ -266,6 +269,9 @@
     </ClCompile>
     <ClCompile Include="Source\Text.cpp">
       <Filter>Source\Scenes\Nodes\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Font.cpp">
+      <Filter>Source\Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

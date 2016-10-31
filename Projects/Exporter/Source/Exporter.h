@@ -19,6 +19,7 @@ namespace lg
 
 		static bool ExportTexture(const std::string& file);
 		static bool ExportModel(const std::string& file);
+		static bool ExportFont(const std::string& file);
 	};
 }
 
