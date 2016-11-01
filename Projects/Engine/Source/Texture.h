@@ -29,6 +29,7 @@ namespace lg
 
 		glm::ivec2 mSize;
 		glm::u32 mTextureId;
+		glm::u32 mFormat;
 		glm::u32 mBits;
 	};
 }

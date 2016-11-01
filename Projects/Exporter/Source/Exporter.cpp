@@ -10,6 +10,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H  
 
+#include <glew/glew.h>
+
 namespace lg
 {
 	bool Exporter::ExportTexture(const std::string& file)
@@ -34,14 +36,17 @@ namespace lg
 
 		FIBITMAP* bitmap = FreeImage_Load(format, temp_file.c_str());
 
+		int texture_format = 0;
 		int bits = FreeImage_GetBPP(bitmap);
 
 		if (bits == 32)
 		{
+			texture_format = GL_RGBA;
 			std::cout << "Image is 32 bits per pixel" << std::endl;
 		}
 		else if (bits == 24)
 		{
+			texture_format = GL_RGB;
 			std::cout << "Image is 24 bits per pixel" << std::endl;
 		}
 
@@ -66,6 +71,7 @@ namespace lg
 		fwrite(&image_width, sizeof(int), 1, pFile);
 		fwrite(&image_height, sizeof(int), 1, pFile);
 		fwrite(&bits, sizeof(int), 1, pFile);
+		fwrite(&texture_format, sizeof(int), 1, pFile);
 
 		glm::u32 image_size = image_width * image_height * (bits / 8);
 

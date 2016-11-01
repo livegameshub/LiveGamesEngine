@@ -7,6 +7,7 @@ namespace lg
 		: Resource(id)
 		, mGenerateMipmaps(false)
 		, mTextureId(0)
+		, mFormat(0)
 		, mBits(0)
 	{		
 	}
@@ -15,6 +16,7 @@ namespace lg
 		: Resource(id, file)
 		, mGenerateMipmaps(generateMipmaps)
 		, mTextureId(0)
+		, mFormat(0)
 		, mBits(0)
 	{
 	}
@@ -53,13 +55,7 @@ namespace lg
 		fread(&mSize.x, sizeof(glm::i32), 1, pFile);
 		fread(&mSize.y, sizeof(glm::i32), 1, pFile);
 		fread(&mBits, sizeof(glm::u32), 1, pFile);
-
-		glm::u32 format = getTextureFormat();
-		
-		if (!format)
-		{
-			return false;
-		}
+		fread(&mFormat, sizeof(glm::i32), 1, pFile);
 
 		glm::i32 image_size = mSize.x * mSize.y * (mBits / 8);
 
@@ -85,7 +81,7 @@ namespace lg
 
 		bind();
 
-		glTexImage2D(GL_TEXTURE_2D, 0, format, mSize.x, mSize.y, 0, format, GL_UNSIGNED_BYTE, texture_data);
+		glTexImage2D(GL_TEXTURE_2D, 0, mFormat, mSize.x, mSize.y, 0, mFormat, GL_UNSIGNED_BYTE, texture_data);
 
 		if (mGenerateMipmaps)
 		{
@@ -124,23 +120,13 @@ namespace lg
 		return mTextureId;
 	}
 
-	glm::u32 Texture::getTextureFormat() const
-	{
-		if (mBits == 32)
-		{
-			return GL_RGBA;
-		}
-
-		if (mBits == 24)
-		{
-			return GL_RGB;
-		}
-
-		return 0;
-	}
-
 	const glm::ivec2& Texture::getSize() const
 	{
 		return mSize;
+	}
+
+	glm::u32 Texture::getTextureFormat() const
+	{
+		return mFormat;
 	}
 }
