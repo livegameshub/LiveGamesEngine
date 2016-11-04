@@ -176,7 +176,7 @@ namespace lg
 
 	void Window::focusCallback(GLFWwindow* windowPtr, i32 isFocused)
 	{
-		Window* window = Engine::getInstance().getWindow(windowPtr);
+		Window* window = Engine::instance().getWindow(windowPtr);
 		assert(window != nullptr);
 
 		window->setIsFocused(isFocused);
@@ -191,7 +191,7 @@ namespace lg
 			return;
 		}
 
-		Window* window = Engine::getInstance().getWindow(windowPtr);
+		Window* window = Engine::instance().getWindow(windowPtr);
 		assert(window != nullptr);
 
 		ivec2 size(width, height);
@@ -200,7 +200,7 @@ namespace lg
 		{
 			/* update the cameras from the main scene with the new size */
 
-			const Scene* scene = Scenes::getInstance().getMainScene();
+			const Scene* scene = Scenes::instance().getMainScene();
 			assert(scene != nullptr);
 
 			for (Camera* camera : scene->getCameras())

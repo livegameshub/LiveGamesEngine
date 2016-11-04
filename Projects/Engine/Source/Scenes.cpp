@@ -85,7 +85,7 @@ namespace lg
 		return mScenes;
 	}
 
-	Scenes& Scenes::getInstance()
+	Scenes& Scenes::instance()
 	{
 		static Scenes instance;
 

@@ -22,26 +22,26 @@ void GameScene::init()
 	mRootNode.getTransform().Scale(vec3(mScaleFactor));
 	
 	// shaders
-	lg::Shader* vertexShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "SpriteShader.vs");
-	lg::Shader* fragmentShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "SpriteShader.fs");
+	lg::Shader* vertexShader = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "SpriteShader.vs");
+	lg::Shader* fragmentShader = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "SpriteShader.fs");
 	
 	// program
-	lg::Program* program = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader, fragmentShader });
+	lg::Program* program = lg::Resources::instance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader, fragmentShader });
 	
 	// mesh
-	lg::Mesh* sprite_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), vec2(), vec2(512.0f, 256.0f), vec2(512.0f, 256.0f));
+	lg::Mesh* sprite_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), vec2(), vec2(512.0f, 256.0f), vec2(512.0f, 256.0f));
 	
 	// texture
-	//lg::Texture* plane_texture_1 = lg::Resources::getInstance().createTexture(lg::Resources::getNextAvailableId(), "grass_iso_1.texture", true);
-	lg::Texture* plane_texture_2 = lg::Resources::getInstance().createTexture(lg::Resources::getNextAvailableId(), "grass_iso_3.texture", true);
+	//lg::Texture* plane_texture_1 = lg::Resources::instance().createTexture(lg::Resources::getNextAvailableId(), "grass_iso_1.texture", true);
+	lg::Texture* plane_texture_2 = lg::Resources::instance().createTexture(lg::Resources::getNextAvailableId(), "grass_iso_3.texture", true);
 	
 	// material
-	//lg::Material* sprite_material_1 = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, plane_texture_1, vec3(1.0f));
-	lg::Material* sprite_material_2 = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, plane_texture_2, vec3(1.0f));
+	//lg::Material* sprite_material_1 = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, plane_texture_1, vec3(1.0f));
+	lg::Material* sprite_material_2 = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, plane_texture_2, vec3(1.0f));
 	
 	// camera
 	lg::Camera* camera = createNode<lg::Camera>(1, lg::Node::CAMERA);
-	camera->setViewSize(lg::Engine::getInstance().getWindowByIndex(0)->getSize());
+	camera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	camera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(camera);
 	
@@ -67,8 +67,7 @@ void GameScene::init()
 			sprite->setSize(vec2(512.0f, 256.0f));
 
 			sprite->getTransform().setPosition(vec3(static_cast<f32>(x_position) + (width * static_cast<f32>(c)) + (width * static_cast<f32>(r)),
-													static_cast<f32>(y_position) + (height * static_cast<f32>(c)) - (height * static_cast<f32>(r)),
-													0.0f));
+													static_cast<f32>(y_position) + (height * static_cast<f32>(c)) - (height * static_cast<f32>(r)), 0.0f));
 	
 			mRootNode.addChild(sprite);
 		}

@@ -14,10 +14,10 @@
 
 int main()
 {
-	lg::Scenes::getInstance().addScene(new CubesScene(vec3(0.2f)));
-	lg::Scenes::getInstance().addScene(new SpheresScene(vec3(0.2f)));
-	lg::Scenes::getInstance().addScene(new SimpleScene(vec3(0.2f)));
-	lg::Scenes::getInstance().addScene(new GameScene());
+	lg::Scenes::instance().addScene(new CubesScene(vec3(0.2f)));
+	lg::Scenes::instance().addScene(new SpheresScene(vec3(0.2f)));
+	lg::Scenes::instance().addScene(new SimpleScene(vec3(0.2f)));
+	lg::Scenes::instance().addScene(new GameScene());
 
 	lg::Engine::setup("Live Games Hub");
 

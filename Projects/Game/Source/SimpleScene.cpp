@@ -32,12 +32,12 @@ SimpleScene::~SimpleScene()
 void SimpleScene::init()
 {
 	// shaders 
-	lg::Program* program = lg::Resources::getInstance().getResource<lg::Program>(7);
+	lg::Program* program = lg::Resources::instance().getResource<lg::Program>(7);
 	
 	// meshes
-	lg::Mesh* point_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::POINTS, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
-	lg::Mesh* line_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::LINES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
-	lg::Mesh* triangle_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::TRIANGLES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
+	lg::Mesh* point_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::POINTS, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
+	lg::Mesh* line_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::LINES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
+	lg::Mesh* triangle_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::TRIANGLES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
 	
 	lg::MeshData& point_data = point_mesh->getData();
 	lg::MeshData& line_data = line_mesh->getData(); 
@@ -57,13 +57,13 @@ void SimpleScene::init()
 	triangle_data.addTriangle(0, 1, 2);
 	
 	// materials
-	lg::Material* red_material =  lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
-	lg::Material* yellow_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 1.0f, 0.0f));
-	lg::Material* blue_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(0.0f, 0.0f, 1.0f));
+	lg::Material* red_material =  lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
+	lg::Material* yellow_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 1.0f, 0.0f));
+	lg::Material* blue_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(0.0f, 0.0f, 1.0f));
 	
 	// camera 
 	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
-	mCamera->setViewSize(lg::Engine::getInstance().getWindowByIndex(0)->getSize());
+	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 	

@@ -19,13 +19,13 @@ namespace lg
 		Scene();
 		Scene(const vec3& ambientLight);
 
-		virtual ~Scene();
+		virtual ~Scene();		
 
 		virtual void init();
 		virtual void update();
 		virtual void release();
 
-		Node* removeNode(u32 id);
+		Node* remove(u32 id);
 
 		/* template methods */
 		template <class T> T* createNode(u32 id, i32 type);

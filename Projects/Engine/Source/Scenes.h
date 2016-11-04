@@ -23,7 +23,7 @@ namespace lg
 		const vector<Scene*>& getScenes() const;
 		const Scene* getMainScene() const;
 
-		static Scenes& getInstance();
+		static Scenes& instance();
 
 	private:
 		vector<Scene*> mScenes;

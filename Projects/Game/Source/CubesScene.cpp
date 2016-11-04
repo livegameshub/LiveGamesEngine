@@ -32,48 +32,46 @@ CubesScene::~CubesScene()
 void CubesScene::init()
 {
 	// shaders 
-	lg::Shader* vertexShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "BasicShader.vs");
-	lg::Shader* fragmentShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "BasicShader.fs");
+	lg::Shader* vertexShader = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "BasicShader.vs");
+	lg::Shader* fragmentShader = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "BasicShader.fs");
 
-	lg::Shader* vertexShader2 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "DiffuseShader.vs");
-	lg::Shader* fragmentShader2 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "DiffuseShader.fs");
+	lg::Shader* vertexShader2 = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "DiffuseShader.vs");
+	lg::Shader* fragmentShader2 = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "DiffuseShader.fs");
 
-	lg::Shader* vertexShader3 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "DiffuseTextureShader.vs");
-	lg::Shader* fragmentShader3 = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "DiffuseTextureShader.fs");
+	lg::Shader* vertexShader3 = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "DiffuseTextureShader.vs");
+	lg::Shader* fragmentShader3 = lg::Resources::instance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "DiffuseTextureShader.fs");
 
 	// programs
-	lg::Program* program = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader, fragmentShader });
-	lg::Program* program2 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader2, fragmentShader2 });
-	lg::Program* program3 = lg::Resources::getInstance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader3, fragmentShader3 });
+	lg::Program* program = lg::Resources::instance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader, fragmentShader });
+	lg::Program* program2 = lg::Resources::instance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader2, fragmentShader2 });
+	lg::Program* program3 = lg::Resources::instance().createProgram(lg::Resources::getNextAvailableId(), { vertexShader3, fragmentShader3 });
 
 	// textures
-	lg::Texture* plane_texture = lg::Resources::getInstance().createTexture(lg::Resources::getNextAvailableId(), "floor.texture", false);
+	lg::Texture* plane_texture = lg::Resources::instance().createTexture(lg::Resources::getNextAvailableId(), "floor.texture", false);
 
 	// meshes
-	lg::Mesh* cube_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Cube.mesh");
-	lg::Mesh* cube_mesh2 = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Cube2.mesh");
-	lg::Mesh* plane_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Plane.mesh");
+	lg::Mesh* cube_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), "Cube.mesh");
+	lg::Mesh* cube_mesh2 = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), "Cube2.mesh");
+	lg::Mesh* plane_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), "Plane.mesh");
 
 	// materials
-	lg::Material* red_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
-	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
-	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, vec3(0.0f, 0.0f, 1.0f), lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
-	lg::DiffuseMaterial* plane_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program3, plane_texture, vec3(1.0f), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
+	lg::Material* red_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
+	lg::DiffuseMaterial* yellow_material = lg::Resources::instance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
+	lg::DiffuseMaterial* blue_material = lg::Resources::instance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, vec3(0.0f, 0.0f, 1.0f), lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
+	lg::DiffuseMaterial* plane_material = lg::Resources::instance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program3, plane_texture, vec3(1.0f), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
 
 	// camera 
 	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
-	mCamera->setViewSize(lg::Engine::getInstance().getWindowByIndex(0)->getSize());
+	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 
 	// models
 	lg::Node* plane = createNode<lg::Node>(2, lg::Node::MODEL);
 	plane->setRenderer(lg::MeshRenderer::create(plane_material, plane_mesh));
-
-	lg::Transform& plane_transform = plane->getTransform();
-	plane_transform.setScale(vec3(8.0f));
-	plane_transform.translate(vec3(0.0f, -1.5f, 0.0f));
-	plane_transform.rotateOnX(270.0f);
+	plane->getTransform().setScale(vec3(8.0f));
+	plane->getTransform().translate(vec3(0.0f, -1.5f, 0.0f));
+	plane->getTransform().rotateOnX(270.0f);
 	mRootNode.addChild(plane);
 
 	mCubes.push_back(createNode<lg::Node>(3, lg::Node::MODEL));

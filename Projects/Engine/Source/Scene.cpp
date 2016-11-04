@@ -47,7 +47,7 @@ namespace lg
 		mNodes.clear();
 	}
 
-	Node* Scene::removeNode(u32 id)
+	Node* Scene::remove(u32 id)
 	{
 		auto it = mNodes.find(id);
 

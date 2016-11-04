@@ -21,8 +21,8 @@ namespace lg
 		assert(mMaterial != nullptr);
 		assert(mMesh != nullptr);
 
-		Resources::getInstance().unload(mMesh);
-		Resources::getInstance().unload(mMaterial);
+		Resources::instance().unload(mMesh);
+		Resources::instance().unload(mMaterial);
 	}
 
 	void MeshRenderer::setMesh(Mesh* mesh)
@@ -31,12 +31,12 @@ namespace lg
 
 		if (mMesh)
 		{
-			Resources::getInstance().unload(mMesh);
+			Resources::instance().unload(mMesh);
 		}
 
 		mMesh = mesh;
 
-		Resources::getInstance().load(mMesh);
+		Resources::instance().load(mMesh);
 	}
 
 	void MeshRenderer::setMaterial(Material* material)
@@ -45,12 +45,12 @@ namespace lg
 
 		if (mMaterial)
 		{
-			Resources::getInstance().unload(mMaterial);
+			Resources::instance().unload(mMaterial);
 		}
 
 		mMaterial = material;
 
-		Resources::getInstance().load(mMaterial);
+		Resources::instance().load(mMaterial);
 	}
 
 	Material* MeshRenderer::getMaterial() const
@@ -76,9 +76,10 @@ namespace lg
 	MeshRenderer* MeshRenderer::create(Material* material, Mesh* mesh)
 	{
 		MeshRenderer* renderer = new MeshRenderer();
-		renderer->setMesh(mesh);
-		renderer->setMaterial(material);
 
+		renderer->setMaterial(material);
+		renderer->setMesh(mesh);
+		
 		return renderer;
 	}
 }

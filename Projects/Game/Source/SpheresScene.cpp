@@ -30,17 +30,17 @@ SpheresScene::~SpheresScene()
 void SpheresScene::init()
 {
 	// meshes
-	lg::Mesh* sphere_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere.mesh");
-	lg::Mesh* sphere_mesh2 = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere2.mesh");
+	lg::Mesh* sphere_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), "Sphere.mesh");
+	lg::Mesh* sphere_mesh2 = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), "Sphere2.mesh");
 	
 	// materials
-	lg::Material* red_material = lg::Resources::getInstance().getResource<lg::Material>(14);
-	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(15);
-	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(16);
+	lg::Material* red_material = lg::Resources::instance().getResource<lg::Material>(14);
+	lg::DiffuseMaterial* yellow_material = lg::Resources::instance().getResource<lg::DiffuseMaterial>(15);
+	lg::DiffuseMaterial* blue_material = lg::Resources::instance().getResource<lg::DiffuseMaterial>(16);
 	
 	// camera 
 	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
-	mCamera->setViewSize(lg::Engine::getInstance().getWindowByIndex(0)->getSize());
+	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 	

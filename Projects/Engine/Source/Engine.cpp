@@ -42,7 +42,7 @@ namespace lg
 
 	void Engine::webLoop()
 	{
-		getInstance().loop();
+		instance().loop();
 	}
 
 	#endif // WINDOWS_BUILD
@@ -70,14 +70,14 @@ namespace lg
 		}
 
 		/* the first element is the main window */
-		getInstance().addWindow(window);
+		instance().addWindow(window);
 
 		/* prepare the engine */
-		getInstance().prepare();
+		instance().prepare();
 
 		#ifdef WINDOWS_BUILD
 			/* run the engine */
-			getInstance().run();
+			instance().run();
 		#else
 			/* run the main loop */
 			emscripten_set_main_loop(webLoop, 0, true);
@@ -119,7 +119,7 @@ namespace lg
 
 			#endif // _DEBUG
 
-			Scenes::getInstance().update();
+			Scenes::instance().update();
 
 			// don't draw anything if we 
 			// don't have focus on the window
@@ -146,8 +146,8 @@ namespace lg
 
 	void Engine::Release()
 	{
-		Scenes::getInstance().release();
-		Resources::getInstance().release();
+		Scenes::instance().release();
+		Resources::instance().release();
 
 		Window::releaseApi();
 	}
@@ -177,16 +177,16 @@ namespace lg
 		Input::reset();
 
 		/* set the main scene */
-		Scenes::getInstance().setMainScene(index);
+		Scenes::instance().setMainScene(index);
 
 		/* process the resources */
-		Resources::getInstance().processPendingItems();
+		Resources::instance().process();
 
 		/* set the scene for the renderer */
-		getInstance().getWindowByIndex(0)->getRenderer().setScene(Scenes::getInstance().getMainScene());
+		instance().getWindowByIndex(0)->getRenderer().setScene(Scenes::instance().getMainScene());
 	}
 
-	Engine& Engine::getInstance()
+	Engine& Engine::instance()
 	{
 		static Engine instance;
 

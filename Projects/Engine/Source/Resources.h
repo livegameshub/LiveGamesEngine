@@ -17,15 +17,15 @@ namespace lg
 	{
 	public:
 		void release();
-		void processPendingItems();
+		void process();
 
 		void load(Resource* resource);
 		void unload(Resource* resource);
 
-		void removeResource(u32 id);
-		void addResource(Resource* resource);
-
-		const map<u32, Resource*>& getAllResources() const;
+		void add(Resource* resource);
+		void remove(u32 id);
+		
+		const map<u32, Resource*>& getResources() const;
 
 		/* shaders */
 		Shader* createShader(u32 id, u32 type, const string& file);
@@ -48,7 +48,7 @@ namespace lg
 		template <class T> T* getResource(u32 id) const;
 
 		static u32 getNextAvailableId();
-		static Resources& getInstance();
+		static Resources& instance();
 
 	private:
 		map<u32, Resource*> mAllResources;
@@ -70,7 +70,7 @@ namespace lg
 			material->setDiffuseTexture(texture);
 		}
 
-		addResource(material);
+		add(material);
 
 		return static_cast<T*>(material);
 	}

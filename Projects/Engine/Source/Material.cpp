@@ -46,12 +46,12 @@ namespace lg
 
 		if (mDiffuseTexture)
 		{
-			Resources::getInstance().unload(mDiffuseTexture);
+			Resources::instance().unload(mDiffuseTexture);
 		}
 
 		mDiffuseTexture = texture;
 
-		Resources::getInstance().load(mDiffuseTexture);
+		Resources::instance().load(mDiffuseTexture);
 	}
 
 	Texture* Material::getDiffuseTexture() const
@@ -70,12 +70,12 @@ namespace lg
 
 		if (mProgram)
 		{
-			Resources::getInstance().unload(mProgram);
+			Resources::instance().unload(mProgram);
 		}
 
 		mProgram = program;
 
-		Resources::getInstance().load(mProgram);
+		Resources::instance().load(mProgram);
 	}
 
 	bool Material::create()
@@ -100,12 +100,12 @@ namespace lg
 	bool Material::release()
 	{
 		assert(mProgram != nullptr);
-		Resources::getInstance().unload(mProgram);
+		Resources::instance().unload(mProgram);
 	
 		if (mDiffuseTexture)
 		{
 			// unload the texture
-			Resources::getInstance().unload(mDiffuseTexture);
+			Resources::instance().unload(mDiffuseTexture);
 		}
 
 		return true;

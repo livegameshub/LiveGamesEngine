@@ -28,7 +28,7 @@ namespace lg
 		Window* getWindowByIndex(u32 index);
 
 		static void loadScene(u32 index);
-		static Engine& getInstance();
+		static Engine& instance();
 
 		void resume();
 		void pause();

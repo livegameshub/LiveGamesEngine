@@ -7,7 +7,7 @@
 
 namespace lg
 {
-	void Resources::processPendingItems()
+	void Resources::process()
 	{
 		/* we use the classic for because the collection can grow */
 
@@ -44,7 +44,7 @@ namespace lg
 
 	void Resources::release()
 	{
-		processPendingItems();
+		process();
 
 		for (auto it : mAllResources)
 		{
@@ -55,7 +55,7 @@ namespace lg
 		}
 	}
 
-	void Resources::removeResource(u32 id)
+	void Resources::remove(u32 id)
 	{
 		auto it = mAllResources.find(id);
 		assert(it != mAllResources.end());
@@ -65,7 +65,7 @@ namespace lg
 		mAllResources.erase(it);
 	}
 
-	void Resources::addResource(Resource* resource)
+	void Resources::add(Resource* resource)
 	{
 		assert(resource != nullptr);
 		assert(mAllResources.find(resource->getId()) == mAllResources.end());
@@ -73,7 +73,7 @@ namespace lg
 		mAllResources.insert({ resource->getId(), resource });	
 	}
 
-	const map<u32, Resource*>& Resources::getAllResources() const
+	const map<u32, Resource*>& Resources::getResources() const
 	{
 		return mAllResources;
 	}
@@ -89,7 +89,7 @@ namespace lg
 			program->addShader(shader);
 		}
 
-		addResource(program);
+		add(program);
 
 		return program;
 	}
@@ -100,7 +100,7 @@ namespace lg
 
 		Shader* shader = new Shader(id, type, file);
 
-		addResource(shader);
+		add(shader);
 
 		return shader;
 	}
@@ -111,7 +111,7 @@ namespace lg
 
 		Mesh* mesh = new Mesh(id, file);
 
-		addResource(mesh);
+		add(mesh);
 
 		return mesh;
 	}
@@ -122,7 +122,7 @@ namespace lg
 
 		Mesh* mesh = new Mesh(id, primitive, drawType, sizeof(vec3), flag);
 
-		addResource(mesh);
+		add(mesh);
 
 		return mesh;
 	}
@@ -143,7 +143,7 @@ namespace lg
 		data.addTriangle(0, 1, 3);
 		data.addTriangle(1, 2, 3);
 
-		addResource(mesh);
+		add(mesh);
 
 		return mesh;
 	}
@@ -154,7 +154,7 @@ namespace lg
 
 		Texture* texture = new Texture(id, file, generateMipmaps);
 
-		addResource(texture);
+		add(texture);
 
 		return texture;
 	}
@@ -166,7 +166,7 @@ namespace lg
 		return ++current_id;
 	}
 
-	Resources& Resources::getInstance()
+	Resources& Resources::instance()
 	{
 		static Resources instance;
 
