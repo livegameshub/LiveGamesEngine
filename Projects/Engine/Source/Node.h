@@ -7,18 +7,18 @@
 
 namespace lg
 {
-	class Transform;
-
 	class ENGINE_API Node : public Object
 	{
 	public:
 		enum NodeType : i32
 		{
 			NODE,
-			CAMERA,
+			TEXT,
 			MODEL,
-			SPOT_LIGHT,
-			POINT_LIGHT,
+			SPRITE,
+			CAMERA, 
+			SPOT_LIGHT, 
+			POINT_LIGHT, 
 			DIRECTIONAL_LIGHT
 		};
 
@@ -36,14 +36,14 @@ namespace lg
 		template <class T> T* getChild(u32 id) const;
 		template <class T> T* getFistChild(u32 type) const;
 
+		void setRenderer(MeshRenderer* renderer);
+		void setParent(Node* parent);
+		void setType(i32 type);
+
 		const vector<Node*>& getChildren() const;
 
 		const Transform& getTransform() const;
 		Transform& getTransform();
-
-		void setRenderer(MeshRenderer* renderer);
-		void setParent(Node* parent);
-		void setType(i32 type);
 
 		MeshRenderer* getRenderer() const;
 		Node* getParent() const;

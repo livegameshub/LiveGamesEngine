@@ -2,7 +2,8 @@
 
 namespace lg
 {
-	Sprite::Sprite(u32 id, i32 type)
+	Sprite::Sprite(u32 id, i32 type) 
+		: Node(id, type)
 	{
 	}
 

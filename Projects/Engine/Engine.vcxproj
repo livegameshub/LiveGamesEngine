@@ -167,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Font.cpp" />
     <ClCompile Include="Source\FontCharacter.cpp" />
+    <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\Resource.cpp" />
     <ClCompile Include="Source\ResourceContainer.cpp" />
@@ -182,7 +183,6 @@
     <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Material.cpp" />
     <ClCompile Include="Source\Light.cpp" />
-    <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\MeshData.cpp" />
     <ClCompile Include="Source\Node.cpp" />
     <ClCompile Include="Source\MeshRenderer.cpp" />

@@ -56,20 +56,14 @@
     <Filter Include="Source\Scene\Nodes\Lights">
       <UniqueIdentifier>{7d0b0788-af38-47aa-b491-e6a16c57a7b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scene\Components">
-      <UniqueIdentifier>{dda57daa-1736-4111-bb2b-fdf6af53b405}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Scene\Manager">
       <UniqueIdentifier>{c491d7ca-8fa1-45bc-a4ce-f344e2661e72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scene\Sprites">
+    <Filter Include="Source\Scene\Nodes\Components">
+      <UniqueIdentifier>{158a7e58-201e-4939-8143-32fdf33f934f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Nodes\Sprites">
       <UniqueIdentifier>{77632d99-3cf4-406f-becf-356f79c20e55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Scene\Components\Sprites">
-      <UniqueIdentifier>{f362a2ed-d809-4b6d-b92f-347fbb21104e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Scene\Components\Nodes">
-      <UniqueIdentifier>{352de230-27fc-4283-be42-80a74eb38828}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -161,10 +155,10 @@
       <Filter>Source\Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\Sprite.h">
-      <Filter>Source\Scene\Sprites</Filter>
+      <Filter>Source\Scene\Nodes\Sprites</Filter>
     </ClInclude>
     <ClInclude Include="Source\Text.h">
-      <Filter>Source\Scene\Sprites</Filter>
+      <Filter>Source\Scene\Nodes\Sprites</Filter>
     </ClInclude>
     <ClInclude Include="Source\Font.h">
       <Filter>Source\Resources\Fonts</Filter>
@@ -173,13 +167,13 @@
       <Filter>Source\Resources\Fonts</Filter>
     </ClInclude>
     <ClInclude Include="Source\Node.h">
-      <Filter>Source\Scene</Filter>
+      <Filter>Source\Scene\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Source\MeshRenderer.h">
-      <Filter>Source\Scene\Components\Nodes</Filter>
+      <Filter>Source\Scene\Nodes\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Transform.h">
-      <Filter>Source\Scene\Components\Nodes</Filter>
+      <Filter>Source\Scene\Nodes\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -240,9 +234,6 @@
     <ClCompile Include="Source\Program.cpp">
       <Filter>Source\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Source\Resources\Mesh</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Material.cpp">
       <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
@@ -262,10 +253,10 @@
       <Filter>Source\Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\Sprite.cpp">
-      <Filter>Source\Scene\Sprites</Filter>
+      <Filter>Source\Scene\Nodes\Sprites</Filter>
     </ClCompile>
     <ClCompile Include="Source\Text.cpp">
-      <Filter>Source\Scene\Sprites</Filter>
+      <Filter>Source\Scene\Nodes\Sprites</Filter>
     </ClCompile>
     <ClCompile Include="Source\Font.cpp">
       <Filter>Source\Resources\Fonts</Filter>
@@ -274,13 +265,16 @@
       <Filter>Source\Resources\Fonts</Filter>
     </ClCompile>
     <ClCompile Include="Source\Node.cpp">
-      <Filter>Source\Scene</Filter>
+      <Filter>Source\Scene\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="Source\MeshRenderer.cpp">
-      <Filter>Source\Scene\Components\Nodes</Filter>
+      <Filter>Source\Scene\Nodes\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Transform.cpp">
-      <Filter>Source\Scene\Components\Nodes</Filter>
+      <Filter>Source\Scene\Nodes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mesh.cpp">
+      <Filter>Source\Resources\Mesh</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

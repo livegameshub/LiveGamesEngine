@@ -34,7 +34,7 @@ namespace lg
 		};
 
 		Mesh(u32 id, const string& file);
-		Mesh(u32 id, u32 primitive, u32 drawType, const Flag& flag);
+		Mesh(u32 id, u32 primitive, u32 drawType, u32 vertexPositionSize, const Flag& flag);
 
 		~Mesh();
 
@@ -47,7 +47,7 @@ namespace lg
 		void calculateVertexSize();
 
 		void uploadData(const MeshData& meshData);
-		void uploadAttributes(const i32* attributes) const;
+		void uploadAttributes(const i32* attributes, u32 positionSize) const;
 
 		u32 calculateVerticesArraySize(u32 size) const;
 

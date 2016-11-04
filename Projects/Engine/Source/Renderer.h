@@ -17,21 +17,23 @@ namespace lg
 		~Renderer();
 
 		void draw() const;
+		void drawAll(const Node* node) const;
 		void drawNode(const Node* node) const;
-		void drawSprite(const Sprite* sprite) const;
+		void drawSprite(const Node* sprite) const;
 
 		void setScene(const Scene* scene);
 
-		static void enable2dDrawing();
-		static void disable2dDrawing();
 		static void init();
-
+		static void enable2d();
+		static void disable2d();
+		
 	private:
 		static u32 smCurrentMeshId;
 		static u32 smCurrentProgramId;
 		static u32 smCurrentMaterialId;
 		static u32 smCurrentTextureId;
-		static bool smIsDrawing2d;
+
+		static bool smIs2dActivated;
 
 		const Scene* mScene;
 	};

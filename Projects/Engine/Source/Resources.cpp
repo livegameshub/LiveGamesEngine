@@ -120,7 +120,7 @@ namespace lg
 	{
 		assert(getResource<Mesh>(id) == nullptr);
 
-		Mesh* mesh = new Mesh(id, primitive, drawType, flag);
+		Mesh* mesh = new Mesh(id, primitive, drawType, sizeof(vec3), flag);
 
 		addResource(mesh);
 
@@ -131,14 +131,14 @@ namespace lg
 	{
 		assert(getResource<Mesh>(id) == nullptr);
 
-		Mesh* mesh = new Mesh(id, Mesh::TRIANGLES, Mesh::STATIC_DRAW, Mesh::USE_TEXTURES);
+		Mesh* mesh = new Mesh(id, Mesh::TRIANGLES, Mesh::STATIC_DRAW, sizeof(vec2), Mesh::USE_TEXTURES);
 
 		MeshData& data = mesh->getData();
 
-		data.addVertex(vec3(size.x * 0.5f, size.y * 0.5f, 0.0f), vec2((startPoint.x + size.x) / textureSize.x, (startPoint.y + size.y) / textureSize.y));
-		data.addVertex(vec3(size.x * 0.5f, -(size.y * 0.5f), 0.0f), vec2((startPoint.x + size.x) / textureSize.x, startPoint.y / textureSize.y));
-		data.addVertex(vec3(-(size.x * 0.5f), -(size.y * 0.5f), 0.0f), vec2(startPoint.x / textureSize.x, startPoint.y / textureSize.y));
-		data.addVertex(vec3(-(size.x * 0.5f), size.y * 0.5f, 0.0f), vec2(startPoint.x / textureSize.x, (startPoint.y + size.y) / textureSize.y));
+		data.addVertex(vec2(size.x * 0.5f, size.y * 0.5f), vec2((startPoint.x + size.x) / textureSize.x, (startPoint.y + size.y) / textureSize.y));
+		data.addVertex(vec2(size.x * 0.5f, -(size.y * 0.5f)), vec2((startPoint.x + size.x) / textureSize.x, startPoint.y / textureSize.y));
+		data.addVertex(vec2(-(size.x * 0.5f), -(size.y * 0.5f)), vec2(startPoint.x / textureSize.x, startPoint.y / textureSize.y));
+		data.addVertex(vec2(-(size.x * 0.5f), size.y * 0.5f), vec2(startPoint.x / textureSize.x, (startPoint.y + size.y) / textureSize.y));
 			 
 		data.addTriangle(0, 1, 3);
 		data.addTriangle(1, 2, 3);

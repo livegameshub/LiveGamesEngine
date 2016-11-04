@@ -22,7 +22,7 @@ namespace lg
 	u32 Renderer::smCurrentMaterialId = 0;
 	u32 Renderer::smCurrentTextureId = 0;
 
-	bool Renderer::smIsDrawing2d = false;
+	bool Renderer::smIs2dActivated = false;
 
 	Renderer::Renderer()
 		: mScene(nullptr)
@@ -52,11 +52,11 @@ namespace lg
 
 		if (mScene)
 		{
-			drawNode(&mScene->getRootNode());
+			drawAll(&mScene->getRootNode());
 		}
 	}
 
-	void Renderer::drawNode(const Node* node) const
+	void Renderer::drawAll(const Node* node) const
 	{
 		for (auto it : node->getChildren())
 		{
@@ -64,172 +64,189 @@ namespace lg
 
 			if (it->isEnabled())
 			{
-				MeshRenderer* mesh_renderer = it->getRenderer();
-
-				if (mesh_renderer && mesh_renderer->isEnabled())
+				if (it->getType() == Node::MODEL)
 				{
-					Material* material = mesh_renderer->getMaterial();
-					assert(material != nullptr);
+					disable2d();
 
-					const Program* program = material->getProgram();
-					assert(program != nullptr);
-
-					if (smCurrentProgramId != program->getId())
-					{
-						smCurrentProgramId = program->getId();
-
-						program->use();
-					}
-
-					const Camera* camera = mScene->getRootNode().getFistChild<Camera>(Node::CAMERA);
-					assert(camera != nullptr);
-
-					program->setUniform(UNIFORM_VIEW, camera->getViewMatrix());
-					program->setUniform(UNIFORM_PROJECTION, camera->getPerspecitiveMatrix());
-
-					if (material->IsLighted())
-					{
-						program->setUniform(UNIFORM_CAMERA_POSITION, camera->getTransform().getPosition());
-
-						if (it->getTransform().hasUniformScale())
-						{
-							program->setUniform(UNIFORM_NORMAL, mat3(it->getTransform().getMatrix()));
-						}
-						else
-						{
-							program->setUniform(UNIFORM_NORMAL, mat3(transpose(inverse(it->getTransform().getMatrix()))));
-						}
-					}
-
-					if (smCurrentMaterialId != material->getId())
-					{
-						smCurrentMaterialId = material->getId();
-
-						material->uploadUniforms();
-
-						if (material->IsLighted())
-						{
-							DirectionalLight* light = mScene->getRootNode().getFistChild<DirectionalLight>(Node::DIRECTIONAL_LIGHT);
-							assert(light != nullptr);
-
-							static_cast<DiffuseMaterial*>(material)->uploadUniforms(light);
-
-							program->setUniform(UNIFORM_AMBIENT_LIGHT, mScene->getAmbientLight());
-						}
-					}
-
-					if (material->IsTextured())
-					{
-						const Texture* texture = static_cast<DiffuseMaterial*>(material)->getDiffuseTexture();
-						assert(texture != nullptr);
-
-						if (smCurrentTextureId != texture->getId())
-						{
-							smCurrentTextureId = texture->getId();
-
-							texture->bind();
-						}
-					}
-
-					const Mesh* mesh = mesh_renderer->getMesh();
-					assert(mesh != nullptr);
-
-					if (smCurrentMeshId != mesh->getId())
-					{
-						smCurrentMeshId = mesh->getId();
-
-						mesh->bindVbo();
-						mesh->uploadAttributes(program->getAttributes());
-						mesh->bindIbo();
-					}
-
-					program->setUniform(UNIFORM_MODEL, it->getTransform().getMatrix());
-
-					mesh->draw();
+					drawNode(it);
 				}
-				
-				drawNode(it);
+				else if (it->getType() == Node::SPRITE)
+				{
+					enable2d();
+
+					drawSprite(it);
+				}
+
+				drawAll(it);
 			}
 		}
 	}
 
-	void Renderer::drawSprite(const Sprite* sprite) const
+	void Renderer::drawNode(const Node* node) const
 	{
-		/*const Material* material = sprite->getMaterial();
-		assert(material != nullptr);
+		MeshRenderer* mesh_renderer = node->getRenderer();
 
-		const Program* program = material->getProgram();
-		assert(program != nullptr);
-
-		if (smCurrentProgramId != program->getId())
+		if (mesh_renderer && mesh_renderer->isEnabled())
 		{
-			smCurrentProgramId = program->getId();
+			Material* material = mesh_renderer->getMaterial();
+			assert(material != nullptr);
 
-			program->use();
+			const Program* program = material->getProgram();
+			assert(program != nullptr);
+
+			if (smCurrentProgramId != program->getId())
+			{
+				smCurrentProgramId = program->getId();
+
+				program->use();
+			}
+
+			const Camera* camera = mScene->getRootNode().getFistChild<Camera>(Node::CAMERA);
+			assert(camera != nullptr);
+
+			program->setUniform(UNIFORM_VIEW, camera->getViewMatrix());
+			program->setUniform(UNIFORM_PROJECTION, camera->getPerspecitiveMatrix());
+
+			if (material->IsLighted())
+			{
+				program->setUniform(UNIFORM_CAMERA_POSITION, camera->getTransform().getPosition());
+
+				if (node->getTransform().hasUniformScale())
+				{
+					program->setUniform(UNIFORM_NORMAL, mat3(node->getTransform().getMatrix()));
+				}
+				else
+				{
+					program->setUniform(UNIFORM_NORMAL, mat3(transpose(inverse(node->getTransform().getMatrix()))));
+				}
+			}
+
+			if (smCurrentMaterialId != material->getId())
+			{
+				smCurrentMaterialId = material->getId();
+
+				material->uploadUniforms();
+
+				if (material->IsLighted())
+				{
+					DirectionalLight* light = mScene->getRootNode().getFistChild<DirectionalLight>(Node::DIRECTIONAL_LIGHT);
+					assert(light != nullptr);
+
+					static_cast<DiffuseMaterial*>(material)->uploadUniforms(light);
+
+					program->setUniform(UNIFORM_AMBIENT_LIGHT, mScene->getAmbientLight());
+				}
+			}
+
+			if (material->IsTextured())
+			{
+				const Texture* texture = static_cast<DiffuseMaterial*>(material)->getDiffuseTexture();
+				assert(texture != nullptr);
+
+				if (smCurrentTextureId != texture->getId())
+				{
+					smCurrentTextureId = texture->getId();
+
+					texture->bind();
+				}
+			}
+
+			const Mesh* mesh = mesh_renderer->getMesh();
+			assert(mesh != nullptr);
+
+			if (smCurrentMeshId != mesh->getId())
+			{
+				smCurrentMeshId = mesh->getId();
+
+				mesh->bindVbo();
+				mesh->uploadAttributes(program->getAttributes(), 3);
+				mesh->bindIbo();
+			}
+
+			program->setUniform(UNIFORM_MODEL, node->getTransform().getMatrix());
+
+			mesh->draw();
 		}
-
-		const Camera* camera = mScene->getRootNode().getFistChild<Camera>(Node::CAMERA);
-		assert(camera != nullptr);
-
-		program->setUniform(UNIFORM_PROJECTION, camera->getOrthoMatrix());
-
-		if (smCurrentMaterialId != material->getId())
-		{
-			smCurrentMaterialId = material->getId();
-
-			material->uploadUniforms();
-		}
-
-		const Texture* texture = material->getDiffuseTexture();
-		assert(texture != nullptr);
-
-		if (smCurrentTextureId != texture->getId())
-		{
-			smCurrentTextureId = texture->getId();
-
-			texture->bind();
-		}
-
-		const Mesh* mesh = sprite->getMesh();
-		assert(mesh != nullptr);
-
-		if (smCurrentMeshId != mesh->getId())
-		{
-			smCurrentMeshId = mesh->getId();
-
-			mesh->bindVbo();
-			mesh->uploadAttributes(program->getAttributes());
-			mesh->bindIbo();
-		}
-
-		program->setUniform(UNIFORM_MODEL, sprite->getTransform().getMatrix());
-
-		mesh->draw();*/
 	}
 
-	void Renderer::enable2dDrawing()
+	void Renderer::drawSprite(const Node* sprite) const
 	{
-		if (!smIsDrawing2d)
+		MeshRenderer* mesh_renderer = sprite->getRenderer();
+
+		if (mesh_renderer && mesh_renderer->isEnabled())
+		{
+			const Material* material = mesh_renderer->getMaterial();
+			assert(material != nullptr);
+
+			const Program* program = material->getProgram();
+			assert(program != nullptr);
+
+			if (smCurrentProgramId != program->getId())
+			{
+				smCurrentProgramId = program->getId();
+
+				program->use();
+			}
+
+			const Camera* camera = mScene->getRootNode().getFistChild<Camera>(Node::CAMERA);
+			assert(camera != nullptr);
+
+			program->setUniform(UNIFORM_PROJECTION, camera->getOrthoMatrix());
+
+			if (smCurrentMaterialId != material->getId())
+			{
+				smCurrentMaterialId = material->getId();
+
+				material->uploadUniforms();
+			}
+
+			const Texture* texture = material->getDiffuseTexture();
+			assert(texture != nullptr);
+
+			if (smCurrentTextureId != texture->getId())
+			{
+				smCurrentTextureId = texture->getId();
+
+				texture->bind();
+			}
+
+			const Mesh* mesh = mesh_renderer->getMesh();
+			assert(mesh != nullptr);
+
+			if (smCurrentMeshId != mesh->getId())
+			{
+				smCurrentMeshId = mesh->getId();
+
+				mesh->bindVbo();
+				mesh->uploadAttributes(program->getAttributes(), 2);
+				mesh->bindIbo();
+			}
+
+			program->setUniform(UNIFORM_MODEL, sprite->getTransform().getMatrix());
+
+			mesh->draw();
+		}
+	}
+
+	void Renderer::enable2d()
+	{
+		if (!smIs2dActivated)
 		{
 			glEnable(GL_BLEND);
-
 			glDisable(GL_DEPTH_TEST);
-			//glDisable(GL_MULTISAMPLE);
-
-			smIsDrawing2d = true;
+	
+			smIs2dActivated = true;
 		}
 	}
 
-	void Renderer::disable2dDrawing()
+	void Renderer::disable2d()
 	{
-		if (smIsDrawing2d)
+		if (smIs2dActivated)
 		{
 			glDisable(GL_BLEND);
-
 			glEnable(GL_DEPTH_TEST);
-			//glEnable(GL_MULTISAMPLE);
 
-			smIsDrawing2d = false;
+			smIs2dActivated = false;
 		}
 	}
 }

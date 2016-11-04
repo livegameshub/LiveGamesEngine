@@ -4,11 +4,11 @@
 
 namespace lg
 {
-	Mesh::Mesh(u32 id, u32 primitive, u32 drawType, const Flag& flag)
+	Mesh::Mesh(u32 id, u32 primitive, u32 drawType, u32 vertexPositionSize, const Flag& flag)
 		: Resource(id, flag)
 		, mNormalOffset(0)
 		, mTextureOffset(0)
-		, mVertexSize(sizeof(vec3))
+		, mVertexSize(vertexPositionSize)
 		, mIndicesSize(0)
 		, mPrimitive(primitive)
 		, mDrawType(drawType)
@@ -67,6 +67,10 @@ namespace lg
 		if (mFlag.isSet(USE_NORMALS))
 		{
 			reserve_size += 3;
+		}
+		else if (mFlag.isSet(USE_TEXTURES))
+		{
+			reserve_size += 2;
 		}
 
 		return size * reserve_size;
@@ -249,7 +253,7 @@ namespace lg
 		return true;
 	}
 
-	void Mesh::uploadAttributes(const i32* attributes) const
+	void Mesh::uploadAttributes(const i32* attributes, u32 positionSize) const
 	{
 		i32 position = attributes[Program::AttributeIndex::POSITION];
 		i32 normal = attributes[Program::AttributeIndex::NORMAL];
@@ -258,7 +262,7 @@ namespace lg
 		if (position >= 0)
 		{
 			glEnableVertexAttribArray(position);
-			glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, mVertexSize, static_cast<const void*>(0));
+			glVertexAttribPointer(position, positionSize, GL_FLOAT, GL_FALSE, mVertexSize, static_cast<const void*>(0));
 		}
 
 		if (normal >= 0 && mNormalOffset > 0)

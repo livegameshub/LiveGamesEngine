@@ -5,7 +5,7 @@
 
 namespace lg
 {
-	class ENGINE_API Sprite
+	class ENGINE_API Sprite : public Node
 	{
 	public:
 		Sprite(u32 id, i32 type);

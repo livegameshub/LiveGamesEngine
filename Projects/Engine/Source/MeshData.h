@@ -18,6 +18,7 @@ namespace lg
 		void addVec3(const vec3& vector);
 
 		void addVertex(const vec3& position);
+		void addVertex(const vec2& position, const vec2& texture);
 		void addVertex(const vec3& position, const vec3& normal);
 		void addVertex(const vec3& position, const vec2& texture);
 		void addVertex(const vec3& position, const vec3& normal, const vec2& texture);
