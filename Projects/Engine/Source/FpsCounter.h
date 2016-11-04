@@ -12,8 +12,8 @@ namespace lg
 		static void update();
 
 	private:
-		static glm::f32 smFramesTime;
-		static glm::u32 smFrames;
+		static f32 smFramesTime;
+		static u32 smFrames;
 	};
 }
 

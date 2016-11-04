@@ -2,19 +2,10 @@
 
 namespace lg
 {
-	Light::Light(glm::u32 id, glm::i32 type)
-		: Node(id, LIGHT)
+	Light::Light(u32 id, i32 type)
+		: Node(id, type)
 		, mSpecularColor(LIGHT_DEFAULT_SPECULAR_COLOR)
 		, mDiffuseColor(LIGHT_DEFAULT_DIFFUSE_COLOR)
-		, mLightType(type)
-	{
-	}
-
-	Light::Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse, const glm::vec3& specular)
-		: Node(id, LIGHT)
-		, mSpecularColor(specular)
-		, mDiffuseColor(diffuse)
-		, mLightType(type)
 	{
 	}
 
@@ -22,33 +13,23 @@ namespace lg
 	{
 	}
 
-	void Light::setLightType(glm::i32 type)
-	{
-		mLightType = type;
-	}
-
-	void Light::setDiffuseColor(const glm::vec3& color)
+	void Light::setDiffuseColor(const vec3& color)
 	{
 		mDiffuseColor = color;
 	}
 
-	void Light::setSpecularColor(const glm::vec3& color)
+	void Light::setSpecularColor(const vec3& color)
 	{
 		mSpecularColor = color;
 	}
 
-	const glm::vec3& Light::getDiffuseColor() const
+	const vec3& Light::getDiffuseColor() const
 	{
 		return mDiffuseColor;
 	}
 
-	const glm::vec3& Light::getSpecularColor() const
+	const vec3& Light::getSpecularColor() const
 	{
 		return mSpecularColor;
-	}
-
-	glm::i32 Light::getLightType() const
-	{
-		return mLightType;
 	}
 }

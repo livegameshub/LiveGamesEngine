@@ -20,7 +20,7 @@ namespace lg
 {
 	Window* Engine::getWindow(GLFWwindow* windowPtr)
 	{
-		for (glm::u32 i = 0; i < mWindows.size(); ++i)
+		for (u32 i = 0; i < mWindows.size(); ++i)
 		{
 			if (mWindows[i].getWindowPtr() == windowPtr)
 			{
@@ -31,7 +31,7 @@ namespace lg
 		return nullptr;
 	}
 
-	Window* Engine::getWindowByIndex(glm::u32 index)
+	Window* Engine::getWindowByIndex(u32 index)
 	{
 		assert(index < mWindows.size());
 
@@ -47,7 +47,7 @@ namespace lg
 
 	#endif // WINDOWS_BUILD
 
-	bool Engine::setup(const std::string& mainWindowTitle)
+	bool Engine::setup(const string& mainWindowTitle)
 	{
 		/* init the window api */
 		if (!Window::initApi())
@@ -56,9 +56,9 @@ namespace lg
 		}
 
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
-			glm::ivec2 size = glm::ivec2(1024, 600);
+			ivec2 size = ivec2(1024, 600);
 		#else 
-			glm::ivec2 size = Window::getScreenSize();
+			ivec2 size = Window::getScreenSize();
 		#endif // (defined _DEBUG || !defined WINDOWS_BUILD)
 
 		/* we should add at least the main window */
@@ -172,7 +172,7 @@ namespace lg
 		mWindows.push_back(window);
 	}
 
-	void Engine::loadScene(glm::u32 index)
+	void Engine::loadScene(u32 index)
 	{	
 		Input::reset();
 

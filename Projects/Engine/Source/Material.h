@@ -12,15 +12,15 @@ namespace lg
 	class ENGINE_API Material : public Resource
 	{
 	public:
-		enum MaterialProperties : glm::u32
+		enum MaterialProperties : u32
 		{
 			IS_LIGHTED = 1,
 			IS_TEXTURED = 2,
 			IS_SHINY = 4
 		};
 
-		Material(glm::u32 id, const Flag& flag = 0);
-		Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag = 0);
+		Material(u32 id, const Flag& flag = 0);
+		Material(u32 id, const vec3& diffuse, const Flag& flag = 0);
 
 		virtual ~Material();
 
@@ -30,11 +30,11 @@ namespace lg
 
 		void setProgram(Program* program);
 		void setDiffuseTexture(Texture* texture);
-		void setDiffuseColor(const glm::vec3& color);
+		void setDiffuseColor(const vec3& color);
 	
 		Program* getProgram() const;
 		Texture* getDiffuseTexture() const;
-		const glm::vec3& getDiffuseColor() const;
+		const vec3& getDiffuseColor() const;
 
 		virtual void uploadUniforms() const;
 
@@ -46,7 +46,7 @@ namespace lg
 		Program* mProgram;
 
 	private:
-		glm::vec3 mDiffuseColor;
+		vec3 mDiffuseColor;
 	};
 }
 

@@ -10,6 +10,7 @@
 #include "DirectionalLight.h"
 #include "Sprite.h"
 #include "Texture.h"
+#include <Console.h>
 
 CubesScene::CubesScene()
 	: mDirectionalLight(nullptr)
@@ -17,7 +18,7 @@ CubesScene::CubesScene()
 {
 }
 
-CubesScene::CubesScene(const glm::vec3& ambientLight)
+CubesScene::CubesScene(const vec3& ambientLight)
 	: Scene(ambientLight)
 	, mDirectionalLight(nullptr)
 	, mCamera(nullptr)
@@ -30,9 +31,6 @@ CubesScene::~CubesScene()
 
 void CubesScene::init()
 {
-	/* call the basic init function */
-	Scene::init();
-
 	// shaders 
 	lg::Shader* vertexShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::VERTEX, "BasicShader.vs");
 	lg::Shader* fragmentShader = lg::Resources::getInstance().createShader(lg::Resources::getNextAvailableId(), lg::Shader::FRAGMENT, "BasicShader.fs");
@@ -57,52 +55,57 @@ void CubesScene::init()
 	lg::Mesh* plane_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Plane.mesh");
 
 	// materials
-	lg::Material* red_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, glm::vec3(1.0f, 0.0f, 0.0f));
-	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
-	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, glm::vec3(0.0f, 0.0f, 1.0f), lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
-	lg::DiffuseMaterial* plane_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program3, plane_texture, glm::vec3(1.0f), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
+	lg::Material* red_material = lg::Resources::getInstance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
+	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
+	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program2, nullptr, vec3(0.0f, 0.0f, 1.0f), lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
+	lg::DiffuseMaterial* plane_material = lg::Resources::getInstance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program3, plane_texture, vec3(1.0f), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
 
 	// camera 
-	mCamera = createCamera(1, lg::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
+	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
+	mCamera->setViewSize(lg::Engine::getInstance().getWindowByIndex(0)->getSize());
+	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
 
 	// models
-	lg::MeshRenderer* plane = createRenderable(2, plane_mesh, plane_material);
+	lg::Node* plane = createNode<lg::Node>(2, lg::Node::MODEL);
+	plane->setRenderer(lg::MeshRenderer::create(plane_material, plane_mesh));
 
 	lg::Transform& plane_transform = plane->getTransform();
-	plane_transform.setScale(glm::vec3(8.0f));
-	plane_transform.translate(glm::vec3(0.0f, -1.5f, 0.0f));
+	plane_transform.setScale(vec3(8.0f));
+	plane_transform.translate(vec3(0.0f, -1.5f, 0.0f));
 	plane_transform.rotateOnX(270.0f);
-
 	mRootNode.addChild(plane);
 
-	mCubes.push_back(createRenderable(3, cube_mesh2, blue_material));
-	mCubes.push_back(createRenderable(4, cube_mesh2, yellow_material));
-	mCubes.push_back(createRenderable(5, cube_mesh, red_material));
+	mCubes.push_back(createNode<lg::Node>(3, lg::Node::MODEL));
+	mCubes.push_back(createNode<lg::Node>(4, lg::Node::MODEL));
+	mCubes.push_back(createNode<lg::Node>(5, lg::Node::MODEL));
+	
+	mCubes[0]->setRenderer(lg::MeshRenderer::create(blue_material, cube_mesh2));
+	mCubes[1]->setRenderer(lg::MeshRenderer::create(yellow_material, cube_mesh2));
+	mCubes[2]->setRenderer(lg::MeshRenderer::create(red_material, cube_mesh));
 
-	mCubes[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));
-	mCubes[2]->getTransform().setPosition(glm::vec3(3.5f, 0.0f, 0.0f));
-
+	mCubes[0]->getTransform().setPosition(vec3(-3.5f, 0.0f, 0.0f));
+	mCubes[2]->getTransform().setPosition(vec3(3.5f, 0.0f, 0.0f));
+	
 	for (auto cube : mCubes)
 	{
 		mRootNode.addChild(cube);
 	}
 
 	// light
-
-	mDirectionalLight = createDirectionalLight(7, glm::vec3(0.0f, 0.0f, -1.0f));
+	mDirectionalLight = createNode<lg::DirectionalLight>(6, lg::Node::DIRECTIONAL_LIGHT);
+	mDirectionalLight->setDirection(vec3(0.0f, 0.0f, -1.0f));
 	mRootNode.addChild(mDirectionalLight);
+
+	/* call the basic init function */
+	//Scene::init();
 }
 
 void CubesScene::update()
 {
-	/* call the basic update function */
-
-	Scene::update();
-
-	static glm::f32 cameraAngle = 0.0f;
-	static glm::f32 angle = 0.0f;
-	static glm::f32 speed = 10.0f;
+	static f32 cameraAngle = 0.0f;
+	static f32 angle = 0.0f;
+	static f32 speed = 10.0f;
 
 	angle += lg::Time::getDeltaTime() * 20.0f;
 
@@ -137,7 +140,9 @@ void CubesScene::update()
 
 		mCamera->rotateOnY(cameraAngle);
 	}
-			
+
+	/* call the basic update function */
+	Scene::update();
 
 	if (lg::Input::isKeyDown(GLFW_KEY_SPACE))
 	{

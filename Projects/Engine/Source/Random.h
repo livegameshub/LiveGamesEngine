@@ -7,9 +7,9 @@ namespace lg
 {
 	struct ENGINE_API Random
 	{
-		static glm::u32 getRandomInt(glm::u32 max);
-		static glm::u32 getRandomInt(glm::u32 min, glm::u32 max);
-		static glm::f32 getRandomFloat(glm::f32 min, glm::f32 max);
+		static u32 getRandomInt(u32 max);
+		static u32 getRandomInt(u32 min, u32 max);
+		static f32 getRandomFloat(f32 min, f32 max);
 
 		static void seed();
 	};

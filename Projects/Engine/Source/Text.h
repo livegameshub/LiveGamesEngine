@@ -5,7 +5,7 @@
 
 namespace lg
 {
-	class ENGINE_API Text : public MeshRenderer
+	class ENGINE_API Text
 	{
 	public:
 

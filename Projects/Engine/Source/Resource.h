@@ -8,28 +8,28 @@ namespace lg
 	class ENGINE_API Resource : public Object
 	{
 	public:
-		Resource(glm::u32 id);
-		Resource(glm::u32 id, const Flag& flag);
-		Resource(glm::u32 id, const std::string& file);
+		Resource(u32 id);
+		Resource(u32 id, const Flag& flag);
+		Resource(u32 id, const string& file);
 		
 		virtual ~Resource();
 
-		const std::string& getResourceFile() const;
-		void setResourceFile(const std::string& file);
+		const string& getResourceFile() const;
+		void setResourceFile(const string& file);
 
-		glm::u32 getReferencesCounter() const;
+		u32 getReferencesCounter() const;
 
 		bool unload();
 		bool load();
 
 	protected:
-		std::string mResourceFile;
+		string mResourceFile;
 
 	private:
 		virtual bool create() = 0;
 		virtual bool release() = 0;
 
-		glm::u32 mReferencesCounter;
+		u32 mReferencesCounter;
 	};
 }
 

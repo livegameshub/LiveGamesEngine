@@ -9,20 +9,20 @@ namespace lg
 	class ENGINE_API Shader : public Resource
 	{
 	public:
-		static const glm::u32 VERTEX = GL_VERTEX_SHADER;
-		static const glm::u32 FRAGMENT = GL_FRAGMENT_SHADER;
+		static const u32 VERTEX = GL_VERTEX_SHADER;
+		static const u32 FRAGMENT = GL_FRAGMENT_SHADER;
 
-		Shader(glm::u32 id);
-		Shader(glm::u32 id, glm::u32 shaderType);
-		Shader(glm::u32 id, glm::u32 shaderType, const std::string& file);
+		Shader(u32 id);
+		Shader(u32 id, u32 shaderType);
+		Shader(u32 id, u32 shaderType, const string& file);
 
 		~Shader();
 
 		void compile() const;
 
-		void setShaderType(glm::u32 type);
-		glm::u32 getShaderType() const;
-		glm::u32 getShaderId() const;
+		void setShaderType(u32 type);
+		u32 getShaderType() const;
+		u32 getShaderId() const;
 		
 	private:
 		#if (defined _DEBUG || !defined WINDOWS_BUILD)
@@ -34,8 +34,8 @@ namespace lg
 		bool create() override;
 		bool release() override;
 
-		glm::u32 mShaderId;
-		glm::u32 mShaderType;
+		u32 mShaderId;
+		u32 mShaderType;
 	};
 }
 

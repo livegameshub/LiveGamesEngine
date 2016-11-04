@@ -10,16 +10,16 @@ namespace lg
 	class ENGINE_API DiffuseMaterial : public Material
 	{
 	public:
-		DiffuseMaterial(glm::u32 id, const Flag& flag = 0);
-		DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag);
+		DiffuseMaterial(u32 id, const Flag& flag = 0);
+		DiffuseMaterial(u32 id, const vec3& diffuse, const Flag& flag);
 
 		~DiffuseMaterial();
 		
-		void setSpecularColor(const glm::vec3& color);
-		void setSpecularShininess(glm::f32 value);
+		void setSpecularColor(const vec3& color);
+		void setSpecularShininess(f32 value);
 
-		const glm::vec3& getSpecularColor() const;
-		glm::f32 getSpecularShininess() const;
+		const vec3& getSpecularColor() const;
+		f32 getSpecularShininess() const;
 
 		void uploadUniforms(DirectionalLight* light) const;
 		void uploadUniforms() const override;
@@ -28,8 +28,8 @@ namespace lg
 		bool create() override;
 		bool release() override;
 
-		glm::vec3 mSpecularColor;
-		glm::f32 mSpecularShininess;
+		vec3 mSpecularColor;
+		f32 mSpecularShininess;
 	};
 }
 

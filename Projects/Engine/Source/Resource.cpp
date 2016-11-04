@@ -2,19 +2,19 @@
 
 namespace lg
 {
-	Resource::Resource(glm::u32 id)
+	Resource::Resource(u32 id)
 		: Object(id)
 		, mReferencesCounter(0)
 	{
 	}
 
-	Resource::Resource(glm::u32 id, const Flag& flag)
+	Resource::Resource(u32 id, const Flag& flag)
 		: Object(id, flag)
 		, mReferencesCounter(0)
 	{
 	}
 
-	Resource::Resource(glm::u32 id, const std::string& file)
+	Resource::Resource(u32 id, const string& file)
 		: Object(id)
 		, mResourceFile(file)
 		, mReferencesCounter(0)
@@ -60,17 +60,17 @@ namespace lg
 		return true;
 	}
 
-	void Resource::setResourceFile(const std::string& file)
+	void Resource::setResourceFile(const string& file)
 	{
 		mResourceFile = file;
 	}
 
-	const std::string& Resource::getResourceFile() const
+	const string& Resource::getResourceFile() const
 	{
 		return mResourceFile;
 	}
 
-	glm::u32 Resource::getReferencesCounter() const
+	u32 Resource::getReferencesCounter() const
 	{
 		return mReferencesCounter;
 	}

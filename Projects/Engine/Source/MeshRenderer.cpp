@@ -5,17 +5,10 @@
 
 namespace lg
 {
-	MeshRenderer::MeshRenderer(glm::u32 id)
-		: Node(id, MESH_RENDERER, IS_VISIBLE)
-		, mMaterial(nullptr)
+	MeshRenderer::MeshRenderer()
+		: mMaterial(nullptr)
 		, mMesh(nullptr)
-	{
-	}
-
-	MeshRenderer::MeshRenderer(glm::u32 id, glm::i32 type)
-		: Node(id, type, IS_VISIBLE)
-		, mMaterial(nullptr)
-		, mMesh(nullptr)
+		, mIsEnabled(true)
 	{
 	}
 
@@ -25,10 +18,8 @@ namespace lg
 
 	void MeshRenderer::release()
 	{
-		Node::release();
-
-		assert(mMesh != nullptr);
 		assert(mMaterial != nullptr);
+		assert(mMesh != nullptr);
 
 		Resources::getInstance().unload(mMesh);
 		Resources::getInstance().unload(mMaterial);
@@ -70,5 +61,24 @@ namespace lg
 	Mesh* MeshRenderer::getMesh() const
 	{
 		return mMesh;
+	}
+
+	void MeshRenderer::setEnabled(bool value)
+	{
+		mIsEnabled = value;
+	}
+
+	bool MeshRenderer::isEnabled() const
+	{
+		return mIsEnabled;
+	}
+
+	MeshRenderer* MeshRenderer::create(Material* material, Mesh* mesh)
+	{
+		MeshRenderer* renderer = new MeshRenderer();
+		renderer->setMesh(mesh);
+		renderer->setMaterial(material);
+
+		return renderer;
 	}
 }

@@ -48,16 +48,14 @@ namespace lg
 
 		for (auto it : mAllResources)
 		{
-			Resource* resource = it.second;
+			assert(it.second != nullptr);
+			assert(it.second->getReferencesCounter() == 0);
 
-			assert(resource != nullptr);
-			assert(resource->getReferencesCounter() == 0);
-
-			SAFE_DELETE(resource);
+			SAFE_DELETE(it.second);
 		}
 	}
 
-	void Resources::removeResource(glm::u32 id)
+	void Resources::removeResource(u32 id)
 	{
 		auto it = mAllResources.find(id);
 		assert(it != mAllResources.end());
@@ -75,12 +73,12 @@ namespace lg
 		mAllResources.insert({ resource->getId(), resource });	
 	}
 
-	const std::map<glm::u32, Resource*>& Resources::getAllResources() const
+	const map<u32, Resource*>& Resources::getAllResources() const
 	{
 		return mAllResources;
 	}
 
-	Program* Resources::createProgram(glm::u32 id, const std::vector<Shader*> shaders)
+	Program* Resources::createProgram(u32 id, const vector<Shader*> shaders)
 	{
 		assert(getResource<Program>(id) == nullptr);
 
@@ -96,7 +94,7 @@ namespace lg
 		return program;
 	}
 
-	Shader* Resources::createShader(glm::u32 id, glm::u32 type, const std::string& file)
+	Shader* Resources::createShader(u32 id, u32 type, const string& file)
 	{
 		assert(getResource<Shader>(id) == nullptr);
 
@@ -107,7 +105,7 @@ namespace lg
 		return shader;
 	}
 
-	Mesh* Resources::createMesh(glm::u32 id, const std::string& file)
+	Mesh* Resources::createMesh(u32 id, const string& file)
 	{
 		assert(getResource<Mesh>(id) == nullptr);
 
@@ -118,7 +116,7 @@ namespace lg
 		return mesh;
 	}
 
-	Mesh* Resources::createMesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag)
+	Mesh* Resources::createMesh(u32 id, u32 primitive, u32 drawType, const Flag& flag)
 	{
 		assert(getResource<Mesh>(id) == nullptr);
 
@@ -129,7 +127,7 @@ namespace lg
 		return mesh;
 	}
 
-	Mesh* Resources::createMesh(glm::u32 id, const glm::vec2& startPoint, const glm::vec2& size, const glm::vec2& textureSize)
+	Mesh* Resources::createMesh(u32 id, const vec2& startPoint, const vec2& size, const vec2& textureSize)
 	{
 		assert(getResource<Mesh>(id) == nullptr);
 
@@ -137,10 +135,10 @@ namespace lg
 
 		MeshData& data = mesh->getData();
 
-		data.addVertex(glm::vec3(size.x * 0.5f, size.y * 0.5f, 0.0f), glm::vec2((startPoint.x + size.x) / textureSize.x, (startPoint.y + size.y) / textureSize.y));
-		data.addVertex(glm::vec3(size.x * 0.5f, -(size.y * 0.5f), 0.0f), glm::vec2((startPoint.x + size.x) / textureSize.x, startPoint.y / textureSize.y));
-		data.addVertex(glm::vec3(-(size.x * 0.5f), -(size.y * 0.5f), 0.0f), glm::vec2(startPoint.x / textureSize.x, startPoint.y / textureSize.y));
-		data.addVertex(glm::vec3(-(size.x * 0.5f), size.y * 0.5f, 0.0f), glm::vec2(startPoint.x / textureSize.x, (startPoint.y + size.y) / textureSize.y));
+		data.addVertex(vec3(size.x * 0.5f, size.y * 0.5f, 0.0f), vec2((startPoint.x + size.x) / textureSize.x, (startPoint.y + size.y) / textureSize.y));
+		data.addVertex(vec3(size.x * 0.5f, -(size.y * 0.5f), 0.0f), vec2((startPoint.x + size.x) / textureSize.x, startPoint.y / textureSize.y));
+		data.addVertex(vec3(-(size.x * 0.5f), -(size.y * 0.5f), 0.0f), vec2(startPoint.x / textureSize.x, startPoint.y / textureSize.y));
+		data.addVertex(vec3(-(size.x * 0.5f), size.y * 0.5f, 0.0f), vec2(startPoint.x / textureSize.x, (startPoint.y + size.y) / textureSize.y));
 			 
 		data.addTriangle(0, 1, 3);
 		data.addTriangle(1, 2, 3);
@@ -150,7 +148,7 @@ namespace lg
 		return mesh;
 	}
 
-	Texture* Resources::createTexture(glm::u32 id, const std::string& file, bool generateMipmaps)
+	Texture* Resources::createTexture(u32 id, const string& file, bool generateMipmaps)
 	{
 		assert(getResource<Texture>(id) == nullptr);
 
@@ -161,9 +159,9 @@ namespace lg
 		return texture;
 	}
 
-	glm::u32 Resources::getNextAvailableId()
+	u32 Resources::getNextAvailableId()
 	{
-		static glm::u32 current_id = 0;
+		static u32 current_id = 0;
 
 		return ++current_id;
 	}

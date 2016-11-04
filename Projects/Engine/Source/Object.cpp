@@ -2,12 +2,12 @@
 
 namespace lg
 {
-	Object::Object(glm::u32 id)
+	Object::Object(u32 id)
 		: mId(id)
 	{
 	}
 
-	Object::Object(glm::u32 id, const Flag& flag)
+	Object::Object(u32 id, const Flag& flag)
 		: mId(id)
 		, mFlag(flag)
 	{
@@ -17,7 +17,7 @@ namespace lg
 	{
 	}
 
-	void Object::setId(glm::u32 id)
+	void Object::setId(u32 id)
 	{
 		mId = id;
 	}
@@ -27,7 +27,7 @@ namespace lg
 		mFlag = flag;
 	}
 
-	glm::u32 Object::getId() const
+	u32 Object::getId() const
 	{
 		return mId;
 	}

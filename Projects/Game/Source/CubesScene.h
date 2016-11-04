@@ -9,7 +9,7 @@ class CubesScene : public lg::Scene
 {
 public:
 	CubesScene();
-	CubesScene(const glm::vec3& ambientLight);
+	CubesScene(const vec3& ambientLight);
 
 	~CubesScene();
 
@@ -17,7 +17,7 @@ public:
 	void update() override;
 
 private:
-	std::vector<lg::MeshRenderer*> mCubes;
+	vector<lg::Node*> mCubes;
 
 	lg::DirectionalLight* mDirectionalLight;
 	lg::Camera* mCamera;

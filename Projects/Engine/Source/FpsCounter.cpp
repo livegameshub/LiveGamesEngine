@@ -5,8 +5,8 @@
 
 namespace lg
 {
-	glm::u32 FpsCounter::smFrames = 0;
-	glm::f32 FpsCounter::smFramesTime = 0.0f;
+	u32 FpsCounter::smFrames = 0;
+	f32 FpsCounter::smFramesTime = 0.0f;
 
 	void FpsCounter::update()
 	{
@@ -16,7 +16,7 @@ namespace lg
 
 		if (smFramesTime >= 1.0f)
 		{
-			std::string message = "Fps: " + std::to_string(smFrames);
+			string message = "Fps: " + to_string(smFrames);
 
 			if (smFrames < 30)
 			{

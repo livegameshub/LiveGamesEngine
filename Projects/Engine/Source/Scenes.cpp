@@ -36,7 +36,7 @@ namespace lg
 		mScenes.push_back(scene);
 	}
 
-	void Scenes::removeScene(glm::u32 index)
+	void Scenes::removeScene(u32 index)
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
@@ -45,7 +45,7 @@ namespace lg
 		mScenes.erase(mScenes.begin() + index);
 	}
 
-	void Scenes::setMainScene(glm::u32 index)
+	void Scenes::setMainScene(u32 index)
 	{
 		Scene* new_scene = getScene(index);
 		assert(new_scene != nullptr);
@@ -63,14 +63,14 @@ namespace lg
 		mMainScene = new_scene;
 	}
 
-	Scene* Scenes::getScene(glm::u32 index)
+	Scene* Scenes::getScene(u32 index)
 	{
 		/* check the bounds for the array */
 		assert(index < mScenes.size());
 		return mScenes[index];
 	}
 
-	Scene* Scenes::operator[](glm::u32 index)
+	Scene* Scenes::operator[](u32 index)
 	{
 		return getScene(index);
 	}
@@ -80,7 +80,7 @@ namespace lg
 		return mMainScene;
 	}
 
-	const std::vector<Scene*>& Scenes::getScenes() const
+	const vector<Scene*>& Scenes::getScenes() const
 	{
 		return mScenes;
 	}

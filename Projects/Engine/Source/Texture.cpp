@@ -3,7 +3,7 @@
 
 namespace lg
 {
-	Texture::Texture(glm::u32 id)
+	Texture::Texture(u32 id)
 		: Resource(id)
 		, mGenerateMipmaps(false)
 		, mTextureId(0)
@@ -12,7 +12,7 @@ namespace lg
 	{		
 	}
 
-	Texture::Texture(glm::u32 id, const std::string& file, bool generateMipmaps)
+	Texture::Texture(u32 id, const string& file, bool generateMipmaps)
 		: Resource(id, file)
 		, mGenerateMipmaps(generateMipmaps)
 		, mTextureId(0)
@@ -30,7 +30,7 @@ namespace lg
 		glBindTexture(GL_TEXTURE_2D, mTextureId);
 	}
 
-	void Texture::Activate(glm::u32 index)
+	void Texture::Activate(u32 index)
 	{
 		glActiveTexture(GL_TEXTURE0 + index);
 	}
@@ -41,10 +41,10 @@ namespace lg
 
 		#ifdef WINDOWS_BUILD
 
-		fopen_s(&pFile, std::string(ASSETS_PATH + mResourceFile).c_str(), "rb");
+		fopen_s(&pFile, string(ASSETS_PATH + mResourceFile).c_str(), "rb");
 		#else
 
-		pFile = fopen(std::string(ASSETS_PATH + mResourceFile).c_str(), "rb");
+		pFile = fopen(string(ASSETS_PATH + mResourceFile).c_str(), "rb");
 		#endif
 
 		if (!pFile)
@@ -52,12 +52,12 @@ namespace lg
 			return false;
 		}
 
-		fread(&mSize.x, sizeof(glm::i32), 1, pFile);
-		fread(&mSize.y, sizeof(glm::i32), 1, pFile);
-		fread(&mBits, sizeof(glm::u32), 1, pFile);
-		fread(&mFormat, sizeof(glm::i32), 1, pFile);
+		fread(&mSize.x, sizeof(i32), 1, pFile);
+		fread(&mSize.y, sizeof(i32), 1, pFile);
+		fread(&mBits, sizeof(u32), 1, pFile);
+		fread(&mFormat, sizeof(i32), 1, pFile);
 
-		glm::i32 image_size = mSize.x * mSize.y * (mBits / 8);
+		i32 image_size = mSize.x * mSize.y * (mBits / 8);
 
 		unsigned char* texture_data = new unsigned char[image_size];
 
@@ -68,7 +68,6 @@ namespace lg
 
 		// read the pixels
 		fread(texture_data, image_size, 1, pFile);
-
 		fclose(pFile);
 
 		// generate the texture
@@ -115,17 +114,17 @@ namespace lg
 		return true;
 	}
 
-	glm::u32 Texture::getTextureId() const
+	u32 Texture::getTextureId() const
 	{
 		return mTextureId;
 	}
 
-	const glm::ivec2& Texture::getSize() const
+	const ivec2& Texture::getSize() const
 	{
 		return mSize;
 	}
 
-	glm::u32 Texture::getTextureFormat() const
+	u32 Texture::getTextureFormat() const
 	{
 		return mFormat;
 	}

@@ -1,22 +1,20 @@
 #ifndef _MESH_RENDERER_H_
 #define _MESH_RENDERER_H_
 
-#include "Node.h"
+#include "EngineUtil.h"
 
 namespace lg
 {
 	class Mesh;
 	class Material;
 
-	class ENGINE_API MeshRenderer : public Node
+	class ENGINE_API MeshRenderer
 	{
 	public:
-		MeshRenderer(glm::u32 id);
-		MeshRenderer(glm::u32 id, glm::i32 type);
+		MeshRenderer();
+		~MeshRenderer();
 
-		virtual ~MeshRenderer();
-
-		virtual void release();
+		void release();
 
 		void setMaterial(Material* material);
 		void setMesh(Mesh* mesh);
@@ -24,9 +22,16 @@ namespace lg
 		Material* getMaterial() const;
 		Mesh* getMesh() const;
 
+		void setEnabled(bool value);
+		bool isEnabled() const;
+
+		static MeshRenderer* create(Material* material, Mesh* mesh);
+
 	private:
 		Material* mMaterial;
 		Mesh* mMesh;
+
+		bool mIsEnabled;
 	};
 }
 

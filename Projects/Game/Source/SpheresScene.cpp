@@ -8,6 +8,7 @@
 #include "Scenes.h"
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
+#include <Console.h>
 
 SpheresScene::SpheresScene()
 	: mDirectionalLight(nullptr)
@@ -15,7 +16,7 @@ SpheresScene::SpheresScene()
 {
 }
 
-SpheresScene::SpheresScene(const glm::vec3& ambientLight)
+SpheresScene::SpheresScene(const vec3& ambientLight)
 	: Scene(ambientLight)
 	, mDirectionalLight(nullptr)
 	, mCamera(nullptr)
@@ -28,49 +29,52 @@ SpheresScene::~SpheresScene()
 
 void SpheresScene::init()
 {
-	/* call the basic init function */
-	Scene::init();
-
 	// meshes
 	lg::Mesh* sphere_mesh = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere.mesh");
 	lg::Mesh* sphere_mesh2 = lg::Resources::getInstance().createMesh(lg::Resources::getNextAvailableId(), "Sphere2.mesh");
-
+	
 	// materials
 	lg::Material* red_material = lg::Resources::getInstance().getResource<lg::Material>(14);
 	lg::DiffuseMaterial* yellow_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(15);
 	lg::DiffuseMaterial* blue_material = lg::Resources::getInstance().getResource<lg::DiffuseMaterial>(16);
-
+	
 	// camera 
-	mCamera = createCamera(1, lg::Engine::getInstance().getWindowByIndex(0)->getSize(), glm::vec3(0.0f, 0.0f, 7.0f));
+	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
+	mCamera->setViewSize(lg::Engine::getInstance().getWindowByIndex(0)->getSize());
+	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	mRootNode.addChild(mCamera);
-
+	
 	// models
-	mSpheres.push_back(createRenderable(2, sphere_mesh, blue_material));
-	mSpheres.push_back(createRenderable(3, sphere_mesh, yellow_material));
-	mSpheres.push_back(createRenderable(4, sphere_mesh2, red_material));
-
-	mSpheres[0]->getTransform().setPosition(glm::vec3(-3.5f, 0.0f, 0.0f));
-	mSpheres[2]->getTransform().setPosition(glm::vec3(3.5f, 0.0f, 0.0f));
-
+	mSpheres.push_back(createNode<lg::Node>(2, lg::Node::MODEL));
+	mSpheres.push_back(createNode<lg::Node>(3, lg::Node::MODEL));
+	mSpheres.push_back(createNode<lg::Node>(4, lg::Node::MODEL));
+	
+	mSpheres[0]->setRenderer(lg::MeshRenderer::create(blue_material, sphere_mesh));
+	mSpheres[1]->setRenderer(lg::MeshRenderer::create(yellow_material, sphere_mesh));
+	mSpheres[2]->setRenderer(lg::MeshRenderer::create(red_material, sphere_mesh2));
+	
+	mSpheres[0]->getTransform().setPosition(vec3(-3.5f, 0.0f, 0.0f));
+	mSpheres[2]->getTransform().setPosition(vec3(3.5f, 0.0f, 0.0f));
+	
 	for (auto sphere : mSpheres)
 	{
 		mRootNode.addChild(sphere);
 	}
-
+	
 	// light
-	mDirectionalLight = createDirectionalLight(5, glm::vec3(0.0f, 0.0f, -1.0f));
+	mDirectionalLight = createNode<lg::DirectionalLight>(5, lg::Node::DIRECTIONAL_LIGHT);
+	mDirectionalLight->setDirection(vec3(0.0f, 0.0f, -1.0f));
 	mRootNode.addChild(mDirectionalLight);
+
+	/* call the basic init function */
+	//Scene::init();
 }
 
 void SpheresScene::update()
 {
-	/* call the basic update function */
-
-	Scene::update();
-
-	static glm::f32 cameraAngle = 0.0f;
-	static glm::f32 speed = 10.0f;
-
+	static f32 cameraAngle = 0.0f;
+	static f32 speed = 10.0f;
+	
 	if (lg::Input::isKeyDown(GLFW_KEY_UP))
 	{
 		mCamera->moveForward(speed * lg::Time::getDeltaTime());
@@ -79,20 +83,22 @@ void SpheresScene::update()
 	{
 		mCamera->moveForward(-speed * lg::Time::getDeltaTime());
 	}
-
+	
 	if (lg::Input::isKeyDown(GLFW_KEY_RIGHT))
 	{
 		cameraAngle -= lg::Time::getDeltaTime() * 75.0f;
-
+	
 		mCamera->rotateOnY(cameraAngle);
 	}
 	else if (lg::Input::isKeyDown(GLFW_KEY_LEFT))
 	{
 		cameraAngle += lg::Time::getDeltaTime() * 75.0f;
-
+	
 		mCamera->rotateOnY(cameraAngle);
 	}
-
+	
+	/* call the basic update function */
+	Scene::update();
 
 	if (lg::Input::isKeyDown(GLFW_KEY_SPACE))
 	{

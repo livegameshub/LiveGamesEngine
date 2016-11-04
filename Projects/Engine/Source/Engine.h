@@ -11,7 +11,7 @@ namespace lg
 	class ENGINE_API Engine
 	{
 	public:
-		enum EngineFlag : glm::u32
+		enum EngineFlag : u32
 		{
 			ENGINE_STOP_FLAG = 1,
 			ENGINE_PAUSE_FLAG = 2
@@ -21,13 +21,13 @@ namespace lg
 
 		// TODO
 		// setup should return an int with some specific codes
-		static bool setup(const std::string& mainWindowTitle);
+		static bool setup(const string& mainWindowTitle);
 		static void Release();
 
 		Window* getWindow(GLFWwindow* windowPtr);
-		Window* getWindowByIndex(glm::u32 index);
+		Window* getWindowByIndex(u32 index);
 
-		static void loadScene(glm::u32 index);
+		static void loadScene(u32 index);
 		static Engine& getInstance();
 
 		void resume();
@@ -43,7 +43,7 @@ namespace lg
 		void loop();
 		void run();
 
-		std::vector<Window> mWindows;
+		vector<Window> mWindows;
 		Flag mFlag;
 	};
 }

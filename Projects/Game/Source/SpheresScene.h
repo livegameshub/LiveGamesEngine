@@ -9,7 +9,7 @@ class SpheresScene : public lg::Scene
 {
 public:
 	SpheresScene();
-	SpheresScene(const glm::vec3& ambientLight);
+	SpheresScene(const vec3& ambientLight);
 
 	~SpheresScene();
 
@@ -17,7 +17,7 @@ public:
 	void update() override;
 
 private:
-	std::vector<lg::MeshRenderer*> mSpheres;
+	vector<lg::Node*> mSpheres;
 
 	lg::DirectionalLight* mDirectionalLight;
 	lg::Camera* mCamera;

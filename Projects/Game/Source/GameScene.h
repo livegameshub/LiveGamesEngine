@@ -14,7 +14,7 @@ public:
 	void update() override;
 
 private:
-	glm::f32 mScaleFactor;
+	f32 mScaleFactor;
 };
 
 #endif // _GAME_SCENE_H_

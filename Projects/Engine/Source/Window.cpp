@@ -10,7 +10,7 @@
 
 namespace lg
 {
-	Window::Window(const glm::ivec2& size)
+	Window::Window(const ivec2& size)
 		: mIsFocused(1)
 		, mSamples(0)
 		, mSize(size)
@@ -18,7 +18,7 @@ namespace lg
 	{
 	}
 
-	Window::Window(const glm::ivec2& size, glm::u32 samples)
+	Window::Window(const ivec2& size, u32 samples)
 		: mIsFocused(1)
 		, mSamples(samples)
 		, mSize(size)
@@ -30,7 +30,7 @@ namespace lg
 	{
 	}
 
-	bool Window::create(const std::string& title, bool isMain)
+	bool Window::create(const string& title, bool isMain)
 	{
 		if (isMain)
 		{
@@ -81,7 +81,7 @@ namespace lg
 		return true;
 	}
 
-	bool Window::setNewSize(const glm::ivec2& size)
+	bool Window::setNewSize(const ivec2& size)
 	{
 		if (mSize != size)
 		{
@@ -93,27 +93,27 @@ namespace lg
 		return false;
 	}
 
-	void Window::setIsFocused(glm::i32 isFocused)
+	void Window::setIsFocused(i32 isFocused)
 	{
 		mIsFocused = isFocused;
 	}
 
-	glm::u32 Window::getSamples() const
+	u32 Window::getSamples() const
 	{
 		return mSamples;
 	}
 
-	glm::i32 Window::isClosing() const
+	i32 Window::isClosing() const
 	{
 		return glfwWindowShouldClose(mWindowPtr);
 	}
 
-	glm::i32 Window::isFocused() const
+	i32 Window::isFocused() const
 	{
 		return mIsFocused;
 	}
 
-	glm::ivec2 Window::getScreenSize()
+	ivec2 Window::getScreenSize()
 	{
 		/* get the main monitor */
 		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
@@ -121,7 +121,7 @@ namespace lg
 		/* get the mode of our monitor */
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 
-		return glm::ivec2(mode->width, mode->height);
+		return ivec2(mode->width, mode->height);
 	}
 
 	void Window::swapBuffers() const
@@ -144,7 +144,7 @@ namespace lg
 		return mRenderer;
 	}
 
-	const glm::ivec2& Window::getSize() const
+	const ivec2& Window::getSize() const
 	{
 		return mSize;
 	}
@@ -174,7 +174,7 @@ namespace lg
 		glfwSetWindowSizeCallback(mWindowPtr, resizeCallback);
 	}
 
-	void Window::focusCallback(GLFWwindow* windowPtr, glm::i32 isFocused)
+	void Window::focusCallback(GLFWwindow* windowPtr, i32 isFocused)
 	{
 		Window* window = Engine::getInstance().getWindow(windowPtr);
 		assert(window != nullptr);
@@ -182,7 +182,7 @@ namespace lg
 		window->setIsFocused(isFocused);
 	}
 
-	void Window::resizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height)
+	void Window::resizeCallback(GLFWwindow* windowPtr, i32 width, i32 height)
 	{
 		if (width == 0 || height == 0)
 		{
@@ -194,7 +194,7 @@ namespace lg
 		Window* window = Engine::getInstance().getWindow(windowPtr);
 		assert(window != nullptr);
 
-		glm::ivec2 size(width, height);
+		ivec2 size(width, height);
 
 		if (window->setNewSize(size))
 		{

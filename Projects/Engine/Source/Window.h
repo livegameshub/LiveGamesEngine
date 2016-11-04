@@ -10,32 +10,32 @@ namespace lg
 	class ENGINE_API Window
 	{
 	public:
-		Window(const glm::ivec2& size);
-		Window(const glm::ivec2& size, glm::u32 samples);
+		Window(const ivec2& size);
+		Window(const ivec2& size, u32 samples);
 
 		~Window();
 
-		bool create(const std::string& title, bool isMain);
+		bool create(const string& title, bool isMain);
 
-		bool setNewSize(const glm::ivec2& size);
-		void setIsFocused(glm::i32 isFocused);
+		bool setNewSize(const ivec2& size);
+		void setIsFocused(i32 isFocused);
 
 		void swapBuffers() const;
 		void draw() const;
 
-		const glm::ivec2& getSize() const;
+		const ivec2& getSize() const;
 		GLFWwindow* getWindowPtr() const;
-		glm::u32 getSamples() const;
-		glm::i32 isClosing() const;
-		glm::i32 isFocused() const;
+		u32 getSamples() const;
+		i32 isClosing() const;
+		i32 isFocused() const;
 
 		Renderer& getRenderer();
 		
 		// callbacks
-		static void focusCallback(GLFWwindow* windowPtr, glm::i32 isFocused);
-		static void resizeCallback(GLFWwindow* windowPtr, glm::i32 width, glm::i32 height);
+		static void focusCallback(GLFWwindow* windowPtr, i32 isFocused);
+		static void resizeCallback(GLFWwindow* windowPtr, i32 width, i32 height);
 
-		static glm::ivec2 getScreenSize();
+		static ivec2 getScreenSize();
 
 		static bool initApi();
 		static void releaseApi();
@@ -44,9 +44,9 @@ namespace lg
 	private:
 		void initCallbacks() const;
 
-		glm::i32 mIsFocused;
-		glm::u32 mSamples;
-		glm::ivec2 mSize;
+		i32 mIsFocused;
+		u32 mSamples;
+		ivec2 mSize;
 		
 		GLFWwindow* mWindowPtr;
 		Renderer mRenderer;

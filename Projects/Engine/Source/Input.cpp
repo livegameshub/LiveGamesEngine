@@ -5,10 +5,10 @@ namespace lg
 	bool Input::smKeyboardKeys[KEYBOARD_KEYS_SIZE];
 	bool Input::smMouseClicks[MOUSE_CLICKS_SIZE];
 
-	glm::f32 Input::smMousePositionX;
-	glm::f32 Input::smMousePositionY;
+	f32 Input::smMousePositionX;
+	f32 Input::smMousePositionY;
 
-	void Input::keyboardKeysCallback(GLFWwindow* windowPtr, glm::i32 key, glm::i32 scancode, glm::i32 action, glm::i32 mods)
+	void Input::keyboardKeysCallback(GLFWwindow* windowPtr, i32 key, i32 scancode, i32 action, i32 mods)
 	{
 		if (action == GLFW_PRESS)
 		{
@@ -20,7 +20,7 @@ namespace lg
 		}
 	}
 
-	void Input::mouseClicksCallback(GLFWwindow* windowPtr, glm::i32 button, glm::i32 action, glm::i32 mods)
+	void Input::mouseClicksCallback(GLFWwindow* windowPtr, i32 button, i32 action, i32 mods)
 	{
 		if (action == GLFW_PRESS)
 		{
@@ -32,28 +32,28 @@ namespace lg
 		}
 	}
 
-	void Input::mousePositionCallback(GLFWwindow* windowPtr, glm::f64 x, glm::f64 y)
+	void Input::mousePositionCallback(GLFWwindow* windowPtr, f64 x, f64 y)
 	{
-		smMousePositionX = static_cast<glm::f32>(x);
-		smMousePositionY = static_cast<glm::f32>(y);
+		smMousePositionX = static_cast<f32>(x);
+		smMousePositionY = static_cast<f32>(y);
 	}
 
-	bool Input::isMousePressed(glm::i32 button)
+	bool Input::isMousePressed(i32 button)
 	{
 		return smMouseClicks[button];
 	}
 
-	bool Input::isKeyDown(glm::i32 key)
+	bool Input::isKeyDown(i32 key)
 	{
 		return smKeyboardKeys[key];
 	}
 
-	glm::f32 Input::getMousePositionX()
+	f32 Input::getMousePositionX()
 	{
 		return smMousePositionX;
 	}
 
-	glm::f32 Input::getMousePositionY()
+	f32 Input::getMousePositionY()
 	{
 		return smMousePositionY;
 	}

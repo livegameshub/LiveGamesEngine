@@ -14,19 +14,19 @@ namespace lg
 		void release();
 
 		void addScene(Scene* scene);
-		void setMainScene(glm::u32 index);
-		void removeScene(glm::u32 index);
+		void setMainScene(u32 index);
+		void removeScene(u32 index);
 
-		Scene* getScene(glm::u32 index);
-		Scene* operator[](glm::u32 index);
+		Scene* getScene(u32 index);
+		Scene* operator[](u32 index);
 
-		const std::vector<Scene*>& getScenes() const;
+		const vector<Scene*>& getScenes() const;
 		const Scene* getMainScene() const;
 
 		static Scenes& getInstance();
 
 	private:
-		std::vector<Scene*> mScenes;
+		vector<Scene*> mScenes;
 
 		Scene* mMainScene;
 

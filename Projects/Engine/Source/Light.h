@@ -4,39 +4,27 @@
 #include "Node.h"
 
 /* default values */
-#define LIGHT_DEFAULT_DIFFUSE_COLOR glm::vec3(1.0f)
-#define LIGHT_DEFAULT_SPECULAR_COLOR glm::vec3(0.5f)
+#define LIGHT_DEFAULT_DIFFUSE_COLOR vec3(1.0f)
+#define LIGHT_DEFAULT_SPECULAR_COLOR vec3(0.5f)
 
 namespace lg
 {
 	class ENGINE_API Light : public Node
 	{
 	public:
-		enum LightType : glm::u32
-		{
-			DIRECTIONAL_LIGHT,
-			POINT_LIGHT,
-			SPOT_LIGHT
-		};
-
-		Light(glm::u32 id, glm::i32 type);
-		Light(glm::u32 id, glm::i32 type, const glm::vec3& diffuse, const glm::vec3& specular);
+		Light(u32 id, i32 type);
 
 		virtual ~Light();
 		
-		void setDiffuseColor(const glm::vec3& color);
-		void setSpecularColor(const glm::vec3& color);
-		void setLightType(glm::i32 type);
+		void setDiffuseColor(const vec3& color);
+		void setSpecularColor(const vec3& color);
 		
-		const glm::vec3& getDiffuseColor() const;
-		const glm::vec3& getSpecularColor() const;
-		glm::i32 getLightType() const;
+		const vec3& getDiffuseColor() const;
+		const vec3& getSpecularColor() const;
 
-	private:
-		glm::vec3 mSpecularColor;
-		glm::vec3 mDiffuseColor;
-
-		glm::i32 mLightType;
+	protected:
+		vec3 mSpecularColor;
+		vec3 mDiffuseColor;
 	};
 }
 

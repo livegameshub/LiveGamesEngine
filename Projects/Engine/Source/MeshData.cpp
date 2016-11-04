@@ -10,77 +10,77 @@ namespace lg
 	{
 	}
 
-	const std::vector<glm::f32>& MeshData::getVertices() const
+	const vector<f32>& MeshData::getVertices() const
 	{
 		return mVertices;
 	}
 
-	const std::vector<glm::u16>& MeshData::getIndices() const
+	const vector<u16>& MeshData::getIndices() const
 	{
 		return mIndices;
 	}
 
-	void MeshData::addVertex(const glm::vec3& position)
+	void MeshData::addVertex(const vec3& position)
 	{
 		addVec3(position);
 	}
 
-	void MeshData::addVertex(const glm::vec3& position, const glm::vec3& normal)
+	void MeshData::addVertex(const vec3& position, const vec3& normal)
 	{
 		addVec3(position);
 		addVec3(normal);
 	}
 
-	void MeshData::addVertex(const glm::vec3& position, const glm::vec2& texture)
+	void MeshData::addVertex(const vec3& position, const vec2& texture)
 	{
 		addVec3(position);
 		addVec2(texture);
 	}
 
-	void MeshData::addVertex(const glm::vec3& position, const glm::vec3& normal, const glm::vec2& texture)
+	void MeshData::addVertex(const vec3& position, const vec3& normal, const vec2& texture)
 	{
 		addVec3(position);
 		addVec3(normal);
 		addVec2(texture);
 	}
 
-	void MeshData::addVec3(const glm::vec3& vector)
+	void MeshData::addVec3(const vec3& vector)
 	{
 		mVertices.emplace_back(vector.x);
 		mVertices.emplace_back(vector.y);
 		mVertices.emplace_back(vector.z);
 	}
 
-	void MeshData::addVec2(const glm::vec2& vector)
+	void MeshData::addVec2(const vec2& vector)
 	{
 		mVertices.emplace_back(vector.x);
 		mVertices.emplace_back(vector.y);
 	}
 
-	void MeshData::addPoint(glm::u16 index_0)
+	void MeshData::addPoint(u16 index_0)
 	{
 		mIndices.emplace_back(index_0);
 	}
 
-	void MeshData::addLine(glm::u16 index_0, glm::u16 index_1)
+	void MeshData::addLine(u16 index_0, u16 index_1)
 	{
 		mIndices.emplace_back(index_0);
 		mIndices.emplace_back(index_1);
 	}
 
-	void MeshData::addTriangle(glm::u16 index_0, glm::u16 index_1, glm::u16 index_2)
+	void MeshData::addTriangle(u16 index_0, u16 index_1, u16 index_2)
 	{
 		mIndices.emplace_back(index_0);
 		mIndices.emplace_back(index_1);
 		mIndices.emplace_back(index_2);
 	}
 
-	void MeshData::reserverVertices(glm::u32 size)
+	void MeshData::reserverVertices(u32 size)
 	{
 		mVertices.reserve(size);
 	}
 
-	void MeshData::reserveIndices(glm::u32 size)
+	void MeshData::reserveIndices(u32 size)
 	{
 		mIndices.reserve(size);
 	}

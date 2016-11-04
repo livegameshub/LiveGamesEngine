@@ -22,42 +22,42 @@ namespace lg
 		void load(Resource* resource);
 		void unload(Resource* resource);
 
-		void removeResource(glm::u32 id);
+		void removeResource(u32 id);
 		void addResource(Resource* resource);
 
-		const std::map<glm::u32, Resource*>& getAllResources() const;
+		const map<u32, Resource*>& getAllResources() const;
 
 		/* shaders */
-		Shader* createShader(glm::u32 id, glm::u32 type, const std::string& file);
+		Shader* createShader(u32 id, u32 type, const string& file);
 
 		/* programs */
-		Program* createProgram(glm::u32 id, const std::vector<Shader*> shaders);
+		Program* createProgram(u32 id, const vector<Shader*> shaders);
 
 		/* meshes */
-		Mesh* createMesh(glm::u32 id, const std::string& file);
-		Mesh* createMesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag);
-		Mesh* createMesh(glm::u32 id, const glm::vec2& startPoint, const glm::vec2& size, const glm::vec2& textureSize);
+		Mesh* createMesh(u32 id, const string& file);
+		Mesh* createMesh(u32 id, u32 primitive, u32 drawType, const Flag& flag);
+		Mesh* createMesh(u32 id, const vec2& startPoint, const vec2& size, const vec2& textureSize);
 
 		/*textures */
-		Texture* createTexture(glm::u32 id, const std::string& file, bool generateMipmaps);
+		Texture* createTexture(u32 id, const string& file, bool generateMipmaps);
 
 		/* materials */
-		template <class T> T* createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag = 0);
+		template <class T> T* createMaterial(u32 id, Program* program, Texture* texture, const vec3& diffuse, const Flag& flag = 0);
 
 		/* template methods */
-		template <class T> T* getResource(glm::u32 id) const;
+		template <class T> T* getResource(u32 id) const;
 
-		static glm::u32 getNextAvailableId();
+		static u32 getNextAvailableId();
 		static Resources& getInstance();
 
 	private:
-		std::map<glm::u32, Resource*> mAllResources;
-		std::vector<ResourceContainer> mPendingItems;
+		map<u32, Resource*> mAllResources;
+		vector<ResourceContainer> mPendingItems;
 	};
 
 	/* template class methods - begin */
 	template <class T>
-	T* Resources::createMaterial(glm::u32 id, Program* program, Texture* texture, const glm::vec3& diffuse, const Flag& flag)
+	T* Resources::createMaterial(u32 id, Program* program, Texture* texture, const vec3& diffuse, const Flag& flag)
 	{
 		assert(getResource<T>(id) == nullptr);
 
@@ -76,7 +76,7 @@ namespace lg
 	}
 
 	template <class T>
-	T* Resources::getResource(glm::u32 id) const
+	T* Resources::getResource(u32 id) const
 	{
 		auto it = mAllResources.find(id);
 

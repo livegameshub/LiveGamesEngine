@@ -5,7 +5,7 @@
 
 namespace lg
 {
-	Program::Program(glm::u32 id)
+	Program::Program(u32 id)
 		: Resource(id)
 		, mProgramId(0)
 	{
@@ -42,7 +42,7 @@ namespace lg
 		mShaders.push_back(shader);
 	}
 
-	void Program::removeShader(glm::u32 type)
+	void Program::removeShader(u32 type)
 	{
 		for (auto it = mShaders.begin(); it != mShaders.end(); ++it)
 		{
@@ -54,14 +54,14 @@ namespace lg
 		}
 	}
 
-	void Program::addUniform(const std::string& uniform_name)
+	void Program::addUniform(const string& uniform_name)
 	{
 		assert(mUniforms.find(uniform_name) == mUniforms.end());
 
 		mUniforms.insert({ uniform_name, -1 });
 	}
 
-	void Program::addUniforms(const std::vector<std::string>& uniforms)
+	void Program::addUniforms(const vector<string>& uniforms)
 	{
 		for (auto uniform_name : uniforms)
 		{
@@ -69,54 +69,54 @@ namespace lg
 		}
 	}
 
-	void Program::setUniform(const std::string& uniform_name, const glm::mat4& matrix) const
+	void Program::setUniform(const string& uniform_name, const mat4& matrix) const
 	{
-		glUniformMatrix4fv(mUniforms.at(uniform_name), 1, GL_FALSE, glm::value_ptr(matrix));
+		glUniformMatrix4fv(mUniforms.at(uniform_name), 1, GL_FALSE, value_ptr(matrix));
 	}
 
-	void Program::setUniform(const std::string& uniform_name, const glm::mat3& matrix) const
+	void Program::setUniform(const string& uniform_name, const mat3& matrix) const
 	{
-		glUniformMatrix3fv(mUniforms.at(uniform_name), 1, GL_FALSE, glm::value_ptr(matrix));
+		glUniformMatrix3fv(mUniforms.at(uniform_name), 1, GL_FALSE, value_ptr(matrix));
 	}
 
-	void Program::setUniform(const std::string& uniform_name, const glm::vec3& vector) const
+	void Program::setUniform(const string& uniform_name, const vec3& vector) const
 	{
 		glUniform3f(mUniforms.at(uniform_name), vector.x, vector.y, vector.z);
 	}
 
-	void Program::setUniform(const std::string& uniform_name, const glm::vec2& vector) const
+	void Program::setUniform(const string& uniform_name, const vec2& vector) const
 	{
 		glUniform2f(mUniforms.at(uniform_name), vector.x, vector.y);
 	}
 
-	void Program::setUniform(const std::string& uniform_name, glm::f32 value)
+	void Program::setUniform(const string& uniform_name, f32 value)
 	{
 		glUniform1f(mUniforms.at(uniform_name), value);
 	}
 
-	void Program::setUniform(const std::string& uniform_name, glm::i32 value)
+	void Program::setUniform(const string& uniform_name, i32 value)
 	{
 		glUniform1i(mUniforms.at(uniform_name), value);
 	}
 
-	glm::i32 Program::getAttributeLocation(glm::u32 index) const
+	i32 Program::getAttributeLocation(u32 index) const
 	{
 		assert(index < COUNT);
 
 		return mAttributes[index];
 	}
 
-	const std::map<std::string, glm::i32>& Program::getUniforms() const
+	const map<string, i32>& Program::getUniforms() const
 	{
 		return mUniforms;
 	}
 
-	const glm::i32* Program::getAttributes() const
+	const i32* Program::getAttributes() const
 	{
 		return mAttributes;
 	}
 
-	glm::u32 Program::getProgramId() const
+	u32 Program::getProgramId() const
 	{
 		return mProgramId;
 	}
@@ -125,17 +125,17 @@ namespace lg
 
 	bool Program::linkingStatus() const
 	{
-		glm::i32 result;
+		i32 result;
 
 		glGetProgramiv(mProgramId, GL_LINK_STATUS, &result);
 
 		if (!result)
 		{
-			glm::i32 info;
+			i32 info;
 
 			glGetProgramiv(mProgramId, GL_INFO_LOG_LENGTH, &info);
 
-			std::vector<char> error(glm::max(info, glm::i32(1)));
+			vector<char> error(std::max(info, i32(1)));
 			glGetProgramInfoLog(mProgramId, info, nullptr, &error[0]);
 
 			fprintf(stdout, "%s\n", &error[0]);
@@ -221,7 +221,7 @@ namespace lg
 		{
 			if (it.second == -1)
 			{
-				std::string key = it.first;
+				string key = it.first;
 
 				mUniforms.at(key) = glGetUniformLocation(mProgramId, key.c_str());
 			}

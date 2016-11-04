@@ -19,7 +19,6 @@ namespace lg
 		void draw() const;
 		void drawNode(const Node* node) const;
 		void drawSprite(const Sprite* sprite) const;
-		void drawRenderable(const MeshRenderer* model) const;
 
 		void setScene(const Scene* scene);
 
@@ -28,10 +27,10 @@ namespace lg
 		static void init();
 
 	private:
-		static glm::u32 smCurrentMeshId;
-		static glm::u32 smCurrentProgramId;
-		static glm::u32 smCurrentMaterialId;
-		static glm::u32 smCurrentTextureId;
+		static u32 smCurrentMeshId;
+		static u32 smCurrentProgramId;
+		static u32 smCurrentMaterialId;
+		static u32 smCurrentTextureId;
 		static bool smIsDrawing2d;
 
 		const Scene* mScene;

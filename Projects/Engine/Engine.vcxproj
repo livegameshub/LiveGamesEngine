@@ -127,8 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Component.h" />
     <ClInclude Include="Source\Font.h" />
+    <ClInclude Include="Source\FontCharacter.h" />
     <ClInclude Include="Source\Object.h" />
     <ClInclude Include="Source\MaterialUtil.h" />
     <ClInclude Include="Source\Resource.h" />
@@ -165,8 +165,8 @@
     <ClInclude Include="Source\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Component.cpp" />
     <ClCompile Include="Source\Font.cpp" />
+    <ClCompile Include="Source\FontCharacter.cpp" />
     <ClCompile Include="Source\Object.cpp" />
     <ClCompile Include="Source\Resource.cpp" />
     <ClCompile Include="Source\ResourceContainer.cpp" />

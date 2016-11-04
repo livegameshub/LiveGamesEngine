@@ -7,17 +7,17 @@ namespace lg
 	{
 	}
 
-	Flag::Flag(glm::u32 value)
+	Flag::Flag(u32 value)
 		: mValue(value)
 	{
 	}
 
-	void Flag::add(glm::u32 value)
+	void Flag::add(u32 value)
 	{
 		mValue |= value;
 	}
 
-	void Flag::remove(glm::u32 value)
+	void Flag::remove(u32 value)
 	{
 		mValue &= ~value;
 	}
@@ -50,12 +50,12 @@ namespace lg
 		return *this;
 	}
 
-	bool Flag::isSet(glm::u32 flag) const
+	bool Flag::isSet(u32 flag) const
 	{
 		return (mValue & flag) == flag;
 	}
 
-	Flag::operator glm::u32() const
+	Flag::operator u32() const
 	{
 		return mValue;
 	}

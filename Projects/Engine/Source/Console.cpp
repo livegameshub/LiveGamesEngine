@@ -6,9 +6,9 @@
 
 namespace lg
 {
-	glm::u32 Console::smCurrentMsgType = INFO_MSG;
+	u32 Console::smCurrentMsgType = INFO_MSG;
 
-	void Console::write(const std::string& message, MsgType msgType)
+	void Console::write(const string& message, MsgType msgType)
 	{
 		if (smCurrentMsgType != msgType)
 		{
@@ -19,7 +19,7 @@ namespace lg
 			smCurrentMsgType = msgType;
 		}
 
-		std::cout << message << std::endl;
+		cout << message << endl;
 	}
 }
 

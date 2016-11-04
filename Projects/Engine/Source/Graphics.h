@@ -19,20 +19,20 @@ namespace lg
 		static void checkApiVersion();
 		static void checkMaxSamples();
 
-		static glm::i32 getMajorApiVersion();
-		static glm::i32 getMinorApiVersion();
+		static i32 getMajorApiVersion();
+		static i32 getMinorApiVersion();
 			   
-		static glm::i32 getMajorApiShaderVersion();
-		static glm::i32 getMinorApiShaderVersion();
+		static i32 getMajorApiShaderVersion();
+		static i32 getMinorApiShaderVersion();
 
 	private:
-		static glm::i32 smMajorApiVersion;
-		static glm::i32 smMinorApiVersion;
+		static i32 smMajorApiVersion;
+		static i32 smMinorApiVersion;
 			   
-		static glm::i32 smMajorApiShaderVersion;
-		static glm::i32 smMinorApiShaderVersion;
+		static i32 smMajorApiShaderVersion;
+		static i32 smMinorApiShaderVersion;
 			   
-		static glm::i32 smMaxSamples;
+		static i32 smMaxSamples;
 	};
 }
 

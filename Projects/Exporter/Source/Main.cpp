@@ -3,34 +3,42 @@
 int main()
 {
 	int option;
-	std::string file;
+	string file;
+
+	bool tryAgain = true;
 	
-	std::cout << "Insert your file: ";
-	std::cin >> file;
-
-	std::cout << "1 - Texture" << std::endl;
-	std::cout << "2 - Model" << std::endl;
-	std::cout << "3 - Font" << std::endl;
-
-	std::cin >> option;
-
-	switch(option)
+	while (tryAgain)
 	{
-		case 1:
+		cout << "Insert your file: ";
+		cin >> file;
+
+		cout << "1 - Texture" << endl;
+		cout << "2 - Model" << endl;
+		cout << "3 - Font" << endl;
+
+		cin >> option;
+
+		switch (option)
 		{
-			lg::Exporter::ExportTexture(file);
-			break;
+			case 1:
+			{
+				lg::Exporter::ExportTexture(file);
+				break;
+			}
+			case 2:
+			{
+				lg::Exporter::ExportModel(file);
+				break;
+			}
+			case 3:
+			{
+				lg::Exporter::ExportFont(file);
+				break;
+			}
 		}
-		case 2:
-		{
-			lg::Exporter::ExportModel(file);
-			break;
-		}
-		case 3:
-		{
-			lg::Exporter::ExportFont(file);
-			break;
-		}
+
+		cout << "Export another file? ";
+		cin >> tryAgain;
 	}
 
 	system("PAUSE");

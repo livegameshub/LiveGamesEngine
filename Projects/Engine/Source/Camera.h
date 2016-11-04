@@ -8,58 +8,56 @@ namespace lg
 	class ENGINE_API Camera : public Node
 	{
 	public:
-		enum CameraFlag : glm::u32
+		enum CameraFlag : u32
 		{
-			REBUILD_VIEW_MATRIX = 4,
-			REBUILD_ORTHO_MATRIX = 8,
-			REBUILD_PERSPECTIVE_MATRIX = 16
+			REBUILD_VIEW_MATRIX = 1,
+			REBUILD_ORTHO_MATRIX = 2,
+			REBUILD_PERSPECTIVE_MATRIX = 4
 		};
 
-		Camera(glm::u32 id);
-		Camera(glm::u32 id, glm::f32 fov, glm::f32 near, glm::f32 far);
-
+		Camera(u32 id, i32 type);
 		~Camera();
 
 		void update() override;
 
-		void rotateOnX(glm::f32 amount);
-		void rotateOnY(glm::f32 amount);
-		void rotateOnZ(glm::f32 amount);
-		void moveForward(glm::f32 amount);
+		void rotateOnX(f32 amount);
+		void rotateOnY(f32 amount);
+		void rotateOnZ(f32 amount);
+		void moveForward(f32 amount);
 
-		void lookAt(const glm::vec3& target);
-		void moveAt(const glm::vec3& position);
+		void lookAt(const vec3& target);
+		void moveAt(const vec3& position);
 		
 		bool hasCustomViewSize() const;
 		void hasCustomViewSize(bool value);
 
-		void setFov(glm::f32 value);
-		void setNearPlane(glm::f32 value);
-		void setFarPlane(glm::f32 value);
-		void setViewSize(const glm::vec2& size);
+		void setFov(f32 value);
+		void setNearPlane(f32 value);
+		void setFarPlane(f32 value);
+		void setViewSize(const vec2& size);
 
-		static const glm::mat4& getOrthoMatrix();
-		const glm::mat4& getPerspecitiveMatrix() const;
-		const glm::mat4& getViewMatrix() const;
+		static const mat4& getOrthoMatrix();
+		const mat4& getPerspecitiveMatrix() const;
+		const mat4& getViewMatrix() const;
 
-		const glm::vec2& getViewSize() const;
-		glm::f32 getNearPlane() const;
-		glm::f32 getFarPlane() const;
-		glm::f32 getFov() const;
+		const vec2& getViewSize() const;
+		f32 getNearPlane() const;
+		f32 getFarPlane() const;
+		f32 getFov() const;
 
 	private:
 		bool mHasCustomViewSize;
 
-		static glm::mat4 smOrthoMatrix;
+		static mat4 smOrthoMatrix;
 
-		glm::mat4 mPerspectiveMatrix;
-		glm::mat4 mViewMatrix;
+		mat4 mPerspectiveMatrix;
+		mat4 mViewMatrix;
 
-		glm::vec2 mViewSize;
+		vec2 mViewSize;
 
-		glm::f32 mNearPlane;
-		glm::f32 mFarPlane;
-		glm::f32 mFov;
+		f32 mNearPlane;
+		f32 mFarPlane;
+		f32 mFov;
 	};
 }
 

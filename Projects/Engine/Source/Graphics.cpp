@@ -2,13 +2,13 @@
 
 namespace lg
 {
-	glm::i32 Graphics::smMinorApiVersion;
-	glm::i32 Graphics::smMajorApiVersion;
+	i32 Graphics::smMinorApiVersion;
+	i32 Graphics::smMajorApiVersion;
 
-	glm::i32 Graphics::smMajorApiShaderVersion;
-	glm::i32 Graphics::smMinorApiShaderVersion;
+	i32 Graphics::smMajorApiShaderVersion;
+	i32 Graphics::smMinorApiShaderVersion;
 
-	glm::i32 Graphics::smMaxSamples;
+	i32 Graphics::smMaxSamples;
 
 	bool Graphics::initApi()
 	{
@@ -20,12 +20,12 @@ namespace lg
 		glGetIntegerv(GL_MAJOR_VERSION, &smMajorApiVersion);
 		glGetIntegerv(GL_MINOR_VERSION, &smMinorApiVersion);
 
-		const glm::u8* glsl = glGetString(GL_SHADING_LANGUAGE_VERSION);
+		const u8* glsl = glGetString(GL_SHADING_LANGUAGE_VERSION);
 
 		if (glsl)
 		{
-			smMajorApiShaderVersion = std::atoi(reinterpret_cast<const char*>(&glsl[0]));
-			smMinorApiShaderVersion = std::atoi(reinterpret_cast<const char*>(&glsl[2]));
+			smMajorApiShaderVersion = atoi(reinterpret_cast<const char*>(&glsl[0]));
+			smMinorApiShaderVersion = atoi(reinterpret_cast<const char*>(&glsl[2]));
 		}
 	}
 
@@ -34,22 +34,22 @@ namespace lg
 		glGetIntegerv(GL_MAX_SAMPLES, &smMaxSamples);
 	}
 
-	glm::i32 Graphics::getMajorApiVersion()
+	i32 Graphics::getMajorApiVersion()
 	{
 		return smMajorApiVersion;
 	}
 
-	glm::i32 Graphics::getMinorApiVersion()
+	i32 Graphics::getMinorApiVersion()
 	{
 		return smMinorApiVersion;
 	}
 
-	glm::i32 Graphics::getMajorApiShaderVersion()
+	i32 Graphics::getMajorApiShaderVersion()
 	{
 		return smMajorApiShaderVersion;
 	}
 
-	glm::i32 Graphics::getMinorApiShaderVersion()
+	i32 Graphics::getMinorApiShaderVersion()
 	{
 		return smMinorApiShaderVersion;
 	}

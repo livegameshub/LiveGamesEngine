@@ -38,29 +38,38 @@
     <Filter Include="Source\Resources\Manager">
       <UniqueIdentifier>{397bc825-2b17-4f03-b169-62dc5f8c6014}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scenes">
-      <UniqueIdentifier>{58461698-bd53-497d-8c84-77f276896767}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Scenes\Nodes">
-      <UniqueIdentifier>{ce7af95c-e610-4c2c-b61a-3b4dcf8d7ad5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Scenes\Components">
-      <UniqueIdentifier>{dda57daa-1736-4111-bb2b-fdf6af53b405}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Scenes\Manager">
-      <UniqueIdentifier>{c491d7ca-8fa1-45bc-a4ce-f344e2661e72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Scenes\Nodes\Lights">
-      <UniqueIdentifier>{7d0b0788-af38-47aa-b491-e6a16c57a7b9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Resources\Util">
       <UniqueIdentifier>{ad0d0e63-79fd-4f01-8a1e-3a6e8077d3a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Resources\Textures">
       <UniqueIdentifier>{a739b88d-e72a-4dd9-8597-103d0bd32bb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Scenes\Nodes\Sprites">
+    <Filter Include="Source\Resources\Fonts">
+      <UniqueIdentifier>{9bcd1da1-05d3-41e6-8738-424ac44ad3d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene">
+      <UniqueIdentifier>{58461698-bd53-497d-8c84-77f276896767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Nodes">
+      <UniqueIdentifier>{ce7af95c-e610-4c2c-b61a-3b4dcf8d7ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Nodes\Lights">
+      <UniqueIdentifier>{7d0b0788-af38-47aa-b491-e6a16c57a7b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Components">
+      <UniqueIdentifier>{dda57daa-1736-4111-bb2b-fdf6af53b405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Manager">
+      <UniqueIdentifier>{c491d7ca-8fa1-45bc-a4ce-f344e2661e72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Sprites">
       <UniqueIdentifier>{77632d99-3cf4-406f-becf-356f79c20e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Components\Sprites">
+      <UniqueIdentifier>{f362a2ed-d809-4b6d-b92f-347fbb21104e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene\Components\Nodes">
+      <UniqueIdentifier>{352de230-27fc-4283-be42-80a74eb38828}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -107,25 +116,19 @@
       <Filter>Source\Resources\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scenes.h">
-      <Filter>Source\Scenes\Manager</Filter>
+      <Filter>Source\Scene\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Source\DiffuseMaterial.h">
       <Filter>Source\Resources\Materials</Filter>
     </ClInclude>
     <ClInclude Include="Source\Camera.h">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Node.h">
-      <Filter>Source\Scenes\Nodes</Filter>
+      <Filter>Source\Scene\Nodes</Filter>
     </ClInclude>
     <ClInclude Include="Source\Light.h">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
+      <Filter>Source\Scene\Nodes\Lights</Filter>
     </ClInclude>
     <ClInclude Include="Source\DirectionalLight.h">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Transform.h">
-      <Filter>Source\Scenes\Components</Filter>
+      <Filter>Source\Scene\Nodes\Lights</Filter>
     </ClInclude>
     <ClInclude Include="Source\Shader.h">
       <Filter>Source\Resources</Filter>
@@ -140,10 +143,7 @@
       <Filter>Source\Resources\Materials</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scene.h">
-      <Filter>Source\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Component.h">
-      <Filter>Source\Scenes\Components</Filter>
+      <Filter>Source\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Source\Resource.h">
       <Filter>Source\Resources</Filter>
@@ -160,17 +160,26 @@
     <ClInclude Include="Source\Object.h">
       <Filter>Source\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MeshRenderer.h">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Sprite.h">
-      <Filter>Source\Scenes\Nodes\Sprites</Filter>
+      <Filter>Source\Scene\Sprites</Filter>
     </ClInclude>
     <ClInclude Include="Source\Text.h">
-      <Filter>Source\Scenes\Nodes\Sprites</Filter>
+      <Filter>Source\Scene\Sprites</Filter>
     </ClInclude>
     <ClInclude Include="Source\Font.h">
-      <Filter>Source\Resources</Filter>
+      <Filter>Source\Resources\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FontCharacter.h">
+      <Filter>Source\Resources\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Node.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MeshRenderer.h">
+      <Filter>Source\Scene\Components\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transform.h">
+      <Filter>Source\Scene\Components\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -211,25 +220,19 @@
       <Filter>Source\Resources\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Source\Scenes.cpp">
-      <Filter>Source\Scenes\Manager</Filter>
+      <Filter>Source\Scene\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Source\DiffuseMaterial.cpp">
       <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
     <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Node.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
+      <Filter>Source\Scene\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="Source\Light.cpp">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
+      <Filter>Source\Scene\Nodes\Lights</Filter>
     </ClCompile>
     <ClCompile Include="Source\DirectionalLight.cpp">
-      <Filter>Source\Scenes\Nodes\Lights</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Transform.cpp">
-      <Filter>Source\Scenes\Components</Filter>
+      <Filter>Source\Scene\Nodes\Lights</Filter>
     </ClCompile>
     <ClCompile Include="Source\Shader.cpp">
       <Filter>Source\Resources</Filter>
@@ -244,10 +247,7 @@
       <Filter>Source\Resources\Materials</Filter>
     </ClCompile>
     <ClCompile Include="Source\Scene.cpp">
-      <Filter>Source\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Component.cpp">
-      <Filter>Source\Scenes\Components</Filter>
+      <Filter>Source\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\Resource.cpp">
       <Filter>Source\Resources</Filter>
@@ -261,17 +261,26 @@
     <ClCompile Include="Source\Object.cpp">
       <Filter>Source\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MeshRenderer.cpp">
-      <Filter>Source\Scenes\Nodes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Sprite.cpp">
-      <Filter>Source\Scenes\Nodes\Sprites</Filter>
+      <Filter>Source\Scene\Sprites</Filter>
     </ClCompile>
     <ClCompile Include="Source\Text.cpp">
-      <Filter>Source\Scenes\Nodes\Sprites</Filter>
+      <Filter>Source\Scene\Sprites</Filter>
     </ClCompile>
     <ClCompile Include="Source\Font.cpp">
-      <Filter>Source\Resources</Filter>
+      <Filter>Source\Resources\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FontCharacter.cpp">
+      <Filter>Source\Resources\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Node.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MeshRenderer.cpp">
+      <Filter>Source\Scene\Components\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transform.cpp">
+      <Filter>Source\Scene\Components\Nodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

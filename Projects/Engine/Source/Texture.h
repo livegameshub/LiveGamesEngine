@@ -8,18 +8,18 @@ namespace lg
 	class ENGINE_API Texture : public Resource
 	{
 	public:
-		Texture(glm::u32 id);
-		Texture(glm::u32 id, const std::string& file, bool generateMipmaps);
+		Texture(u32 id);
+		Texture(u32 id, const string& file, bool generateMipmaps);
 
 		~Texture();
 
 		void bind() const;
 
-		const glm::ivec2& getSize() const;
-		glm::u32 getTextureFormat() const;
-		glm::u32 getTextureId() const;
+		const ivec2& getSize() const;
+		u32 getTextureFormat() const;
+		u32 getTextureId() const;
 		
-		static void Activate(glm::u32 index);
+		static void Activate(u32 index);
 
 	private:
 		bool create() override;
@@ -27,10 +27,10 @@ namespace lg
 
 		bool mGenerateMipmaps;
 
-		glm::ivec2 mSize;
-		glm::u32 mTextureId;
-		glm::u32 mFormat;
-		glm::u32 mBits;
+		ivec2 mSize;
+		u32 mTextureId;
+		u32 mFormat;
+		u32 mBits;
 	};
 }
 

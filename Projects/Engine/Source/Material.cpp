@@ -5,7 +5,7 @@
 
 namespace lg
 {
-	Material::Material(glm::u32 id, const Flag& flag)
+	Material::Material(u32 id, const Flag& flag)
 		: Resource(id, flag)
 		, mDiffuseTexture(nullptr)
 		, mProgram(nullptr)
@@ -13,7 +13,7 @@ namespace lg
 	{
 	}
 
-	Material::Material(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
+	Material::Material(u32 id, const vec3& diffuse, const Flag& flag)
 		: Resource(id, flag)
 		, mDiffuseTexture(nullptr)
 		, mProgram(nullptr)
@@ -30,7 +30,7 @@ namespace lg
 		mProgram->setUniform(UNIFORM_MATERIAL_DIFFUSE, mDiffuseColor);
 	}
 
-	const glm::vec3& Material::getDiffuseColor() const
+	const vec3& Material::getDiffuseColor() const
 	{
 		return mDiffuseColor;
 	}
@@ -59,7 +59,7 @@ namespace lg
 		return mDiffuseTexture;
 	}
 
-	void Material::setDiffuseColor(const glm::vec3& color)
+	void Material::setDiffuseColor(const vec3& color)
 	{
 		mDiffuseColor = color;
 	}

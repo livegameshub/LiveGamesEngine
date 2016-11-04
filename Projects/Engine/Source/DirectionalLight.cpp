@@ -2,15 +2,8 @@
 
 namespace lg
 {
-	DirectionalLight::DirectionalLight(glm::u32 id, const glm::vec3& direction)
-		: Light(id, DIRECTIONAL_LIGHT)
-		, mDirection(direction)
-	{
-	}
-
-	DirectionalLight::DirectionalLight(glm::u32 id, const glm::vec3& direction, const glm::vec3& diffuse, const glm::vec3& specular)
-		: Light(id, DIRECTIONAL_LIGHT, diffuse, specular)
-		, mDirection(direction)
+	DirectionalLight::DirectionalLight(u32 id, i32 type)
+		: Light(id, type)
 	{
 	}
 
@@ -18,12 +11,12 @@ namespace lg
 	{
 	}
 
-	void DirectionalLight::setDirection(const glm::vec3& direction)
+	void DirectionalLight::setDirection(const vec3& direction)
 	{
 		mDirection = direction;
 	}
 
-	const glm::vec3& DirectionalLight::getDirection() const
+	const vec3& DirectionalLight::getDirection() const
 	{
 		return mDirection;
 	}

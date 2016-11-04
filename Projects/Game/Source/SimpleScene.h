@@ -9,7 +9,7 @@ class SimpleScene : public lg::Scene
 {
 public:
 	SimpleScene();
-	SimpleScene(const glm::vec3& ambientLight);
+	SimpleScene(const vec3& ambientLight);
 
 	~SimpleScene();
 
@@ -17,7 +17,7 @@ public:
 	void update() override;
 
 private:
-	std::vector<lg::MeshRenderer*> mPrimitives;
+	vector<lg::Node*> mPrimitives;
 
 	lg::DirectionalLight* mDirectionalLight;
 	lg::Camera* mCamera;

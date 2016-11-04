@@ -6,14 +6,14 @@
 
 namespace lg
 {
-	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const Flag& flag)
+	DiffuseMaterial::DiffuseMaterial(u32 id, const Flag& flag)
 		: Material(id, flag)
 		, mSpecularColor(MATERIAL_DEFAULT_SPECULAR_COLOR)
 		, mSpecularShininess(MATERIAL_DEFAULT_SHININESS)
 	{
 	}
 
-	DiffuseMaterial::DiffuseMaterial(glm::u32 id, const glm::vec3& diffuse, const Flag& flag)
+	DiffuseMaterial::DiffuseMaterial(u32 id, const vec3& diffuse, const Flag& flag)
 		: Material(id, diffuse, flag)
 		, mSpecularColor(MATERIAL_DEFAULT_SPECULAR_COLOR)
 		, mSpecularShininess(MATERIAL_DEFAULT_SHININESS)
@@ -35,7 +35,7 @@ namespace lg
 		}
 		else
 		{
-			mProgram->setUniform(UNIFORM_MATERIAL_SPECULAR, glm::vec3());
+			mProgram->setUniform(UNIFORM_MATERIAL_SPECULAR, vec3());
 		}
 	}
 
@@ -50,22 +50,22 @@ namespace lg
 		}
 	}
 
-	void DiffuseMaterial::setSpecularColor(const glm::vec3& color)
+	void DiffuseMaterial::setSpecularColor(const vec3& color)
 	{
 		mSpecularColor = color;
 	}
 
-	void DiffuseMaterial::setSpecularShininess(glm::f32 value)
+	void DiffuseMaterial::setSpecularShininess(f32 value)
 	{
 		mSpecularShininess = value;
 	}
 
-	const glm::vec3& DiffuseMaterial::getSpecularColor() const
+	const vec3& DiffuseMaterial::getSpecularColor() const
 	{
 		return mSpecularColor;
 	}
 
-	glm::f32 DiffuseMaterial::getSpecularShininess() const
+	f32 DiffuseMaterial::getSpecularShininess() const
 	{
 		return mSpecularShininess;
 	}

@@ -11,28 +11,28 @@ namespace lg
 		MeshData();
 		~MeshData();
 
-		const std::vector<glm::f32>& getVertices() const;
-		const std::vector<glm::u16>& getIndices() const;
+		const vector<f32>& getVertices() const;
+		const vector<u16>& getIndices() const;
 
-		void addVec2(const glm::vec2& vector);
-		void addVec3(const glm::vec3& vector);
+		void addVec2(const vec2& vector);
+		void addVec3(const vec3& vector);
 
-		void addVertex(const glm::vec3& position);
-		void addVertex(const glm::vec3& position, const glm::vec3& normal);
-		void addVertex(const glm::vec3& position, const glm::vec2& texture);
-		void addVertex(const glm::vec3& position, const glm::vec3& normal, const glm::vec2& texture);
+		void addVertex(const vec3& position);
+		void addVertex(const vec3& position, const vec3& normal);
+		void addVertex(const vec3& position, const vec2& texture);
+		void addVertex(const vec3& position, const vec3& normal, const vec2& texture);
 
-		void addPoint(glm::u16 index_0);
-		void addLine(glm::u16 index_0, glm::u16 index_1);
-		void addTriangle(glm::u16 index_0, glm::u16 index_1, glm::u16 index_2);
+		void addPoint(u16 index_0);
+		void addLine(u16 index_0, u16 index_1);
+		void addTriangle(u16 index_0, u16 index_1, u16 index_2);
 
-		void reserverVertices(glm::u32 size);
-		void reserveIndices(glm::u32 size);
+		void reserverVertices(u32 size);
+		void reserveIndices(u32 size);
 		void clearData();
 
 	private:
-		std::vector<glm::f32> mVertices;
-		std::vector<glm::u16> mIndices;
+		vector<f32> mVertices;
+		vector<u16> mIndices;
 	};
 }
 

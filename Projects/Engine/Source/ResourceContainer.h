@@ -7,7 +7,7 @@ namespace lg
 {
 	struct ENGINE_API ResourceContainer
 	{
-		enum ResourceContainerAction : glm::u32
+		enum ResourceContainerAction : u32
 		{
 			LOAD_ACTION = 1,
 			UNLOAD_ACTION = 2

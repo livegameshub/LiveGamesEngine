@@ -2,9 +2,7 @@
 
 namespace lg
 {
-	Sprite::Sprite(glm::u32 id, const glm::vec2& size)
-		: MeshRenderer(id, SPRITE)
-		, mSize(size)
+	Sprite::Sprite(u32 id, i32 type)
 	{
 	}
 
@@ -12,7 +10,12 @@ namespace lg
 	{
 	}
 
-	const glm::vec2& Sprite::getSize() const
+	void Sprite::setSize(const vec2& size)
+	{
+		mSize = size;
+	}
+
+	const vec2& Sprite::getSize() const
 	{
 		return mSize;
 	}

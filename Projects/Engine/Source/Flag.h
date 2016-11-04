@@ -8,10 +8,10 @@ namespace lg
 	struct ENGINE_API Flag
 	{
 		Flag();
-		Flag(glm::u32 value);
+		Flag(u32 value);
 
-		void add(glm::u32 value);
-		void remove(glm::u32 value);
+		void add(u32 value);
+		void remove(u32 value);
 
 		Flag operator+(const Flag& flag) const;
 		Flag operator-(const Flag& flag) const;
@@ -19,14 +19,14 @@ namespace lg
 		Flag& operator+=(const Flag& flag);
 		Flag& operator-=(const Flag& flag);
 
-		operator glm::u32() const;
+		operator u32() const;
 
-		bool isSet(glm::u32 flag) const;
+		bool isSet(u32 flag) const;
 
 		void reset();
 
 	private:
-		glm::u32 mValue;
+		u32 mValue;
 	};
 }
 

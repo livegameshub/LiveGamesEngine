@@ -4,22 +4,22 @@
 
 namespace lg
 {
-	Mesh::Mesh(glm::u32 id, glm::u32 primitive, glm::u32 drawType, const Flag& flag)
+	Mesh::Mesh(u32 id, u32 primitive, u32 drawType, const Flag& flag)
 		: Resource(id, flag)
 		, mNormalOffset(0)
 		, mTextureOffset(0)
-		, mVertexSize(sizeof(glm::vec3))
+		, mVertexSize(sizeof(vec3))
 		, mIndicesSize(0)
 		, mPrimitive(primitive)
 		, mDrawType(drawType)
 	{
 	}
 
-	Mesh::Mesh(glm::u32 id, const std::string& file)
+	Mesh::Mesh(u32 id, const string& file)
 		: Resource(id, file)
 		, mNormalOffset(0)
 		, mTextureOffset(0)
-		, mVertexSize(sizeof(glm::vec3))
+		, mVertexSize(sizeof(vec3))
 		, mIndicesSize(0)
 		, mPrimitive(0)
 		, mDrawType(STATIC_DRAW)
@@ -40,17 +40,17 @@ namespace lg
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBuffers[IBO_BUFFER]);
 	}
 
-	glm::u32 Mesh::getIndicesSize() const
+	u32 Mesh::getIndicesSize() const
 	{
 		return mIndicesSize;
 	}
 
-	glm::u32 Mesh::getPrimitive() const
+	u32 Mesh::getPrimitive() const
 	{
 		return mPrimitive;
 	}
 
-	glm::u32 Mesh::getDrawType() const
+	u32 Mesh::getDrawType() const
 	{
 		return mDrawType;
 	}
@@ -60,9 +60,9 @@ namespace lg
 		return mData;
 	}
 
-	glm::u32 Mesh::calculateVerticesArraySize(glm::u32 size) const
+	u32 Mesh::calculateVerticesArraySize(u32 size) const
 	{
-		glm::u32 reserve_size = 3;
+		u32 reserve_size = 3;
 
 		if (mFlag.isSet(USE_NORMALS))
 		{
@@ -74,15 +74,15 @@ namespace lg
 
 	bool Mesh::readDataFromFile()
 	{
-		std::ifstream read(ASSETS_PATH + mResourceFile, std::ios::in);
+		ifstream read(ASSETS_PATH + mResourceFile, ios::in);
 
 		if (!read.is_open())
 		{
 			return false;
 		}
 
-		glm::u32 flag;
-		glm::u32 vertices_size;
+		u32 flag;
+		u32 vertices_size;
 
 		read >> flag;
 		read >> mPrimitive;
@@ -92,10 +92,10 @@ namespace lg
 
 		mData.reserverVertices(calculateVerticesArraySize(vertices_size));
 
-		for (glm::u32 i = 0; i < vertices_size; ++i)
+		for (u32 i = 0; i < vertices_size; ++i)
 		{
 			// by default we have a position vector
-			glm::vec3 position;
+			vec3 position;
 
 			read >> position.x >> position.y >> position.z;
 
@@ -104,7 +104,7 @@ namespace lg
 			// read the normal vector
 			if (mFlag.isSet(USE_NORMALS))
 			{
-				glm::vec3 normal;
+				vec3 normal;
 
 				read >> normal.x >> normal.y >> normal.z;
 
@@ -114,7 +114,7 @@ namespace lg
 			// read the texture vector
 			if (mFlag.isSet(USE_TEXTURES))
 			{
-				glm::vec2 texture;
+				vec2 texture;
 
 				read >> texture.x >> texture.y;
 
@@ -122,14 +122,14 @@ namespace lg
 			}
 		}
 
-		glm::u16 index;
-		glm::u32 indices_size;
+		u16 index;
+		u32 indices_size;
 
 		read >> indices_size;
 
 		mData.reserveIndices(indices_size);
 
-		for (glm::u32 i = 0; i < indices_size; ++i)
+		for (u32 i = 0; i < indices_size; ++i)
 		{
 			read >> index;
 
@@ -180,7 +180,7 @@ namespace lg
 		return true;
 	}
 
-	glm::u32 Mesh::getVertexSize() const
+	u32 Mesh::getVertexSize() const
 	{
 		return mVertexSize;
 	}
@@ -208,14 +208,14 @@ namespace lg
 		if (mFlag.isSet(USE_NORMALS))
 		{
 			mNormalOffset = mVertexSize;
-			mVertexSize += sizeof(glm::vec3);
+			mVertexSize += sizeof(vec3);
 		}
 
 		// check if we have textures
 		if(mFlag.isSet(USE_TEXTURES))
 		{
 			mTextureOffset = mVertexSize;
-			mVertexSize += sizeof(glm::vec2);
+			mVertexSize += sizeof(vec2);
 		}
 	}
 
@@ -224,10 +224,10 @@ namespace lg
 		calculateVertexSize();
 
 		bindVbo();
-		glBufferData(GL_ARRAY_BUFFER, meshData.getVertices().size() * sizeof(glm::f32), &meshData.getVertices()[0], mDrawType);
+		glBufferData(GL_ARRAY_BUFFER, meshData.getVertices().size() * sizeof(f32), &meshData.getVertices()[0], mDrawType);
 
 		bindIbo();
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, meshData.getIndices().size() * sizeof(glm::u16), &meshData.getIndices()[0], mDrawType);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, meshData.getIndices().size() * sizeof(u16), &meshData.getIndices()[0], mDrawType);
 
 		mIndicesSize = meshData.getIndices().size();
 	}
@@ -241,7 +241,7 @@ namespace lg
 
 		glDeleteBuffers(COUNT, &mBuffers[0]);
 
-		for (glm::u32 i = 0; i < COUNT; ++i)
+		for (u32 i = 0; i < COUNT; ++i)
 		{
 			mBuffers[i] = 0;
 		}
@@ -249,11 +249,11 @@ namespace lg
 		return true;
 	}
 
-	void Mesh::uploadAttributes(const glm::i32* attributes) const
+	void Mesh::uploadAttributes(const i32* attributes) const
 	{
-		glm::i32 position = attributes[Program::AttributeIndex::POSITION];
-		glm::i32 normal = attributes[Program::AttributeIndex::NORMAL];
-		glm::i32 texture = attributes[Program::AttributeIndex::TEXTURE];
+		i32 position = attributes[Program::AttributeIndex::POSITION];
+		i32 normal = attributes[Program::AttributeIndex::NORMAL];
+		i32 texture = attributes[Program::AttributeIndex::TEXTURE];
 
 		if (position >= 0)
 		{

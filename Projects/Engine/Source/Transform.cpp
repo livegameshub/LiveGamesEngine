@@ -3,20 +3,19 @@
 namespace lg
 {
 	Transform::Transform()
-		: Component()
-		, mParent(nullptr)
+		: mParent(nullptr)
 		, mHasUniformScale(true)
 		, mScale(1.0f)
 	{
 	}
 
-	Transform::Transform(const glm::vec3& position, const glm::quat& orientation, const glm::vec3& scale)
-		: Component(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
-		, mParent(nullptr)
+	Transform::Transform(const vec3& position, const quat& orientation, const vec3& scale)
+		: mParent(nullptr)
 		, mHasUniformScale(true)
 		, mOrientation(orientation)
 		, mPosition(position)
 		, mScale(scale)
+		, mFlag(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION)
 	{
 	}
 
@@ -30,13 +29,13 @@ namespace lg
 		{
 			/* rebuild the matrix every time */
 
-			mMatrix = glm::mat4();
+			mMatrix = mat4();
 
 			mMatrix[0].x = mScale.x;
 			mMatrix[1].y = mScale.y;
 			mMatrix[2].z = mScale.z;
 
-			mMatrix = glm::mat4_cast(mOrientation) * mMatrix;
+			mMatrix = mat4_cast(mOrientation) * mMatrix;
 
 			mFlag -= NEW_ROTATION_SCALE_MATRIX;
 		}
@@ -55,9 +54,9 @@ namespace lg
 	{
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 
-		mScale = glm::vec3(1.0f);
-		mOrientation = glm::quat();
-		mPosition = glm::vec3();
+		mScale = vec3(1.0f);
+		mOrientation = quat();
+		mPosition = vec3();
 	}
 
 	void Transform::setParent(Transform* transform)
@@ -65,84 +64,84 @@ namespace lg
 		mParent = transform;
 	}
 
-	void Transform::translate(const glm::vec3& amount)
+	void Transform::translate(const vec3& amount)
 	{
 		mPosition += amount;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void Transform::rotate(const glm::vec3& axis, glm::f32 angle)
+	void Transform::rotate(const vec3& axis, f32 angle)
 	{
-		mOrientation = glm::angleAxis(glm::radians(angle), axis);
+		mOrientation = angleAxis(radians(angle), axis);
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::rotate(const glm::vec3& angles)
+	void Transform::rotate(const vec3& angles)
 	{
-		mOrientation = glm::quat(glm::radians(angles));
+		mOrientation = quat(radians(angles));
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::rotateOnX(glm::f32 angle)
+	void Transform::rotateOnX(f32 angle)
 	{
 		rotate(VECTOR_RIGHT, angle);
 	}
 
-	void Transform::rotateOnY(glm::f32 angle)
+	void Transform::rotateOnY(f32 angle)
 	{
 		rotate(VECTOR_UP, angle);
 	}
 
-	void Transform::rotateOnZ(glm::f32 angle)
+	void Transform::rotateOnZ(f32 angle)
 	{
 		rotate(-VECTOR_FORWARD, angle);
 	}
 
-	void Transform::Scale(const glm::vec3& scale)
+	void Transform::Scale(const vec3& scale)
 	{
 		mScale = scale;
 
-		mHasUniformScale = glm::abs(mScale.x - mScale.y) <= glm::epsilon<glm::f32>() &&
-						   glm::abs(mScale.y - mScale.z) <= glm::epsilon<glm::f32>();
+		mHasUniformScale = abs(mScale.x - mScale.y) <= epsilon<f32>() &&
+						   abs(mScale.y - mScale.z) <= epsilon<f32>();
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::setOrientation(const glm::quat& orientation)
+	void Transform::setOrientation(const quat& orientation)
 	{
 		mOrientation = orientation;
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	void Transform::setPosition(const glm::vec3& position)
+	void Transform::setPosition(const vec3& position)
 	{
 		mPosition = position;
 
 		mFlag += NEW_POSITION;
 	}
 
-	void Transform::setScale(const glm::vec3& scale)
+	void Transform::setScale(const vec3& scale)
 	{
 		mScale = scale;
 
 		mFlag.add(NEW_ROTATION_SCALE_MATRIX | NEW_POSITION);
 	}
 
-	const glm::quat& Transform::getOrientation() const
+	const quat& Transform::getOrientation() const
 	{
 		return mOrientation;
 	}
 
-	const glm::vec3& Transform::getPosition() const
+	const vec3& Transform::getPosition() const
 	{
 		return mPosition;
 	}
 
-	const glm::vec3& Transform::getScale() const
+	const vec3& Transform::getScale() const
 	{
 		return mScale;
 	}
@@ -157,7 +156,7 @@ namespace lg
 		return mParent;
 	}
 
-	glm::mat4 Transform::getMatrix() const
+	mat4 Transform::getMatrix() const
 	{
 		if (mParent)
 		{
