@@ -47,14 +47,14 @@ namespace lg
 		mNodes.clear();
 	}
 
-	Node* Scene::remove(u32 id)
+	void Scene::remove(u32 id)
 	{
 		auto it = mNodes.find(id);
-
 		assert(it != mNodes.end());
-		mNodes.erase(it);
 
-		return it->second;
+		it->second->release();
+		
+		mNodes.erase(it);
 	}
 
 	const vec3& Scene::getAmbientLight() const

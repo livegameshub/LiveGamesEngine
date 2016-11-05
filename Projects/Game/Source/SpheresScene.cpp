@@ -39,32 +39,22 @@ void SpheresScene::init()
 	lg::DiffuseMaterial* blue_material = lg::Resources::instance().getResource<lg::DiffuseMaterial>(16);
 	
 	// camera 
-	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
+	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
 	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
-	mRootNode.addChild(mCamera);
 	
 	// models
-	mSpheres.push_back(createNode<lg::Node>(2, lg::Node::MODEL));
-	mSpheres.push_back(createNode<lg::Node>(3, lg::Node::MODEL));
-	mSpheres.push_back(createNode<lg::Node>(4, lg::Node::MODEL));
+	mSpheres.push_back(create<lg::Node>(2, lg::Node::MODEL, &mRootNode, vec3(-3.5f, 0.0f, 0.0f)));
+	mSpheres.push_back(create<lg::Node>(3, lg::Node::MODEL, &mRootNode));
+	mSpheres.push_back(create<lg::Node>(4, lg::Node::MODEL, &mRootNode, vec3(3.5f, 0.0f, 0.0f)));
 	
 	mSpheres[0]->setRenderer(lg::MeshRenderer::create(blue_material, sphere_mesh));
 	mSpheres[1]->setRenderer(lg::MeshRenderer::create(yellow_material, sphere_mesh));
 	mSpheres[2]->setRenderer(lg::MeshRenderer::create(red_material, sphere_mesh2));
 	
-	mSpheres[0]->getTransform().setPosition(vec3(-3.5f, 0.0f, 0.0f));
-	mSpheres[2]->getTransform().setPosition(vec3(3.5f, 0.0f, 0.0f));
-	
-	for (auto sphere : mSpheres)
-	{
-		mRootNode.addChild(sphere);
-	}
-	
 	// light
-	mDirectionalLight = createNode<lg::DirectionalLight>(5, lg::Node::DIRECTIONAL_LIGHT);
+	mDirectionalLight = create<lg::DirectionalLight>(5, lg::Node::DIRECTIONAL_LIGHT, &mRootNode);
 	mDirectionalLight->setDirection(vec3(0.0f, 0.0f, -1.0f));
-	mRootNode.addChild(mDirectionalLight);
 
 	/* call the basic init function */
 	//Scene::init();

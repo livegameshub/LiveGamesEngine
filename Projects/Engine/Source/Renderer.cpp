@@ -63,17 +63,17 @@ namespace lg
 
 			if (it->isEnabled())
 			{
-				if (it->getType() == Node::MODEL)
-				{
-					disable2d();
-
-					drawNode(it);
-				}
-				else if (it->getType() == Node::SPRITE)
+				if (it->getType() == Node::SPRITE)
 				{
 					enable2d();
 
 					drawSprite(it);
+				}
+				else
+				{
+					disable2d();
+
+					drawNode(it);
 				}
 
 				drawAll(it);
@@ -249,4 +249,3 @@ namespace lg
 		}
 	}
 }
-

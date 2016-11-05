@@ -61,39 +61,27 @@ void CubesScene::init()
 	lg::DiffuseMaterial* plane_material = lg::Resources::instance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextAvailableId(), program3, plane_texture, vec3(1.0f), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
 
 	// camera 
-	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
+	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
 	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
-	mRootNode.addChild(mCamera);
 
 	// models
-	lg::Node* plane = createNode<lg::Node>(2, lg::Node::MODEL);
+	lg::Node* plane = create<lg::Node>(2, lg::Node::MODEL, &mRootNode, vec3(0.0f, -1.5f, 0.0f));
 	plane->setRenderer(lg::MeshRenderer::create(plane_material, plane_mesh));
 	plane->getTransform().setScale(vec3(8.0f));
-	plane->getTransform().translate(vec3(0.0f, -1.5f, 0.0f));
 	plane->getTransform().rotateOnX(270.0f);
-	mRootNode.addChild(plane);
 
-	mCubes.push_back(createNode<lg::Node>(3, lg::Node::MODEL));
-	mCubes.push_back(createNode<lg::Node>(4, lg::Node::MODEL));
-	mCubes.push_back(createNode<lg::Node>(5, lg::Node::MODEL));
+	mCubes.push_back(create<lg::Node>(3, lg::Node::MODEL, &mRootNode, vec3(-3.5f, 0.0f, 0.0f)));
+	mCubes.push_back(create<lg::Node>(4, lg::Node::MODEL, &mRootNode));
+	mCubes.push_back(create<lg::Node>(5, lg::Node::MODEL, &mRootNode, vec3(3.5f, 0.0f, 0.0f)));
 	
 	mCubes[0]->setRenderer(lg::MeshRenderer::create(blue_material, cube_mesh2));
 	mCubes[1]->setRenderer(lg::MeshRenderer::create(yellow_material, cube_mesh2));
 	mCubes[2]->setRenderer(lg::MeshRenderer::create(red_material, cube_mesh));
 
-	mCubes[0]->getTransform().setPosition(vec3(-3.5f, 0.0f, 0.0f));
-	mCubes[2]->getTransform().setPosition(vec3(3.5f, 0.0f, 0.0f));
-	
-	for (auto cube : mCubes)
-	{
-		mRootNode.addChild(cube);
-	}
-
 	// light
-	mDirectionalLight = createNode<lg::DirectionalLight>(6, lg::Node::DIRECTIONAL_LIGHT);
+	mDirectionalLight = create<lg::DirectionalLight>(6, lg::Node::DIRECTIONAL_LIGHT, &mRootNode);
 	mDirectionalLight->setDirection(vec3(0.0f, 0.0f, -1.0f));
-	mRootNode.addChild(mDirectionalLight);
 
 	/* call the basic init function */
 	//Scene::init();

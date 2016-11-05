@@ -62,30 +62,21 @@ void SimpleScene::init()
 	lg::Material* blue_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(0.0f, 0.0f, 1.0f));
 	
 	// camera 
-	mCamera = createNode<lg::Camera>(1, lg::Node::CAMERA);
+	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
 	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
-	mRootNode.addChild(mCamera);
 	
 	// models
-	mPrimitives.push_back(createNode<lg::Node>(2, lg::Node::MODEL));
-	mPrimitives.push_back(createNode<lg::Node>(3, lg::Node::MODEL));
-	mPrimitives.push_back(createNode<lg::Node>(4, lg::Node::MODEL));
+	mPrimitives.push_back(create<lg::Node>(2, lg::Node::MODEL, &mRootNode, vec3(-3.5f, 0.0f, 0.0f)));
+	mPrimitives.push_back(create<lg::Node>(3, lg::Node::MODEL, &mRootNode));
+	mPrimitives.push_back(create<lg::Node>(4, lg::Node::MODEL, &mRootNode, vec3(3.5f, 0.0f, 0.0f)));
 
 	mPrimitives[0]->setRenderer(lg::MeshRenderer::create(blue_material, point_mesh));
 	mPrimitives[1]->setRenderer(lg::MeshRenderer::create(yellow_material, line_mesh));
 	mPrimitives[2]->setRenderer(lg::MeshRenderer::create(red_material, triangle_mesh));
 
-	mPrimitives[0]->getTransform().setPosition(vec3(-3.5f, 0.0f, 0.0f));
-	mPrimitives[2]->getTransform().setPosition(vec3(3.5f, 0.0f, 0.0f));
-	
-	for (auto primitive : mPrimitives)
-	{
-		mRootNode.addChild(primitive);
-	}
-
 	/* call the basic init function */
-	Scene::init();
+	//Scene::init();
 }
 
 void SimpleScene::update()

@@ -40,10 +40,9 @@ void GameScene::init()
 	lg::Material* sprite_material_2 = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, plane_texture_2, vec3(1.0f));
 	
 	// camera
-	lg::Camera* camera = createNode<lg::Camera>(1, lg::Node::CAMERA);
+	lg::Camera* camera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
 	camera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	camera->moveAt(vec3(0.0f, 0.0f, 7.0f));
-	mRootNode.addChild(camera);
 	
 	// useful variables
 	i32 r_max = 3;
@@ -62,14 +61,12 @@ void GameScene::init()
 	{
 		for (i32 c = 0; c < c_max; ++c)
 		{
-			lg::Sprite* sprite = createNode<lg::Sprite>(++sprite_id, lg::Node::SPRITE);
+			f32 x = static_cast<f32>(x_position) + (width * static_cast<f32>(c)) + (width * static_cast<f32>(r));
+			f32 y = static_cast<f32>(y_position) + (height * static_cast<f32>(c)) - (height * static_cast<f32>(r));
+
+			lg::Sprite* sprite = create<lg::Sprite>(++sprite_id, lg::Node::SPRITE, &mRootNode, vec3(x, y, 0.0f));
 			sprite->setRenderer(lg::MeshRenderer::create(sprite_material_2, sprite_mesh));
 			sprite->setSize(vec2(512.0f, 256.0f));
-
-			sprite->getTransform().setPosition(vec3(static_cast<f32>(x_position) + (width * static_cast<f32>(c)) + (width * static_cast<f32>(r)),
-													static_cast<f32>(y_position) + (height * static_cast<f32>(c)) - (height * static_cast<f32>(r)), 0.0f));
-	
-			mRootNode.addChild(sprite);
 		}
 	}
 }
