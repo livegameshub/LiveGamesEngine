@@ -5,6 +5,9 @@
 #include <iostream>
 #include <glm/glm.hpp>
 
+using namespace std;
+using namespace glm;
+
 namespace lg
 {
 	class Exporter

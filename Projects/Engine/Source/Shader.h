@@ -12,15 +12,11 @@ namespace lg
 		static const u32 VERTEX = GL_VERTEX_SHADER;
 		static const u32 FRAGMENT = GL_FRAGMENT_SHADER;
 
-		Shader(u32 id);
-		Shader(u32 id, u32 shaderType);
-		Shader(u32 id, u32 shaderType, const string& file);
-
+		Shader(u32 id, const string& file);
 		~Shader();
 
 		void compile() const;
 
-		void setShaderType(u32 type);
 		u32 getShaderType() const;
 		u32 getShaderId() const;
 		

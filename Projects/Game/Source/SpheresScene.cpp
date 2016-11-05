@@ -8,7 +8,8 @@
 #include "Scenes.h"
 #include "DiffuseMaterial.h"
 #include "DirectionalLight.h"
-#include <Console.h>
+#include "Console.h"
+#include "Mesh.h"
 
 SpheresScene::SpheresScene()
 	: mDirectionalLight(nullptr)
@@ -30,8 +31,8 @@ SpheresScene::~SpheresScene()
 void SpheresScene::init()
 {
 	// meshes
-	lg::Mesh* sphere_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), "Sphere.mesh");
-	lg::Mesh* sphere_mesh2 = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), "Sphere2.mesh");
+	lg::Mesh* sphere_mesh = lg::Resources::instance().create<lg::Mesh>(lg::Resources::getNextId(), "Sphere.mesh");
+	lg::Mesh* sphere_mesh2 = lg::Resources::instance().create<lg::Mesh>(lg::Resources::getNextId(), "Sphere2.mesh");
 	
 	// materials
 	lg::Material* red_material = lg::Resources::instance().getResource<lg::Material>(14);

@@ -35,9 +35,9 @@ void SimpleScene::init()
 	lg::Program* program = lg::Resources::instance().getResource<lg::Program>(7);
 	
 	// meshes
-	lg::Mesh* point_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::POINTS, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
-	lg::Mesh* line_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::LINES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
-	lg::Mesh* triangle_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextAvailableId(), lg::Mesh::TRIANGLES, lg::Mesh::STATIC_DRAW, lg::Mesh::REMOVE_DATA);
+	lg::Mesh* point_mesh = new lg::Mesh(lg::Resources::getNextId(), lg::Mesh::POINTS, lg::Mesh::STATIC_DRAW, sizeof(vec3), lg::Mesh::REMOVE_DATA);
+	lg::Mesh* line_mesh = new lg::Mesh(lg::Resources::getNextId(), lg::Mesh::LINES, lg::Mesh::STATIC_DRAW, sizeof(vec3), lg::Mesh::REMOVE_DATA);
+	lg::Mesh* triangle_mesh = new lg::Mesh(lg::Resources::getNextId(), lg::Mesh::TRIANGLES, lg::Mesh::STATIC_DRAW, sizeof(vec3), lg::Mesh::REMOVE_DATA);
 	
 	lg::MeshData& point_data = point_mesh->getData();
 	lg::MeshData& line_data = line_mesh->getData(); 
@@ -55,11 +55,15 @@ void SimpleScene::init()
 	triangle_data.addVertex(vec3(1.0f, 0.0f, 0.0f));
 	triangle_data.addVertex(vec3(0.0f, 1.0f, 0.0f));
 	triangle_data.addTriangle(0, 1, 2);
+
+	lg::Resources::instance().add(point_mesh);
+	lg::Resources::instance().add(line_mesh);
+	lg::Resources::instance().add(triangle_mesh);
 	
 	// materials
-	lg::Material* red_material =  lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
-	lg::Material* yellow_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(1.0f, 1.0f, 0.0f));
-	lg::Material* blue_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextAvailableId(), program, nullptr, vec3(0.0f, 0.0f, 1.0f));
+	lg::Material* red_material =  lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
+	lg::Material* yellow_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, nullptr, vec3(1.0f, 1.0f, 0.0f));
+	lg::Material* blue_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, nullptr, vec3(0.0f, 0.0f, 1.0f));
 	
 	// camera 
 	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);

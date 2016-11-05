@@ -22,7 +22,7 @@ namespace lg
 	u32 Renderer::smCurrentMaterialId = 0;
 	u32 Renderer::smCurrentTextureId = 0;
 
-	bool Renderer::smIs2dActivated = false;
+	bool Renderer::smIs2dActivated = true;
 
 	Renderer::Renderer()
 		: mScene(nullptr)
@@ -38,6 +38,8 @@ namespace lg
 		glEnable(GL_CULL_FACE);
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		disable2d();
 	}
 
 	void Renderer::setScene(const Scene* scene)

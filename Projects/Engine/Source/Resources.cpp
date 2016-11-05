@@ -78,55 +78,6 @@ namespace lg
 		return mAllResources;
 	}
 
-	Program* Resources::createProgram(u32 id, const vector<Shader*> shaders)
-	{
-		assert(getResource<Program>(id) == nullptr);
-
-		Program* program = new Program(id);
-
-		for (auto shader : shaders)
-		{
-			program->addShader(shader);
-		}
-
-		add(program);
-
-		return program;
-	}
-
-	Shader* Resources::createShader(u32 id, u32 type, const string& file)
-	{
-		assert(getResource<Shader>(id) == nullptr);
-
-		Shader* shader = new Shader(id, type, file);
-
-		add(shader);
-
-		return shader;
-	}
-
-	Mesh* Resources::createMesh(u32 id, const string& file)
-	{
-		assert(getResource<Mesh>(id) == nullptr);
-
-		Mesh* mesh = new Mesh(id, file);
-
-		add(mesh);
-
-		return mesh;
-	}
-
-	Mesh* Resources::createMesh(u32 id, u32 primitive, u32 drawType, const Flag& flag)
-	{
-		assert(getResource<Mesh>(id) == nullptr);
-
-		Mesh* mesh = new Mesh(id, primitive, drawType, sizeof(vec3), flag);
-
-		add(mesh);
-
-		return mesh;
-	}
-
 	Mesh* Resources::createMesh(u32 id, const vec2& startPoint, const vec2& size, const vec2& textureSize)
 	{
 		assert(getResource<Mesh>(id) == nullptr);
@@ -148,18 +99,7 @@ namespace lg
 		return mesh;
 	}
 
-	Texture* Resources::createTexture(u32 id, const string& file, bool generateMipmaps)
-	{
-		assert(getResource<Texture>(id) == nullptr);
-
-		Texture* texture = new Texture(id, file, generateMipmaps);
-
-		add(texture);
-
-		return texture;
-	}
-
-	u32 Resources::getNextAvailableId()
+	u32 Resources::getNextId()
 	{
 		static u32 current_id = 0;
 

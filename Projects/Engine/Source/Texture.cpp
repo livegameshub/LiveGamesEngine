@@ -12,9 +12,9 @@ namespace lg
 	{		
 	}
 
-	Texture::Texture(u32 id, const string& file, bool generateMipmaps)
+	Texture::Texture(u32 id, const string& file)
 		: Resource(id, file)
-		, mGenerateMipmaps(generateMipmaps)
+		, mGenerateMipmaps(false)
 		, mTextureId(0)
 		, mFormat(0)
 		, mBits(0)
@@ -28,6 +28,11 @@ namespace lg
 	void Texture::bind() const
 	{
 		glBindTexture(GL_TEXTURE_2D, mTextureId);
+	}
+
+	void Texture::GenerateMipMaps(bool value)
+	{
+		mGenerateMipmaps = value;
 	}
 
 	void Texture::Activate(u32 index)

@@ -3,24 +3,10 @@
 
 namespace lg
 {
-	Shader::Shader(u32 id)
-		: Resource(id)
-		, mShaderId(0)
-		, mShaderType(0)
-	{
-	}
-
-	Shader::Shader(u32 id, u32 shaderType)
-		: Resource(id)
-		, mShaderId(0)
-		, mShaderType(shaderType)
-	{
-	}
-
-	Shader::Shader(u32 id, u32 shaderType, const string& file)
+	Shader::Shader(u32 id, const string& file)
 		: Resource(id, file)
 		, mShaderId(0)
-		, mShaderType(shaderType)
+		, mShaderType(-1)
 	{
 	}
 
@@ -31,11 +17,6 @@ namespace lg
 	void Shader::compile() const
 	{
 		glCompileShader(mShaderId);
-	}
-
-	void Shader::setShaderType(u32 type)
-	{
-		mShaderType = type;
 	}
 
 	u32 Shader::getShaderType() const
@@ -83,6 +64,21 @@ namespace lg
 		{
 			return false;
 		}
+
+		/* check the shader type by file extension - begin */
+
+		string output_file = mResourceFile.substr(mResourceFile.find('.'));
+		
+		if (output_file == ".vs")
+		{
+			mShaderType = VERTEX;
+		}
+		else if (output_file == ".fs")
+		{
+			mShaderType = FRAGMENT;
+		}
+
+		/* check the shader type by file extension - end */
 
 		mShaderId = glCreateShader(mShaderType);
 

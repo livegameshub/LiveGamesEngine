@@ -9,12 +9,13 @@ namespace lg
 	{
 	public:
 		Texture(u32 id);
-		Texture(u32 id, const string& file, bool generateMipmaps);
+		Texture(u32 id, const string& file);
 
 		~Texture();
 
 		void bind() const;
-
+		void GenerateMipMaps(bool value);
+		
 		const ivec2& getSize() const;
 		u32 getTextureFormat() const;
 		u32 getTextureId() const;

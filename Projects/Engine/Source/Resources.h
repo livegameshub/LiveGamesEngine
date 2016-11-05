@@ -24,30 +24,22 @@ namespace lg
 
 		void add(Resource* resource);
 		void remove(u32 id);
-		
-		const map<u32, Resource*>& getResources() const;
-
-		/* shaders */
-		Shader* createShader(u32 id, u32 type, const string& file);
-
-		/* programs */
-		Program* createProgram(u32 id, const vector<Shader*> shaders);
 
 		/* meshes */
-		Mesh* createMesh(u32 id, const string& file);
-		Mesh* createMesh(u32 id, u32 primitive, u32 drawType, const Flag& flag);
 		Mesh* createMesh(u32 id, const vec2& startPoint, const vec2& size, const vec2& textureSize);
-
-		/*textures */
-		Texture* createTexture(u32 id, const string& file, bool generateMipmaps);
 
 		/* materials */
 		template <class T> T* createMaterial(u32 id, Program* program, Texture* texture, const vec3& diffuse, const Flag& flag = 0);
 
 		/* template methods */
+		template <class T> T* create(u32 id);
+		template <class T> T* create(u32 id, const Flag& flag);
+		template <class T> T* create(u32 id, const string& file);
 		template <class T> T* getResource(u32 id) const;
 
-		static u32 getNextAvailableId();
+		const map<u32, Resource*>& getResources() const;
+
+		static u32 getNextId();
 		static Resources& instance();
 
 	private:
@@ -66,13 +58,45 @@ namespace lg
 
 		if (texture)
 		{
-			// if we have a texture assign it (don't forget the cast)
 			material->setDiffuseTexture(texture);
 		}
 
 		add(material);
 
 		return static_cast<T*>(material);
+	}
+
+	template <class T>
+	T* Resources::create(u32 id)
+	{
+		assert(getResource<T>(id) == nullptr);
+		T* resource = new T(id);
+
+		add(resource);
+
+		return resource;
+	}
+
+	template <class T>
+	T* Resources::create(u32 id, const Flag& flag)
+	{
+		assert(getResource<T>(id) == nullptr);
+		T* resource = new T(id, flag);
+
+		add(resource);
+
+		return resource;
+	}
+
+	template <class T>
+	T* Resources::create(u32 id, const string& file)
+	{
+		assert(getResource<T>(id) == nullptr);
+		T* resource = new T(id, file);
+
+		add(resource);
+
+		return resource;
 	}
 
 	template <class T>
