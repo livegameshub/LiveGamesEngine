@@ -41,8 +41,10 @@ void GameScene::init()
 	
 	// material
 	//lg::Material* sprite_material_1 = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, plane_texture_1, vec3(1.0f));
-	lg::Material* sprite_material_2 = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, plane_texture_2, vec3(1.0f));
-	
+	lg::Material* sprite_material_2 = lg::Resources::instance().create<lg::Material>(lg::Resources::getNextId());
+	sprite_material_2->setDiffuseTexture(plane_texture_2);
+	sprite_material_2->setProgram(program);
+
 	// camera
 	lg::Camera* camera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
 	camera->setSize(lg::Engine::instance().getWindowByIndex(0)->getSize());

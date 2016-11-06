@@ -61,9 +61,17 @@ void SimpleScene::init()
 	lg::Resources::instance().add(triangle_mesh);
 	
 	// materials
-	lg::Material* red_material =  lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
-	lg::Material* yellow_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, nullptr, vec3(1.0f, 1.0f, 0.0f));
-	lg::Material* blue_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, nullptr, vec3(0.0f, 0.0f, 1.0f));
+	lg::Material* red_material =  lg::Resources::instance().create<lg::Material>(lg::Resources::getNextId());
+	red_material->setDiffuseColor(vec3(1.0f, 0.0f, 0.0f));
+	red_material->setProgram(program);
+
+	lg::Material* yellow_material = lg::Resources::instance().create<lg::Material>(lg::Resources::getNextId());
+	yellow_material->setDiffuseColor(vec3(1.0f, 1.0f, 0.0f));
+	yellow_material->setProgram(program);
+
+	lg::Material* blue_material = lg::Resources::instance().create<lg::Material>(lg::Resources::getNextId());
+	blue_material->setDiffuseColor(vec3(0.0f, 0.0f, 1.0f));
+	blue_material->setProgram(program);
 	
 	// camera 
 	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);

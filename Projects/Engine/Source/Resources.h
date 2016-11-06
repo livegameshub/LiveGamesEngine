@@ -26,10 +26,11 @@ namespace lg
 		void remove(u32 id);
 
 		/* meshes */
+		// TODO
+		// move this method somewhere else
 		Mesh* createMesh(u32 id, const vec2& startPoint, const vec2& size, const vec2& textureSize);
 
 		/* materials */
-		template <class T> T* createMaterial(u32 id, Program* program, Texture* texture, const vec3& diffuse, const Flag& flag = 0);
 		template <class T> T* create(u32 id);
 		template <class T> T* create(u32 id, const Flag& flag);
 		template <class T> T* create(u32 id, const string& file);
@@ -46,24 +47,6 @@ namespace lg
 	};
 
 	/* template class methods - begin */
-	template <class T>
-	T* Resources::createMaterial(u32 id, Program* program, Texture* texture, const vec3& diffuse, const Flag& flag)
-	{
-		assert(getResource<T>(id) == nullptr);
-
-		T* material = new T(id, diffuse, flag);
-		material->setProgram(program);
-
-		if (texture)
-		{
-			material->setDiffuseTexture(texture);
-		}
-
-		add(material);
-
-		return static_cast<T*>(material);
-	}
-
 	template <class T>
 	T* Resources::create(u32 id)
 	{

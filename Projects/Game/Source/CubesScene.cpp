@@ -61,10 +61,21 @@ void CubesScene::init()
 	lg::Mesh* plane_mesh = lg::Resources::instance().create<lg::Mesh>(lg::Resources::getNextId(), "Plane.mesh");
 
 	// materials
-	lg::Material* red_material = lg::Resources::instance().createMaterial<lg::Material>(lg::Resources::getNextId(), program, nullptr, vec3(1.0f, 0.0f, 0.0f));
-	lg::DiffuseMaterial* yellow_material = lg::Resources::instance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextId(), program2, nullptr, vec3(1.0f, 1.0f, 0.0f), lg::Material::IS_LIGHTED);
-	lg::DiffuseMaterial* blue_material = lg::Resources::instance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextId(), program2, nullptr, vec3(0.0f, 0.0f, 1.0f), lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
-	lg::DiffuseMaterial* plane_material = lg::Resources::instance().createMaterial<lg::DiffuseMaterial>(lg::Resources::getNextId(), program3, plane_texture, vec3(1.0f), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
+	lg::Material* red_material = lg::Resources::instance().create<lg::Material>(lg::Resources::getNextId());
+	red_material->setDiffuseColor(vec3(1.0f, 0.0f, 0.0f));
+	red_material->setProgram(program);
+
+	lg::DiffuseMaterial* yellow_material = lg::Resources::instance().create<lg::DiffuseMaterial>(lg::Resources::getNextId(), lg::Material::IS_LIGHTED);
+	yellow_material->setDiffuseColor(vec3(1.0f, 1.0f, 0.0f));
+	yellow_material->setProgram(program2);
+
+	lg::DiffuseMaterial* blue_material = lg::Resources::instance().create<lg::DiffuseMaterial>(lg::Resources::getNextId(), lg::Material::IS_SHINY | lg::Material::IS_LIGHTED);
+	blue_material->setDiffuseColor(vec3(0.0f, 0.0f, 1.0f));
+	blue_material->setProgram(program2);
+
+	lg::DiffuseMaterial* plane_material = lg::Resources::instance().create<lg::DiffuseMaterial>(lg::Resources::getNextId(), lg::Material::IS_SHINY | lg::Material::IS_TEXTURED | lg::Material::IS_LIGHTED);
+	plane_material->setDiffuseTexture(plane_texture);
+	plane_material->setProgram(program3);
 
 	// camera 
 	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
