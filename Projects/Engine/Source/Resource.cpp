@@ -47,7 +47,7 @@ namespace lg
 			return false;
 		}
 
-		if (mReferencesCounter == 1)
+ 		if (mReferencesCounter == 1)
 		{
 			if (!release())
 			{

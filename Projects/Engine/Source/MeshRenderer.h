@@ -11,10 +11,10 @@ namespace lg
 	class ENGINE_API MeshRenderer
 	{
 	public:
-		MeshRenderer();
+		MeshRenderer(Material* material, Mesh* mesh);
 		~MeshRenderer();
 
-		void release();
+		void release() const;
 
 		void setMaterial(Material* material);
 		void setMesh(Mesh* mesh);
@@ -24,8 +24,6 @@ namespace lg
 
 		void setEnabled(bool value);
 		bool isEnabled() const;
-
-		static MeshRenderer* create(Material* material, Mesh* mesh);
 
 	private:
 		Material* mMaterial;

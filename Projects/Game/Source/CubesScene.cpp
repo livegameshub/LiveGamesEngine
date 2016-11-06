@@ -48,14 +48,9 @@ void CubesScene::init()
 	lg::Program* program2 = lg::Resources::instance().create<lg::Program>(lg::Resources::getNextId());
 	lg::Program* program3 = lg::Resources::instance().create<lg::Program>(lg::Resources::getNextId());
 
-	program->addShader(vertexShader);
-	program->addShader(fragmentShader);
-
-	program2->addShader(vertexShader2);
-	program2->addShader(fragmentShader2);
-
-	program3->addShader(vertexShader3);
-	program3->addShader(fragmentShader3);
+	program->addShaders({ vertexShader, fragmentShader });
+	program2->addShaders({ vertexShader2, fragmentShader2 });
+	program3->addShaders({ vertexShader3, fragmentShader3 });
 
 	// textures
 	lg::Texture* plane_texture = lg::Resources::instance().create<lg::Texture>(lg::Resources::getNextId(), "floor.texture");
@@ -73,12 +68,12 @@ void CubesScene::init()
 
 	// camera 
 	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
-	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
+	mCamera->setSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 
 	// models
 	lg::Node* plane = create<lg::Node>(2, lg::Node::MODEL, &mRootNode, vec3(0.0f, -1.5f, 0.0f));
-	plane->setRenderer(lg::MeshRenderer::create(plane_material, plane_mesh));
+	plane->setRenderer(new lg::MeshRenderer(plane_material, plane_mesh));
 	plane->getTransform().setScale(vec3(8.0f));
 	plane->getTransform().rotateOnX(270.0f);
 
@@ -86,9 +81,9 @@ void CubesScene::init()
 	mCubes.push_back(create<lg::Node>(4, lg::Node::MODEL, &mRootNode));
 	mCubes.push_back(create<lg::Node>(5, lg::Node::MODEL, &mRootNode, vec3(3.5f, 0.0f, 0.0f)));
 	
-	mCubes[0]->setRenderer(lg::MeshRenderer::create(blue_material, cube_mesh2));
-	mCubes[1]->setRenderer(lg::MeshRenderer::create(yellow_material, cube_mesh2));
-	mCubes[2]->setRenderer(lg::MeshRenderer::create(red_material, cube_mesh));
+	mCubes[0]->setRenderer(new lg::MeshRenderer(blue_material, cube_mesh2));
+	mCubes[1]->setRenderer(new lg::MeshRenderer(yellow_material, cube_mesh2));
+	mCubes[2]->setRenderer(new lg::MeshRenderer(red_material, cube_mesh));
 
 	// light
 	mDirectionalLight = create<lg::DirectionalLight>(6, lg::Node::DIRECTIONAL_LIGHT, &mRootNode);

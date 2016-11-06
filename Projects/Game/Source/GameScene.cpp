@@ -29,8 +29,7 @@ void GameScene::init()
 	
 	// program
 	lg::Program* program = lg::Resources::instance().create<lg::Program>(lg::Resources::getNextId());
-	program->addShader(vertexShader);
-	program->addShader(fragmentShader);
+	program->addShaders({ vertexShader, fragmentShader });
 	
 	// mesh
 	lg::Mesh* sprite_mesh = lg::Resources::instance().createMesh(lg::Resources::getNextId(), vec2(), vec2(512.0f, 256.0f), vec2(512.0f, 256.0f));
@@ -46,7 +45,7 @@ void GameScene::init()
 	
 	// camera
 	lg::Camera* camera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
-	camera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
+	camera->setSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	camera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	
 	// useful variables
@@ -58,8 +57,8 @@ void GameScene::init()
 	f32 width = 216.0f;
 	f32 height = 96.0f;
 	
-	f32 x_position = (camera->getViewSize().x / 2.0f) - (static_cast<f32>(r_max) * height) / 2.0f;
-	f32 y_position = (camera->getViewSize().y / 2.0f) + (static_cast<f32>(c_max) * height) / 2.0f;
+	f32 x_position = (camera->getSize().x / 2.0f) - (static_cast<f32>(r_max) * height) / 2.0f;
+	f32 y_position = (camera->getSize().y / 2.0f) + (static_cast<f32>(c_max) * height) / 2.0f;
 	
 	// create the level
 	for (i32 r = r_max; r > 0; --r)
@@ -70,7 +69,7 @@ void GameScene::init()
 			f32 y = static_cast<f32>(y_position) + (height * static_cast<f32>(c)) - (height * static_cast<f32>(r));
 
 			lg::Sprite* sprite = create<lg::Sprite>(++sprite_id, lg::Node::SPRITE, &mRootNode, vec3(x, y, 0.0f));
-			sprite->setRenderer(lg::MeshRenderer::create(sprite_material_2, sprite_mesh));
+			sprite->setRenderer(new lg::MeshRenderer(sprite_material_2, sprite_mesh));
 			sprite->setSize(vec2(512.0f, 256.0f));
 		}
 	}

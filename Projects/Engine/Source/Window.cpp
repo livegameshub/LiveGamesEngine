@@ -207,9 +207,9 @@ namespace lg
 			{
 				assert(camera != nullptr);
 
-				if (!camera->hasCustomViewSize())
+				if (!camera->hasCustomSize())
 				{
-					camera->setViewSize(size);
+					camera->setSize(size);
 				}
 			}
 

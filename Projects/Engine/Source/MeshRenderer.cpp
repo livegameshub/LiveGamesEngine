@@ -5,18 +5,20 @@
 
 namespace lg
 {
-	MeshRenderer::MeshRenderer()
+	MeshRenderer::MeshRenderer(Material* material, Mesh* mesh)
 		: mMaterial(nullptr)
 		, mMesh(nullptr)
 		, mIsEnabled(true)
 	{
+		setMaterial(material);
+		setMesh(mesh);
 	}
 
 	MeshRenderer::~MeshRenderer()
 	{
 	}
 
-	void MeshRenderer::release()
+	void MeshRenderer::release() const
 	{
 		assert(mMaterial != nullptr);
 		assert(mMesh != nullptr);
@@ -71,15 +73,5 @@ namespace lg
 	bool MeshRenderer::isEnabled() const
 	{
 		return mIsEnabled;
-	}
-
-	MeshRenderer* MeshRenderer::create(Material* material, Mesh* mesh)
-	{
-		MeshRenderer* renderer = new MeshRenderer();
-
-		renderer->setMaterial(material);
-		renderer->setMesh(mesh);
-		
-		return renderer;
 	}
 }

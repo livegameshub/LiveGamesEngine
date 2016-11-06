@@ -7,9 +7,6 @@
     <Filter Include="Source\Scenes">
       <UniqueIdentifier>{bceb9c1c-1559-4a6b-badc-73d032022d5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Components">
-      <UniqueIdentifier>{e1e30bba-a0cb-421b-98d7-f22d977fae28}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Nodes">
       <UniqueIdentifier>{0f284b24-ea47-44a4-a48e-67189da1dfc3}</UniqueIdentifier>
     </Filter>
@@ -33,7 +30,10 @@
     <ClCompile Include="Source\GameScene.cpp">
       <Filter>Source\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Source\TilesMap.cpp">
+    <ClCompile Include="Source\TileMap.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tile.cpp">
       <Filter>Source\Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +50,10 @@
     <ClInclude Include="Source\GameScene.h">
       <Filter>Source\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Source\TilesMap.h">
+    <ClInclude Include="Source\Tile.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TileMap.h">
       <Filter>Source\Game</Filter>
     </ClInclude>
   </ItemGroup>

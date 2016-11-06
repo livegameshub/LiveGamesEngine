@@ -67,7 +67,7 @@ void SimpleScene::init()
 	
 	// camera 
 	mCamera = create<lg::Camera>(1, lg::Node::CAMERA, &mRootNode);
-	mCamera->setViewSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
+	mCamera->setSize(lg::Engine::instance().getWindowByIndex(0)->getSize());
 	mCamera->moveAt(vec3(0.0f, 0.0f, 7.0f));
 	
 	// models
@@ -75,9 +75,9 @@ void SimpleScene::init()
 	mPrimitives.push_back(create<lg::Node>(3, lg::Node::MODEL, &mRootNode));
 	mPrimitives.push_back(create<lg::Node>(4, lg::Node::MODEL, &mRootNode, vec3(3.5f, 0.0f, 0.0f)));
 
-	mPrimitives[0]->setRenderer(lg::MeshRenderer::create(blue_material, point_mesh));
-	mPrimitives[1]->setRenderer(lg::MeshRenderer::create(yellow_material, line_mesh));
-	mPrimitives[2]->setRenderer(lg::MeshRenderer::create(red_material, triangle_mesh));
+	mPrimitives[0]->setRenderer(new lg::MeshRenderer(blue_material, point_mesh));
+	mPrimitives[1]->setRenderer(new lg::MeshRenderer(yellow_material, line_mesh));
+	mPrimitives[2]->setRenderer(new lg::MeshRenderer(red_material, triangle_mesh));
 
 	/* call the basic init function */
 	//Scene::init();

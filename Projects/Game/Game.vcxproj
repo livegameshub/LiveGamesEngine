@@ -132,14 +132,16 @@
     <ClCompile Include="Source\CubesScene.cpp" />
     <ClCompile Include="Source\SimpleScene.cpp" />
     <ClCompile Include="Source\SpheresScene.cpp" />
-    <ClCompile Include="Source\TilesMap.cpp" />
+    <ClCompile Include="Source\Tile.cpp" />
+    <ClCompile Include="Source\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CubesScene.h" />
     <ClInclude Include="Source\GameScene.h" />
     <ClInclude Include="Source\SimpleScene.h" />
     <ClInclude Include="Source\SpheresScene.h" />
-    <ClInclude Include="Source\TilesMap.h" />
+    <ClInclude Include="Source\Tile.h" />
+    <ClInclude Include="Source\TileMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

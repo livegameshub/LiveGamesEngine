@@ -35,6 +35,14 @@ namespace lg
 		glDetachShader(mProgramId, shader->getShaderId());
 	}
 
+	void Program::addShaders(const vector<Shader*> shaders)
+	{
+		for (Shader* shader : shaders)
+		{
+			addShader(shader);
+		}
+	}
+
 	void Program::addShader(Shader* shader)
 	{
 		assert(shader != nullptr);

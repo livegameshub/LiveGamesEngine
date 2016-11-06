@@ -30,8 +30,6 @@ namespace lg
 
 		/* materials */
 		template <class T> T* createMaterial(u32 id, Program* program, Texture* texture, const vec3& diffuse, const Flag& flag = 0);
-
-		/* template methods */
 		template <class T> T* create(u32 id);
 		template <class T> T* create(u32 id, const Flag& flag);
 		template <class T> T* create(u32 id, const string& file);

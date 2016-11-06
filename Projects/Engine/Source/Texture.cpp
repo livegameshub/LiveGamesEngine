@@ -45,10 +45,8 @@ namespace lg
 		FILE * pFile;
 
 		#ifdef WINDOWS_BUILD
-
 		fopen_s(&pFile, string(ASSETS_PATH + mResourceFile).c_str(), "rb");
 		#else
-
 		pFile = fopen(string(ASSETS_PATH + mResourceFile).c_str(), "rb");
 		#endif
 

@@ -35,6 +35,7 @@ namespace lg
 		void attachShader(Shader* shader) const;
 		void detachShader(Shader* shader) const;
 
+		void addShaders(const vector<Shader*> shaders);
 		void addShader(Shader* shader);
 		void removeShader(u32 type);
 
